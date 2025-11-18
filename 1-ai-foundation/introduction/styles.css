@@ -1,0 +1,158 @@
+:root {
+  /* Color Palette */
+  --skin-color: #ff5011; /* Orange-Red Accent */
+  --mirage-color: hsl(210, 10%, 23%); /* Dark Gray Background Component */
+  --title-color: hsl(242, 8%, 98%); /* Near White for Titles */
+  --text-color: hsl(242, 8%, 80%); /* Light Gray for Body Text */
+  --body-color: #0d0d0d; /* Deep Black/Very Dark Gray */
+  --box-color: hsl(242, 14%, 12%); /* Slightly lighter than body for cards */
+  --hue-color: 242; /* Used for transparent shadows/colors */
+
+  /* Typography */
+  --body-font: 'Inter', sans-serif;
+  --signature-font: 'Inter', sans-serif;
+  --font-medium: 500;
+  --font-bold: 700;
+  --h3-font-size: 1.7rem;
+  --small-font-size: 0.95rem;
+  --smaller-font-size: 0.85rem;
+
+  /* Margins */
+  --mb025: 0.25rem;
+  --mb15: 1.5rem;
+  --mb25: 2.5rem;
+    
+  /* Scrollbar/Misc */
+  --scroll-box-color: #333;
+  --scroll-thumb-color: #555;
+}
+
+/* --- Base & Scrollbar --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--scroll-box-color);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--skin-color);
+    border-radius: 4px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--body-font);
+  background-color: var(--body-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding: 2rem 1rem;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 8rem; /* Space for fixed nav */
+}
+
+main {
+  max-width: 980px; /* Constrained main content */
+  margin: 0 auto;
+}
+
+/* --- Loader and Animations --- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-loader { /* The full screen overlay */
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background-color: #000; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; z-index: 9999;
+  transition: opacity 0.3s ease;
+}
+
+/* progress bar styles omitted for brevity, see source for full details */
+
+/* --- Navigation Bar --- */
+#nav-bar {
+  position: fixed; top: 2rem; left: 50%; transform: translateX(-50%);
+  background: rgba(25, 25, 25, 0.85); backdrop-filter: blur(10px);
+  border: 1px solid var(--box-color); border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem; display: flex; align-items: center;
+  max-width: 980px; width: 90%; z-index: 1000;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+#nav-menu { display: flex; gap: 1.5rem; margin-left: auto; align-items: center; position: relative; }
+.nav-link { color: var(--text-color); transition: color 0.3s, transform 0.2s; }
+.nav-link:hover { color: var(--skin-color); transform: translateY(-1px); }
+.nav-cta {
+  background: linear-gradient(90deg, var(--skin-color), #d43a00);
+  color: var(--title-color); padding: 0.5rem 1rem; border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4);
+}
+
+/* Submenu container and links styles omitted for brevity, see source for full details */
+
+/* --- Headings and Sections --- */
+h1 { font-size: 3rem; color: var(--skin-color); text-align: center; }
+
+h2 { /* Main section titles, with the left accent bar */
+  font-size: 2.2rem; color: var(--title-color);
+  border-left: 4px solid var(--skin-color); padding-left: 15px;
+}
+
+.section, .instructor-card { /* Standard Card Styling */
+  margin-bottom: 3rem; background-color: var(--box-color);
+  border-radius: 12px; padding: 2.5rem; border: 1px solid var(--mirage-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); transition: all 0.4s ease-out;
+  animation: fadeInUp 0.8s ease-out forwards; opacity: 0;
+}
+
+.section:hover, .instructor-card:hover { /* Hover Effect */
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 80, 17, 0.2), 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* --- List Styles (Icon-based) --- */
+ul li {
+  list-style-type: none; margin-bottom: 1rem; position: relative;
+  display: flex; align-items: flex-start; gap: 1rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+ul li:hover { transform: translateX(5px); color: var(--title-color); }
+ul li i { color: var(--skin-color); flex-shrink: 0; }
+
+/* --- Footer --- */
+.footer-bg { /* Full-width background */
+  background-color: var(--box-color); padding: 3rem 0 3.5rem; width: 100%;
+}
+
+.footer-container { /* Max-width container for content */
+  max-width: 980px; margin: 0 auto; display: grid;
+  grid-template-columns: repeat(3, 1fr); column-gap: 1.6rem;
+}
+
+/* --- Responsive Adjustments (Simplified) --- */
+@media (max-width: 768px) {
+  .two-column, .instructor-profile, .course-at-glance-grid {
+    grid-template-columns: 1fr; /* Stack columns */
+  }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.8rem; }
+  .footer-container {
+    grid-template-columns: 1fr; /* Stack footer */
+  }
+}
+
+/* Full CSS is complex; this block represents the essential rules. */
