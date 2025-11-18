@@ -1,0 +1,5089 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Patricia</title>
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+
+    
+    <!-- Favicon -->
+<link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/1b3c402d665f8293883141de5a7d564769906d78.png">
+
+
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Turret+Road:wght@200;300;400;500;700;800&display=swap');
+
+        :root {
+            --hue-color: 242;
+	--title: "About Barclay Ernest Bellande";
+	--autor: "Bebell Digital Solutions";
+	--contact: "info@bebelldigitalsolutions.com";
+	--description: "";
+	--keywords: "";
+	--last-modified: "2025-10-26";
+	--content-language: "en";
+	--generator: "HTML5, CSS3, JavaScript,";
+            --skin-color: #ff5011;
+            --mirage-color: hsl(210, 10%, 23%);
+            --title-color: hsl(var(--hue-color), 8%, 95%);
+            --text-color: hsl(var(--hue-color), 8%, 85%);
+            --body-color: hsl(var(--hue-color), 19%, 5%);
+            --box-color: hsl(var(--hue-color), 14%, 10%);
+            --scroll-box-color: hsl(var(--hue-color), 12%, 38%);
+            --scroll-thumb-color: #ff5011;
+
+            --body-font: 'Poppins', sans-serif;
+            --signature-font: 'Turret', sans-serif;
+
+            --biggest-font-size: 3rem;
+            --h1-font-size: 3rem;
+            --h2-font-size: 3rem;
+            --h3-font-size: 1.25rem;
+            --normal-font-size: 1rem;
+            --small-font-size: .875rem;
+            --smaller-font-size: .813rem;
+
+            --font-medium: 500;
+            --font-bold: 600;
+
+            --mb025: .25rem;
+            --mb05: .5rem;
+            --mb075: .75rem;
+            --mb1: 1rem;
+            --mb15: 1.5rem;
+            --mb2: 2rem;
+            --mb25: 2.5rem;
+            --mb3: 3rem;
+
+            --z-fixed: 10;
+            --z-modal: 1000;
+        }
+
+        @media screen and (max-width: 1024px) {
+            :root {
+                --biggest-font-size: 2rem;
+                --h1-font-size: 3rem;
+                --h2-font-size: 1.25rem;
+                --h3-font-size: 1.125rem;
+                --normal-font-size: .938rem;
+                --small-font-size: .813rem;
+                --smaller-font-size: .75rem;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+			
+        }
+
+
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.swiper {
+    overflow: hidden;
+}
+
+.video-container {
+    max-width: 100vw;
+    overflow: hidden;
+}
+		
+
+        body,
+        button,
+        input {
+            font-family: var(--body-font);
+            font-size: var(--normal-font-size);
+        }
+
+        body {
+            background-color: var(--body-color);
+            color: var(--text-color);
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--title-color);
+            font-weight: var(--font-bold);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        button,
+        input {
+            border: none;
+            outline: none;
+        }
+
+        .container {
+            max-width: 1250px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            column-gap: .5rem;
+            background-color: var(--skin-color);
+            color: var(--title-color);
+            padding: 0.75rem 1.4rem;
+            border-radius: .25rem;
+            font-weight: var(--font-medium);
+            position: relative;
+            z-index: 1;
+            transition: .4s;
+        }
+
+        .button::after {
+            position: absolute;
+            content: '';
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--mirage-color);
+            z-index: -1;
+            transform-origin: center;
+            transform: scale(0);
+            border-radius: .25rem;
+            transition: .3s;
+        }
+
+        .button:hover::after {
+            transform: scale(1);
+        }
+
+        .section {
+            padding: 6.5rem 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: var(--h1-font-size);
+            margin-bottom: var(--mb3);
+        }
+
+        .section-title::before {
+            content: attr(data-heading);
+            display: block;
+            font-size: var(--normal-font-size);
+            font-weight: var(--font-medium);
+            color: var(--skin-color);
+        }
+
+        ::-webkit-scrollbar {
+            width: 0.6rem;
+            background-color: var(--scroll-box-color);
+            border-radius: .5rem;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--scroll-thumb-color);
+            border-radius: .5rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            width: 100px;
+            height: 100vh;
+            background-color: var(--body-color);
+            border-right: 1px solid var(--box-color);
+        }
+
+        .nav-logo {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 1.8rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: transparent;
+            text-align: center;
+            margin: auto;
+        }
+
+        .nav-logo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .nav-logo-text {
+            font-size: 1.125rem;
+            color: var(--title-color);
+            font-weight: var(--font-bold);
+            line-height: 40px;
+        }
+
+        .nav-menu {
+            position: fixed;
+            transform: rotate(-90deg) translateX(-100%);
+            transform-origin: left top;
+            width: 100vh;
+        }
+
+        .menu {
+            display: flex;
+        }
+
+        .nav-list {
+            display: flex;
+            flex-direction: row-reverse;
+            margin: -2px auto 0 auto;
+        }
+
+        .nav-link {
+            float: right;
+            height: 100%;
+            line-height: 100px;
+            padding: 0 1rem;
+            color: var(--title-color);
+            font-weight: var(--font-medium);
+            position: relative;
+            transition: .4s;
+        }
+
+        .nav-toggle {
+            height: 32px;
+            width: 36px;
+            cursor: pointer;
+            position: fixed;
+            right: 1.5rem;
+            top: 2rem;
+            font-size: 1.2rem;
+            border-radius: .25rem;
+            background-color: var(--skin-color);
+            color: var(--title-color);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .nav-close {
+            font-size: 1.5rem;
+            position: absolute;
+            top: 1rem;
+            right: 1.25rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        .nav-link.active-link,
+        .nav-link:hover {
+            color: var(--skin-color);
+        }
+
+        .nav-link.active-link::after,
+        .nav-link:hover::after {
+            position: absolute;
+            content: '';
+            width: 6px;
+            height: 6px;
+            background-color: var(--skin-color);
+            border-radius: 50%;
+            bottom: 1.8rem;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .btn-share {
+            position: absolute;
+            bottom: 1.8rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .social-share {
+            font-size: 1.5rem;
+        }
+
+        /* Main - Home */
+        .main {
+            margin-left: 100px;
+        }
+
+        .home {
+            background: url('https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/Patricia/Patricia-ai-specialist%20(1).png?updatedAt=1763431992753');
+            background-size: cover;
+            background-position: center center;
+            height: 100vh;
+        }
+
+        .home-container {
+            position: relative;
+            height: 100%;
+            align-items: center;
+        }
+
+        .home-social {
+            position: absolute;
+            top: 1.8rem;
+            left: 0;
+            display: flex;
+            align-items: center;
+            column-gap: 3.5rem;
+        }
+
+        .home-social-follow {
+            font-weight: var(--font-medium);
+            position: relative;
+        }
+
+        .home-social-follow::after {
+            content: '';
+            position: absolute;
+            width: 1rem;
+            height: 2px;
+            background-color: var(--skin-color);
+            right: -45%;
+            top: 50%;
+        }
+
+        .home-social-links {
+            display: inline-flex;
+            column-gap: 1rem;
+        }
+
+        .home-social-link {
+            font-size: 1.08rem;
+            color: var(--text-color);
+            transition: .4s;
+        }
+
+        .home-social-link:hover {
+            transform: translateY(.25rem);
+        }
+
+        .home-img {
+            display: none;
+        }
+
+        .home-title {
+            font-size: var(--biggest-font-size);
+        }
+
+        .wave-emoji {
+            display: inline-block;
+            animation: wave-animation 2.5s infinite;
+            transform-origin: 70% 70%;
+        }
+
+        @keyframes wave-animation {
+            0% { transform: rotate(0.0deg) }
+            10% { transform: rotate(14.0deg) }
+            20% { transform: rotate(-8.0deg) }
+            30% { transform: rotate(14.0deg) }
+            40% { transform: rotate(-4.0deg) }
+            50% { transform: rotate(10.0deg) }
+            60% { transform: rotate(0.0deg) }
+            100% { transform: rotate(0.0deg) }
+        }
+
+        .home-subtitle {
+            font-size: var(--h3-font-size);
+            font-weight: var(--font-medium);
+            margin-bottom: var(--mb075);
+        }
+
+        .home-description {
+            max-width: 450px;
+            margin-bottom: var(--mb2);
+        }
+
+        .my-info {
+            display: flex;
+            column-gap: 1.8rem;
+            position: absolute;
+            left: 0;
+            bottom: 1.8rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .info-title,
+        .info-subtitle {
+            font-size: var(--small-font-size);
+        }
+
+        .info-title {
+            font-weight: var(--font-medium);
+        }
+
+        .info-icon {
+            font-size: 1.8rem;
+            color: var(--skin-color);
+            margin-right: var(--mb075);
+        }
+
+
+
+
+
+        
+        /* Main - About */
+        .about-container {
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 4rem;
+            align-items: center;
+        }
+
+        .about-img {
+            width: 480px;
+            border-radius: .75rem;
+            justify-self: center;
+        }
+
+        .about-heading {
+            font-size: var(--h3-font-size);
+            margin-bottom: var(--mb075);
+        }
+
+        .about-description {
+            text-align: left;
+            padding-right: 6rem;
+            margin-bottom: var(--mb2);
+        }
+
+        .about-info {
+            display: grid;
+            grid-template-columns: repeat(3, 140px);
+            column-gap: .5rem;
+            margin-bottom: var(--mb3);
+        }
+
+        .about-box {
+            text-align: center;
+            border-radius: .25rem;
+            padding: 1rem 1.25rem;
+            background-color: var(--box-color);
+        }
+
+        .about-icon {
+            font-size: 1.5rem;
+            color: var(--skin-color);
+            margin-bottom: var(--mb075);
+        }
+
+        .about-title {
+            font-size: var(--small-font-size);
+        }
+
+        .about-subtitle {
+            font-size: var(--small-font-size);
+        }
+
+
+
+
+
+
+
+
+        /* Philosophy Section */
+        .philosophy-section {
+            padding: 80px 0;
+          
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-top: 40px;
+        }
+        
+        .philosophy-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+ 
+        
+        .philosophy-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .philosophy-quote {
+            font-family: 'Caveat', cursive;
+            font-size: 2.8rem;
+            line-height: 1.3;
+            color: #ff5011;
+            margin-bottom: 30px;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .quote-decoration {
+            position: absolute;
+            font-size: 5rem;
+            color: #fff;
+            z-index: -1;
+        }
+        
+        .quote-left {
+            top: -20px;
+            left: 0;
+        }
+        
+        .quote-right {
+            bottom: -40px;
+            right: 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .philosophy-section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .philosophy-quote {
+                font-size: 2.2rem;
+            }
+            
+            .quote-decoration {
+                font-size: 4rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .philosophy-quote {
+                font-size: 1.8rem;
+                padding: 0 10px;
+            }
+            
+            .quote-decoration {
+                font-size: 3rem;
+            }
+        }
+
+
+
+
+
+/* Simple mobile background override */
+@media screen and (max-width: 576px) {
+    .home {
+        background: var(--box-color) !important;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+		
+
+        
+        /* Main - Qualification */
+        .qualification-container {
+            grid-template-columns: repeat(2, 340px);
+            column-gap: 3rem;
+            justify-content: center;
+        }
+
+        .qualification-title {
+            font-size: var(--h3-font-size);
+            font-weight: var(--font-medium);
+            margin-bottom: var(--mb2);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: var(--mb25);
+            padding-left: 3rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            width: 1px;
+            position: absolute;
+            left: 0.48rem;
+            top: 0;
+            height: 100%;
+            background-color: var(--skin-color);
+        }
+
+        .circle-dot {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 1rem;
+            width: 1rem;
+            border: 2px solid var(--skin-color);
+            border-radius: 50%;
+            background-color: var(--skin-color);
+            transition: .4s;
+        }
+
+        .timeline-item:hover .circle-dot {
+            background-color: var(--body-color);
+        }
+
+        .timeline-title {
+            font-size: var(--normal-font-size);
+            font-weight: var(--font-medium);
+            margin-bottom: var(--mb025);
+        }
+
+        .timeline-text {
+            font-size: var(--smaller-font-size);
+            margin-bottom: var(--mb1);
+        }
+
+        .timeline-date {
+            display: flex;
+            align-items: center;
+            column-gap: .4rem;
+            font-size: var(--normal-font-size);
+            color: var(--skin-color);
+        }
+
+
+
+
+
+
+        
+        /* Main - Skills */
+        .skills-container {
+            grid-template-columns: 360px 320px;
+            column-gap: 3rem;
+            justify-content: center;
+        }
+
+        .skills-header {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .skills-header:not(:last-child) {
+            margin-bottom: var(--mb25);
+        }
+
+        .skills-icon,
+        .skills-arrow {
+            font-size: 2rem;
+            color: var(--skin-color);
+        }
+
+        .skills-icon {
+            margin-right: var(--mb075);
+        }
+
+        .skills-arrow {
+            margin-left: auto;
+        }
+
+        .skills-active .skills-arrow {
+            transform: rotate(-90deg);
+            transition: .4s;
+        }
+
+        .skills-title {
+            font-size: var(--h3-font-size);
+            font-weight: var(--font-medium);
+        }
+
+        .skills-subtitle {
+            font-size: var(--small-font-size);
+        }
+
+        .skills-list {
+            row-gap: 1.8rem;
+        }
+
+        .skills-titles {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--mb05);
+        }
+
+        .skills-name {
+            font-size: var(--normal-font-size);
+            font-weight: var(--font-medium);
+        }
+
+        .skills-bar,
+        .skills-percentage {
+            height: 5px;
+            border-radius: .25rem;
+        }
+
+        .skills-bar {
+            background-color: var(--box-color);
+        }
+
+        .skills-percentage {
+            display: block;
+            background-color: var(--skin-color);
+        }
+
+        .skills [data-content] {
+            display: none;
+        }
+
+        .skills-active[data-content] {
+            display: block;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-top: 150px;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        @keyframes pulse-animation {
+            0% {
+                transform: translate(-50%, -50%) scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 57, 0, 0.7);
+            }
+            70% {
+                transform: translate(-50%, -50%) scale(1.1);
+                box-shadow: 0 0 0 25px rgba(255, 57, 0, 0);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 57, 0, 0);
+            }
+        }
+
+        .play-video-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 5;
+            width: 90px;
+            height: 90px;
+            background-color: var(--skin-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            border: none;
+            animation: pulse-animation 2s infinite;
+        }
+
+
+
+       .play-video-btn i {
+            font-size: 30px;
+            color: white;
+            margin-left: 3px; /* Adjusts play icon positioning */
+        }
+
+
+       /* Video Modal - Fixed Proportions */
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.95);
+    z-index: var(--z-modal);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.video-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1200px; /* Increased max-width for 1920x1080 proportion */
+    aspect-ratio: 16 / 9; /* This ensures proper 1920x1080 proportion */
+}
+
+.video-modal-content iframe {
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--box-color);
+    border-radius: .5rem;
+    display: block;
+}
+
+.video-modal-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    font-size: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+    transition: color .3s;
+    z-index: 1001;
+}
+
+.video-modal-close:hover {
+    color: var(--skin-color);
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .video-modal {
+        padding: 1rem;
+    }
+    
+    .video-modal-content {
+        width: 95%;
+    }
+    
+    .video-modal-close {
+        top: -40px;
+        font-size: 2rem;
+    }
+}
+
+        /* Main - Work */
+        .work-container {
+            grid-template-columns: repeat(3, 330px);
+            gap: 1.8rem;
+            justify-content: center;
+            padding-top: 1rem;
+        }
+        
+        .work-card.hidden {
+            display: none;
+        }
+
+        .work-show-more-container {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+
+        .work-filters {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: .65rem;
+            margin-bottom: 2rem;
+        }
+
+        .work-item {
+            cursor: pointer;
+            color: var(--title-color);
+            padding: 0.25rem .75rem;
+            font-weight: var(--font-medium);
+            border-radius: .5rem;
+        }
+
+        .work-card {
+            background-color: var(--box-color);
+            padding: 1.25rem;
+            border-radius: .5rem;
+        }
+
+        .portfolio-item-details {
+            display: none;
+        }
+
+        .work-img {
+            border-radius: .5rem;
+            margin-bottom: var(--mb1);
+        }
+
+        .work-title {
+            font-size: var(--normal-font-size);
+            font-weight: var(--font-medium);
+            margin-bottom: var(--mb05);
+        }
+
+        .work-button {
+            color: var(--skin-color);
+            font-size: var(--small-font-size);
+            display: flex;
+            align-items: center;
+            column-gap: .25rem;
+            cursor: pointer;
+        }
+
+        .work-button-icon {
+            font-size: 1rem;
+            transition: .4s;
+        }
+
+        .work-button:hover .work-button-icon {
+            transform: translateX(.25rem);
+        }
+
+        .active-work {
+            background-color: var(--skin-color);
+            color: var(--title-color);
+        }
+
+        .portfolio-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, .5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 1rem;
+            opacity: 0;
+            visibility: hidden;
+            z-index: var(--z-modal);
+            transition: .4s;
+        }
+
+        .portfolio-popup.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .portfolio-popup-inner {
+            background-color: var(--box-color);
+            width: 900px;
+            border-radius: .5rem;
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .portfolio-popup-content {
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            column-gap: 3rem;
+        }
+
+        .portfolio-popup-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--skin-color);
+            cursor: pointer;
+        }
+
+        .portfolio-popup-img {
+            border-radius: .5rem;
+        }
+
+        .portfolio-popup-subtitle {
+            font-size: var(--smaller-font-size);
+            margin-bottom: var(--mb025);
+        }
+
+        .details-title {
+            font-size: var(--h3-font-size);
+            font-weight: var(--font-medium);
+            margin-bottom: var(--mb1);
+        }
+
+        .details-description {
+            font-size: var(--small-font-size);
+            margin-bottom: var(--mb2);
+        }
+
+        .details-info li {
+            margin-bottom: var(--mb075);
+            text-transform: capitalize;
+            font-size: var(--small-font-size);
+        }
+
+        .details-info li:last-child {
+            margin-bottom: 0;
+        }
+
+        .details-info li span {
+            font-weight: normal;
+        }
+
+        .details-info li a {
+            text-transform: lowercase;
+            color: var(--skin-color);
+        }
+
+        /* Main - Services */
+        .services-container {
+            /* Styles removed to allow swiper to control layout */
+        }
+        .services-container.swiper {
+            padding-bottom: 2.5rem;
+        }
+        .services-section-scrollbar {
+            bottom: 0 !important;
+        }
+
+        .services-content {
+            position: relative;
+            background-color: var(--box-color);
+            padding: 6rem 0 2rem 2.5rem;
+            border-radius: .25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .services-icon {
+            display: block;
+            font-size: 1.8rem;
+            color: var(--skin-color);
+            margin-bottom: var(--mb1);
+        }
+
+        .services-title {
+            font-size: var(--h3-font-size);
+            margin-bottom: var(--mb1);
+            font-weight: var(--font-medium);
+        }
+
+        .services-button {
+            color: var(--skin-color);
+            font-size: var(--small-font-size);
+            display: flex;
+            align-items: center;
+            column-gap: .25rem;
+            cursor: pointer;
+        }
+
+        .services-button-icon {
+            font-size: 1rem;
+            transition: .4s;
+        }
+
+        .services-button:hover .services-button-icon {
+            transform: translateX(.25rem);
+        }
+
+
+
+
+
+
+
+
+
+
+        .services-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, .5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 1rem;
+            z-index: var(--z-modal);
+            opacity: 0;
+            visibility: hidden;
+            transition: .4s;
+        }
+
+        .active-modal {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .services-modal-content {
+            width: 500px;
+            position: relative;
+            background-color: var(--box-color);
+            padding: 4.5rem 2.5rem 2.5rem;
+            border-radius: .5rem;
+        }
+
+        .services-modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--skin-color);
+            cursor: pointer;
+        }
+
+        .services-modal-title,
+        .services-modal-description {
+            text-align: center;
+        }
+
+        .services-modal-title {
+            font-size: var(--h3-font-size);
+            font-weight: var(--font-medium);
+            margin-bottom: var(--mb1);
+        }
+
+        .services-modal-description {
+            font-size: var(--small-font-size);
+            padding: 0 3.5rem;
+            margin-bottom: var(--mb2);
+        }
+
+        .services-modal-services {
+            row-gap: var(--mb075);
+        }
+
+        .services-modal-service {
+            display: flex;
+            align-items: center;
+            column-gap: .5rem;
+        }
+
+        .services-modal-icon {
+            color: var(--skin-color);
+            font-size: 1.1rem;
+        }
+
+        .services-modal-info {
+            font-size: var(--small-font-size);
+        }
+
+        /* Main - Testimonials */
+        .testimonials-container.swiper {
+            padding-bottom: 3rem;
+        }
+        
+        @media screen and (min-width: 992px) {
+            .testimonials-container {
+                width: 750px;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+        }
+
+        .testimonial-card {
+            background-color: var(--box-color);
+            padding: 1.8rem 2rem;
+            border-radius: .5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .testimonial-quote {
+            display: inline-flex;
+            font-size: 1.5rem;
+            color: var(--skin-color);
+            margin-bottom: var(--mb1);
+        }
+
+        .testimonial-description {
+            margin-bottom: var(--mb1);
+            font-size: var(--small-font-size);
+            text-align: justify;
+        }
+
+        .testimonial-date {
+            font-size: var(--normal-font-size);
+            margin-bottom: var(--mb2);
+        }
+
+        .testimonial-profile {
+            display: flex;
+            align-items: center;
+            column-gap: 1rem;
+        }
+
+        .testimonial-profile-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 3rem;
+        }
+
+        .testimonial-profile-name {
+            font-size: var(--h3-font-size);
+            font-weight: var(--font-medium);
+            color: var(--title-color);
+        }
+
+        .testimonial-profile-detail {
+            font-size: var(--small-font-size);
+            display: block;
+        }
+
+        .testimonial-profile-data {
+            display: flex;
+            flex-direction: column;
+            row-gap: .4rem;
+        }
+
+
+
+
+
+
+
+
+ /* FAQ Section */
+#faq .container {
+    max-width: 768px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    padding: 0 20px;
+}
+
+.faq-container {
+    max-width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    gap: 1.5rem; /* This creates the gap */
+    width: 100%
+}
+
+/* Add this to ensure grid layout works properly */
+.faq-container {
+    grid-template-columns: 1fr;
+}
+
+.faq-item {
+    background-color: var(--box-color);
+    border-radius: .5rem;
+    padding: 1.25rem;
+    box-shadow: 0 2px 8px hsla(var(--hue-color), 14%, 5%, .5);
+    width: 100%;
+margin-bottom: 10px;
+}
+
+/* Rest of your FAQ styles remain the same */
+.faq-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    gap: .5rem;
+}
+button.faq-header {
+    width: 100%;
+    background: transparent;
+    padding: 0;
+}
+.faq-question {
+    font-size: var(--h3-font-size);
+    color: var(--title-color);
+    text-align: left;
+    width: 100%;
+}
+.faq-icon {
+    font-size: 1.5rem;
+    color: var(--skin-color);
+    transition: transform .3s;
+    flex-shrink: 0;
+}
+.faq-content {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .3s ease-out;
+}
+.faq-answer {
+    font-size: var(--small-font-size);
+    padding-top: 1rem;
+    border-top: 1px solid var(--scroll-thumb-color);
+    margin-top: 1rem;
+    text-align: left;
+}
+
+/* Active state for FAQ item */
+.faq-open .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-open .faq-content {
+    max-height: 250px;
+}
+
+/* Media queries */
+@media screen and (max-width: 768px) {
+    #faq .container {
+        padding: 0 15px;
+    }
+    .faq-container {
+        max-width: 100%;
+        gap: 1rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #faq .container {
+        padding: 0 10px;
+    }
+    .faq-container {
+        gap: 0.75rem;
+    }
+}
+
+
+
+
+
+
+
+
+/* Services Modal Improvements */
+.services-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    z-index: var(--z-modal);
+    opacity: 0;
+    visibility: hidden;
+    transition: .4s;
+}
+
+.services-modal.active-modal {
+    opacity: 1;
+    visibility: visible;
+}
+
+.services-modal-content {
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    background-color: var(--box-color);
+    padding: 4.5rem 2.5rem 2.5rem;
+    border-radius: .5rem;
+    transform: translateY(-50px);
+    transition: transform .4s;
+}
+
+.services-modal.active-modal .services-modal-content {
+    transform: translateY(0);
+}
+
+.services-modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--skin-color);
+    cursor: pointer;
+    transition: color .3s;
+}
+
+.services-modal-close:hover {
+    color: var(--title-color);
+}
+
+.services-modal-title,
+.services-modal-description {
+    text-align: center;
+}
+
+.services-modal-title {
+    font-size: var(--h3-font-size);
+    font-weight: var(--font-medium);
+    margin-bottom: var(--mb1);
+}
+
+.services-modal-description {
+    font-size: var(--small-font-size);
+    padding: 0 1rem;
+    margin-bottom: var(--mb2);
+}
+
+.services-modal-services {
+    row-gap: var(--mb075);
+}
+
+.services-modal-service {
+    display: flex;
+    align-items: center;
+    column-gap: .5rem;
+}
+
+.services-modal-icon {
+    color: var(--skin-color);
+    font-size: 1.1rem;
+}
+
+.services-modal-info {
+    font-size: var(--small-font-size);
+}
+
+
+
+
+
+
+
+
+
+/* Back to Top Button */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+
+
+
+
+
+
+
+
+        /* Swiper */
+        .swiper-pagination-bullet {
+            background-color: var(--box-color);
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: var(--skin-color);
+        }
+
+        .swiper-scrollbar {
+            background: var(--scroll-box-color);
+        }
+
+        .swiper-scrollbar-drag {
+            background: var(--skin-color);
+        }
+
+        /* Main - Contact */
+        .contact-container {
+            grid-template-columns: 300px 340px;
+            column-gap: 3rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-info {
+            display: grid;
+            row-gap: 1rem;
+        }
+
+        .contact-card {
+            background-color: var(--box-color);
+            padding: 1rem;
+            border-radius: .5rem;
+            text-align: center;
+        }
+
+        .contact-card-icon {
+            font-size: 1.8rem;
+            color: var(--title-color);
+            margin-bottom: var(--mb025);
+        }
+
+        .contact-card-title,
+        .contact-card-data {
+            font-size: var(--small-font-size);
+        }
+
+        .contact-card-title {
+            font-weight: var(--font-medium);
+        }
+
+        .contact-card-data {
+            display: block;
+            margin-bottom: var(--mb075);
+        }
+
+        .contact-button {
+            color: var(--skin-color);
+            font-size: var(--small-font-size);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: .25rem;
+            cursor: pointer;
+        }
+
+        .contact-button-icon {
+            font-size: 1rem;
+            transition: .4s;
+        }
+
+        .contact-button:hover .contact-button-icon {
+            transform: translateX(.25rem);
+        }
+
+        .input-container {
+            position: relative;
+            margin-top: 1rem;
+            margin-bottom: 1.9rem;
+        }
+
+        .input {
+            width: 100%;
+            border: 2px solid var(--text-color);
+            background-color: transparent;
+            padding: 0.6rem 1.2rem;
+            color: var(--title-color);
+            font-weight: var(--font-medium);
+            font-size: var(--normal-font-size);
+            letter-spacing: .5px;
+            border-radius: .5rem;
+            outline: none;
+            transition: .4s;
+        }
+
+        textarea.input {
+            padding: 0.8rem 1.2rem;
+            min-height: 140px;
+            border-radius: .5rem;
+            resize: none;
+            font-family: var(--body-font);
+        }
+
+        .input-container label {
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+            padding: 0 .4rem;
+            color: var(--text-color);
+            font-size: 1rem;
+            font-weight: var(--font-medium);
+            pointer-events: none;
+            z-index: 15;
+            transition: .5s;
+        }
+
+        .input-container.textarea label {
+            top: 1rem;
+            transform: translateY(0);
+        }
+
+        .input-container span {
+            position: absolute;
+            top: 0;
+            left: 25px;
+            transform: translateY(-50%);
+            font-size: var(--small-font-size);
+            padding: 0 .4rem;
+            pointer-events: none;
+            z-index: var(--z-fixed);
+            color: transparent;
+        }
+
+        .input-container span::before,
+        .input-container span::after {
+            content: '';
+            position: absolute;
+            width: 10%;
+            opacity: 0;
+            height: 5px;
+            background-color: var(--body-color);
+            top: 50%;
+            transform: translateY(-50%);
+            transition: .4s;
+        }
+
+        .input-container span::before {
+            left: 50%;
+        }
+
+        .input-container span::after {
+            right: 50%;
+        }
+
+        .input-container.focus label {
+            top: 0;
+            transform: translateY(-50%);
+            left: 25px;
+            font-size: var(--smaller-font-size);
+        }
+
+        .input-container.focus span::before,
+        .input-container.focus span::after {
+            width: 50%;
+            opacity: 1;
+        }
+
+        /* Footer */
+        .footer {
+            padding-top: 2rem;
+        }
+
+        .footer-container {
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 1.6rem;
+        }
+
+        .footer-bg {
+            background-color: var(--box-color);
+            padding: 3rem 0 3.5rem;
+        }
+
+        .footer-title {
+            font-size: var(--h3-font-size);
+            margin-bottom: var(--mb025);
+        }
+
+        .footer-subtitle {
+            font-size: var(--small-font-size);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-self: center;
+            column-gap: 2rem;
+        }
+
+        .footer-links:hover {
+            color: var(--skin-color);
+        }
+
+        .footer-socials {
+            justify-self: flex-end;
+        }
+
+        .footer-social {
+            font-size: 1.25rem;
+            margin-right: var(--mb15);
+        }
+
+        .footer-social:hover {
+            color: var(--skin-color);
+        }
+
+        .footer-copy {
+            font-size: var(--smaller-font-size);
+            text-align: center;
+            margin-top: 4.5rem;
+        }
+
+        .footer-copy a {
+            font-family: var(--signature-font);
+        }
+
+        .footer-copy a:hover {
+            color: var(--skin-color);
+        }
+
+        .footer-title,
+        .footer-subtitle,
+        .footer-links,
+        .footer-social,
+        .footer-copy a {
+            color: var(--title-color);
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 1408px) {
+            .container {
+                margin-left: var(--mb25);
+                margin-right: var(--mb25);
+            }
+        }
+
+        @media screen and (max-width: 1216px) {
+            .about-container {
+                column-gap: 2.5rem;
+            }
+
+            .about-description {
+                padding-right: 0;
+            }
+
+            .work-container {
+                grid-template-columns: repeat(2, 330px);
+                gap: 3rem;
+            }
+        }
+
+        @media screen and (max-width: 1024px) {
+            .container {
+                margin-left: var(--mb15);
+                margin-right: var(--mb15);
+            }
+
+            .sidebar {
+                width: 100%;
+                z-index: 999;
+                transform: translateX(-100%);
+            }
+
+            .show-sidebar {
+                transform: translateX(0);
+            }
+
+            .nav-logo,
+            .btn-share {
+                display: none;
+            }
+
+            .nav-menu {
+                height: 100%;
+                width: 100%;
+                transform: rotate(0deg) translateX(0);
+                display: flex;
+                justify-content: center;
+            }
+
+            .nav-list {
+                flex-direction: column;
+                height: 100%;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .nav-link {
+                padding: 1rem 0;
+                line-height: 1.5;
+            }
+
+            .nav-link.active-link::after,
+            .nav-link:hover::after {
+                bottom: 0;
+            }
+
+            .nav-close {
+                display: block;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                row-gap: 2.5rem;
+            }
+
+            .about-img {
+                width: 350px;
+            }
+
+            .about-data {
+                text-align: center;
+            }
+
+            .about-info {
+                justify-content: center;
+            }
+
+            .about-box {
+                padding: 0.75rem .5rem;
+            }
+
+            .about-description {
+                padding: 0 4rem;
+                text-align: center;
+            }
+
+            .qualification-container {
+                grid-template-columns: repeat(2, 290px);
+            }
+
+            .skills-container {
+                grid-template-columns: 340px 300px;
+            }
+
+            .skills-list {
+                row-gap: 1.7rem;
+            }
+
+            .work-card {
+                padding: 1rem;
+            }
+
+            .work-img {
+                margin-bottom: var(--mb075);
+            }
+
+            .work-title {
+                margin-bottom: var(--mb025);
+            }
+
+            .testimonial-card {
+                padding: 1.25rem 1.5rem;
+            }
+
+            .portfolio-item-details {
+                margin-bottom: var(--mb15);
+            }
+
+            .details-info li {
+                margin-bottom: var(--mb05);
+            }
+
+            .details-title {
+                margin-bottom: var(--mb075);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .about-img {
+                width: 250px;
+            }
+
+            .qualification-container {
+                grid-template-columns: 290px;
+                row-gap: 3rem;
+            }
+
+            .skills-container {
+                grid-template-columns: 300px;
+                row-gap: 3rem;
+            }
+
+            .work-container {
+                grid-template-columns: 330px;
+            }
+            .services-content {
+                padding: 3.5rem .5rem 1.25rem 1.5rem;
+            }
+
+            .services-icon {
+                font-size: 1.5rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 360px;
+                row-gap: 3rem;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+                row-gap: 3rem;
+            }
+
+            .footer-socials {
+                justify-self: start;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                row-gap: 1.5rem;
+            }
+
+            .footer-bg {
+                padding: 2rem 0 3rem;
+            }
+
+            .footer-copy {
+                margin-top: var(--mb3);
+            }
+
+            .portfolio-popup-inner {
+                width: 420px;
+                padding: 2.8rem 1.5rem 2.5rem;
+            }
+
+            .portfolio-popup-content {
+                grid-template-columns: 1fr;
+                row-gap: 1.6rem;
+            }
+
+            .details-title {
+                font-size: var(--normal-font-size);
+            }
+
+            .portfolio-popup-close {
+                top: .5rem;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .nav-toggle {
+                right: initial;
+                left: 1.5rem;
+            }
+
+            .home {
+                background-image: none;
+                height: initial;
+                align-items: initial;
+                padding: 7rem 0 2rem;
+            }
+
+            .home-container {
+                row-gap: 2rem;
+            }
+
+            .home-img {
+                display: block;
+                width: 250px;
+                justify-self: center;
+            }
+
+            .my-info {
+                display: none;
+            }
+
+            .home-social {
+                left: initial;
+                right: -1rem;
+                flex-direction: column;
+                row-gap: 3.5rem;
+            }
+
+            .home-social-follow {
+                font-size: var(--smaller-font-size);
+                transform: rotate(90deg);
+            }
+
+            .home-social-links {
+                flex-direction: column;
+                row-gap: .25rem;
+            }
+
+            .home-social-link {
+                font-size: var(--normal-font-size);
+            }
+
+            .about-info {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .about-description {
+                padding: 0;
+            }
+
+            .services-modal-content {
+                padding: 4.5rem 1.5rem 2.5rem;
+            }
+
+            .services-modal-description {
+                padding: 0;
+            }
+
+            .work-container,
+            .contact-container {
+                grid-template-columns: 300px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                justify-self: flex-start;
+            }
+
+        }
+
+        @media screen and (max-width: 350px) {
+            .container {
+                margin-left: var(--mb1);
+                margin-left: var(--mb1);
+            }
+
+            .home-img {
+                width: 200px;
+            }
+
+            .home-title {
+                font-size: var(--h1-font-size);
+            }
+
+            .home-subtitle {
+                font-size: var(--normal-font-size);
+            }
+
+            .about-info {
+                grid-template-columns: repeat(2, 1fr);
+                row-gap: .5rem;
+            }
+
+            .work-container,
+            .skills-container,
+            .qualification-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-title {
+                font-size: var(--normal-font-size);
+            }
+
+            .work-item {
+                font-size: 14px;
+            }
+
+            .work-filters {
+                column-gap: .15rem;
+            }
+
+            .services-content {
+                padding-right: 3.5rem;
+            }
+        }
+
+
+  /* Page loader container with black background */
+  .page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Added text header */
+  .loader-header {
+    color: white;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  /* Your progress bar - unchanged */
+  .progress {
+    width: 272.8px;
+    height: 41.7px;
+    border-radius: 28.8px;
+    color: #ff5011;
+    background-color: #000;
+    border: 2.9px solid;
+    position: relative;
+  }
+
+  .progress::before {
+    content: "";
+    position: absolute;
+    margin: 2.9px;
+    inset: 0 100% 0 0;
+    border-radius: inherit;
+    background: currentColor;
+    animation: progress-pf82op 1.5s forwards;
+  }
+
+  @keyframes progress-pf82op {
+    100% {
+      inset: 0;
+    }
+  }
+
+  /* Hide transition */
+  .page-loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+
+
+/* Footer Logo Styles */
+.footer-logo {
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* If you want the logo to be larger */
+.footer-logo.large {
+    width: 80px;
+}
+
+/* If you want the logo to be smaller */
+.footer-logo.small {
+    width: 40px;
+}
+
+/* Optional: Add hover effect */
+.footer-logo:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+/* Ensure proper spacing with the existing footer content */
+.footer-container > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Fix for the duplicate class names in links */
+.footer-links li a {
+    /* Your existing footer link styles */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .footer-logo {
+        width: 40px; /* Smaller on mobile */
+        margin-bottom: 0.75rem;
+    }
+    
+    .footer-container > div:first-child {
+        align-items: center;
+        text-align: center;
+    }
+}
+
+
+
+
+
+/* Community Button Styles */
+.community-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.community-button {
+    font-size: var(--h3-font-size);
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(255, 80, 17, 0.3);
+}
+
+.community-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 80, 17, 0.4);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .community-button {
+        font-size: var(--normal-font-size);
+        padding: 0.875rem 1.75rem;
+    }
+}
+
+
+
+
+		
+        
+    </style>
+
+<script>
+  // Create and show loader
+  function showLoader() {
+    const loader = document.createElement('div');
+    loader.className = 'page-loader';
+    loader.innerHTML = `
+      <div class="loader-header">Wait for it...</div>
+      <div class="progress"></div>
+    `;
+    document.body.appendChild(loader);
+    return loader;
+  }
+
+  // Hide loader after 2 seconds
+  function initLoader() {
+    const loader = showLoader();
+    
+    setTimeout(() => {
+      loader.classList.add('hidden');
+      setTimeout(() => loader.remove(), 300); // Remove after fade out
+    }, 2000); // 2 second duration
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', initLoader);
+</script>
+<!-- CSS LOADER  - PROGRESS BAR WITH TEXT -->
+
+
+ 
+</head>
+
+<body>
+
+    <div class="nav-toggle" id="nav-toggle">
+        <i class="uil uil-bars"></i>
+    </div>
+
+    <aside class="sidebar" id="sidebar">
+        <nav class="nav">
+            <div class="nav-logo">
+                <a href="#">
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/494966047320c2c5be07bd50754a7183ffcda611.png" alt="Your Company Logo" class="nav-logo-image">
+                </a>
+            </div>
+
+            <div class="nav-menu">
+                <div class="menu">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="#home" class="nav-link active-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#about" class="nav-link">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#skills" class="nav-link">Skills</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#work" class="nav-link">Work</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#services" class="nav-link">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#contact" class="nav-link">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="btn-share">
+                <i class="uil uil-share-alt social-share"></i>
+            </div>
+
+            <div class="nav-close" id="nav-close">
+                <i class="uil uil-times"></i>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <section class="home" id="home">
+            <div class="home-container container grid">
+                <div class="home-social">
+                    <span class="home-social-follow">Follow Us</span>
+
+
+
+
+                    <div class="home-social-links">
+
+
+<a href="https://www.linkedin.com/" target="_blank" class="home-social-link">
+                            
+<i class="uil uil-linkedin"></i>
+                        
+</a>
+
+
+                       <a href="https://www.facebook.com/" target="_blank" class="home-social-link">
+                            <i class="uil uil-facebook-f"></i>
+                        </a>
+
+
+
+                        <a href="https://www.instagram.com" target="_blank" class="home-social-link">
+                            <i class="uil uil-instagram"></i>
+                        </a>
+                    
+
+
+
+
+
+
+   <a href="https://www.youtube.com/@bebelldigitalsolutions?sub_confirmation=1" target="_blank" class="home-social-link">
+                            <i class="uil uil-youtube"></i>
+                        </a>
+
+
+
+
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+                <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/Patricia/mobile-hero-image%20(3)%20(1).png?updatedAt=1763431992728" alt="" class="home-img">
+
+                <div class="home-data">
+                    <h1 class="home-title">Hi, I'm Patricia! <span class="wave-emoji">👋</span></h1>
+                    <h3 class="home-subtitle">Digital Architect • Brand Strategist • Systems Designer</h3>
+                    <p class="home-description">Founder & CEO at <strong>Bebell Digital Solutions</strong>. We don't just build websites; we build online businesses. From your first landing page to a complex sales platform, we develop the digital foundation your business needs to grow and profit.</p>
+                    <a href="#about" class="button">
+                        <i class="uil uil-user button-icon"></i>
+                        More About me!
+                    </a>
+                </div>
+
+
+
+
+
+
+
+
+                <div class="my-info">
+                    <div class="info-item">
+                           <i class="uil uil-desktop info-icon"></i>
+
+
+                        <div>
+                            <h3 class="info-title">Website</h3>
+                            <span class="info-subtitle">bebelldigitalsolutions.com</span>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="info-item">
+                        <i class="uil uil-whatsapp info-icon"></i>
+                        <div>
+                            <h3 class="info-title">Whatsapp</h3>
+                            <span class="info-subtitle">+1786-412-4636</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="uil uil-envelope-edit info-icon"></i>
+                        <div>
+                            <h3 class="info-title">Email</h3>
+                            <span class="info-subtitle">barclay@project-freedom.club</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+<section class="about section" id="about">
+  <div class="about__container container grid">
+    <img src="assets/img/about-patricia.png" alt="" class="about__img">
+
+    <div class="about__data">
+      <h2 class="section__title about__title">Hi, I'm Patricia</h2>
+      <p class="about__description">
+        I am an AI expert and digital strategist from Venezuela. I help entrepreneurs and teams use artificial intelligence in a clear and practical way. I work on digital systems, automation, and communication supported by AI. I have been featured by Heygen for my work in voice modeling and AI production.  
+      </p>
+
+      <div class="about__details">
+        <p class="about__details-description">
+          <i class="ri-checkbox-fill about__details-icon"></i>
+          Age 27. Based in Venezuela.
+        </p>
+        <p class="about__details-description">
+          <i class="ri-checkbox-fill about__details-icon"></i>
+          8 years of experience in digital strategy and AI adoption.
+        </p>
+        <p class="about__details-description">
+          <i class="ri-checkbox-fill about__details-icon"></i>
+          140 projects supported across multiple industries.
+        </p>
+        <p class="about__details-description">
+          <i class="ri-checkbox-fill about__details-icon"></i>
+          Known for clear systems, fast execution, and precise communication.
+        </p>
+      </div>
+
+      <a href="#contact" class="button">Work with me</a>
+    </div>
+  </div>
+</section>
+
+<section class="skills section" id="skills">
+  <div class="skills__container container grid">
+    <div class="skills__data">
+      <h2 class="section__title skills__title">Experience</h2>
+
+      <p class="skills__description">
+        My work covers AI strategy, automation, communication, and digital operations. I train people on how to apply AI with clarity and consistency in their daily tasks and business processes.
+      </p>
+
+      <div class="skills__content">
+        <h3 class="skills__subtitle">AI Strategy and Digital Planning</h3>
+
+        <div class="skills__box">
+          <div class="skills__group">
+            <div class="skills__data">
+              <i class="ri-checkbox-fill"></i>
+              <div>
+                <h3 class="skills__name">Practical AI for business</h3>
+                <span class="skills__level">93 percent</span>
+              </div>
+            </div>
+
+            <div class="skills__data">
+              <i class="ri-checkbox-fill"></i>
+              <div>
+                <h3 class="skills__name">AI tools and workflows</h3>
+                <span class="skills__level">92 percent</span>
+              </div>
+            </div>
+
+            <div class="skills__data">
+              <i class="ri-checkbox-fill"></i>
+              <div>
+                <h3 class="skills__name">Content structure and planning</h3>
+                <span class="skills__level">90 percent</span>
+              </div>
+            </div>
+
+            <div class="skills__data">
+              <i class="ri-checkbox-fill"></i>
+              <div>
+                <h3 class="skills__name">Training and instruction</h3>
+                <span class="skills__level">89 percent</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="skills__subtitle">AI Communication and Voice Modeling</h3>
+
+        <div class="skills__box">
+          <div class="skills__group">
+            <div class="skills__data">
+              <i class="ri-checkbox-fill"></i>
+              <div>
+                <h3 class="skills__name">Voice modeling</h3>
+                <span class="skills__level">95 percent</span>
+              </div>
+            </div>
+
+            <div class="skills__data">
+              <i class="ri-checkbox-fill"></i>
+              <div>
+                <h3 class="skills__name">Script structure</h3>
+                <span class="skills__level">94 percent</span>
+              </div>
+            </div>
+
+            <div class="skills__data">
+              <i class="ri-checkbox-fill"></i>
+              <div>
+                <h3 class="skills__name">On camera training</h3>
+                <span class="skills__level">90 percent</span>
+              </div>
+            </div>
+
+            <div class="skills__data">
+              <i class="ri-checkbox-fill"></i>
+              <div>
+                <h3 class="skills__name">AI assisted production</h3>
+                <span class="skills__level">89 percent</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="skills__subtitle">Automation and Workflow Systems</h3>
+
+        <div class="skills__box">
+          <div class="skills__group">
+            <div class="skills__data">
+              <i class="ri-checkbox-fill"></i>
+              <div>
+                <h3 class="skills__name">Automation with Albato and similar tools</h3>
+                <span class="skills__level">88 percent</span>
+              </div>
+            </div>
+
+            <div class="skills__data">
+              <i class="ri-checkbox-fill"></i>
+              <div>
+                <h3 class="skills__name">System integration</h3>
+                <span class="skills__level">89 percent</span>
+              </div>
+            </div>
+
+            <div class="skills__data">
+              <i class="ri-checkbox-fill"></i>
+              <div>
+                <h3 class="skills__name">Process optimization</h3>
+                <span class="skills__level">90 percent</span>
+              </div>
+            </div>
+
+            <div class="skills__data">
+              <i class="ri-checkbox-fill"></i>
+              <div>
+                <h3 class="skills__name">Digital operations</h3>
+                <span class="skills__level">86 percent</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="skills__img">
+      <img src="assets/img/patricia-skills.png" alt="">
+    </div>
+  </div>
+</section>
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+ <section class="work section" id="work">
+
+            <h2 class="section-title" data-heading="Our Valued Clients">Brands we are proud to work with</h2>
+
+
+
+            <div class="work-filters">
+
+                <span class="work-item active-work" data-filter="all">All Brands</span>
+
+                <span class="work-item" data-filter=".digital-office">Digital Offices</span>
+
+                <span class="work-item" data-filter=".digital-clinic">Digital Clinics</span>
+
+                <span class="work-item" data-filter=".digital-store">Digital Stores</span>
+
+                <span class="work-item" data-filter=".digital-menu">Digital Menus</span>
+
+            </div>
+
+
+
+            <div class="work-container container grid">
+
+
+
+
+                <!-- Digital Offices -->
+
+
+
+     <!-- Digital Offices -->
+
+<div class="work-card mix digital-office">
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/7ad430b6a54fd2ae52e02805d7208c28b801ea94.jpeg" alt="Balcacer & Asociados Digital Office" class="work-img">
+    <h3 class="work-title">Balcácer & Asociados</h3>
+    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+    <div class="portfolio-item-details">
+        <h3 class="details-title">Custom Legal Digital Office</h3>
+        <p class="details-description">Legal office automation with client tracking, CRM, and SEO optimization.</p>
+        <ul class="details-info">
+            <li>Created - <span>Feb 2024</span></li>
+            <li>Services - <span>CRM automation, client data system, SEO</span></li>
+            <li>Case Study - <span><a href="/projects/online-offices/balcacer-asociados">Balcácer & Asociados</a></span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="work-card mix digital-office">
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/d04530d9f4779d7792be454957de69b4b8dd963c.jpeg" alt="DivorcioRD Digital Office" class="work-img">
+    <h3 class="work-title">DivorcioRD</h3>
+    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+    <div class="portfolio-item-details">
+        <h3 class="details-title">Automated Legal Office</h3>
+        <p class="details-description">Complete digital legal office with lead funnel automation and online consultations.</p>
+        <ul class="details-info">
+            <li>Created - <span>Jan 2024</span></li>
+            <li>Services - <span>Automation, CRM, online appointments</span></li>
+            <li>Case Study - <span><a href="/projects/online-offices/divorciord">DivorcioRD</a></span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="work-card mix digital-office">
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/39014f0efcc873761f9a8e1c62669333c1fcc124.jpeg" alt="Farmacia Vegana Digital Office" class="work-img">
+    <h3 class="work-title">Farmacia Vegana</h3>
+    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+    <div class="portfolio-item-details">
+        <h3 class="details-title">E-commerce Pharmacy Office</h3>
+        <p class="details-description">Digital pharmacy with delivery automation and WhatsApp order system.</p>
+        <ul class="details-info">
+            <li>Created - <span>May 2024</span></li>
+            <li>Services - <span>E-commerce, delivery system, WhatsApp integration</span></li>
+            <li>Case Study - <span><a href="/projects/online-offices/farmacia-vegana">Farmacia Vegana</a></span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="work-card mix digital-office">
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/5e2c63367745c661a063afe27d140d209e732033.jpeg" alt="Senses Luxury Spa Digital Office" class="work-img">
+    <h3 class="work-title">Senses Luxury Spa</h3>
+    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+    <div class="portfolio-item-details">
+        <h3 class="details-title">Luxury Spa Digital Office</h3>
+        <p class="details-description">Booking automation platform with gift card and membership management.</p>
+        <ul class="details-info">
+            <li>Created - <span>Jun 2024</span></li>
+            <li>Services - <span>Online booking, automation, memberships</span></li>
+            <li>Case Study - <span><a href="/projects/online-offices/senses-luxury-spa">Senses Luxury Spa</a></span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="work-card mix digital-office">
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/f2d579155c32eb4acbdf5891bcabc9a0f922529b.jpeg" alt="HS Interior Design Digital Office" class="work-img">
+    <h3 class="work-title">HS Interior Design</h3>
+    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+    <div class="portfolio-item-details">
+        <h3 class="details-title">Interior Design Digital Office</h3>
+        <p class="details-description">Online portfolio and consultation booking system with automated CRM.</p>
+        <ul class="details-info">
+            <li>Created - <span>Jul 2024</span></li>
+            <li>Services - <span>Portfolio, booking automation, CRM</span></li>
+            <li>Case Study - <span><a href="/projects/online-offices/hs-interior-design">HS Interior Design</a></span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="work-card mix digital-office">
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/43c7f5cac569068d066f5103fc3c1eb5fb49090f.jpeg" alt="NEXED Travel Digital Office" class="work-img">
+    <h3 class="work-title">NEXED Travel</h3>
+    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+    <div class="portfolio-item-details">
+        <h3 class="details-title">Travel Agency Digital Office</h3>
+        <p class="details-description">Trip builder platform with affiliate automation and booking workflows.</p>
+        <ul class="details-info">
+            <li>Created - <span>Aug 2024</span></li>
+            <li>Services - <span>Trip builder, affiliate automation, CRM</span></li>
+            <li>Case Study - <span><a href="/projects/online-offices/nexed">NEXED Travel</a></span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="work-card mix digital-office">
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/a5c0a36fd7815942be23fdac413c29287579c429.jpeg" alt="Bicimetro Nacional Digital Office" class="work-img">
+    <h3 class="work-title">Bicimetro Nacional</h3>
+    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+    <div class="portfolio-item-details">
+        <h3 class="details-title">Subscription-Based Digital Office</h3>
+        <p class="details-description">Platform for bike rentals, maintenance scheduling, and recurring memberships.</p>
+        <ul class="details-info">
+            <li>Created - <span>Oct 2024</span></li>
+            <li>Services - <span>Subscriptions, booking, automation</span></li>
+            <li>Case Study - <span><a href="/projects/online-offices/bicimetro">Bicimetro Nacional</a></span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="work-card mix digital-office">
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/e545e379b12553835b1e827954e2d0d559a25b2b.jpeg" alt="Chef Jacada Digital Office" class="work-img">
+    <h3 class="work-title">Chef Jacada</h3>
+    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+    <div class="portfolio-item-details">
+        <h3 class="details-title">Catering Digital Office</h3>
+        <p class="details-description">Automated catering booking system with digital menus and client dashboard.</p>
+        <ul class="details-info">
+            <li>Created - <span>Apr 2024</span></li>
+            <li>Services - <span>Digital menu, online booking, automation</span></li>
+            <li>Case Study - <span><a href="/projects/online-offices/chef-jacada">Chef Jacada</a></span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="work-card mix digital-office">
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/102c99b30d59d678c997f2319322e5c8dae89375.jpeg" alt="Bebell Design Studio Digital Office" class="work-img">
+    <h3 class="work-title">Bebell Design Studio</h3>
+    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+    <div class="portfolio-item-details">
+        <h3 class="details-title">Creative Agency Digital Office</h3>
+        <p class="details-description">Project showcase and workflow automation platform for creative collaboration.</p>
+        <ul class="details-info">
+            <li>Created - <span>Sep 2024</span></li>
+            <li>Services - <span>Portfolio, automation, CRM</span></li>
+            <li>Case Study - <span><a href="/projects/online-offices/bebell-design-studio">Bebell Design Studio</a></span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="work-card mix digital-office">
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/7456eb9f12a3eaf68cd16c33ef7aa0f77b2dc674.jpeg" alt="Grupo Lisman SRL Digital Office" class="work-img">
+    <h3 class="work-title">Grupo Lisman SRL</h3>
+    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+    <div class="portfolio-item-details">
+        <h3 class="details-title">B2B Corporate Digital Office</h3>
+        <p class="details-description">Digital platform for distributors with automated catalog and order system.</p>
+        <ul class="details-info">
+            <li>Created - <span>Dec 2024</span></li>
+            <li>Services - <span>Distributor portal, B2B automation</span></li>
+            <li>Case Study - <span><a href="/projects/online-offices/grupo-lisman">Grupo Lisman SRL</a></span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="work-card mix digital-office">
+    <img src="https://ik.imagekit.io/bebell/Customers/Digital%20Offices/As%20food%20as%20it%20gets.png?updatedAt=1762074449311" alt="As Food As It Gets Digital Office" class="work-img">
+    <h3 class="work-title">As Food As It Gets</h3>
+    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+    <div class="portfolio-item-details">
+        <h3 class="details-title">Restaurant Digital Office</h3>
+        <p class="details-description">Online ordering, menu management, and delivery automation system.</p>
+        <ul class="details-info">
+            <li>Created - <span>Nov 2024</span></li>
+            <li>Services - <span>Online ordering, delivery, automation</span></li>
+            <li>Case Study - <span><a href="/projects/online-offices/as-food-as-it-gets">As Food As It Gets</a></span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="work-card mix digital-office">
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/44ee407b5d38bf67ab87f4ca9ddd187e6780ede3.jpeg" alt="Fundación Rescued by Love Digital Office" class="work-img">
+    <h3 class="work-title">Fundación Rescued by Love</h3>
+    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+    <div class="portfolio-item-details">
+        <h3 class="details-title">Nonprofit Digital Office</h3>
+        <p class="details-description">Online donation system with automation and integrated payment gateway.</p>
+        <ul class="details-info">
+            <li>Created - <span>Mar 2024</span></li>
+            <li>Services - <span>Online donations, automation, web design</span></li>
+            <li>Case Study - <span><a href="/projects/online-offices/rescued-by-love">Fundación Rescued by Love</a></span></li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
+
+                <!-- Digital Clinics -->
+
+                <div class="work-card mix digital-clinic">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/beaf4da3821920fe5c11e50f5effc7fea2a37716.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">Adilya' Lome</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+
+
+
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Telemedicine Platform</h3>
+
+                        <p class="details-description">Comprehensive digital clinic solution with appointment scheduling and virtual consultations</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>10 Apr 2025</span></li>
+
+                            <li>Technologies - <span>Angular, Python, PostgreSQL</span></li>
+
+                            <li>Role - <span>Healthcare Solutions</span></li>
+
+                           <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+                <div class="work-card mix digital-clinic">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/974bb31c7c1796a16f2d6f0d994009887dd074b5.png" alt="" class="work-img">
+
+                    <h3 class="work-title">HealthCare Center</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Health Management System</h3>
+
+                        <p class="details-description">Digital clinic platform for patient records, billing, and treatment tracking</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>4 Apr 2025</span></li>
+
+                            <li>Technologies - <span>React Native, Node.js, MySQL</span></li>
+
+                            <li>Role - <span>System Integration</span></li>
+
+                           <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+                <!-- Digital Stores -->
+
+                <div class="work-card mix digital-store">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/d1c8c49e3b7fe84e0e4d481c24663d481dae5a79.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">Villa Russo, 1898</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">E-commerce Fashion Platform</h3>
+
+                        <p class="details-description">Complete digital store with inventory management and seamless checkout experience</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>28 Mar 2025</span></li>
+
+                            <li>Technologies - <span>Shopify, JavaScript, Stripe</span></li>
+
+                            <li>Role - <span>E-commerce Development</span></li>
+
+                            <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+ 
+    <div class="work-card mix digital-store">
+
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/aaf21625f2cc7cfb8dda9d6f5e8828003ddbf6ef.png" alt="Santé Brand portfolio preview" class="work-img">
+
+    <h3 class="work-title">Santé Brand</h3>
+
+    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+    <div class="portfolio-item-details">
+        <h3 class="details-title">Luxury Medical Fashion E-commerce Platform</h3>
+        <p class="details-description">
+            Complete digital commerce ecosystem with Azul Dominicana integration — automating orders, logistics, and secure payments for a luxury medical apparel brand.
+        </p>
+
+        <ul class="details-info">
+            <li>Created - <span>17 Apr 2025</span></li>
+            <li>Technologies - <span>E-Commerce integrations, PHP, Azul Dominicana API</span></li>
+            <li>Role - <span>Strategy, UX/UI Design, E-commerce Automation</span></li>
+           <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+        </ul>
+    </div>
+
+</div>
+
+
+
+				
+
+
+
+
+                <div class="work-card mix digital-store">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/fed113588440ffe7bcd0bf73e16c923cc1cb47e9.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">Casa Cool RD</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Electronics E-commerce</h3>
+
+                        <p class="details-description">Digital store specializing in the latest tech gadgets and accessories</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>20 Mar 2025</span></li>
+
+                            <li>Technologies - <span>Magento, PHP, PayPal API</span></li>
+
+                            <li>Role - <span>Store Development</span></li>
+
+                           <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+ <div class="work-card mix digital-store">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/31cdd958d61344f10993ec1c9f2c9cef4b3e8512.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">Virtual Restaurant</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+
+
+
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Electronics E-commerce</h3>
+
+                        <p class="details-description">Digital store specializing in the latest tech gadgets and accessories</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>20 Mar 2025</span></li>
+
+                            <li>Technologies - <span>Magento, PHP, PayPal API</span></li>
+
+                            <li>Role - <span>Store Development</span></li>
+
+                           <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+ <div class="work-card mix digital-store">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/6f4d7fd23fd5c0e8bd4a40552722bd46f5284717.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">Yoxo Hair</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+
+
+
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Electronics E-commerce</h3>
+
+                        <p class="details-description">Digital store specializing in the latest tech gadgets and accessories</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>20 Mar 2025</span></li>
+
+                            <li>Technologies - <span>Magento, PHP, PayPal API</span></li>
+
+                            <li>Role - <span>Store Development</span></li>
+
+                           <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+ <div class="work-card mix digital-store">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/7d532d128406ef5a4dee9e3268c759132188ccf5.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">Wyncell Telecom</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Electronics E-commerce</h3>
+
+                        <p class="details-description">Digital store specializing in the latest tech gadgets and accessories</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>20 Mar 2025</span></li>
+
+                            <li>Technologies - <span>Magento, PHP, PayPal API</span></li>
+
+                            <li>Role - <span>Store Development</span></li>
+
+                           <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+ <div class="work-card mix digital-store">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/5071fce9be902fd29b1d41e4b73f0b02f2096c9f.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">Lurinels</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+
+
+
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Electronics E-commerce</h3>
+
+                        <p class="details-description">Digital store specializing in the latest tech gadgets and accessories</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>20 Mar 2025</span></li>
+
+                            <li>Technologies - <span>Magento, PHP, PayPal API</span></li>
+
+                            <li>Role - <span>Store Development</span></li>
+
+                          <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+ <div class="work-card mix digital-store">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b860705b5ab6cc5bff3858fa3ccd9a613529d2c3.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">Brisa de Mar</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+
+
+
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Electronics E-commerce</h3>
+
+                        <p class="details-description">Digital store specializing in the latest tech gadgets and accessories</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>20 Mar 2025</span></li>
+
+                            <li>Technologies - <span>Magento, PHP, PayPal API</span></li>
+
+                            <li>Role - <span>Store Development</span></li>
+
+                           <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+ <div class="work-card mix digital-store">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/87ced504ea6354ca46f47651f1e13522d3057364.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">Viejevo Store</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+
+
+
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Electronics E-commerce</h3>
+
+                        <p class="details-description">Digital store specializing in the latest tech gadgets and accessories</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>20 Mar 2025</span></li>
+
+                            <li>Technologies - <span>Magento, PHP, PayPal API</span></li>
+
+                            <li>Role - <span>Store Development</span></li>
+
+                            <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+ <div class="work-card mix digital-store">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/e046ab77cc855051e655803b64463d3ee6ffb5d9.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">Nathalie Hazim</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span> 
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Electronics E-commerce</h3>
+
+                        <p class="details-description">Digital store specializing in the latest tech gadgets and accessories</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>20 Mar 2025</span></li>
+
+                            <li>Technologies - <span>Magento, PHP, PayPal API</span></li>
+
+                            <li>Role - <span>Store Development</span></li>
+
+                           <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+ <div class="work-card mix digital-store">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/f21ff605f2b89c9a49f4421d23d6401631e66763.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">Trendísima RD</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+
+
+
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Electronics E-commerce</h3>
+
+                        <p class="details-description">Digital store specializing in the latest tech gadgets and accessories</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>20 Mar 2025</span></li>
+
+                            <li>Technologies - <span>Magento, PHP, PayPal API</span></li>
+
+                            <li>Role - <span>Store Development</span></li>
+
+                            <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+                <!-- Digital Menus -->
+
+                <div class="work-card mix digital-menu">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/227987ffa13606fb05f1eb9f55818a008c6b48aa.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">Barra Piantini</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Interactive Restaurant Menu</h3>
+
+                        <p class="details-description">Digital menu system with real-time updates and online ordering capabilities</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>15 Mar 2025</span></li>
+
+                            <li>Technologies - <span>React, Firebase, QR Integration</span></li>
+
+                            <li>Role - <span>Menu Digitalization</span></li>
+
+                            <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+                <div class="work-card mix digital-menu">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/a4e502e1c15feff776400465cbb1d4f8e9f049e4.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">Al Sitio Smash Burger</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Coffee Shop Digital Experience</h3>
+
+                        <p class="details-description">Complete digital menu and ordering system for specialty coffee shop</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>8 Mar 2025</span></li>
+
+                            <li>Technologies - <span>Vue.js, Node.js, Square API</span></li>
+
+                            <li>Role - <span>Customer Experience</span></li>
+
+                            <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            
+
+
+
+
+
+
+
+ <div class="work-card mix digital-menu">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/ab35756a2d3458a1a99029cc2eecb793672aeb1f.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">MG Kitchen</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Coffee Shop Digital Experience</h3>
+
+                        <p class="details-description">Complete digital menu and ordering system for specialty coffee shop</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>8 Mar 2025</span></li>
+
+                            <li>Technologies - <span>Vue.js, Node.js, Square API</span></li>
+
+                            <li>Role - <span>Customer Experience</span></li>
+
+                            <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+ <div class="work-card mix digital-menu">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/c9bca20710932f1c54e16e8aaf096e18b911dd2f.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">Chicken Rooming</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Coffee Shop Digital Experience</h3>
+
+                        <p class="details-description">Complete digital menu and ordering system for specialty coffee shop</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>8 Mar 2025</span></li>
+
+                            <li>Technologies - <span>Vue.js, Node.js, Square API</span></li>
+
+                            <li>Role - <span>Customer Experience</span></li>
+
+<li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+ <div class="work-card mix digital-menu">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/4090e9c985f3fbf5c996d7ccac1c6c0a98323718.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">Gilligan Smash Burgers</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Coffee Shop Digital Experience</h3>
+
+                        <p class="details-description">Complete digital menu and ordering system for specialty coffee shop</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>8 Mar 2025</span></li>
+
+                            <li>Technologies - <span>Vue.js, Node.js, Square API</span></li>
+
+                            <li>Role - <span>Customer Experience</span></li>
+
+                            <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+ <div class="work-card mix digital-menu">
+
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/d4f66b5294fbeb7e4a5ea473b8d27fc0b29ddf17.jpeg" alt="" class="work-img">
+
+                    <h3 class="work-title">Sun On The Bay - Beach Hotel</h3>
+
+                    <span class="work-button">More Info<i class="uil uil-arrow-right work-button-icon"></i></span>
+
+
+
+                    <div class="portfolio-item-details">
+
+                        <h3 class="details-title">Coffee Shop Digital Experience</h3>
+
+                        <p class="details-description">Complete digital menu and ordering system for specialty coffee shop</p>
+
+                        <ul class="details-info">
+
+                            <li>Created - <span>8 Mar 2025</span></li>
+
+                            <li>Technologies - <span>Vue.js, Node.js, Square API</span></li>
+
+                            <li>Role - <span>Customer Experience</span></li>
+
+                            <li>More Info - <span><a href="#">www.portfolio.bebelldigitalsolutions.com</a></span></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+</div> <!-- Closing .work-container -->
+
+<div class="work-show-more-container">
+    <button id="exploreProjectsBtn" class="button">
+        Explore All Projects <i class="uil uil-arrow-right"></i>
+    </button>
+</div>
+
+</section> <!-- Closing .work section -->
+
+
+
+
+
+
+
+
+
+
+
+        <div class="portfolio-popup">
+
+            <div class="portfolio-popup-inner">
+
+                <div class="portfolio-popup-content grid">
+
+                    <span class="portfolio-popup-close"><i class="uil uil-times"></i></span>
+
+                    <div class="pp-thumbnail">
+
+                        <img src="https://i.postimg.cc/sXLjnC5p/work-2.png" alt="" class="portfolio-popup-img">
+
+                    </div>
+
+
+
+                    <div class="portfolio-popup-info">
+
+                        <div class="portfolio-popup-subtitle">Featured - <span>Design</span></div>
+
+                        <div class="portfolio-popup-body">
+
+                            <h3 class="details-title">App for Technology & Services</h3>
+
+                            <p class="details-description">A stylish burger restaurant mobile app interface displayed on two smartphones</p>
+
+
+
+                            <ul class="details-info">
+
+                                <li>Created - <span>15 Apr 2025</span></li>
+
+                                <li>Technologies - <span>html css</span></li>
+
+                                <li>Role - <span>frontend</span></li>
+
+                                <li>View - <span><a href="#">www.domain.com</a></span></li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="video-container" id="video-banner">
+             <button class="play-video-btn" id="play-video-btn" aria-label="Play Video">
+                <i class="fas fa-play"></i>
+            </button>
+            <video autoplay muted loop playsinline>
+                <source src="https://cdn.shopify.com/videos/c/o/v/2a582084623e462d892da094c19df4dd.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       <!-- Services Section -->
+<section class="services section" id="services">
+    <h2 class="section-title" data-heading="Our Services">What we do that sets us apart</h2>
+    <div class="services-container container swiper">
+        <div class="swiper-wrapper">
+            <!-- Service 1 -->
+            <div class="services-content swiper-slide">
+                <div>
+                    <i class="uil uil-web-grid services-icon"></i>
+                    <h3 class="services-title">Digital <br> Architecture</h3>
+                </div>
+                <span class="services-button" data-modal="modal-1">
+                    View More <i class="uil uil-arrow-right services-button-icon"></i>
+                </span>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="services-content swiper-slide">
+                <div>
+                    <i class="uil uil-briefcase-alt services-icon"></i>
+                    <h3 class="services-title">Online Business <br> Development</h3>
+                </div>
+                <span class="services-button" data-modal="modal-2">
+                    View More <i class="uil uil-arrow-right services-button-icon"></i>
+                </span>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="services-content swiper-slide">
+                <div>
+                    <i class="uil uil-crosshair services-icon"></i>
+                    <h3 class="services-title">Digital <br> Marketing</h3>
+                </div>
+                <span class="services-button" data-modal="modal-3">
+                    View More <i class="uil uil-arrow-right services-button-icon"></i>
+                </span>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="services-content swiper-slide">
+                <div>
+                    <i class="uil uil-swatchbook services-icon"></i>
+                    <h3 class="services-title">Brand Design<br>& Strategy</h3>
+                </div>
+                <span class="services-button" data-modal="modal-4">
+                    View More <i class="uil uil-arrow-right services-button-icon"></i>
+                </span>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="services-content swiper-slide">
+                <div>
+                    <i class="uil uil-browser services-icon"></i>
+                    <h3 class="services-title">Website Design <br> & Development</h3>
+                </div>
+                <span class="services-button" data-modal="modal-5">
+                    View More <i class="uil uil-arrow-right services-button-icon"></i>
+                </span>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="services-content swiper-slide">
+                <div>
+                    <i class="uil uil-store services-icon"></i>
+                    <h3 class="services-title">E-commerce <br> Solutions</h3>
+                </div>
+                <span class="services-button" data-modal="modal-6">
+                    View More <i class="uil uil-arrow-right services-button-icon"></i>
+                </span>
+            </div>
+
+            <!-- Service 7 -->
+            <div class="services-content swiper-slide">
+                <div>
+                    <i class="uil uil-mobile-android services-icon"></i>
+                    <h3 class="services-title">Mobile Application <br> Development</h3>
+                </div>
+                <span class="services-button" data-modal="modal-7">
+                    View More <i class="uil uil-arrow-right services-button-icon"></i>
+                </span>
+            </div>
+
+            <!-- Service 8 -->
+            <div class="services-content swiper-slide">
+                <div>
+                    <i class="uil uil-sitemap services-icon"></i>
+                    <h3 class="services-title">Automation & <br> Systems Design</h3>
+                </div>
+                <span class="services-button" data-modal="modal-8">
+                    View More <i class="uil uil-arrow-right services-button-icon"></i>
+                </span>
+            </div>
+
+            <!-- Service 9 -->
+            <div class="services-content swiper-slide">
+                <div>
+                    <i class="uil uil-robot services-icon"></i>
+                    <h3 class="services-title">AI <br> Integration</h3>
+                </div>
+                <span class="services-button" data-modal="modal-9">
+                    View More <i class="uil uil-arrow-right services-button-icon"></i>
+                </span>
+            </div>
+
+            <!-- Service 10 -->
+            <div class="services-content swiper-slide">
+                <div>
+                    <i class="uil uil-chart-line services-icon"></i>
+                    <h3 class="services-title">Data <br> Visualization</h3>
+                </div>
+                <span class="services-button" data-modal="modal-10">
+                    View More <i class="uil uil-arrow-right services-button-icon"></i>
+                </span>
+            </div>
+
+            <!-- Service 11 -->
+            <div class="services-content swiper-slide">
+                <div>
+                    <i class="uil uil-file-search-alt services-icon"></i>
+                    <h3 class="services-title">Research & <br> Investigation</h3>
+                </div>
+                <span class="services-button" data-modal="modal-11">
+                    View More <i class="uil uil-arrow-right services-button-icon"></i>
+                </span>
+            </div>
+
+            <!-- Service 12 -->
+            <div class="services-content swiper-slide">
+                <div>
+                    <i class="uil uil-analytics services-icon"></i>
+                    <h3 class="services-title">Data <br> Analysis</h3>
+                </div>
+                <span class="services-button" data-modal="modal-12">
+                    View More <i class="uil uil-arrow-right services-button-icon"></i>
+                </span>
+            </div>
+
+            <!-- Service 13 -->
+            <div class="services-content swiper-slide">
+                <div>
+                    <i class="uil uil-search services-icon"></i>
+                    <h3 class="services-title">SEO & <br> Optimization</h3>
+                </div>
+                <span class="services-button" data-modal="modal-13">
+                    View More <i class="uil uil-arrow-right services-button-icon"></i>
+                </span>
+            </div>
+
+            <!-- Service 14 -->
+            <div class="services-content swiper-slide">
+                <div>
+                    <i class="uil uil-graduation-cap services-icon"></i>
+                    <h3 class="services-title">Education & <br> Empowerment</h3>
+                </div>
+                <span class="services-button" data-modal="modal-14">
+                    View More <i class="uil uil-arrow-right services-button-icon"></i>
+                </span>
+            </div>
+
+            <!-- Service 15 -->
+            <div class="services-content swiper-slide">
+                <div>
+                    <i class="uil uil-comments services-icon"></i>
+                    <h3 class="services-title">Communication & <br> Customer Experience</h3>
+                </div>
+                <span class="services-button" data-modal="modal-15">
+                    View More <i class="uil uil-arrow-right services-button-icon"></i>
+                </span>
+            </div>
+
+            <!-- Service 16 -->
+            <div class="services-content swiper-slide">
+                <div>
+                    <i class="uil uil-headphones-alt services-icon"></i>
+                    <h3 class="services-title">Continued <br> Support</h3>
+                </div>
+                <span class="services-button" data-modal="modal-16">
+                    View More <i class="uil uil-arrow-right services-button-icon"></i>
+                </span>
+            </div>
+        </div>
+        <div class="swiper-scrollbar services-section-scrollbar"></div>
+    </div>
+</section>
+
+<!-- Services Modals - Placed at the bottom of body -->
+<!-- Modal 1 -->
+<div class="services-modal" id="modal-1">
+    <div class="services-modal-content">
+        <i class="uil uil-times services-modal-close"></i>
+        <h3 class="services-modal-title">Digital Architecture</h3>
+        <p class="services-modal-description">We provide comprehensive digital infrastructure design with over 15 years of experience, creating scalable systems that unify technology and business strategy.</p>
+        <ul class="services-modal-services grid">
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Digital Ecosystem Design</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Business Process Architecture</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Scalable System Design</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Technology Integration</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal 2 -->
+<div class="services-modal" id="modal-2">
+    <div class="services-modal-content">
+        <i class="uil uil-times services-modal-close"></i>
+        <h3 class="services-modal-title">Online Business Development</h3>
+        <p class="services-modal-description">We help entrepreneurs and businesses build their digital ecosystem — from idea validation to market launch — integrating technology, strategy, and automation to scale efficiently online.</p>
+        <ul class="services-modal-services grid">
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Business Strategy & Consulting</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Digital Transformation Planning</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Automation & Workflow Setup</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Online Product & Service Launch</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal 3 -->
+<div class="services-modal" id="modal-3">
+    <div class="services-modal-content">
+        <i class="uil uil-times services-modal-close"></i>
+        <h3 class="services-modal-title">Digital Marketing</h3>
+        <p class="services-modal-description">Data-driven marketing strategies to increase your online visibility, engagement, and conversions.</p>
+        <ul class="services-modal-services grid">
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">SEO & Content Strategy</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Paid Advertising (PPC)</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Social Media Management</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Email Marketing Automation</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal 4 -->
+<div class="services-modal" id="modal-4">
+    <div class="services-modal-content">
+        <i class="uil uil-times services-modal-close"></i>
+        <h3 class="services-modal-title">Brand Design & Strategy</h3>
+        <p class="services-modal-description">We develop comprehensive brand architectures that create lasting market presence and emotional connections, with over 12 years of strategic brand development experience.</p>
+        <ul class="services-modal-services grid">
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Brand Architecture Development</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Market Positioning Strategy</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Creative Direction</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Brand Identity Systems</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal 5 -->
+<div class="services-modal" id="modal-5">
+    <div class="services-modal-content">
+        <i class="uil uil-times services-modal-close"></i>
+        <h3 class="services-modal-title">Website Design & Development</h3>
+        <p class="services-modal-description">We build modern, responsive, and high-performing websites that reflect your brand and convert visitors into customers. Our process combines strategy, design, and technology for a seamless digital experience.</p>
+        <ul class="services-modal-services grid">
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Custom Website Design</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Responsive Web Development</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Landing Pages & Funnels</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Website Maintenance & Optimization</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal 6 -->
+<div class="services-modal" id="modal-6">
+    <div class="services-modal-content">
+        <i class="uil uil-times services-modal-close"></i>
+        <h3 class="services-modal-title">E-commerce Solutions</h3>
+        <p class="services-modal-description">Building robust and user-friendly online stores that drive sales and provide a seamless shopping experience.</p>
+        <ul class="services-modal-services grid">
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">E-Commerce Development</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">WooCommerce Integration</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Payment Gateway Setup</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Conversion Rate Optimization</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal 7 -->
+<div class="services-modal" id="modal-7">
+    <div class="services-modal-content">
+        <i class="uil uil-times services-modal-close"></i>
+        <h3 class="services-modal-title">Mobile Application Development</h3>
+        <p class="services-modal-description">From concept to launch, we design and develop cross-platform mobile apps that deliver seamless experiences, helping your business stay connected with customers on every device.</p>
+        <ul class="services-modal-services grid">
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">iOS & Android App Development</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">UI/UX Design for Mobile Interfaces</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Progressive Web Apps (PWAs)</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">API & Cloud Integration</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal 8 -->
+<div class="services-modal" id="modal-8">
+    <div class="services-modal-content">
+        <i class="uil uil-times services-modal-close"></i>
+        <h3 class="services-modal-title">Automation & Systems Design</h3>
+        <p class="services-modal-description">I create intelligent automation systems and operational frameworks that streamline business processes and drive efficiency, with over 10 years of systems design expertise.</p>
+        <ul class="services-modal-services grid">
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Marketing Automation Systems</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Operational Workflow Design</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Business Process Optimization</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Product Development Frameworks</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal 9 -->
+<div class="services-modal" id="modal-9">
+    <div class="services-modal-content">
+        <i class="uil uil-times services-modal-close"></i>
+        <h3 class="services-modal-title">AI Integration</h3>
+        <p class="services-modal-description">Leveraging cutting-edge AI to automate tasks, gain insights from data, and create personalized customer experiences.</p>
+        <ul class="services-modal-services grid">
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">AI-Powered Chatbots</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Predictive Analytics</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Process Automation</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Content Generation</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal 10 -->
+<div class="services-modal" id="modal-10">
+    <div class="services-modal-content">
+        <i class="uil uil-times services-modal-close"></i>
+        <h3 class="services-modal-title">Data Visualization</h3>
+        <p class="services-modal-description">Transform raw data into clear, actionable insights with visually engaging dashboards and reports that empower better business decisions.</p>
+        <ul class="services-modal-services grid">
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Custom Dashboards & Reports</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Business Intelligence Integration</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Interactive Data Charts & KPIs</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Real-Time Data Monitoring</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal 11 -->
+<div class="services-modal" id="modal-11">
+    <div class="services-modal-content">
+        <i class="uil uil-times services-modal-close"></i>
+        <h3 class="services-modal-title">Research & Investigation</h3>
+        <p class="services-modal-description">We perform deep research and market investigations to uncover opportunities, trends, and insights that shape strategic decisions and drive innovation.</p>
+        <ul class="services-modal-services grid">
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Market & Industry Research</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Competitor & Trend Analysis</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Consumer Behavior Insights</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Strategic Reporting & Recommendations</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal 12 -->
+<div class="services-modal" id="modal-12">
+    <div class="services-modal-content">
+        <i class="uil uil-times services-modal-close"></i>
+        <h3 class="services-modal-title">Data Analysis</h3>
+        <p class="services-modal-description">We transform complex data into meaningful insights using advanced analytics to help businesses make informed, data-driven decisions.</p>
+        <ul class="services-modal-services grid">
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Data Cleaning & Visualization</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Business Intelligence Dashboards</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Predictive & Trend Analysis</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Performance & KPI Reporting</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal 13 -->
+<div class="services-modal" id="modal-13">
+    <div class="services-modal-content">
+        <i class="uil uil-times services-modal-close"></i>
+        <h3 class="services-modal-title">SEO & Optimization</h3>
+        <p class="services-modal-description">We help your business rise in search rankings and improve online visibility through technical SEO, content optimization, and data-driven performance strategies.</p>
+        <ul class="services-modal-services grid">
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Technical SEO Audit</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Keyword & Competitor Analysis</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">On-Page & Off-Page Optimization</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Performance Tracking & Reporting</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal 14 -->
+<div class="services-modal" id="modal-14">
+    <div class="services-modal-content">
+        <i class="uil uil-times services-modal-close"></i>
+        <h3 class="services-modal-title">Education & Empowerment</h3>
+        <p class="services-modal-description">Through training, mentorship, and courses, we empower entrepreneurs and teams to master the tools, technologies, and mindsets needed to thrive in the digital age.</p>
+        <ul class="services-modal-services grid">
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Digital Skills Training Programs</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Workshops & Mentorship</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Entrepreneurship & Growth Education</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Access to Tools, Templates & Resources</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal 15 -->
+<div class="services-modal" id="modal-15">
+    <div class="services-modal-content">
+        <i class="uil uil-times services-modal-close"></i>
+        <h3 class="services-modal-title">Communication & Customer Experience</h3>
+        <p class="services-modal-description">We focus on creating exceptional customer journeys through strategic communication design, user experience optimization, and relationship management.</p>
+        <ul class="services-modal-services grid">
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Customer Journey Mapping</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Communication Strategy Design</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">User Experience Optimization</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Customer Relationship Management</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal 16 -->
+<div class="services-modal" id="modal-16">
+    <div class="services-modal-content">
+        <i class="uil uil-times services-modal-close"></i>
+        <h3 class="services-modal-title">Continued Support</h3>
+        <p class="services-modal-description">We provide ongoing technical and creative support to ensure your digital ecosystem stays optimized, secure, and aligned with your business goals.</p>
+        <ul class="services-modal-services grid">
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Technical Maintenance & Updates</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Security Monitoring & Backups</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Performance Optimization</p>
+            </li>
+            <li class="services-modal-service">
+                <i class="uil uil-check-circle services-modal-icon"></i>
+                <p class="services-modal-info">Dedicated Client Support Team</p>
+            </li>
+        </ul>
+    </div>
+</div>
+                    </div>
+                </div>
+                <div class="swiper-scrollbar services-section-scrollbar"></div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <section class="testimonials section">
+            <h2 class="section-title" data-heading="Testimonials">Find out what customers say</h2>
+            <div class="testimonials-container container swiper">
+                <div class="swiper-wrapper">
+                  
+
+
+                    <div class="testimonial-card swiper-slide">
+                        <div class="testimonial-quote">
+                            <i class='bx bxs-quote-alt-left'></i>
+                        </div>
+                        <p class="testimonial-description">10/10!! Working with this team is the best! I highly recommend them for anything you need in your companies! Ernesto always keeps us updated and helps immensely with whatever we need!</p>
+                        <h3 class="testimonial-date">February 16, 2023</h3>
+                        <div class="testimonial-profile">
+                            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/df9d82cd842a2fdaa1c4942f2d5d770809a1cc3f.jpeg" alt="" class="testimonial-profile-img">
+                            <div class="testimonial-profile-data">
+                                <span class="testimonial-profile-name">Victoria Chediak</span>
+                                <span class="testimonail-profile-detail">CMO of Poke 305</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="testimonial-card swiper-slide">
+                        <div class="testimonial-quote">
+                            <i class='bx bxs-quote-alt-left'></i>
+                        </div>
+                        <p class="testimonial-description">Working with the Bebell digital team has been a very good experience. The Bebell team are very professional and friendly people. The customer service is incredible!! They always have a good attitude towards any problems that arise.</p>
+                        <h3 class="testimonial-date">February 1, 2023</h3>
+                        <div class="testimonial-profile">
+                            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/6e16f5cda6aaf6894c414cfbaad5db785bdfe44d.jpeg" alt="" class="testimonial-profile-img">
+                            <div class="testimonial-profile-data">
+                                <span class="testimonial-profile-name">Mariel Álvarez</span>
+                                <span class="testimonail-profile-detail">CEO of Yoxo Hair</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="testimonial-card swiper-slide">
+                        <div class="testimonial-quote">
+                            <i class='bx bxs-quote-alt-left'></i>
+                        </div>
+                        <p class="testimonial-description">"A Wonderful Experience" is how I can define it: I found what I was looking for!! Very satisfied with the digital solutions and services that Bebell has provided to my business.</p>
+                        <h3 class="testimonial-date">January 21, 2023</h3>
+                        <div class="testimonial-profile">
+                            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/664171b04f9a4ab2eeca76a4409772f84518db70.jpeg" alt="" class="testimonial-profile-img">
+                            <div class="testimonial-profile-data">
+                                <span class="testimonial-profile-name">Michelle Goede</span>
+                                <span class="testimonail-profile-detail">CEO of Senses Luxury Spa</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+   <div class="testimonial-card swiper-slide">
+                        <div class="testimonial-quote">
+                            <i class='bx bxs-quote-alt-left'></i>
+                        </div>
+                        <p class="testimonial-description">"A Wonderful Experience" is how I can define it: I found what I was looking for!! Very satisfied with the digital solutions and services that Bebell has provided to my business.</p>
+                        <h3 class="testimonial-date">January 21, 2023</h3>
+                        <div class="testimonial-profile">
+                            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/197b5ae18198c3faa940e994d5bbeda8267c53bf.png" alt="" class="testimonial-profile-img">
+                            <div class="testimonial-profile-data">
+                                <span class="testimonial-profile-name">Lisaris Madera</span>
+                                <span class="testimonail-profile-detail">CEO of Santé Brand RD</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+					
+
+
+                    <div class="testimonial-card swiper-slide">
+                        <div class="testimonial-quote">
+                            <i class='bx bxs-quote-alt-left'></i>
+                        </div>
+                        <p class="testimonial-description">For 6 years I've been trying to have a website or online store that is intuitive and with a user-friendly interface. On several occasions I had given up until this wonderful option appeared.</p>
+                        <h3 class="testimonial-date">January 20, 2023</h3>
+                        <div class="testimonial-profile">
+                            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b274fc6543d81ac10df70bc19790c983797d0566.jpeg" alt="" class="testimonial-profile-img">
+                            <div class="testimonial-profile-data">
+                                <span class="testimonial-profile-name">Andy Valdez</span>
+                                <span class="testimonail-profile-detail">CEO of For Fun Travel</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <div class="testimonial-card swiper-slide">
+                        <div class="testimonial-quote">
+                            <i class='bx bxs-quote-alt-left'></i>
+                        </div>
+                        <p class="testimonial-description">After enabling my payment button on the website, I received my first order in one day!! I thank you so much for the work, the time, and the advice ❤️ It would be impossible for me to do it without you.</p>
+                        <h3 class="testimonial-date">November 12, 2022</h3>
+                        <div class="testimonial-profile">
+                            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b41b063c581dec1083b41419b2ade9f11d53f648.png" alt="" class="testimonial-profile-img">
+                            <div class="testimonial-profile-data">
+                                <span class="testimonial-profile-name">Tahnee Pelliccioni</span>
+                                <span class="testimonail-profile-detail">Owner of KeiDesign Store</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <div class="swiper-scrollbar"></div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+        <section class="faq section" id="faq">
+            <h2 class="section-title" data-heading="Questions">Frequently Asked Questions</h2>
+
+            <div class="faq-container container">
+                <div class="faq-item">
+                    <button type="button" class="faq-header">
+                        <h3 class="faq-question">What kind of services do you provide?</h3>
+                        <i class="uil uil-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-content">
+                        <p class="faq-answer">We specialize in providing digital freedom for entrepreneurs. Our core services include Digital Architecture, Brand Strategy, and Systems Design & Automation. We build complete digital ecosystems, from websites and sales funnels to automated workflows, to help your business scale efficiently.</p>
+                    </div>
+                </div>
+                 <div class="faq-item">
+                    <button type="button" class="faq-header">
+                        <h3 class="faq-question">What does a "Digital Architect" do?</h3>
+                        <i class="uil uil-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-content">
+                        <p class="faq-answer">As a Digital Architect, I design the blueprint for your entire online business. This goes beyond just a website; it involves structuring your technology, systems, and processes to work together seamlessly. The goal is to create a scalable and automated foundation that supports sustainable growth and profitability.</p>
+                    </div>
+                </div>
+                 <div class="faq-item">
+                    <button type="button" class="faq-header">
+                        <h3 class="faq-question">How long does a typical project take?</h3>
+                        <i class="uil uil-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-content">
+                        <p class="faq-answer">Project timelines vary depending on the scope and complexity. A simple landing page might take a couple of weeks, while a full digital ecosystem build can take several months. We always start with a deep-dive consultation to define the scope and provide a realistic timeline for your specific project.</p>
+                    </div>
+                </div>
+                 <div class="faq-item">
+                    <button type="button" class="faq-header">
+                        <h3 class="faq-question">Who are your ideal clients?</h3>
+                        <i class="uil uil-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-content">
+                        <p class="faq-answer">We love working with ambitious entrepreneurs and established businesses who are ready to scale but feel overwhelmed by technology and disconnected systems. If you're looking to move from chaos to clarity and build an intelligent, automated business, we're the perfect partner for you.</p>
+                    </div>
+                </div>
+                 <div class="faq-item">
+                    <button type="button" class="faq-header">
+                        <h3 class="faq-question">How can I get started with Bebell Digital Solutions?</h3>
+                        <i class="uil uil-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-content">
+                        <p class="faq-answer">The best way to start is by booking a free consultation through our <a href="#contact" style="color:var(--skin-color)">contact section</a>. This allows us to understand your business, challenges, and goals. From there, we can map out a strategy and determine how we can best help you achieve digital freedom.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+        
+		<section class="contact section" id="contact">
+    <h2 class="section-title" data-heading="Get in Touch">Book a Free Consultation</h2>
+    <div class="contact-container container grid">
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="uil uil-globe contact-card-icon"></i>
+                    <h3 class="contact-card-title">Website</h3>
+                    <span class="contact-card-data">project-freedom.club</span>
+                    <span class="contact-button">Join the Movement <i class="uil uil-arrow-right contact-button-icon"></i></span>
+                </div>
+                <div class="contact-card">
+                    <i class="uil uil-whatsapp contact-card-icon"></i>
+                    <h3 class="contact-card-title">Whatsapp</h3>
+                    <span class="contact-card-data">+1305-990-0196</span>
+                    <span class="contact-button">Contact us <i class="uil uil-arrow-right contact-button-icon"></i></span>
+                </div>
+                <div class="contact-card">
+                    <i class="uil uil-youtube contact-card-icon"></i>
+                    <h3 class="contact-card-title">YouTube</h3>
+                    <span class="contact-card-data">@bebelldigitalsolutions</span>
+                    <span class="contact-button">Subscribe to our channel <i class="uil uil-arrow-right contact-button-icon"></i></span>
+                </div>
+ <div class="community-button-container">
+                <a href="/p/project-freedom" class="button community-button">
+                    <i class="uil uil-calendar-alt button-icon"></i>Book a Consultation
+                </a></div>
+
+            </div>
+
+        </div>
+        <div class="contact-content">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.6123061284534!2d-69.99182832354592!3d18.50121228258862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf8bf4ad7e79f5%3A0xa740152ca507d853!2sBebell%20Digital%20Solutions!5e0!3m2!1sen!2sdo!4v1761304863720!5m2!1sen!2sdo" width="100%" height="480px" style="border:2;border-radius:10px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <!-- Added Join the Community button -->
+            <div class="community-button-container">
+                <a href="/p/project-freedom" class="button community-button">
+                    <i class="uil uil-navigator button-icon"></i>Join the Movement
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+		
+		
+		
+		
+		<footer class="footer">
+            <div class="footer-bg">
+                <div class="footer-container container grid">
+                    <div class="footer-brand">
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/494966047320c2c5be07bd50754a7183ffcda611.png" alt="Project Freedom Logo" class="footer-logo">
+    <div class="footer-brand-text">
+        <h3 class="footer-title">Project Freedom</h3>
+        <span class="footer-subtitle">Designing Freedom From Within.</span>
+    </div>
+</div>
+					
+                    <ul class="footer-links">
+                        <li>
+                            <a href="#home" class="footer-links">Home</a>
+                        </li>
+
+
+
+ <li>
+                            <a href="#about" class="footer-links">About</a>
+                        </li>
+
+ <li>
+                            <a href="#services" class="footer-links">Services</a>
+                        </li>
+                        <li>
+                            <a href="#work" class="footer-links">Work</a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="footer-links">Contact</a>
+                        </li>
+
+</ul>
+
+                    <div class="footer-socials">
+                        <a href="https://www.facebook.com" target="_blank" class="footer-social">
+                            <i class="uil uil-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com" target="_blank" class="footer-social">
+                            <i class="uil uil-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com" target="_blank" class="footer-social">
+                            <i class="uil uil-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="footer-copy">Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a></p>
+            </div>
+        </footer>
+    </main>
+
+
+
+
+
+
+
+<!-- Video Modal -->
+<div class="video-modal" id="video-modal">
+    <div class="video-modal-content">
+        <i class="uil uil-times video-modal-close" id="video-modal-close"></i>
+        <iframe id="youtube-video" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- Back to Top Button -->
+ 
+
+
+<!-- Widget Volver arriba -->
+<div id="back-to-top" onclick="scrollToTop()">
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/972c5065cffe83955d5322557dcdce28eca170e5.png" alt="Volver arriba" style="width: 40px; height: 40px;">
+</div>
+
+
+
+
+
+<script>
+    window.onscroll = function() {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        var backToTopButton = document.getElementById("back-to-top");
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggling Skill Tabs
+            const tabs = document.querySelectorAll('[data-target]');
+            const tabContent = document.querySelectorAll('[data-content]');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = document.querySelector(tab.dataset.target);
+                    tabContent.forEach(tabContents => {
+                        tabContents.classList.remove('skills-active');
+                    })
+                    target.classList.add('skills-active');
+                    tabs.forEach(tab => {
+                        tab.classList.remove('skills-active');
+                    })
+                    tab.classList.add('skills-active');
+                })
+            })
+
+            //Mix it up Sorting
+            let mixerPortfolio = mixitup('.work-container', {
+                selectors: {
+                    target: '.work-card'
+                },
+                animation: {
+                    duration: 300
+                }
+            });
+
+            // Active link changing
+            const linkWork = document.querySelectorAll('.work-item');
+            function activeWork() {
+                linkWork.forEach(l => l.classList.remove('active-work'))
+                this.classList.add('active-work')
+            }
+            linkWork.forEach(l => l.addEventListener('click', activeWork));
+
+            //Portfolio Popup
+            document.addEventListener('click', (e) => {
+                const workButton = e.target.closest('.work-button');
+                const popupClose = e.target.closest('.portfolio-popup-close');
+                if (workButton) {
+                    e.preventDefault();
+                    togglePortfolioPopup();
+                    portfolioItemDetails(workButton.parentElement);
+                }
+                if (popupClose) {
+                    e.preventDefault();
+                    togglePortfolioPopup();
+                }
+            })
+
+            function togglePortfolioPopup() {
+                document.querySelector('.portfolio-popup').classList.toggle('open');
+            }
+
+            function portfolioItemDetails(portfolioItem) {
+                document.querySelector('.pp-thumbnail img').src = portfolioItem.querySelector('.work-img').src;
+                document.querySelector('.portfolio-popup-subtitle span').innerHTML = portfolioItem.querySelector('.work-title').innerHTML;
+                document.querySelector('.portfolio-popup-body').innerHTML = portfolioItem.querySelector('.portfolio-item-details').innerHTML;
+            }
+
+           
+
+
+ // Services Popup - Fixed Version
+const serviceButtons = document.querySelectorAll('.services-button');
+const serviceModals = document.querySelectorAll('.services-modal');
+const serviceCloseButtons = document.querySelectorAll('.services-modal-close');
+
+serviceButtons.forEach((button, index) => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Close any open modals first
+        serviceModals.forEach(modal => {
+            modal.classList.remove('active-modal');
+        });
+        // Open the corresponding modal
+        serviceModals[index].classList.add('active-modal');
+    });
+});
+
+serviceCloseButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        button.closest('.services-modal').classList.remove('active-modal');
+    });
+});
+
+// Close modal when clicking outside the content
+serviceModals.forEach(modal => {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active-modal');
+        }
+    });
+});
+
+
+
+
+
+
+// Video Modal
+
+            const playButton = document.getElementById('play-video-btn');
+            const videoModal = document.getElementById('video-modal');
+            const closeModalButton = document.getElementById('video-modal-close');
+            const youtubeIframe = document.getElementById('youtube-video');
+            const videoSrc = "https://www.youtube.com/embed/w2fBzH71BWw?si=Tw9Qk1XM9v6ydwCa";
+
+            if (playButton) {
+                playButton.addEventListener('click', () => {
+                    youtubeIframe.src = videoSrc + "?autoplay=1";
+                    videoModal.style.display = 'flex';
+                });
+            }
+
+            function closeVideoModal() {
+                if(videoModal) videoModal.style.display = 'none';
+                if(youtubeIframe) youtubeIframe.src = "";
+            }
+
+            if (closeModalButton) {
+                closeModalButton.addEventListener('click', closeVideoModal);
+            }
+            if (videoModal) {
+                videoModal.addEventListener('click', (e) => {
+                    if (e.target === videoModal) {
+                        closeVideoModal();
+                    }
+                });
+            }
+
+
+
+
+
+
+
+            // Swiper Services
+            let servicesSwiper = new Swiper(".services-container.swiper", {
+                spaceBetween: 24,
+                loop: false,
+                grabCursor: true,
+                scrollbar: {
+                    el: ".services-section-scrollbar",
+                    draggable: true,
+                },
+                breakpoints: {
+                    576: { slidesPerView: 2, },
+                    768: { slidesPerView: 2, spaceBetween: 48, },
+                    992: { slidesPerView: 3, spaceBetween: 24, }
+                },
+            });
+
+            //Swiper Testimonial
+            let testimonialsSwiper = new Swiper(".testimonials-container", {
+                spaceBetween: 24,
+                loop: true,
+                grabCursor: true,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                scrollbar: {
+                    el: '.swiper-scrollbar',
+                    draggable: true,
+                },
+                breakpoints: {
+                    576: {
+                        slidesPerView: 2,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 48,
+                    },
+                },
+            });
+
+            // Input Animation
+            const inputs = document.querySelectorAll('.input');
+            function focusFunc() {
+                let parent = this.parentNode;
+                parent.classList.add('focus');
+            }
+            function blurFunc() {
+                let parent = this.parentNode;
+                if (this.value == "") {
+                    parent.classList.remove('focus');
+                }
+            }
+            inputs.forEach((input) => {
+                input.addEventListener('focus', focusFunc);
+                input.addEventListener('blur', blurFunc);
+            })
+
+            // Scroll Section Active Link
+            const sections = document.querySelectorAll('section[id]');
+            window.addEventListener('scroll', navHighlighter);
+            function navHighlighter() {
+                let scrollY = window.pageYOffset;
+                sections.forEach(current => {
+                    const sectionHeight = current.offsetHeight;
+                    const sectionTop = current.offsetTop - 50;
+                    const sectionId = current.getAttribute('id');
+                    const navLink = document.querySelector('.nav-menu a[href*=' + sectionId + ']');
+                    if (navLink) {
+                        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                            navLink.classList.add('active-link');
+                        } else {
+                            navLink.classList.remove('active-link');
+                        }
+                    }
+                })
+            }
+
+
+
+
+
+
+
+
+// FAQ Accordion
+            const faqHeaders = document.querySelectorAll('.faq-header');
+            faqHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const openItem = document.querySelector('.faq-item.faq-open');
+                    const clickedItem = header.parentElement;
+
+                    if (openItem && openItem !== clickedItem) {
+                        openItem.classList.remove('faq-open');
+                    }
+                    
+                    clickedItem.classList.toggle('faq-open');
+                });
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // Activating Sidebar
+            const navMenu = document.getElementById('sidebar');
+            const navToggle = document.getElementById('nav-toggle');
+            const navClose = document.getElementById('nav-close');
+            if (navToggle) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.add('show-sidebar');
+                })
+            }
+            if (navClose) {
+                navClose.addEventListener('click', () => {
+                    navMenu.classList.remove('show-sidebar');
+                })
+            }
+
+            // Modified: Keep the structure but remove card limiting
+const exploreProjectsBtn = document.getElementById('exploreProjectsBtn');
+if (exploreProjectsBtn) {
+    const workContainer = document.querySelector('.work-container');
+
+    function updateButtonVisibility() {
+        const allCards = workContainer.querySelectorAll('.work-card');
+        const visibleFilteredCards = Array.from(allCards).filter(card => {
+            const style = window.getComputedStyle(card);
+            return style.display !== 'none';
+        });
+        
+        // Always show the button, but you can add logic here if needed
+        // For example, hide button if no cards are visible
+        if (visibleFilteredCards.length === 0) {
+            exploreProjectsBtn.style.display = 'none';
+        } else {
+            exploreProjectsBtn.style.display = 'inline-flex';
+        }
+    }
+
+    exploreProjectsBtn.addEventListener('click', () => {
+        window.open('/projects', '_blank');
+    });
+    
+    // Update button when filtering (keeps the filter integration)
+    const filterItems = document.querySelectorAll('.work-item');
+    filterItems.forEach(item => {
+        item.addEventListener('click', () => {
+            setTimeout(updateButtonVisibility, 350); // Wait for mixitup animation
+        });
+    });
+    
+    // Initial setup
+    updateButtonVisibility();
+}
+        });
+    </script>
+</body>
+</html>
