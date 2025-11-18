@@ -48,6 +48,9 @@ html {
     background: var(--skin-color);
     border-radius: 4px;
 }
+::-webkit-scrollbar-thumb:hover {
+    background: #d43a00;
+}
 
 body {
   margin: 0;
@@ -80,36 +83,113 @@ main {
   transition: opacity 0.3s ease;
 }
 
-/* progress bar styles omitted for brevity, see source for full details */
+.loader-header {
+  color: white; font-size: 24px; font-family: Arial, sans-serif;
+  margin-bottom: 20px; text-align: center;
+}
+
+.progress {
+  width: 272.8px; height: 41.7px; border-radius: 28.8px;
+  color: var(--skin-color); background-color: #000; border: 2.9px solid;
+  position: relative;
+}
+
+.progress::before {
+  content: ""; position: absolute; margin: 2.9px;
+  inset: 0 100% 0 0; border-radius: inherit; background: currentColor;
+  animation: progress-pf82op 1.5s forwards;
+}
+
+@keyframes progress-pf82op {
+  100% { inset: 0; }
+}
+
+.page-loader.hidden {
+  opacity: 0; pointer-events: none;
+}
+
 
 /* --- Navigation Bar --- */
 #nav-bar {
   position: fixed; top: 2rem; left: 50%; transform: translateX(-50%);
   background: rgba(25, 25, 25, 0.85); backdrop-filter: blur(10px);
-  border: 1px solid var(--box-color); border-radius: 0.75rem;
-  padding: 0.75rem 1.5rem; display: flex; align-items: center;
-  max-width: 980px; width: 90%; z-index: 1000;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(10px); border: 1px solid var(--box-color);
+  border-radius: 0.75rem; padding: 0.75rem 1.5rem; display: flex;
+  align-items: center; max-width: 980px; width: 90%; z-index: 1000;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6); transition: all 0.3s ease;
 }
 
-#nav-menu { display: flex; gap: 1.5rem; margin-left: auto; align-items: center; position: relative; }
-.nav-link { color: var(--text-color); transition: color 0.3s, transform 0.2s; }
-.nav-link:hover { color: var(--skin-color); transform: translateY(-1px); }
+#nav-logo img {
+  height: 35px; width: auto; display: block;
+}
+
+#nav-menu {
+  display: flex; gap: 1.5rem; margin-left: auto; align-items: center;
+  position: relative;
+}
+
+.nav-link {
+  color: var(--text-color); text-decoration: none; font-weight: var(--font-medium);
+  font-size: 1rem; transition: color 0.3s ease, transform 0.2s ease; cursor: pointer;
+}
+
+.nav-link:hover, .nav-link:focus { color: var(--skin-color); transform: translateY(-1px); outline: none; }
+
 .nav-cta {
   background: linear-gradient(90deg, var(--skin-color), #d43a00);
   color: var(--title-color); padding: 0.5rem 1rem; border-radius: 0.5rem;
+  font-weight: var(--font-bold); text-decoration: none; cursor: pointer;
   box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4);
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Submenu container and links styles omitted for brevity, see source for full details */
+.nav-cta:hover, .nav-cta:focus {
+  background: linear-gradient(90deg, #d43a00, var(--skin-color));
+  transform: translateY(-2px); box-shadow: 0 4px 8px rgba(255, 80, 17, 0.6);
+  outline: none;
+}
+
+/* Submenu Styling */
+.submenu-courses {
+  position: absolute; top: calc(100% + 0px); left: 0;
+  background: var(--box-color); border-radius: 0.5rem;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5); padding: 0.5rem 0;
+  display: none; min-width: 300px; z-index: 1001;
+  flex-direction: column; border: 1px solid var(--mirage-color);
+  opacity: 0; transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.nav-item.has-submenu:hover .submenu-courses,
+.nav-item.has-submenu:focus-within .submenu-courses {
+  display: flex; opacity: 1; transform: translateY(0);
+}
+
+.submenu-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0.75rem 1.25rem; color: var(--text-color);
+  text-decoration: none; font-size: 0.9rem;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.submenu-link:hover, .submenu-link:focus {
+  background: rgba(255, 80, 17, 0.1); color: var(--skin-color); outline: none;
+}
 
 /* --- Headings and Sections --- */
-h1 { font-size: 3rem; color: var(--skin-color); text-align: center; }
+h1 { font-size: 3rem; color: var(--skin-color); text-align: center; font-weight: var(--font-bold); }
 
 h2 { /* Main section titles, with the left accent bar */
-  font-size: 2.2rem; color: var(--title-color);
+  font-size: 2.2rem; color: var(--title-color); margin-top: 1rem;
+  margin-bottom: 1.5rem; text-align: left;
   border-left: 4px solid var(--skin-color); padding-left: 15px;
+  font-weight: var(--font-bold);
 }
+
+h3 { font-size: var(--h3-font-size); color: var(--title-color); font-weight: var(--font-bold); }
+.h3-with-icon { display: flex; align-items: center; gap: 0.75rem; }
+h3 i { color: var(--skin-color); font-size: 1.5rem; flex-shrink: 0; }
+
 
 .section, .instructor-card { /* Standard Card Styling */
   margin-bottom: 3rem; background-color: var(--box-color);
@@ -124,14 +204,50 @@ h2 { /* Main section titles, with the left accent bar */
 }
 
 /* --- List Styles (Icon-based) --- */
+ul { list-style-type: none; padding-left: 0; }
+
 ul li {
   list-style-type: none; margin-bottom: 1rem; position: relative;
   display: flex; align-items: flex-start; gap: 1rem;
   transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 1.05rem;
 }
 
 ul li:hover { transform: translateX(5px); color: var(--title-color); }
-ul li i { color: var(--skin-color); flex-shrink: 0; }
+ul li i { color: var(--skin-color); font-size: 1.15rem; margin-top: 5px; flex-shrink: 0; }
+.li-content { flex-grow: 1; align-self: flex-start; }
+
+/* --- CTA Buttons (Standard) --- */
+.cta-button {
+  background: linear-gradient(90deg, var(--skin-color), #d43a00);
+  color: var(--title-color); padding: 14px 28px; border: none;
+  border-radius: 8px; cursor: pointer; font-size: 1.05rem;
+  font-weight: var(--font-bold); text-decoration: none; display: inline-block;
+  margin-top: 1.5rem; transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(255, 80, 17, 0.4);
+}
+
+.cta-button:hover {
+  background: linear-gradient(90deg, #d43a00, var(--skin-color));
+  transform: translateY(-3px); box-shadow: 0 6px 12px rgba(255, 80, 17, 0.6);
+}
+
+/* --- Back to Top Button --- */
+#back-to-top {
+  position: fixed; bottom: 20px; right: 20px;
+  display: flex; align-items: center; justify-content: center;
+  width: 45px; height: 45px; background-color: transparent;
+  background-image: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597');
+  background-size: contain; background-repeat: no-repeat;
+  background-position: center; border: none; border-radius: 0;
+  cursor: pointer; z-index: 1000; box-shadow: none;
+  transition: opacity 0.3s ease, transform 0.3s ease; font-size: 0;
+  opacity: 0; pointer-events: none;
+}
+
+#back-to-top.show {
+  opacity: 1; pointer-events: auto;
+}
 
 /* --- Footer --- */
 .footer-bg { /* Full-width background */
@@ -139,20 +255,57 @@ ul li i { color: var(--skin-color); flex-shrink: 0; }
 }
 
 .footer-container { /* Max-width container for content */
-  max-width: 980px; margin: 0 auto; display: grid;
+  max-width: 980px; margin: 0 auto; padding: 0 1rem; display: grid;
   grid-template-columns: repeat(3, 1fr); column-gap: 1.6rem;
 }
 
-/* --- Responsive Adjustments (Simplified) --- */
-@media (max-width: 768px) {
-  .two-column, .instructor-profile, .course-at-glance-grid {
-    grid-template-columns: 1fr; /* Stack columns */
-  }
-  h1 { font-size: 2.5rem; }
-  h2 { font-size: 1.8rem; }
-  .footer-container {
-    grid-template-columns: 1fr; /* Stack footer */
-  }
+.footer-links {
+  list-style: none; padding: 0; display: flex; flex-direction: row;
+  gap: 1.5rem; margin: 0;
 }
 
-/* Full CSS is complex; this block represents the essential rules. */
+.footer-links li a {
+  color: var(--text-color); text-decoration: none; font-size: 1rem;
+  transition: color 0.3s ease; white-space: nowrap;
+}
+
+.footer-links li a:hover {
+  color: var(--skin-color);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1024px) {
+  .nav-link:not(.nav-cta) {
+    display: none;
+  }
+}
+ 
+@media (max-width: 768px) {
+  body {
+    padding: 1rem; padding-top: 7rem; max-width: 100%;
+  }
+
+  .two-column, .instructor-profile, .course-at-glance-grid {
+    grid-template-columns: 1fr; /* Stack columns */
+    gap: 1.5rem;
+  }
+  
+  .section, .instructor-card {
+    padding: 1.5rem;
+  }
+
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.8rem; }
+  
+  .footer-container {
+    grid-template-columns: 1fr; /* Stack footer */
+    text-align: center;
+    row-gap: 3rem;
+  }
+  
+  .footer-links {
+    flex-direction: column; /* Revert to vertical for mobile */
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
