@@ -1,1 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Overview - AIM™</title>
+  
+  <!-- Import Inter font (as per instructions) --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Icons (Font Awesome is critical) --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <style>
+    :root {
+      --skin-color: #ff5011; /* Orange-Red Accent */
+      --mirage-color: hsl(210, 10%, 23%); /* Dark Gray Background Component */
+      --title-color: hsl(242, 8%, 98%); /* Near White for Titles */
+      --text-color: hsl(242, 8%, 80%); /* Light Gray for Body Text */
+      --body-color: #0d0d0d; /* Deep Black/Very Dark Gray */
+      --box-color: hsl(242, 14%, 12%); /* Slightly lighter than body for cards */
+      --body-font: 'Inter', sans-serif;
+      --font-medium: 500;
+      --font-bold: 700; /* Used 700 for better contrast */
+    }
+
+    /* --- Base & Page Load Animation --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--body-font);
+      background-color: var(--body-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+      max-width: 980px; /* Constrained to 980px as requested */
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 8rem; /* Space for fixed nav */
+      opacity: 0;
+      animation: fadeInPage 1s ease-out forwards;
+    }
+
+    @keyframes fadeInPage {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* --- Navigation Bar --- */
+    #nav-bar {
+      position: fixed;
+      top: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(25, 25, 25, 0.85); /* semi-transparent dark */
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--box-color);
+      border-radius: 0.75rem;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      max-width: 980px; /* Constrained to 980px as requested */
+      width: 90%;
+      z-index: 1000;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+    }
+
+    #nav-logo img {
+      height: 35px;
+      width: auto;
+      display: block;
+    }
+
+    #nav-menu {
+      display: flex;
+      gap: 1.5rem;
+      margin-left: auto;
+      align-items: center;
+      position: relative;
+    }
+
+    .nav-link {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: var(--font-medium);
+      font-size: 1rem;
+      transition: color 0.3s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .nav-link:hover, .nav-link:focus {
+      color: var(--skin-color);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .nav-cta {
+      background: linear-gradient(90deg, var(--skin-color), #d43a00);
+      color: var(--title-color);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: var(--font-bold);
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4);
+    }
+
+    .nav-cta:hover, .nav-cta:focus {
+      background: linear-gradient(90deg, #d43a00, var(--skin-color));
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(255, 80, 17, 0.6);
+      outline: none;
+    }
+
+    /* Submenu Styling */
+    .submenu-courses {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      background: var(--box-color);
+      border-radius: 0.5rem;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+      padding: 0.5rem 0;
+      display: none;
+      min-width: 300px;
+      z-index: 1001;
+      flex-direction: column;
+      border: 1px solid var(--mirage-color);
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-item.has-submenu:hover .submenu-courses,
+    .nav-item.has-submenu:focus-within .submenu-courses {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .submenu-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.75rem 1.25rem;
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .submenu-link:hover, .submenu-link:focus {
+      background: rgba(255, 80, 17, 0.1);
+      color: var(--skin-color);
+      outline: none;
+    }
+
+    /* --- Content Sections --- */
+    main {
+      max-width: 980px; /* Aligned with body max-width */
+      margin: 0 auto;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      color: var(--skin-color);
+      font-weight: var(--font-bold);
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    
+    h2 { /* Main section titles */
+      font-size: 2.2rem;
+      color: var(--title-color);
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+      border-left: 4px solid var(--skin-color);
+      padding-left: 15px;
+      font-weight: var(--font-bold);
+    }
+    
+    /* MODIFICATION: Base h3 style, no flex */
+    h3 { /* Generic sub-section titles */
+      font-size: 1.7rem; /* Smaller size (was 2.2rem as h2) */
+      color: var(--title-color);
+      text-align: left;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      font-weight: var(--font-bold);
+    }
+
+    /* NEW CLASS: Applies flex only to h3s with icons */
+    .h3-with-icon {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* NEW CLASS: Styles the h3 title inside the grid */
+    .grid-title {
+        margin-top: 0;
+        margin-bottom: 1.5rem; /* Match h2 bottom margin */
+        /* To make sure it fits on one line */
+        white-space: nowrap; 
+    }
+
+
+    h3 i { /* Style for icons in h3 */
+      color: var(--skin-color);
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    /* --- Layout Adjustments (1/2 columns) --- */
+    .two-column, .instructor-profile {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 50% / 50% split */
+      gap: 3rem;
+      align-items: center; 
+      margin-bottom: 0;
+    }
+
+    /* CUSTOM GRID FOR FIRST SECTION: List (40%) and Video (60%) */
+    .course-at-glance-grid {
+      display: grid;
+      grid-template-columns: 2fr 3fr; /* Custom split for larger video */
+      gap: 3rem;
+      align-items: center;
+    }
+
+
+    /* Card/Section Styles with Hover and Animation */
+    .section, .instructor-card {
+      margin-bottom: 3rem;
+      background-color: var(--box-color);
+      border-radius: 12px;
+      padding: 2.5rem;
+      border: 1px solid var(--mirage-color);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s ease-out;
+      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0; /* Starts opaque for fadeInUp */
+    }
+
+    /* Staggering the animation delay */
+    .section:nth-child(2) { animation-delay: 0.1s; }
+    .section:nth-child(3) { animation-delay: 0.2s; }
+    .section:nth-child(4) { animation-delay: 0.3s; }
+    .section:nth-child(5) { animation-delay: 0.4s; }
+
+    .section:hover, .instructor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(255, 80, 17, 0.2), 0 4px 12px rgba(0, 0, 0, 0.5); /* Lifted skin-color glow */
+    }
+
+    /* Image Containers with Hover - Adjusted for Square Images */
+    .image-container, .instructor-photo {
+      width: 100%;
+      padding-top: 100%; /* This makes the height equal to the width using padding hack */
+      position: relative; /* Needed for absolute positioning of the image */
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .image-container img, .instructor-photo img {
+      position: absolute; /* Position the image absolutely within the container */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .image-container:hover img, .instructor-photo:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Video Container for 16:9 Aspect Ratio */
+    .video-container {
+      width: 100%;
+      position: relative;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio (9/16 * 100) */
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+
+    /* Lists with Font Awesome Icons */
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    ul li {
+      margin-bottom: 1rem;
+      position: relative;
+      display: flex; 
+      align-items: flex-start;
+      gap: 1rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+      font-size: 1.05rem;
+    }
+    
+    ul li:hover {
+      transform: translateX(5px);
+      color: var(--title-color);
+    }
+
+    ul li i {
+      color: var(--skin-color);
+      font-size: 1.15rem;
+      margin-top: 5px; /* Visual alignment fix for line-height */
+      flex-shrink: 0;
+    }
+
+    /* Utility to wrap text/nested content inside a flex LI */
+    .li-content {
+        flex-grow: 1;
+        align-self: flex-start;
+    }
+    
+    /* Specific styling for nested project bullets (requested by user) */
+    .project-bullets {
+      list-style-type: disc; /* Use standard bullet point */
+      padding-left: 1.5rem; /* Standard bullet indentation */
+      margin-bottom: 0;
+      margin-top: 0.5rem;
+    }
+
+    .project-bullets li {
+      /* Override the icon-based styles from parent `ul li` to allow nesting */
+      list-style-type: disc; /* Ensure disc is used for list-item marker */
+      display: list-item; 
+      position: static; 
+      padding-left: 0;
+      gap: 0;
+      transform: none;
+      transition: none;
+      font-size: 1rem;
+      color: var(--text-color);
+      margin-bottom: 0.5rem; /* Smaller margin for dense sub-list */
+    }
+    
+    .project-bullets li:hover {
+      color: var(--text-color); /* Disable hover highlight on sub-bullets */
+    }
+
+    /* Call to Action Button */
+    .cta-button {
+      background: linear-gradient(90deg, var(--skin-color), #d43a00);
+      color: var(--title-color);
+      padding: 14px 28px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.05rem;
+      font-weight: var(--font-bold);
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(255, 80, 17, 0.4);
+    }
+    
+    .cta-button:hover {
+      background: linear-gradient(90deg, #d43a00, var(--skin-color));
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(255, 80, 17, 0.6);
+    }
+    
+    .cta-button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+      border-top: 1px solid var(--box-color);
+      color: var(--mirage-color);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .nav-link:not(.nav-cta) {
+        display: none;
+      }
+      .submenu-courses {
+        display: none !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+        padding-top: 7rem;
+        max-width: 100%;
+      }
+
+      .two-column, .instructor-profile, .course-at-glance-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      /* On smaller screens, the square image containers will scale down proportionally */
+      .image-container, .instructor-photo {
+        padding-top: 100%; /* Keep square aspect ratio for images on mobile */
+      }
+      
+      /* Video container maintains 16:9 ratio on mobile */
+      .video-container {
+        padding-top: 56.25%; 
+      }
+
+      .section, .instructor-card {
+        padding: 1.5rem;
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+      
+      h3 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar --><nav id="nav-bar">
+    <div id="nav-logo">
+      <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
+    </div>
+    
+    <div id="nav-menu">
+      <a href="#home" class="nav-link">Homepage</a>
+      <div class="nav-item has-submenu">
+        <a href="#courses" class="nav-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
+        <div class="submenu-courses">
+          <a href="#ai-foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation: Core Concepts</a>
+          <a href="#prompt-craftsmanship" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+          <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
+          <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+        </div>
+      </div>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#helpcenter" class->"nav-link">HelpCenter</a>
+
+      <a href="#login" class="nav-cta">LOGIN</a>
+    </div>
+  </nav>
+
+
+
+
+  
+
+  <!-- Page Header --><header style="text-align: center; margin-bottom: 3rem; padding-top: 1rem;">
+    <h1>AIM™ Course Overview</h1>
+    <p style="font-size: 1.1rem; color: var(--text-color); margin-top: 0.5rem;">Master AI fundamentals in just a few hours</p>
+  </header>
+  
+  <!-- Main Content --><main>
+    <!-- Course Overview --><section class="section" style="animation-delay: 0s;">
+      <div class="course-at-glance-grid">
+        <div>
+          <!-- Title on top of the left column (H3 size, non-flex) -->
+          <h3 class="grid-title">Course at a Glance</h3>
+          <ul>
+            <li><i class="fa-solid fa-book-open-reader"></i> <div class="li-content">Estimated reading time 3 minutes</div></li>
+            <li><i class="fa-solid fa-file-lines"></i> <div class="li-content">Length 1 page (Overview)</div></li>
+            <li><i class="fa-solid fa-square-poll-horizontal"></i> <div class="li-content">Difficulty Level Easy</div></li>
+          </ul>
+        </div>
+        <div class="video-container">
+          <!-- Placeholder YouTube Embed (16:9 Aspect Ratio) -->
+          <iframe 
+            src="https://youtu.be/moxDPPD9pyk?si=E3vjStET4lloISfJ" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+            title="Course Introduction Video">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- What You Will Learn --><section class="section" style="animation-delay: 0.1s;">
+      <h2>Key Learning Outcomes</h2>
+      <div class="two-column">
+        <div class="image-container">
+          <!-- Image with object-fit: cover and hover zoom effect --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Banners/AIM%20-%20AI%20Mastery%20Program.gif"
+               onerror="this.onerror=null;this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Banners/AIM%20-%20AI%20Mastery%20Program.gif';"
+               alt="AI Mastery Program - Modern Computer Graphic">
+        </div>
+        <div>
+          <ul>
+            <li><i class="fa-solid fa-bullseye"></i> <div class="li-content">Understand how AI works in simple terms so you can speak confidently in work settings.</div></li>
+            <li><i class="fa-solid fa-clock-rotate-left"></i> <div class="li-content">Identify where AI can save you time and reduce manual tasks in your daily workflow.</div></li>
+            <li><i class="fa-solid fa-arrow-right-arrow-left"></i> <div class="li-content">Compare popular AI tools and pick the right ones for marketing, sales, or operations.</div></li>
+            <li><i class="fa-solid fa-brain"></i> <div class="li-content">Plan small AI projects that improve productivity for you or your team.</div></li>
+            <li><i class="fa-solid fa-shield-halved"></i> <div class="li-content">Apply safe and responsible practices when using AI at work.</div></li>
+            <li><i class="fa-solid fa-lightbulb"></i> <div class="li-content">Build a basic AI strategy for a real or hypothetical business.</div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instructor Section - Card Style --><section class="instructor-card" style="animation-delay: 0.2s;">
+      <h2>Meet Your Instructor</h2>
+      <div class="instructor-profile">
+        <div class="instructor-photo">
+          <!-- Image with object-fit: cover and hover zoom effect --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/Patricia/AIM%20-%20AI%20Mastery%20Program%20(3)%20(1).png"
+               onerror="this.onerror=null;this.src='https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/Patricia/AIM%20-%20AI%20Mastery%20Program%20(3)%20(1).png';"
+               alt="Patricia - AIM Program Trainer">
+        </div>
+        <div>
+          <!-- Added class to h3 for icon layout -->
+          <h3 class="h3-with-icon"><i class="fa-solid fa-user-tie"></i> Patricia - AI Specialist</h3>
+          <p>
+            Patricia is an experienced AI educator and consultant with over 8 years of experience in digital transformation. She specializes in making complex AI concepts accessible to professionals from all backgrounds. Her practical approach to AI implementation has helped numerous organizations streamline their workflows and boost productivity.
+          </p>
+          <p style="margin-top: 1rem;">
+            As the lead trainer for the AIM Program, Patricia brings real-world expertise and a passion for empowering teams to leverage AI tools effectively in their daily operations.
+          </p>
+          <a href="#" class="cta-button">Learn More About Patricia</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Course Structure --><section class="section" style="animation-delay: 0.3s;">
+      <h2>How the Course is Structured</h2>
+      <ul>
+        <li><i class="fa-solid fa-layer-group"></i> <div class="li-content">Seven modules you can finish at your own pace.</div></li>
+        <li><i class="fa-solid fa-laptop-code"></i> <div class="li-content">Each module includes short lessons, practical examples, and simple exercises.</div></li>
+        <li><i class="fa-solid fa-clipboard-question"></i> <div class="li-content">Quizzes at the end of each module check your understanding before moving on.</div></li>
+        <li><i class="fa-solid fa-trophy"></i> <div class="li-content">A final project helps you apply everything to a real scenario.</div></li>
+        <li><i class="fa-solid fa-hourglass-half"></i> <div class="li-content">Total course length: about 3 to 4 hours.</div></li>
+      </ul>
+    </section>
+
+    <!-- Time Expectations --><section class="section" style="animation-delay: 0.4s;">
+      <h2>Time Expectations</h2>
+      <ul>
+        <li><i class="fa-solid fa-person-walking"></i> <div class="li-content">Individual lessons take 3 to 6 minutes to read.</div></li>
+        <li><i class="fa-solid fa-map-location-dot"></i> <div class="li-content">Full modules take 20 to 30 minutes.</div></li>
+        <li><i class="fa-solid fa-rocket"></i> <div class="li-content">The final project takes 30 to 45 minutes to complete.</div></li>
+        <li><i class="fa-solid fa-calendar-week"></i> <div class="li-content">You can finish the full course in one afternoon or spread it across a week.</div></li>
+      </ul>
+    </section>
+
+    <!-- Tools --><section class="section" style="animation-delay: 0.5s;">
+      <h2>Tools You Will Use</h2>
+      <p>You will work with simple, accessible tools:</p>
+      <ul>
+        <li><i class="fa-solid fa-comments"></i> <div class="li-content">Chat based AI assistants such as ChatGPT or an equivalent tool.</div></li>
+        <li><i class="fa-solid fa-sheet-plastic"></i> <div class="li-content">Short worksheets to help you plan your AI ideas.</div></li>
+        <li><i class="fa-solid fa-globe"></i> <div class="li-content">Optional browser based tools for writing, transcription, and task automation.</div></li>
+      </ul>
+      <p style="margin-top: 1rem; color: var(--title-color);"><strong><i class="fa-solid fa-check-circle" style="color: var(--skin-color);"></i> No technical setup is required.</strong></p>
+    </section>
+
+    <!-- Quizzes and Final Project --><section class="section" style="animation-delay: 0.6s;">
+      <h2>Quizzes and Final Project Details</h2>
+      <ul>
+        <li><i class="fa-solid fa-percent"></i> <div class="li-content">Each quiz has 5 to 8 questions.</div></li>
+        <li><i class="fa-solid fa-unlock"></i> <div class="li-content">You need at least 70 percent score to unlock the next module.</div></li>
+        <li><i class="fa-solid fa-rotate-right"></i> <div class="li-content">You can retry quizzes as many times as you want.</div></li>
+        <li><i class="fa-solid fa-magnifying-glass-chart"></i> 
+            <div class="li-content">
+                The final project asks you to:
+                <ul class="project-bullets">
+                    <li>Choose a real or hypothetical business</li>
+                    <li>Identify AI opportunities</li>
+                    <li>Pick tools that fit those needs</li>
+                    <li>Create a short plan you can present</li>
+                </ul>
+            </div>
+        </li>
+        <li><i class="fa-solid fa-star"></i> <div class="li-content">The project is graded on clarity and practicality, not technical detail.</div></li>
+      </ul>
+    </section>
+
+    <!-- Getting Started (Converted to two-column) --><section class="section" style="animation-delay: 0.7s;">
+      <h2>Getting Started</h2>
+      <div class="two-column">
+        <div>
+          <p>
+            To begin the course, simply proceed to the first module. You can work through the material at your own pace and return to any section as needed. The quizzes are designed to reinforce your learning, and the final project will help you apply these concepts to your own work context.
+          </p>
+          <p style="margin-top: 1rem;">
+            If you have any questions during the course, don't hesitate to use the discussion forums or reach out to our support team.
+          </p>
+          <a href="#first-module" class="cta-button">Start Your AI Mastery Journey</a>
+        </div>
+        <!-- FIX: Corrected classIm-age-container to image-container -->
+        <div class="image-container">
+          <!-- Image for getting started with a checkmark theme --><img src="https://placehold.co/800x800/ff5011/ffffff?text=Ready+to+Start"
+               onerror="this.onerror=null;this.src='https://placehold.co/800x800/ff5011/ffffff?text=Ready+to+Start';"
+               alt="Ready to start icon">
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer --><footer>
+    <p>&copy; 2025 AIM™. All rights reserved. AI Mastery Program.</p>
+  </footer>
+</body>
+</html>
