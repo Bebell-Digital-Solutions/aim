@@ -1,455 +1,790 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Timeline of Human Transformation - AIM™</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline of the Great Industrial Transformations - AIM™</title>
+    
+    <!-- Import Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
   
-  <!-- Import Inter font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Icons (Font Awesome) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- AIM Brand Styles (from Knowledge Base) --- */
+        :root {
+            --skin-color: #ff5011;
+            --mirage-color: hsl(210, 10%, 23%);
+            --title-color: hsl(242, 8%, 98%);
+            --text-color: hsl(242, 8%, 80%);
+            --body-color: #0d0d0d;
+            --box-color: hsl(242, 14%, 12%);
+            --body-font: 'Inter', sans-serif;
+            --small-font-size: 0.95rem;
+            --h3-font-size: 1.25rem;
+            --smaller-font-size: 0.75rem;
+            --mb15: 0.75rem;
+            --mb3: 1.5rem;
+        }
 
-  <!-- Favicon -->
-  <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
+        /* --- Base & Scrollbar --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: var(--body-font);
+            background-color: var(--body-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 8rem; /* Space for fixed nav */
+            overflow-x: hidden;
+        }
+        main { max-width: 980px; margin: 0 auto; padding: 0 1rem; }
+        img { max-width: 100%; height: auto; display: block; }
 
-  <style>
-    /* --- AIM Brand Styles (from Knowledge Base) --- */
-    :root {
-      --skin-color: #ff5011;
-      --mirage-color: hsl(210, 10%, 23%);
-      --title-color: hsl(242, 8%, 98%);
-      --text-color: hsl(242, 8%, 80%);
-      --body-color: #0d0d0d;
-      --box-color: hsl(242, 14%, 12%);
-      --body-font: 'Inter', sans-serif;
-      --small-font-size: 0.95rem;
-    }
+        a { text-decoration: none; cursor: pointer; } /* Added cursor pointer */
 
-    /* --- Base & Scrollbar --- */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: var(--body-font);
-      background-color: var(--body-color);
-      color: var(--text-color);
-      line-height: 1.6;
-      padding: 8rem 1rem 2rem;
-    }
-    main { max-width: 980px; margin: 0 auto; }
-    a { color: var(--skin-color); text-decoration: none; }
-    img { max-width: 100%; height: auto; display: block; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #333; }
+        ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
+        
+        /* Utility container class for maximum content width */
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
 
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #333; }
-    ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
+        /* --- Loader and Animations --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .page-loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #000; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 9999;
+            transition: opacity 0.5s ease; opacity: 1;
+        }
+        .page-loader.hidden { opacity: 0; pointer-events: none; }
+        .loader-header { color: var(--title-color); font-size: 1.5rem; margin-bottom: 1rem; }
+        .progress { width: 80%; max-width: 300px; height: 5px; background-color: #333; border-radius: 5px; overflow: hidden; }
+        .progress::before {
+            content: ''; display: block; width: 100%; height: 100%;
+            background: var(--skin-color);
+            transform-origin: left;
+            animation: load 1.5s ease-out forwards;
+        }
+        @keyframes load { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
-    /* --- Loader and Animations --- */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .page-loader {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background-color: #000; display: flex; flex-direction: column;
-      justify-content: center; align-items: center; z-index: 9999;
-      transition: opacity 0.5s ease; opacity: 1;
-    }
-    .page-loader.hidden { opacity: 0; pointer-events: none; }
-    .loader-header { color: var(--title-color); font-size: 1.5rem; margin-bottom: 1rem; }
-    .progress { width: 80%; max-width: 300px; height: 5px; background-color: #333; border-radius: 5px; overflow: hidden; }
-    .progress::before {
-      content: ''; display: block; width: 100%; height: 100%;
-      background: var(--skin-color);
-      transform-origin: left;
-      animation: load 1.5s ease-out forwards;
-    }
-    @keyframes load { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        /* --- Navigation Bar --- */
+        #nav-bar {
+            position: fixed; top: 2rem; left: 50%; transform: translateX(-50%);
+            background: rgba(25, 25, 25, 0.85); backdrop-filter: blur(10px);
+            border: 1px solid var(--box-color); border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem; display: flex; align-items: center;
+            max-width: 980px; width: 90%; z-index: 1000;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+        #nav-logo img { height: 35px; }
+        #nav-menu { display: flex; gap: 1.5rem; margin-left: auto; align-items: center; }
+        .nav-link { color: var(--text-color); transition: color 0.3s, transform 0.2s; font-weight: 500; }
+        .nav-link:hover { color: var(--skin-color); transform: translateY(-1px); }
+        .nav-cta {
+            background: linear-gradient(90deg, var(--skin-color), #d43a00);
+            color: var(--title-color); padding: 0.5rem 1rem; border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); }
+        .has-submenu { position: relative; }
+        
+        /* Submenu Default State (Hidden) */
+        .submenu-courses {
+            position: absolute; 
+            top: 100%; /* Position right below the nav link */
+            left: 50%; 
+            transform: translateX(-50%);
+            background: var(--box-color); 
+            border-radius: 0.5rem; 
+            padding: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
+            opacity: 0; 
+            pointer-events: none; /* Crucial for preventing interaction when hidden */
+            transition: opacity 0.3s, top 0.3s; 
+            width: 200px;
+        }
+        
+        /* Submenu Active State (Shown via JavaScript click) */
+        .submenu-courses.active { 
+            opacity: 1; 
+            pointer-events: auto; 
+            top: 100%; 
+        }
 
-    /* --- Navigation Bar --- */
-    #nav-bar {
-      position: fixed; top: 2rem; left: 50%; transform: translateX(-50%);
-      background: rgba(25, 25, 25, 0.85); backdrop-filter: blur(10px);
-      border: 1px solid var(--box-color); border-radius: 0.75rem;
-      padding: 0.75rem 1.5rem; display: flex; align-items: center;
-      max-width: 980px; width: 90%; z-index: 1000;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-    }
-    #nav-logo img { height: 35px; }
-    #nav-menu { display: flex; gap: 1.5rem; margin-left: auto; align-items: center; }
-    .nav-link { color: var(--text-color); transition: color 0.3s, transform 0.2s; font-weight: 500; }
-    .nav-link:hover { color: var(--skin-color); transform: translateY(-1px); }
-    .nav-cta {
-      background: linear-gradient(90deg, var(--skin-color), #d43a00);
-      color: var(--title-color); padding: 0.5rem 1rem; border-radius: 0.5rem;
-      box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); }
-    .has-submenu { position: relative; }
-    .submenu-courses {
-      position: absolute; top: 150%; left: 50%; transform: translateX(-50%);
-      background: var(--box-color); border-radius: 0.5rem; padding: 0.75rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5); opacity: 0; pointer-events: none;
-      transition: opacity 0.3s, top 0.3s; width: 200px;
-    }
-    .has-submenu:hover .submenu-courses { opacity: 1; pointer-events: auto; top: 120%; }
-    .submenu-link { display: flex; align-items: center; gap: 0.75rem; color: var(--text-color); padding: 0.5rem; border-radius: 0.25rem; transition: background-color 0.3s, color 0.3s; }
-    .submenu-link:hover { background-color: rgba(255, 80, 17, 0.1); color: var(--skin-color); }
-    .submenu-link i { width: 15px; text-align: center; }
+        .submenu-link { display: flex; align-items: center; gap: 0.75rem; color: var(--text-color); padding: 0.5rem; border-radius: 0.25rem; transition: background-color 0.3s, color 0.3s; }
+        .submenu-link:hover { background-color: rgba(255, 80, 17, 0.1); color: var(--skin-color); }
+        .submenu-link i { width: 15px; text-align: center; }
 
-    /* --- Page Header --- */
-    .page-header { text-align: center; margin-bottom: 4rem; }
-    .page-header h1 { font-size: 3rem; color: var(--title-color); margin-bottom: 1rem; }
-    .page-header h1 span { color: var(--skin-color); }
-    .page-header p { font-size: 1.1rem; max-width: 700px; margin: 0 auto; color: var(--text-color); }
+        /* --- ADAPTED TIMELINE STYLES --- */
+        .page-header { text-align: center; margin-bottom: 4rem; }
+        .page-header h1 { font-size: 3rem; color: var(--title-color); margin-bottom: 1rem; font-weight: 900; }
+        .page-header h1 span { color: var(--skin-color); }
+        .page-header p { font-size: 1.1rem; max-width: 700px; margin: 0 auto; color: var(--text-color); }
 
-    /* --- Timeline Section --- */
-    .timeline-item {
-      margin-bottom: 3rem; background-color: var(--box-color);
-      border-radius: 12px; border: 1px solid var(--mirage-color);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); transition: all 0.4s ease-out;
-      animation: fadeInUp 0.8s ease-out forwards; opacity: 0;
-      overflow: hidden; /* To contain the rounded corners of children */
-    }
-    .timeline-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(255, 80, 17, 0.1), 0 4px 12px rgba(0, 0, 0, 0.5);
-    }
-    .timeline-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        gap: 0; /* No gap as padding is handled inside */
-    }
-    .timeline-item:nth-child(even) .timeline-grid {
-        direction: rtl; /* Reverses the order of columns */
-    }
-    .timeline-content {
-        padding: 2.5rem;
-        direction: ltr; /* Reset direction for text content */
-    }
-    .timeline-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .timeline-date {
-        font-size: var(--small-font-size);
-        font-weight: 600;
-        color: var(--skin-color);
-        margin-bottom: 0.5rem;
-    }
-    .timeline-title {
-        font-size: 1.75rem;
-        color: var(--title-color);
-        margin-bottom: 1rem;
-    }
-    /* Staggered animation delays */
-    .timeline-item:nth-child(2) { animation-delay: 0.1s; }
-    .timeline-item:nth-child(3) { animation-delay: 0.2s; }
-    .timeline-item:nth-child(4) { animation-delay: 0.3s; }
-    .timeline-item:nth-child(5) { animation-delay: 0.4s; }
-    .timeline-item:nth-child(6) { animation-delay: 0.5s; }
-    .timeline-item:nth-child(7) { animation-delay: 0.6s; }
-    .timeline-item:nth-child(8) { animation-delay: 0.7s; }
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            margin-bottom: 4rem; /* Increased spacing */
+        }
+        .timeline-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-container {
+            position: relative;
+        }
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--box-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            z-index: 0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: var(--body-color);
+            border: 4px solid var(--skin-color);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-card {
+            background-color: var(--box-color);
+            border: 1px solid var(--mirage-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            width: 100%;
+        }
+        .timeline-card h3 {
+            font-size: 1.5rem;
+            color: var(--title-color);
+            margin-bottom: 0.5rem;
+        }
+        .timeline-card p {
+            color: var(--text-color);
+        }
+        .timeline-card .date {
+            font-size: var(--small-font-size);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-card img {
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .timeline-image-desktop {
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Legend Section */
+        #timeline-legend { /* Renamed from .legend-footer for clarity */
+            padding: 3rem 1rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--box-color);
+            text-align: center;
+        }
+        #timeline-legend h3 {
+            font-size: 1.75rem;
+            color: var(--title-color);
+            margin-bottom: 1.5rem;
+        }
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .legend-item span {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
 
+        /* --- Back to Top Button --- */
+        #back-to-top {
+            position: fixed; bottom: 20px; right: 20px;
+            width: 50px; height: 50px;
+            background: url('https://bucket.mlcdn.com/a/3336/3336910/images/b1d19b3913d3e5e5a98de0495050012834a6a133.png') no-repeat center center;
+            background-size: cover;
+            border: none; border-radius: 50%;
+            cursor: pointer; opacity: 0; visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 999;
+        }
+        #back-to-top.show { opacity: 1; visibility: visible; }
+        #back-to-top:hover { transform: scale(1.1); }
 
-    /* --- Legend Section --- */
-    .legend-section {
-        text-align: center; padding: 2.5rem;
-    }
-    .legend-grid {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-        margin-top: 1.5rem;
-    }
-    .legend-item {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-    }
-    .legend-dot {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        border: 3px solid;
-    }
+        /* --- Footer (Main Page Footer) --- */
+        .footer {
+            padding-top: 2rem;
+        }
 
-    /* --- Back to Top Button --- */
-    #back-to-top {
-      position: fixed; bottom: 20px; right: 20px;
-      width: 50px; height: 50px;
-      background: url('https://bucket.mlcdn.com/a/3336/3336910/images/b1d19b3913d3e5e5a98de0495050012834a6a133.png') no-repeat center center;
-      background-size: cover;
-      border: none; border-radius: 50%;
-      cursor: pointer; opacity: 0; visibility: hidden;
-      transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-      z-index: 999;
-    }
-    #back-to-top.show { opacity: 1; visibility: visible; }
-    #back-to-top:hover { transform: scale(1.1); }
+        .footer-bg {
+            background-color: var(--box-color);
+            padding: 3rem 0 3.5rem;
+        }
+        
+        .footer-container {
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 1.6rem;
+        }
 
-    /* --- Footer --- */
-    .footer-bg { background-color: var(--box-color); padding: 4rem 1rem 2rem; }
-    .footer-container {
-      max-width: 980px; margin: 0 auto; display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem; text-align: center;
-    }
-    .footer-logo { height: 40px; margin-bottom: 0.5rem; }
-    .footer-title { font-size: 1.5rem; color: var(--title-color); margin: 0; }
-    .footer-subtitle { font-size: var(--small-font-size); color: var(--text-color); }
-    .footer-links { display: flex; flex-direction: column; gap: 0.75rem; align-items: center; }
-    .footer-links a { color: var(--text-color); transition: color 0.3s; }
-    .footer-links a:hover { color: var(--skin-color); }
-    .footer-socials { display: flex; justify-content: center; gap: 1.5rem; }
-    .footer-social { font-size: 1.5rem; color: var(--text-color); transition: color 0.3s, transform 0.3s; }
-    .footer-social:hover { color: var(--skin-color); transform: translateY(-2px); }
-    .footer-copy {
-      grid-column: 1 / -1; text-align: center;
-      margin-top: 3rem; font-size: var(--small-font-size);
-      color: var(--mirage-color); border-top: 1px solid var(--mirage-color);
-      padding-top: 1.5rem;
-    }
+        .footer-title {
+            font-size: var(--h3-font-size);
+            margin-bottom: 0.25rem; 
+            color: var(--title-color);
+        }
 
-    /* --- Responsive Adjustments --- */
-    @media (max-width: 768px) {
-      body { padding-top: 6rem; }
-      .page-header h1 { font-size: 2.5rem; }
-      .timeline-grid { grid-template-columns: 1fr; }
-      .timeline-item:nth-child(even) .timeline-grid { direction: ltr; } /* Reset direction */
-      .timeline-image { display: none; } /* Hide images on mobile for a cleaner look */
-      .timeline-content { padding: 2rem; }
-    }
-  </style>
+        .footer-subtitle {
+            font-size: var(--small-font-size);
+            color: var(--title-color);
+        }
+
+        /* UPDATED: Remove bullet points */
+        .footer-links {
+            list-style: none; /* Removed bullet points */
+            display: flex;
+            justify-self: center;
+            column-gap: 2rem;
+            color: var(--title-color);
+        }
+
+        .footer-links:hover {
+            color: var(--skin-color);
+        }
+
+        .footer-socials {
+            justify-self: flex-end;
+            display: flex; 
+            align-items: center;
+            gap: var(--mb15);
+        }
+
+        .footer-social {
+            font-size: 1.25rem;
+            color: var(--title-color);
+            transition: color 0.3s;
+        }
+
+        .footer-social:hover {
+            color: var(--skin-color);
+            cursor: pointer; /* Ensure cursor is a pointer on hover */
+        }
+
+        .footer-copy {
+            font-size: var(--smaller-font-size);
+            text-align: center;
+            margin-top: 4.5rem;
+        }
+
+        .footer-copy a {
+            color: var(--title-color);
+        }
+
+        .footer-copy a:hover {
+            color: var(--skin-color);
+        }
+
+        .footer-title,
+        .footer-subtitle,
+        .footer-links,
+        .footer-social,
+        .footer-copy a {
+            color: var(--title-color);
+        }
+
+        /* UPDATED: Footer Logo Styles - Left Aligned on Desktop, Stacked */
+        .footer-brand {
+            display: flex;
+            flex-direction: column; /* Stack logo on top of text */
+            align-items: flex-start; /* Left align on desktop */
+            text-align: left; /* Left align text on desktop */
+            gap: 0.5rem; 
+        }
+        /* Ensure the text block honors the left alignment */
+        .footer-brand-text { 
+            text-align: left;
+        }
+        .footer-logo {
+            width: 30px;
+            height: auto;
+            display: block;
+        }
+
+        .footer-logo:hover {
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* Responsive Adjustments for Timeline */
+        @media screen and (max-width: 767px) {
+            .timeline-container::after { left: 10px; }
+            .timeline-dot { left: 10px; }
+            /* Adjusted timeline-content to use the whole width and added necessary padding */
+            .timeline-content { 
+                width: 100% !important; 
+                padding-left: 40px !important; 
+                padding-right: 0 !important; 
+            } 
+            /* Reversed timeline content direction to ensure mobile readability */
+            .md-flex { display: flex; flex-direction: column !important; }
+            .md-flex-reverse { flex-direction: column !important; }
+
+            .md-w-1-2 { width: 100% !important; }
+            .md-pr-8, .md-pl-8 { padding: 0 !important; }
+            
+            .timeline-image-desktop { display: none; }
+            .timeline-image-mobile { display: block !important; margin-top: 1rem; } /* Show mobile image */
+            
+            /* Footer Responsive Fixes: Center Alignment for Brand Block on Mobile */
+            .footer-container {
+                grid-template-columns: 1fr;
+                row-gap: 3rem;
+                text-align: center;
+            }
+            
+            .footer-brand {
+                align-items: center; /* Center align on mobile */
+                text-align: center;
+                justify-content: center;
+            }
+            .footer-brand-text {
+                text-align: center; /* Center align text on mobile */
+            }
+            
+            .footer-socials {
+                justify-content: center;
+                justify-self: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                row-gap: 1.5rem;
+                justify-self: center;
+            }
+            
+            .footer-bg {
+                padding: 2rem 0 3rem;
+            }
+            
+            .footer-copy {
+                margin-top: var(--mb3);
+            }
+        }
+        @media screen and (min-width: 768px) {
+            .timeline-image-mobile { display: none; }
+            .md-flex-reverse { flex-direction: row-reverse; } /* Maintain desktop structure */
+        }
+        
+    </style>
 </head>
 <body>
 
-  <!-- Page Loader (Injected by Script) -->
-
-  <!-- Navigation Bar -->
-  <nav id="nav-bar">
-    <a href="/" id="nav-logo">
-      <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
-    </a>
-    <div id="nav-menu">
-      <a href="/" class="nav-link">Homepage</a>
-      <div class="nav-item has-submenu">
-        <a href="/courses" class="nav-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
-        <div class="submenu-courses">
-          <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
-          <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
-          <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+    <!-- Navigation Bar -->
+    <nav id="nav-bar">
+      <a href="/" id="nav-logo">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
+      </a>
+      <div id="nav-menu">
+        <a href="/" class="nav-link">Homepage</a>
+        <div class="nav-item has-submenu">
+          <!-- Href set to # to prevent navigation; click handled by JS -->
+          <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
+          <!-- Added id for JS selection -->
+          <div class="submenu-courses" id="courses-submenu">
+            <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
+            <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
+            <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+          </div>
         </div>
+        <a href="/pricing" class="nav-link">Pricing</a>
+        <a href="/helpcenter" class="nav-link">HelpCenter</a>
+        <a href="/login" class="nav-cta">LOGIN</a>
       </div>
-      <a href="/pricing" class="nav-link">Pricing</a>
-      <a href="/helpcenter" class="nav-link">HelpCenter</a>
-      <a href="/login" class="nav-cta">LOGIN</a>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- Main Content Area -->
-  <main>
-    
-    <header class="page-header">
-        <h1><span>Milestones</span> of Human Transformation</h1>
-        <p>An interactive journey through the innovations that have shaped our world, from the first tools to the age of artificial intelligence.</p>
-    </header>
+    <main>
+        <header class="page-header">
+            <h1><span>Milestones</span> of Human Transformation</h1>
+            <p>An interactive journey through the innovations that have shaped our world, from the first tools to the age of artificial intelligence.</p>
+        </header>
 
-    <!-- Timeline Container -->
-    <div class="timeline-container">
+        <div class="relative timeline-container" style="padding: 2rem 0;">
+
+            <!-- Milestone 1 -->
+            <div class="timeline-item">
+                <div class="timeline-dot" style="border-color: #ff5011;"></div>
+                <div class="md-flex w-full items-center" style="display: flex; align-items: center;">
+                    <div class="timeline-content md-w-1-2 md-pr-8" style="width: 50%; padding-right: 2rem;">
+                        <div class="timeline-card">
+                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/Stone%20Tools.png" alt="Stone Tools" class="timeline-image-mobile">
+                            <p class="date" style="color: #ff5011;">~2.5 million years ago</p>
+                            <h3>🔥 Stone Tools</h3>
+                            <p>First tools created by humans, marking the beginning of technological progress.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-image md-w-1-2 md-pl-8" style="width: 50%; padding-left: 2rem;">
+                           <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/Stone%20Tools.png" alt="Stone Tools" class="timeline-image-desktop">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestone 2 -->
+            <div class="timeline-item">
+                <div class="timeline-dot" style="border-color: #ff5011;"></div>
+                <div class="md-flex w-full items-center md-flex-reverse" style="display: flex; flex-direction: row-reverse; align-items: center;">
+                    <div class="timeline-content md-w-1-2 md-pl-8" style="width: 50%; padding-left: 2rem;">
+                        <div class="timeline-card">
+                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/_%20Agricultural%20Revolution.png" alt="Agricultural Revolution" class="timeline-image-mobile">
+                            <p class="date" style="color: #ff5011;">~10,000 BC</p>
+                            <h3>🔥 Agricultural Revolution</h3>
+                            <p>Transition to agriculture and domestication. Permanent settlements emerge.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-image md-w-1-2 md-pr-8" style="width: 50%; padding-right: 2rem;">
+                        <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/_%20Agricultural%20Revolution.png" alt="Agricultural Revolution" class="timeline-image-desktop">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestone 3 -->
+            <div class="timeline-item">
+                <div class="timeline-dot" style="border-color: #ff5011;"></div>
+                <div class="md-flex w-full items-center" style="display: flex; align-items: center;">
+                    <div class="timeline-content md-w-1-2 md-pr-8" style="width: 50%; padding-right: 2rem;">
+                        <div class="timeline-card">
+                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/_%20Wheel%20and%20Writing.png" alt="Wheel and Writing" class="timeline-image-mobile">
+                            <p class="date" style="color: #ff5011;">~3,500 BC</p>
+                            <h3>🔥 Wheel and Writing</h3>
+                            <p>Key inventions in Mesopotamia for trade, transport, and administration.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-image md-w-1-2 md-pl-8" style="width: 50%; padding-left: 2rem;">
+                         <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/_%20Wheel%20and%20Writing.png" alt="Wheel and Writing" class="timeline-image-desktop">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestone 4 -->
+            <div class="timeline-item">
+                <div class="timeline-dot" style="border-color: #ff5011;"></div>
+                <div class="md-flex w-full items-center md-flex-reverse" style="display: flex; flex-direction: row-reverse; align-items: center;">
+                    <div class="timeline-content md-w-1-2 md-pl-8" style="width: 50%; padding-left: 2rem;">
+                        <div class="timeline-card">
+                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/_%20Classical%20and%20Medieval%20Innovations.png" alt="Classical and Medieval Innovations" class="timeline-image-mobile">
+                            <p class="date" style="color: #ff5011;">~500 BC – 1500 AD</p>
+                            <h3>🔥 Classical and Medieval Innovations</h3>
+                            <p>Iron smelting, aqueducts, printing press, gunpowder, and the compass lay the foundations for global trade.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-image md-w-1-2 md-pr-8" style="width: 50%; padding-right: 2rem;">
+                        <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/_%20Classical%20and%20Medieval%20Innovations.png" alt="Classical and Medieval Innovations" class="timeline-image-desktop">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestone 5 -->
+            <div class="timeline-item">
+                <div class="timeline-dot" style="border-color: #3B82F6;"></div>
+                <div class="md-flex w-full items-center" style="display: flex; align-items: center;">
+                    <div class="timeline-content md-w-1-2 md-pr-8" style="width: 50%; padding-right: 2rem;">
+                        <div class="timeline-card">
+                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/1st%20Industrial%20Revolutio.png" alt="1st Industrial Revolution" class="timeline-image-mobile">
+                            <p class="date" style="color: #3B82F6;">1760–1840</p>
+                            <h3>⚙️ 1st Industrial Revolution</h3>
+                            <p>Steam engines, mechanized textile production, and coal. Factories and railways are born.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-image md-w-1-2 md-pl-8" style="width: 50%; padding-left: 2rem;">
+                          <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/1st%20Industrial%20Revolutio.png" alt="1st Industrial Revolution" class="timeline-image-desktop">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestone 6 -->
+            <div class="timeline-item">
+                <div class="timeline-dot" style="border-color: #3B82F6;"></div>
+                <div class="md-flex w-full items-center md-flex-reverse" style="display: flex; flex-direction: row-reverse; align-items: center;">
+                    <div class="timeline-content md-w-1-2 md-pl-8" style="width: 50%; padding-left: 2rem;">
+                        <div class="timeline-card">
+                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/2th%20Industrial%20Revolutio.png" alt="2nd Industrial Revolution" class="timeline-image-mobile">
+                            <p class="date" style="color: #3B82F6;">1870–1914</p>
+                            <h3>⚙️ 2nd Industrial Revolution</h3>
+                            <p>Steel, electricity, and the internal combustion engine. The era of mass production, oil, and automobiles.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-image md-w-1-2 md-pr-8" style="width: 50%; padding-right: 2rem;">
+                        <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/2th%20Industrial%20Revolutio.png" alt="2nd Industrial Revolution" class="timeline-image-desktop">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestone 7 -->
+            <div class="timeline-item">
+                <div class="timeline-dot" style="border-color: #3B82F6;"></div>
+                <div class="md-flex w-full items-center" style="display: flex; align-items: center;">
+                    <div class="timeline-content md-w-1-2 md-pr-8" style="width: 50%; padding-right: 2rem;">
+                        <div class="timeline-card">
+                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/3th%20Industrial%20Revolutio.png" alt="3rd Industrial Revolution (Digital)" class="timeline-image-mobile">
+                            <p class="date" style="color: #3B82F6;">1950–1970</p>
+                            <h3>⚙️ 3rd Industrial Revolution (Digital)</h3>
+                            <p>Rise of electronics, computers, semiconductors, and space exploration.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-image md-w-1-2 md-pl-8" style="width: 50%; padding-left: 2rem;">
+                         <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/3th%20Industrial%20Revolutio.png" alt="3rd Industrial Revolution (Digital)" class="timeline-image-desktop">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestone 8 -->
+            <div class="timeline-item">
+                <div class="timeline-dot" style="border-color: #3B82F6;"></div>
+                <div class="md-flex w-full items-center md-flex-reverse" style="display: flex; flex-direction: row-reverse; align-items: center;">
+                    <div class="timeline-content md-w-1-2 md-pl-8" style="width: 50%; padding-left: 2rem;">
+                        <div class="timeline-card">
+                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/4th%20Industrial%20Revolutio.png" alt="4th Industrial Revolution (Cyber-Physical)" class="timeline-image-mobile">
+                            <p class="date" style="color: #3B82F6;">2000–present</p>
+                            <h3>⚙️ 4th Industrial Revolution (Cyber-Physical)</h3>
+                            <p>Internet, AI, robotics, IoT. Fusion of digital, biological, and physical systems.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-image md-w-1-2 md-pr-8" style="width: 50%; padding-right: 2rem;">
+                        <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/4th%20Industrial%20Revolutio.png" alt="4th Industrial Revolution (Cyber-Physical)" class="timeline-image-desktop">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestone 9 -->
+            <div class="timeline-item">
+                <div class="timeline-dot" style="border-color: #3B82F6;"></div>
+                <div class="md-flex w-full items-center" style="display: flex; align-items: center;">
+                    <div class="timeline-content md-w-1-2 md-pr-8" style="width: 50%; padding-right: 2rem;">
+                        <div class="timeline-card">
+                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/Rise%20of%20Social%20Media%20&%20Mobile%20Phones.png" alt="Social Media & Mobile Phones" class="timeline-image-mobile">
+                            <p class="date" style="color: #3B82F6;">2010s</p>
+                            <h3>📱 Rise of Social Media & Mobile</h3>
+                            <p>Widespread adoption of smartphones and social platforms fundamentally changed communication.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-image md-w-1-2 md-pl-8" style="width: 50%; padding-left: 2rem;">
+                         <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/Rise%20of%20Social%20Media%20&%20Mobile%20Phones.png" alt="Social Media & Mobile Phones" class="timeline-image-desktop">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestone 10 -->
+            <div class="timeline-item">
+                <div class="timeline-dot" style="border-color: #10B981;"></div>
+                <div class="md-flex w-full items-center md-flex-reverse" style="display: flex; flex-direction: row-reverse; align-items: center;">
+                    <div class="timeline-content md-w-1-2 md-pl-8" style="width: 50%; padding-left: 2rem;">
+                        <div class="timeline-card">
+                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/Rise%20of%20Generative%20AI.png" alt="Creation of OpenAI" class="timeline-image-mobile">
+                            <p class="date" style="color: #10B981;">2015</p>
+                            <h3>🤖 Creation of OpenAI</h3>
+                            <p>Founded with the mission to ensure that AGI benefits all of humanity.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-image md-w-1-2 md-pr-8" style="width: 50%; padding-right: 2rem;">
+                        <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/Rise%20of%20Generative%20AI.png" alt="Creation of OpenAI" class="timeline-image-desktop">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestone 11 -->
+            <div class="timeline-item">
+                <div class="timeline-dot" style="border-color: #10B981;"></div>
+                <div class="md-flex w-full items-center" style="display: flex; align-items: center;">
+                    <div class="timeline-content md-w-1-2 md-pr-8" style="width: 50%; padding-right: 2rem;">
+                        <div class="timeline-card">
+                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/Artificial%20General%20Intelligence%20(AGI).png" alt="Rise of Generative AI" class="timeline-image-mobile">
+                            <p class="date" style="color: #10B981;">2020s</p>
+                            <h3>🤖 Rise of Generative AI</h3>
+                            <p>Launch of models like GPT, expanding AI into all sectors.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-image md-w-1-2 md-pl-8" style="width: 50%; padding-left: 2rem;">
+                         <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/Artificial%20General%20Intelligence%20(AGI).png" alt="Rise of Generative AI" class="timeline-image-desktop">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestone 12 -->
+            <div class="timeline-item">
+                <div class="timeline-dot" style="border-color: #10B981;"></div>
+                <div class="md-flex w-full items-center md-flex-reverse" style="display: flex; flex-direction: row-reverse; align-items: center;">
+                    <div class="timeline-content md-w-1-2 md-pl-8" style="width: 50%; padding-left: 2rem;">
+                        <div class="timeline-card">
+                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/11.png" alt="Artificial General Intelligence (AGI)" class="timeline-image-mobile">
+                            <p class="date" style="color: #10B981;">Future (Speculative)</p>
+                            <h3>🤖 Artificial General Intelligence (AGI)</h3>
+                            <p>Possible 5th Industrial Revolution based on human-AI collaboration and quantum computing.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-image md-w-1-2 md-pr-8" style="width: 50%; padding-right: 2rem;">
+                         <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/11.png" alt="Artificial General Intelligence (AGI)" class="timeline-image-desktop">
+                    </div>
+                </div>
+            </div>
+
+        </div>
         
-        <!-- Milestone 1 -->
-        <div class="timeline-item">
-            <div class="timeline-grid">
-                <div class="timeline-content">
-                    <p class="timeline-date">~2.5 million years ago</p>
-                    <h3 class="timeline-title">🔥 Stone Tools</h3>
-                    <p>First tools created by humans, marking the beginning of technological progress.</p>
-                </div>
-                <div class="timeline-image">
-                    <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/Stone%20Tools.png" alt="Stone Tools">
-                </div>
-            </div>
-        </div>
-
-        <!-- Milestone 2 -->
-        <div class="timeline-item">
-            <div class="timeline-grid">
-                <div class="timeline-content">
-                    <p class="timeline-date">~10,000 BC</p>
-                    <h3 class="timeline-title">🔥 Agricultural Revolution</h3>
-                    <p>Transition to agriculture and domestication. Permanent settlements emerge.</p>
-                </div>
-                <div class="timeline-image">
-                    <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/_%20Agricultural%20Revolution.png" alt="Agricultural Revolution">
-                </div>
-            </div>
-        </div>
-
-        <!-- Milestone 3 -->
-        <div class="timeline-item">
-            <div class="timeline-grid">
-                <div class="timeline-content">
-                    <p class="timeline-date">~3,500 BC</p>
-                    <h3 class="timeline-title">🔥 Wheel and Writing</h3>
-                    <p>Key inventions in Mesopotamia for trade, transport, and administration.</p>
-                </div>
-                <div class="timeline-image">
-                    <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/_%20Wheel%20and%20Writing.png" alt="Wheel and Writing">
-                </div>
-            </div>
-        </div>
-
-        <!-- Milestone 5 -->
-        <div class="timeline-item">
-            <div class="timeline-grid">
-                <div class="timeline-content">
-                    <p class="timeline-date" style="color: #3B82F6;">1760–1840</p>
-                    <h3 class="timeline-title">⚙️ 1st Industrial Revolution</h3>
-                    <p>Steam engines, mechanized textile production, and coal. Factories and railways are born.</p>
-                </div>
-                <div class="timeline-image">
-                    <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/1st%20Industrial%20Revolutio.png" alt="1st Industrial Revolution">
-                </div>
-            </div>
-        </div>
-
-        <!-- Milestone 6 -->
-        <div class="timeline-item">
-            <div class="timeline-grid">
-                <div class="timeline-content">
-                    <p class="timeline-date" style="color: #3B82F6;">1870–1914</p>
-                    <h3 class="timeline-title">⚙️ 2nd Industrial Revolution</h3>
-                    <p>Steel, electricity, and the internal combustion engine. The era of mass production, oil, and automobiles.</p>
-                </div>
-                <div class="timeline-image">
-                    <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/2th%20Industrial%20Revolutio.png" alt="2nd Industrial Revolution">
-                </div>
-            </div>
-        </div>
-
-        <!-- Milestone 10 -->
-        <div class="timeline-item">
-            <div class="timeline-grid">
-                <div class="timeline-content">
-                    <p class="timeline-date" style="color: #10B981;">2015</p>
-                    <h3 class="timeline-title">🤖 Creation of OpenAI</h3>
-                    <p>Founded with the mission to ensure that AGI benefits all of humanity.</p>
-                </div>
-                <div class="timeline-image">
-                    <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/Rise%20of%20Generative%20AI.png" alt="Creation of OpenAI">
-                </div>
-            </div>
-        </div>
-
-        <!-- Milestone 11 -->
-        <div class="timeline-item">
-            <div class="timeline-grid">
-                <div class="timeline-content">
-                    <p class="timeline-date" style="color: #10B981;">2020s</p>
-                    <h3 class="timeline-title">🤖 Rise of Generative AI</h3>
-                    <p>Launch of models like GPT, expanding AI into all sectors.</p>
-                </div>
-                <div class="timeline-image">
-                    <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/Artificial%20General%20Intelligence%20(AGI).png" alt="Rise of Generative AI">
-                </div>
-            </div>
-        </div>
-
-        <!-- Legend Section -->
-        <section class="timeline-item legend-section">
-            <h2 style="font-size: 1.8rem; color: var(--title-color); border: none; text-align: center;">Milestone Legend</h2>
-            <div class="legend-grid">
+        <!-- Milestone Legend (Used to be .legend-footer) -->
+        <section id="timeline-legend">
+            <h3>Milestone Legend</h3>
+            <div class="legend-items">
                 <div class="legend-item">
-                    <div class="legend-dot" style="border-color: #ff5011;"></div>
+                    <span style="background-color: #ff5011;"></span>
                     <p>🔥 Pre-Industrial Foundations</p>
                 </div>
                 <div class="legend-item">
-                    <div class="legend-dot" style="border-color: #3B82F6;"></div>
+                    <span style="background-color: #3B82F6;"></span>
                     <p>⚙️ The Industrial Revolutions</p>
                 </div>
                 <div class="legend-item">
-                    <div class="legend-dot" style="border-color: #10B981;"></div>
+                    <span style="background-color: #10B981;"></span>
                     <p>🤖 The AI Era</p>
                 </div>
             </div>
         </section>
 
-    </div>
-  </main>
+    </main>
+    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to Top"></button>
+    
+    <!-- Standard AIM Footer -->
+	<footer class="footer">
+        <div class="footer-bg">
+            <div class="footer-container container"> <!-- Added container class -->
+                <!-- Logo/Brand Block -->
+                <div class="footer-brand">
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="Project Freedom Logo" class="footer-logo">
+                    <div class="footer-brand-text">
+                        <h3 class="footer-title">AIM™</h3>
+                        <span class="footer-subtitle">AI Mastery Program</span>
+                    </div>
+                </div>
+					
+                <!-- Footer Links (List style set to none in CSS) -->
+                <ul class="footer-links">
+                    <li><a href="#home" class="footer-links">Home</a></li>
+                    <li><a href="#about" class="footer-links">About</a></li>
+                    <li><a href="#services" class="footer-links">Services</a></li>
+                    <li><a href="#work" class="footer-links">Work</a></li>
+                    <li><a href="#contact" class="footer-links">Contact</a></li>
+                </ul>
 
-  <!-- Back to Top Button -->
-  <button id="back-to-top" aria-label="Back to Top"></button>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-bg">
-      <div class="footer-container">
-        <div>
-          <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="AIM Logo" class="footer-logo">
-          <h1 class="footer-title">AIM™</h1>
-          <span class="footer-subtitle">AI Mastery Program</span>
+                <!-- Social Icons -->
+                <div class="footer-socials">
+                    <a href="https://www.youtube.com" target="_blank" class="footer-social" aria-label="Youtube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" class="footer-social" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="footer-social" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com" target="_blank" class="footer-social" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <p class="footer-copy">Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a></p>
         </div>
-        <ul class="footer-links">
-          <li><a href="/about">About Us</a></li>
-          <li><a href="/courses">All Courses</a></li>
-          <li><a href="/pricing">Pricing Plans</a></li>
-          <li><a href="/faq">FAQ</a></li>
-        </ul>
-        <div class="footer-socials">
-          <a href="https://linkedin.com" target="_blank" class="footer-social" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://twitter.com" target="_blank" class="footer-social" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="https://facebook.com" target="_blank" class="footer-social" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-        </div>
-        <p class="footer-copy">Copyright &copy; 2025 AIM™. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+    </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // --- Page Loader Logic ---
-      function initLoader() {
-        const loader = document.createElement('div');
-        loader.className = 'page-loader';
-        loader.innerHTML = `<div class="loader-header">Loading...</div><div class="progress"></div>`;
-        document.body.insertBefore(loader, document.body.firstChild);
-        
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                loader.classList.add('hidden');
-                setTimeout(() => loader.remove(), 500);
-            }, 200);
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Timeline Scroll Animation ---
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            timelineItems.forEach(item => {
+                observer.observe(item);
+            });
+            
+            // --- Back to Top Button Logic ---
+            const toTopButton = document.getElementById('back-to-top');
+            
+            window.onscroll = function() {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    toTopButton.classList.add('show');
+                } else {
+                    toTopButton.classList.remove('show');
+                }
+            };
+
+            toTopButton.onclick = function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            // --- Dropdown Menu Click Logic (New Fix) ---
+            const coursesLink = document.getElementById('courses-link');
+            const submenu = document.getElementById('courses-submenu');
+            const navBar = document.getElementById('nav-bar');
+
+            // 1. Toggle visibility on click
+            coursesLink.addEventListener('click', (e) => {
+                e.preventDefault(); // Already handled in HTML, but ensures no jump
+                submenu.classList.toggle('active');
+                e.stopPropagation(); // Prevents document click handler from closing it immediately
+            });
+
+            // 2. Close menu when clicking outside the entire navigation bar
+            document.addEventListener('click', (e) => {
+                // Check if the click target is NOT inside the main nav bar and the submenu is currently open
+                if (!navBar.contains(e.target) && submenu.classList.contains('active')) {
+                    submenu.classList.remove('active');
+                }
+            });
+
+            // 3. Prevent clicks inside the submenu from closing it immediately
+            submenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
         });
-      }
-
-      // --- Back to Top Logic ---
-      function initBackToTop() {
-        const backToTopButton = document.getElementById('back-to-top');
-        if (!backToTopButton) return;
-
-        window.addEventListener('scroll', () => {
-          if (window.scrollY > 300) {
-            backToTopButton.classList.add('show');
-          } else {
-            backToTopButton.classList.remove('show');
-          }
-        });
-
-        backToTopButton.addEventListener('click', () => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-      }
-
-      initLoader();
-      initBackToTop();
-    });
-  </script>
-
+    </script>
 </body>
 </html>
