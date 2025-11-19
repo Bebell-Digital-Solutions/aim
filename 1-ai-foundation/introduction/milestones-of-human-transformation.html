@@ -232,17 +232,21 @@
             border-radius: 50%;
         }
 
-        /* --- Back to Top Button --- */
+        /* --- Back to Top Button (FIXED to use Image URL) --- */
         #back-to-top {
             position: fixed; bottom: 20px; right: 20px;
             width: 50px; height: 50px;
-            background: url('https://bucket.mlcdn.com/a/3336/3336910/images/b1d19b3913d3e5e5a98de0495050012834a6a133.png') no-repeat center center;
+            /* Using the requested background image URL */
+            background: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597') no-repeat center center;
             background-size: cover;
             border: none; border-radius: 50%;
-            cursor: pointer; opacity: 0; visibility: hidden;
+            cursor: pointer; 
+            opacity: 0; 
+            visibility: hidden;
             transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
             z-index: 999;
         }
+        /* Removed unnecessary icon styling */
         #back-to-top.show { opacity: 1; visibility: visible; }
         #back-to-top:hover { transform: scale(1.1); }
 
@@ -576,7 +580,7 @@
                 <div class="md-flex w-full items-center md-flex-reverse" style="display: flex; flex-direction: row-reverse; align-items: center;">
                     <div class="timeline-content md-w-1-2 md-pl-8" style="width: 50%; padding-left: 2rem;">
                         <div class="timeline-card">
-                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/Artificial%20Intelligence/History/4th%20Industrial%20Revolutio.png" alt="4th Industrial Revolution (Cyber-Physical)" class="timeline-image-mobile">
+                            <img src="https://ik.imagekit.o/bebell/Project%20Freedom/Artificial%20Intelligence/History/4th%20Industrial%20Revolutio.png" alt="4th Industrial Revolution (Cyber-Physical)" class="timeline-image-mobile">
                             <p class="date" style="color: #3B82F6;">2000–present</p>
                             <h3>⚙️ 4th Industrial Revolution (Cyber-Physical)</h3>
                             <p>Internet, AI, robotics, IoT. Fusion of digital, biological, and physical systems.</p>
@@ -683,7 +687,7 @@
 
     </main>
     
-    <!-- Back to Top Button -->
+    <!-- Back to Top Button (Now uses background image) -->
     <button id="back-to-top" aria-label="Back to Top"></button>
     
     <!-- Standard AIM Footer -->
