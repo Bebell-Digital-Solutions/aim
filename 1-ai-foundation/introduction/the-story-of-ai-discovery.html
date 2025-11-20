@@ -1,859 +1,697 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Story of AI Discovery - AIM™</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Story of AI Discovery - AIM™</title>
+    
+    <!-- Import Inter font (as per guidelines) --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Font Awesome) --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon --><link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
   
-  <!-- Import Poppins font --><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <!-- Icons --><link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-
-
-
-    <!-- Favicon -->
-    <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
-  
-
-  
-
-  <style>
-    :root {
-      --skin-color: #ff5011;
-      --mirage-color: hsl(210, 10%, 23%);
-      --title-color: hsl(242, 8%, 95%);
-      --text-color: hsl(242, 8%, 85%);
-      --body-color: #000; /* Changed to black */
-      --box-color: hsl(242, 14%, 10%);
-      --body-font: 'Poppins', sans-serif;
-      --font-medium: 500;
-      --font-bold: 600;
-
-      /* Added for icon section consistency */
-      --mb2: 2rem;
-      --mb05: 0.5rem;
-      --h3-font-size: 1.5rem;
-    }
-
-    /* --- Base & Page Load Animation --- */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: var(--body-font);
-      background-color: var(--body-color);
-      color: var(--text-color);
-      line-height: 1.6;
-      padding: 2rem 1rem;
-      max-width: 1200px; /* Changed from 900px */
-      margin-left: auto;
-      margin-right: auto;
-      padding-top: 8rem; /* Space for fixed nav */
-      opacity: 0; /* Initially hidden for animation */
-      animation: fadeInPage 1s ease-out forwards;
-    }
-
-    @keyframes fadeInPage {
-      to {
-        opacity: 1;
-      }
-    }
-
-    /* --- Navigation Bar --- */
-    #nav-bar {
-      position: fixed;
-      top: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(36, 36, 36, 0.75); /* semi-transparent dark */
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid var(--box-color);
-      border-radius: 0.75rem;
-      padding: 0.5rem 1rem;
-      display: flex;
-      align-items: center;
-      max-width: 1200px;
-      width: 90%;
-      z-index: 1000;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    }
-
-    #nav-logo img {
-      height: 40px;
-      width: auto;
-      display: block;
-    }
-
-    #nav-menu {
-      display: flex;
-      gap: 1.5rem;
-      margin-left: auto;
-      align-items: center;
-      position: relative;
-    }
-
-    .nav-link {
-      color: var(--text-color);
-      text-decoration: none;
-      font-weight: var(--font-medium);
-      font-size: 1rem;
-      transition: color 0.3s ease;
-      cursor: pointer;
-    }
-
-    .nav-link:hover, .nav-link:focus {
-      color: var(--skin-color);
-      outline: none;
-    }
-
-    .nav-cta {
-      background: linear-gradient(90deg, var(--skin-color), #d43a00);
-      color: var(--title-color);
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      font-weight: var(--font-bold);
-      text-decoration: none;
-      transition: background 0.3s ease, transform 0.3s ease;
-      cursor: pointer;
-    }
-
-    .nav-cta:hover, .nav-cta:focus {
-      background: linear-gradient(90deg, #d43a00, var(--skin-color));
-      transform: translateY(-2px);
-      outline: none;
-    }
-
-    .nav-item {
-      position: relative;
-    }
-
-    .submenu-courses {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: var(--box-color);
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      padding: 0.5rem 0;
-      display: none;
-      min-width: 300px;
-      z-index: 1001;
-      flex-direction: column;
-    }
-
-    .submenu-link {
-      display: block;
-      padding: 0.5rem 1rem;
-      color: var(--text-color);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-
-    .submenu-link:hover, .submenu-link:focus {
-      background: var(--skin-color);
-      color: var(--title-color);
-      outline: none;
-    }
-
-    .nav-item.has-submenu:hover .submenu-courses,
-    .nav-item.has-submenu:focus-within .submenu-courses {
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* --- Hero Section & Banners --- */
-    .top-banner {
-      width: 100%; /* Will be constrained by body's max-width */
-      height: auto;
-      border-radius: 1rem;
-      margin-bottom: 2rem;
-      display: block;
-      /* The body padding-top: 8rem will push it down */
-    }
-    
-    .centered-image {
-        display: block;
-        margin: 0 auto;
-        width: 70px;
-        height: 70px;
-        object-fit: cover;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        margin-bottom: 40px;
-    }
-
-    /* --- Divider Banner - FIXED --- */
-    .divider-banner {
-      width: 100%;
-      height: 200px;
-      border-radius: 1rem;
-      overflow: hidden;
-      margin: 3rem 0;
-      background-color: var(--box-color);
-      padding: 0; /* Remove padding */
-    }
-    
-    .divider-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.8;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /* --- Content Sections --- */
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    
-    h1, h2, h3 {
-      font-weight: var(--font-bold);
-      margin-bottom: 0.5rem;
-      text-align: center;
-    }
-
-    h1 { /* Page title, used in Hero */
-      font-size: 2.5rem;
-      color: var(--skin-color);
-    }
-    
-    h2 { /* Main section titles */
-      font-size: 2.2rem;
-      color: var(--skin-color);
-      margin-top: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    
-    h3 { /* Sub-section titles */
-      font-size: var(--h3-font-size);
-      color: var(--title-color);
-      text-align: left;
-      margin-top: 1.5rem;
-      margin-bottom: 0.75rem;
-      display: flex; /* Added */
-      align-items: center; /* Added */
-      gap: 0.75rem; /* Added */
-    }
-
-    h3 i { /* Style for icons in h3 */
-      color: var(--skin-color);
-      font-size: 1.3rem; /* Slightly smaller than h3 text */
-      flex-shrink: 0;
-    }
-
-    .story-section {
-      background-color: var(--box-color);
-      border-radius: 1rem;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      /* For scroll animation */
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    
-    .story-section.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .story-text {
-      font-size: 1rem;
-      color: var(--text-color);
-      text-align: justify;
-      white-space: pre-line;
-    }
-    
-    .story-text strong {
-      color: var(--skin-color);
-      font-weight: var(--font-medium);
-    }
-    
-    .story-text em {
-      color: var(--title-color);
-      font-style: italic;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    /* --- Timeline (Hinton) --- */
-    .timeline {
-      position: relative;
-      margin: 2rem 0 1rem 0;
-      padding-left: 1.6rem;
-      border-left: 3px solid var(--skin-color);
-    }
-
-    .timeline-event {
-      position: relative;
-      margin-bottom: 2rem;
-      padding-left: 1rem;
-      /* For scroll animation */
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out, transform 0.3s ease;
-    }
-    
-    .timeline-event.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .timeline-event:last-child {
-      margin-bottom: 0;
-    }
-    
-    .timeline-event:hover {
-      transform: translateX(5px);
-    }
-
-    .timeline-event::before {
-      content: '';
-      position: absolute;
-      left: -40px; /* Aligned with padding-left + border */
-      top: 0;
-      width: 20px;
-      height: 20px;
-      background-color: var(--skin-color);
-      border-radius: 50%;
-      border: 3px solid var(--box-color);
-      transition: all 0.3s ease;
-    }
-    
-    .timeline-event:hover::before {
-      background-color: var(--body-color);
-      border-color: var(--skin-color);
-      transform: scale(1.1);
-    }
-
-    .event-year {
-      font-weight: var(--font-bold);
-      color: var(--skin-color);
-      margin-bottom: 0.25rem;
-      font-size: 1.1rem;
-    }
-
-    .event-description {
-      font-size: 1rem;
-      color: var(--text-color);
-      white-space: pre-line;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    /* --- Founders Section (OpenAI) --- */
-    .founders-section {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-    }
-
-    .founder-card {
-      background-color: var(--body-color); /* Slightly different from section */
-      border-radius: 1rem;
-      padding: 1.5rem;
-      width: 255px; /* Adjusted from 260px for 3-col layout */
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      /* For scroll animation */
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
-    }
-    
-    .founder-card.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .founder-card:hover {
-      transform: scale(1.03) translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-    }
-
-
-
-
-
-
-
-    /* This style now applies to the <img> tag */
-    .founder-photo {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 1rem;
-      border: 3px solid var(--skin-color);
-      background-color: #444; /* Fallback color */
-      display: inline-block;
-    }
-    
-    
-
-    .founder-name {
-      font-size: 1.25rem;
-      font-weight: var(--font-bold);
-      margin-bottom: 0.25rem;
-      color: var(--title-color);
-      text-align: left; /* Added override */
-    }
-    
-    
-   .founder-card h3.founder-name {
-  text-align: left;
-  display: block; /* Remove flex display that might affect centering */
-  justify-content: left;
-  margin-top: 0; /* Reset margin for card context */
-} 
-    
-    
-    
-    
-
-    .founder-role {
-      font-size: 1rem;
-      font-weight: var(--font-medium);
-      margin-bottom: 1rem;
-      color: var(--skin-color);
-        text-align: left;
-  display: block; /* Remove flex display that might affect centering */
-  justify-content: left;
-    }
-
-    .founder-description {
-      font-size: 0.9rem;
-      color: var(--text-color);
-      text-align: left;
-    }
-
-    .team-list {
-      margin-top: 1rem;
-      font-size: 1rem;
-      color: var(--text-color);
-      list-style-type: disc;
-      padding-left: 1.5rem;
-    }
-    
-    .team-list li {
-      margin-bottom: 0.5rem;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-
-    /* --- Dropdown / Details --- */
-    details {
-      margin-top: 1.5rem;
-      background-color: var(--body-color);
-      border-radius: 0.75rem;
-      border: 1px solid var(--box-color);
-      transition: all 0.3s ease;
-    }
-    details:hover {
-      border-color: var(--mirage-color);
-    }
-    summary {
-      padding: 1rem 1.5rem;
-      font-weight: var(--font-medium);
-      color: var(--skin-color);
-      cursor: pointer;
-      list-style: none; /* Remove default marker */
-      position: relative;
-    }
-    summary::-webkit-details-marker {
-      display: none; /* Chrome */
-    }
-    summary:after {
-      content: '▾';
-      color: var(--skin-color);
-      position: absolute;
-      right: 1.5rem;
-      top: 50%;
-      transform: translateY(-50%) rotate(0deg);
-      transition: transform 0.3s ease;
-    }
-    details[open] summary:after {
-      transform: translateY(-50%) rotate(180deg);
-    }
-    .details-content {
-      padding: 0 1.5rem 1.5rem 1.5rem;
-      border-top: 1px solid var(--box-color);
-    }
-    .details-content h3 {
-      margin-top: 1rem;
-      margin-bottom: 0.75rem;
-    }
-    .details-content .story-text {
-      margin-top: 1rem;
-    }
-    
-    /* --- Icon Section Styles --- */
-    .icon-section {
-        display: flex;
-        align-items: flex-start;
-        gap: 1.5rem;
-        margin-bottom: var(--mb2);
-        margin-top: 1.5rem; /* Added margin top */
-    }
-    .icon-container {
-        flex-shrink: 0;
-        width: 70px;
-        height: 70px;
-        background: var(--box-color);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        border: 2px solid var(--skin-color);
-    }
-    .icon-container:hover {
-        background: var(--skin-color);
-        transform: scale(1.1);
-    }
-    .icon-container i {
-        font-size: 1.8rem;
-        color: var(--skin-color);
-        transition: color 0.3s ease;
-    }
-    .icon-container:hover i {
-        color: var(--title-color);
-    }
-    .icon-content {
-        flex: 1;
-    }
-    .icon-content h3 {
-        font-size: var(--h3-font-size);
-        font-weight: var(--font-medium);
-        margin-bottom: var(--mb05);
-        color: var(--title-color);
-        margin-top: 0; /* Reset margin for this context */
-        text-align: left; /* Override global center */
-        display: block; /* Override global flex */
-    }
-    .icon-content p {
-        color: var(--text-color);
-        font-size: 0.95rem; /* Added */
-        text-align: justify; /* Added */
-    }
-    /* --- End Icon Section Styles --- */
-
-    /* --- Footer --- */
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 3rem;
-      border-top: 1px solid var(--box-color);
-      color: var(--mirage-color);
-      font-size: 0.9rem;
-    }
-
-    /* --- Responsive Design --- */
-    @media (max-width: 1024px) {
-      /* Hide nav text on tablets and smaller except CTA */
-      .nav-link:not(.nav-cta) {
-        display: none;
-      }
-      .submenu-courses {
-        display: none !important;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      body {
-        padding: 1rem;
-        padding-top: 7rem; /* Adjust for nav */
-        max-width: 100%;
-      }
-
-      .top-banner {
-        margin-top: 7rem; /* Adjust for smaller nav padding */
-      }
-
-      .story-section {
-        padding: 1.5rem;
-      }
+   
+	
+	
+	
+	
+	<style>
+        /* --- AIM Brand Styles (from Knowledge Base) --- */
+      /* --- AIM Brand Styles (from Knowledge Base) --- */
+        :root {
+            --skin-color: #ff5011;
+            --mirage-color: hsl(210, 10%, 23%);
+            --title-color: hsl(242, 8%, 98%);
+            --text-color: hsl(242, 8%, 80%);
+            --body-color: #0d0d0d;
+            --box-color: hsl(242, 14%, 12%);
+            --body-font: 'Inter', sans-serif;
+            --small-font-size: 0.95rem;
+            --h3-font-size: 1.25rem;
+            --smaller-font-size: 0.75rem;
+            --mb15: 0.75rem;
+            --mb3: 1.5rem;
+        }
+        
       
-      h2 {
-        font-size: 1.8rem;
-      }
-      
-      h3 {
-        font-size: 1.3rem;
-      }
-      h3 i {
-        font-size: 1.1rem;
-      }
+        
 
-      .timeline {
-        padding-left: 1rem;
-        border-left-width: 2px;
-      }
-      
-      .timeline-event {
-        padding-left: 0.5rem;
-      }
+        /* --- Base & Scrollbar --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: var(--body-font);
+            background-color: var(--body-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 8rem; /* Space for fixed nav */
+            overflow-x: hidden;
+        }
+        main { max-width: 980px; margin: 0 auto; padding: 0 1rem; }
+        img { max-width: 100%; height: auto; display: block; }
 
-      .timeline-event::before {
-        left: -29px;
-        width: 16px;
-        height: 16px;
-        border-width: 2px;
-      }
+        a { text-decoration: none; cursor: pointer; }
 
-      .founders-section {
-        flex-direction: column;
-        align-items: center;
-      }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #333; }
+        ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /* Utility container class for maximum content width */
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        
+        
+        
+ 
+        
+        a { 
+            text-decoration: none; /* REMOVED UNDERLINE from all links */
+            cursor: pointer; 
+        }
+        
+        @keyframes fadeInPage {
+            to { opacity: 1; }
+        }
 
-      .founder-card {
-        width: 100%;
-        max-width: 320px;
-      }
+        /* Utility container class for maximum content width */
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
 
-      .icon-section {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-      .icon-content {
-        width: 100%;
-      }
-      .icon-content h3 {
-        text-align: center;
-      }
-      .icon-content p {
-        text-align: center;
-      }
+        /* --- Navigation Bar --- */
+        #nav-bar {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(25, 25, 25, 0.85); /* Semi-transparent dark */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--box-color);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            max-width: 980px; /* Adjusted to match container */
+            width: 90%;
+            z-index: 1000;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
 
-    }
+        #nav-logo img {
+            height: 35px; /* Adjusted */
+            width: auto;
+            display: block;
+        }
+
+        #nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            margin-left: auto;
+            align-items: center;
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease, transform 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link:focus {
+            color: var(--skin-color);
+            outline: none;
+            transform: translateY(-1px);
+        }
+
+        .nav-cta {
+            background: linear-gradient(90deg, var(--skin-color), #d43a00);
+            color: var(--title-color);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); 
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-cta:hover, .nav-cta:focus {
+            background: linear-gradient(90deg, #d43a00, var(--skin-color));
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5);
+            outline: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .submenu-courses {
+            position: absolute; 
+            top: 100%; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: var(--box-color); 
+            border-radius: 0.5rem; 
+            padding: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
+            opacity: 0; 
+            pointer-events: none; 
+            transition: opacity 0.3s, top 0.3s; 
+            min-width: 300px; /* Wider for full course titles */
+            z-index: 1001;
+        }
+        
+        .submenu-courses.active { 
+            opacity: 1; 
+            pointer-events: auto; 
+            top: calc(100% + 10px); /* Small offset below link */
+        }
+
+
+        .submenu-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0.75rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 0.25rem;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .submenu-link i { width: 15px; text-align: center; }
+
+        .submenu-link:hover, .submenu-link:focus {
+            background: rgba(255, 80, 17, 0.1);
+            color: var(--skin-color);
+            outline: none;
+        }
 
 
 
-/* Footer */
-.footer {
-    padding-top: 2rem;
+
+
+        /* --- Video Embedding (NEW) --- */
+        .video-container {
+            position: relative;
+            width: 100%;
+            /* 16:9 aspect ratio */
+            padding-bottom: 56.25%; 
+            margin: 1.5rem 0; 
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        /* --- End Video Embedding --- */
+
+
+
+
+
+        /* --- Hero Section & Banners --- */
+        .top-banner {
+            width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+        
+        .centered-image {
+            display: block;
+            margin: 0 auto;
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+
+
+
+        /* --- Divider Banner --- */
+        .divider-banner {
+            width: 100%;
+            height: 200px;
+            border-radius: 1rem;
+            overflow: hidden;
+            margin: 3rem 0;
+            background-color: var(--box-color);
+            padding: 0;
+        }
+        
+        .divider-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        /* --- Content Sections --- */
+        main {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        
+        h1, h2, h3 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--skin-color);
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            color: var(--skin-color);
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h3 {
+            font-size: var(--h3-font-size);
+            color: var(--title-color);
+            text-align: left;
+            margin-top: 1.5rem; /* Default margin-top */
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        h3 i {
+            color: var(--skin-color);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        
+        
+        
+        
+        
+        /* Specific override for Timeline heading space and alignment */
+        #timeline-heading {
+            margin-top: 100px; 
+            text-align: left !important; /* Ensure alignment is respected */
+        }
+
+        .story-section {
+            background-color: var(--box-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            /* For scroll animation */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .story-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .story-text {
+            font-size: 1rem;
+            color: var(--text-color);
+            text-align: justify;
+            white-space: pre-line;
+        }
+        
+        .story-text strong {
+            color: var(--skin-color);
+            font-weight: 500;
+        }
+        
+        .story-text em {
+            color: var(--title-color);
+            font-style: italic;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+
+        /* --- Timeline (Hinton) --- */
+        .timeline {
+            position: relative;
+            margin: 2rem 0 1rem 0;
+            padding-left: 1.6rem;
+            border-left: 3px solid var(--skin-color);
+        }
+
+        .timeline-event {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+            /* For scroll animation */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out, transform 0.3s ease;
+        }
+        
+        .timeline-event.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-event:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-event:hover {
+            transform: translateX(5px);
+        }
+
+        .timeline-event::before {
+            content: '';
+            position: absolute;
+            left: -40px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background-color: var(--skin-color);
+            border-radius: 50%;
+            border: 3px solid var(--box-color);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-event:hover::before {
+            background-color: var(--body-color);
+            border-color: var(--skin-color);
+            transform: scale(1.1);
+        }
+
+        .event-year {
+            font-weight: 600;
+            color: var(--skin-color);
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+        }
+
+        .event-description {
+            font-size: 1rem;
+            color: var(--text-color);
+            white-space: pre-line;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        /* --- Founders Section (OpenAI) --- */
+        .founders-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .founder-card {
+            background-color: var(--body-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            width: 255px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* For scroll animation */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
+        }
+        
+        .founder-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .founder-card:hover {
+            transform: scale(1.03) translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+        }
+
+        .founder-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid var(--skin-color);
+            background-color: #444;
+            display: inline-block;
+        }
+        
+        .founder-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--title-color);
+            text-align: left;
+            display: block;
+            margin-top: 0;
+        }
+        
+        .founder-card h3.founder-name {
+            text-align: left;
+            display: block;
+            margin-top: 0;
+        }
+
+        .founder-role {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--skin-color);
+            text-align: left;
+            display: block;
+        }
+
+        .founder-description {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            text-align: left;
+        }
+
+        .team-list {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: var(--text-color);
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+        
+        .team-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        
+        
+        
+        
+        /* --- Hero Section & Banners --- */
+.top-banner {
+  /* (existing styles) */
+  width: 100%; 
+  height: auto; 
+  border-radius: 1rem;
+  margin-bottom: 0; 
+  display: block;
 }
 
-.footer-container {
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 1.6rem;
-}
+/* --- New Rule to Constrain and Center the Banner --- */
+#top-banner-image {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}  
+     
+        
+        
 
-.footer-bg {
-    background-color: var(--box-color);
-    padding: 3rem 0 3.5rem;
-}
-
-.footer-title {
-    font-size: var(--h3-font-size);
-    margin-bottom: var(--mb025);
-    color: var(--title-color);
-}
-
-.footer-subtitle {
-    font-size: var(--small-font-size);
-    color: var(--title-color);
-}
-
-.footer-links {
-    display: flex;
-    justify-self: center;
-    column-gap: 2rem;
-    color: var(--title-color);
-}
-
-.footer-links:hover {
-    color: var(--skin-color);
-}
-
-.footer-socials {
-    justify-self: flex-end;
-}
-
-.footer-social {
-    font-size: 1.25rem;
-    margin-right: var(--mb15);
-    color: var(--title-color);
-}
-
-.footer-social:hover {
-    color: var(--skin-color);
-}
-
-.footer-copy {
-    font-size: var(--smaller-font-size);
-    text-align: center;
-    margin-top: 4.5rem;
-}
-
-.footer-copy a {
-    font-family: var(--signature-font);
-    color: var(--title-color);
-}
-
-.footer-copy a:hover {
-    color: var(--skin-color);
-}
-
-.footer-title,
-.footer-subtitle,
-.footer-links,
-.footer-social,
-.footer-copy a {
-    color: var(--title-color);
-}
-
-/* Footer Logo Styles */
-.footer-logo {
-    width: 50px;
-    height: auto;
-    margin-bottom: 1rem;
-    display: block;
-}
-
-.footer-logo.large {
-    width: 80px;
-}
-
-.footer-logo.small {
-    width: 40px;
-}
-
-.footer-logo:hover {
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
-}
-
-.footer-container > div:first-child {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-/* Community Button Styles */
-.community-button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-    width: 100%;
-}
-
-.community-button {
-    font-size: var(--h3-font-size);
-    padding: 1rem 2rem;
-    border-radius: .5rem;
-    transition: all 0.4s ease;
-    box-shadow: 0 4px 15px rgba(255, 80, 17, 0.3);
-}
-
-.community-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(255, 80, 17, 0.4);
-}
-
-/* Media Queries for Footer */
-@media screen and (max-width: 768px) {
-    .footer-container {
-        grid-template-columns: repeat(2, 1fr);
-        row-gap: 3rem;
-    }
-    
-    .footer-socials {
-        justify-self: start;
-    }
-    
-    .footer-links {
-        flex-direction: column;
-        row-gap: 1.5rem;
-    }
-    
-    .footer-bg {
-        padding: 2rem 0 3rem;
-    }
-    
-    .footer-copy {
-        margin-top: var(--mb3);
-    }
-    
-    .footer-logo {
-        width: 40px;
-        margin-bottom: 0.75rem;
-    }
-    
-    .footer-container > div:first-child {
-        align-items: center;
-        text-align: center;
-    }
-    
-    .community-button {
-        font-size: var(--normal-font-size);
-        padding: 0.875rem 1.75rem;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .footer-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .footer-links {
-        justify-self: flex-start;
-    }
-}
+        /* --- Dropdown / Details --- */
+        details {
+            margin-top: 1.5rem;
+            background-color: var(--body-color);
+            border-radius: 0.75rem;
+            border: 1px solid var(--box-color);
+            transition: all 0.3s ease;
+        }
+        details:hover {
+            border-color: var(--mirage-color);
+        }
+        summary {
+            padding: 1rem 1.5rem;
+            font-weight: 500;
+            color: var(--skin-color);
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        summary:after {
+            content: '▾';
+            color: var(--skin-color);
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%) rotate(0deg);
+            transition: transform 0.3s ease;
+        }
+        details[open] summary:after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+        .details-content {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            border-top: 1px solid var(--box-color);
+        }
+        .details-content h3 {
+            margin-top: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .details-content .story-text {
+            margin-top: 1rem;
+        }
+        
+        
+        
+        
+        
+        
+        
+        /* --- Icon Section Styles --- */
+        .icon-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: var(--mb2);
+            margin-top: 1.5rem;
+        }
+        .icon-container {
+            flex-shrink: 0;
+            width: 70px;
+            height: 70px;
+            background: var(--box-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 2px solid var(--skin-color);
+        }
+        .icon-container:hover {
+            background: var(--skin-color);
+            transform: scale(1.1);
+        }
+        .icon-container i {
+            font-size: 1.8rem;
+            color: var(--skin-color);
+            transition: color 0.3s ease;
+        }
+        .icon-container:hover i {
+            color: var(--title-color);
+        }
+        .icon-content {
+            flex: 1;
+        }
+        .icon-content h3 {
+            font-size: 1.25rem; /* Using a fixed size here for clarity */
+            font-weight: 500;
+            margin-bottom: var(--mb05);
+            color: var(--title-color);
+            margin-top: 0;
+            text-align: left;
+            display: block;
+        }
+        .icon-content p {
+            color: var(--text-color);
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+        /* --- End Icon Section Styles --- */
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /* --- Back to Top Button --- */
+        #back-to-top {
+            position: fixed; bottom: 20px; right: 20px;
+            width: 50px; height: 50px;
+            background: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597') no-repeat center center;
+            background-size: cover;
+            border: none; border-radius: 50%;
+            cursor: pointer; 
+            opacity: 0; 
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 999;
+        }
+        #back-to-top.show { opacity: 1; visibility: visible; }
+        #back-to-top:hover { transform: scale(1.1); }
 
 
 
 
 
-    
+
 
 
  /* Page loader container with black background */
@@ -919,489 +757,635 @@
 
 
 
-        /* Swiper */
-        .swiper-pagination-bullet {
+
+
+
+
+
+
+
+
+
+        /* --- FOOTER STYLES (FIXED/UPDATED) --- */
+      /* --- Footer (Main Page Footer) --- */
+        .footer {
+            padding-top: 5rem;
+        }
+
+        .footer-bg {
             background-color: var(--box-color);
+            padding: 3rem 0 3.5rem;
+        }
+        
+        .footer-container {
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 1.6rem;
         }
 
-        .swiper-pagination-bullet-active {
-            background-color: var(--skin-color);
+        .footer-title {
+            font-size: var(--h3-font-size);
+            margin-bottom: 0.25rem;
+            margin-top: 0;
+            color: var(--title-color);
         }
 
-        .swiper-scrollbar {
-            background: var(--scroll-box-color);
+        .footer-subtitle {
+            font-size: var(--small-font-size);
+            color: var(--title-color);
         }
 
-        .swiper-scrollbar-drag {
-            background: var(--skin-color);
+        .footer-links {
+            list-style: none;
+            display: flex;
+            justify-self: center;
+            column-gap: 2rem;
+            color: var(--title-color);
         }
 
+        .footer-links:hover {
+            color: var(--skin-color);
+        }
 
-/* --- Back to Top Button Styles --- */
-#back-to-top {
-    position: fixed; 
-    bottom: 20px; 
-    right: 20px;
-    width: 50px; 
-    height: 50px;
-    /* Custom image URL */
-    background: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597') no-repeat center center;
-    background-size: cover;
-    border: none; 
-    border-radius: 50%;
-    cursor: pointer; 
-    opacity: 0; 
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-    z-index: 999;
-}
-#back-to-top.show { 
-    opacity: 1; 
-    visibility: visible; 
-}
-#back-to-top:hover { 
-    transform: scale(1.1); 
-}
+        .footer-socials {
+            justify-self: flex-end;
+            display: flex; 
+            align-items: center;
+            gap: var(--mb15);
+        }
 
+        .footer-social {
+            font-size: 1.25rem;
+            color: var(--title-color);
+            transition: color 0.3s;
+        }
 
+        .footer-social:hover {
+            color: var(--skin-color);
+            cursor: pointer; 
+        }
 
-    
-    
-  </style>
+        .footer-copy {
+            font-size: var(--smaller-font-size);
+            text-align: center;
+            margin-top: 4.5rem;
+        }
+
+        .footer-copy a {
+            color: var(--title-color);
+        }
+
+        .footer-copy a:hover {
+            color: var(--skin-color);
+        }
+
+        .footer-title,
+        .footer-subtitle,
+        .footer-links,
+        .footer-social,
+        .footer-copy a {
+            color: var(--title-color);
+        }
+        
+        
+        
+        
+        
+
+        /* Footer Logo Styles (Desktop) */
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            gap: 0.5rem; 
+        }
+        .footer-brand-text { 
+            text-align: left;
+        }
+        .footer-logo {
+            width: 30px;
+            height: auto;
+            display: block;
+        }
+
+        .footer-logo:hover {
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /* --- Responsive Styles --- */
+        @media screen and (max-width: 767px) {
+            /* General mobile layout adjustments */
+            .footer-container {
+                grid-template-columns: 1fr;
+                row-gap: 3rem;
+                text-align: center;
+            }
+            .footer-brand {
+                align-items: center; /* Center align on mobile */
+                text-align: center;
+                justify-content: center;
+            }
+            .footer-brand-text {
+                text-align: center; /* Center align text on mobile */
+            }
+            .footer-socials {
+                justify-content: center;
+                justify-self: center;
+            }
+            .footer-links {
+                flex-direction: column;
+                row-gap: 1.5rem;
+                justify-self: center;
+            }
+            .footer-bg {
+                padding: 2rem 0 3rem;
+            }
+            .footer-copy {
+                margin-top: var(--mb3);
+            }
+        }
+        
+        
+        
+        
+        
+        
+        /* --- Responsive Design for Nav/Content (Retained from original) --- */
+        @media (max-width: 1024px) {
+             /* Hide nav text on tablets and smaller except CTA */
+            #nav-menu > .nav-link:not(.nav-cta),
+            #nav-menu > .nav-item {
+                display: none;
+            }
+            .nav-cta {
+                margin-left: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+                padding-top: 7rem;
+                max-width: 100%;
+            }
+
+            .story-section {
+                padding: 1.5rem;
+            }
+            
+            .timeline {
+                padding-left: 1rem;
+                border-left-width: 2px;
+            }
+            
+            .timeline-event::before {
+                left: -29px;
+            }
+
+            .founders-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .founder-card {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .icon-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .icon-content h3, .icon-content p {
+                text-align: center;
+            }
+        }
+
+    </style>
 
 <!-- Page Loader HTML -->
 <script>
-  // --- Page Loader Logic ---
-  function showLoader() {
-    const loader = document.createElement('div');
-    loader.className = 'page-loader';
-    loader.innerHTML = `
-      <div class="loader-header">Loading...</div>
-      <div class="progress"></div>
-    `;
-    document.body.appendChild(loader);
-    return loader;
-  }
+    // --- Page Loader Logic ---
+    function showLoader() {
+        const loader = document.createElement('div');
+        loader.className = 'page-loader';
+        loader.innerHTML = `
+            <div class="loader-header">Loading...</div>
+            <div class="progress"></div>
+        `;
+        document.body.appendChild(loader);
+        return loader;
+    }
 
-  function initLoader() {
-    const loader = showLoader();
-    setTimeout(() => {
-      loader.classList.add('hidden');
-      setTimeout(() => loader.remove(), 300); // Remove after fade out
-    }, 1500); // Adjust duration as needed
-  }
+    function initLoader() {
+        const loader = showLoader();
+        setTimeout(() => {
+            loader.classList.add('hidden');
+            setTimeout(() => loader.remove(), 500); // Wait for fade out
+        }, 1500); // Adjust duration as needed
+    }
 
-  document.addEventListener('DOMContentLoaded', initLoader);
+    document.addEventListener('DOMContentLoaded', initLoader);
 </script>
-<!-- Loader Div is injected by the script above -->
-
-
-
-
-
-
-
-  
 </head>
 <body>
 
-  <!-- Navigation Bar --><nav id="nav-bar">
-    <div id="nav-logo">
-      <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
+    <!-- Navigation Bar --><nav id="nav-bar">
+        <a href="/" id="nav-logo">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
+        </a>
+        
+        <div id="nav-menu">
+            <a href="#home" class="nav-link">Homepage</a>
+            <div class="nav-item has-submenu">
+                 <!-- Changed link to a placeholder '#' for pure JS dropdown functionality -->
+                <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
+                <div class="submenu-courses" id="courses-submenu">
+                     <!-- Added Font Awesome icons as per guidance -->
+                    <a href="#ai-foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> 1. AI Foundation: Core Concepts</a>
+                    <a href="#prompt-craftsmanship" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> 2. Prompt Craftsmanship</a>
+                    <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-robot"></i> 3. Building Your AI Brain</a>
+                    <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-user-secret"></i> 4. Autonomous AI Agents</a>
+                </div>
+            </div>
+            <a href="#pricing" class="nav-link">Pricing</a>
+            <a href="#helpcenter" class="nav-link">HelpCenter</a>
+
+            <a href="#login" class="nav-cta">LOGIN</a>
+        </div>
+    </nav>
+    
+ 
+    
+    
+
+    
+    <!-- Top Banner Image -->
+<img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Banner%20Nuestros%20Servicios%20(1).jpg"
+     alt="AIM Services Banner"
+     class="top-banner"
+     id="top-banner-image"
+     onerror="this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Banner%20Nuestros%20Servicios%20(1).jpg'">
+
+
+
+
+
+    <div>
+        <!-- Centered Image -->
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png"
+            alt="AI Discovery Icon"
+            class="centered-image">
     </div>
     
-    <div id="nav-menu">
-      <a href="#home" class="nav-link">Homepage</a>
-      <div class="nav-item has-submenu">
-        <a href="#courses" class="nav-link">Courses ▾</a>
-        <div class="submenu-courses">
-          <a href="#ai-foundation" class="submenu-link">1. AI Foundation: Core Concepts & Everyday Productivity</a>
-          <a href="#prompt-craftsmanship" class="submenu-link">2. Prompt Craftsmanship: From Basic Queries to Advanced Co-Creation</a>
-          <a href="#building-ai-brain" class="submenu-link">3. Building Your AI Brain: Custom Knowledge Assistants & RAG Systems</a>
-          <a href="#autonomous-ai-agents" class="submenu-link">4. Autonomous AI Agents: Automating Complex Workflows & Business Processes</a>
-        </div>
-      </div>
-      <a href="#pricing" class="nav-link">Pricing</a>
-      <a href="#helpcenter" class="nav-link">HelpCenter</a>
+    
+    
+    
+    
+    
 
-      <a href="#login" class="nav-cta">LOGIN</a>
+    <!-- Page Intro Headline --><div class="page-headline" style="text-align: center; margin-bottom: 3rem; margin-top: -1.5rem;">
+        <h1 style="color: var(--skin-color); font-size: 2.5rem; margin-bottom: 0.5rem;">The Story of AI Discovery</h1>
+        <p style="font-size: 1.1rem; color: var(--text-color); margin-top: 0;">From the Godfathers of AI to its modern pioneers.</p>
     </div>
-  </nav>
-  
-  <!-- Top Banner Image --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Banner%20Nuestros%20Servicios.png" 
-       alt="AIM Services Banner" 
-       class="top-banner"
-       onerror="this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/BANNER%20TU%20EQUIPO%20DE%20SOPORTE%20(1).png'">
-
-  <div>
-    <!-- Centered Image -->
-    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png" 
-         alt="AI Discovery Icon" 
-         class="centered-image">
-  </div>
-
-  <!-- Page Intro Headline --><div class="page-headline" style="text-align: center; margin-bottom: 3rem; margin-top: -1.5rem; /* Pulls it closer to banner */">
-    <h1 style="color: var(--skin-color); font-size: 2.5rem; margin-bottom: 0.5rem;">The Story of AI Discovery</h1>
-    <p style="font-size: 1.1rem; color: var(--text-color); margin-top: 0;">From the Godfathers of AI to its modern pioneers.</p>
-  </div>
-  
-  <!-- Main Content Area --><main id="ai-story-page">
-    <!-- Section 1: Geoffrey Hinton --><section class="story-section">
-      <h2>The 'Godfather' of AI: Geoffrey Hinton</h2>
-      
-      <!-- Image Placeholder for Hinton --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/f2c34455-91a4-48bc-92af-91cf9cbb1ae3.jpg" 
-           alt="Portrait of Geoffrey Hinton" 
-           class="founder-photo" 
-           style="float: left; margin-right: 1.5rem; margin-bottom: 1rem; width: 300px; height: 300px; border-radius: 1rem;"
-           onerror="this.src='https://placehold.co/300x300/444444/ffffff?text=Image'">
-
-      <h3>Why is he Called the "Godfather of AI"?</h3>
-      <p class="story-text">
-        Geoffrey Hinton is often called the "Godfather of AI," alongside Yann LeCun and Yoshua Bengio, collectively known as the "AI Titans." This title honors his decades-long advocacy for neural networks and deep learning, even when these ideas were unpopular and underfunded.
-      </p>
-
-      <!-- Dropdown Section --><details>
-        <summary>More Information</summary>
-        <div class="details-content">
-          <p class="story-text">
-            His foundational work in the 1980s and 1990s laid the groundwork for modern AI learning systems. His persistence paid off spectacularly in the 2010s, when his ideas began outperforming all other AI techniques, sparking the current AI boom. Many of his students now lead AI research at top tech companies.
-            <br><br>
-            In essence, Hinton nurtured neural networks through their "childhood," defended them against skeptics, and provided the blueprints for technologies powering systems like ChatGPT and Google Translate.
-          </p>
-
-          <h3><i class="fas fa-brain"></i> What He Was Working On & His Key Discoveries</h3>
-          <p class="story-text" style="margin-bottom: 0;">
-            Hinton dedicated his career to making machines learn inspired by the human brain, focusing on Artificial Neural Networks (ANNs).
-            <br><br>
-            Key contributions include:
-          </p>
-
-          <!-- Icon Section Start --><div class="icon-section">
-            <div class="icon-container">
-              <i class="fas fa-project-diagram"></i>
-            </div>
-            <div class="icon-content">
-              <h3>The Backpropagation Algorithm (1986)</h3>
-              <p>Hinton, with Rumelhart and Williams, popularized backpropagation, the fundamental learning algorithm for neural networks. It allows networks to learn from mistakes by adjusting internal parameters.</p>
-            </div>
-          </div>
-
-          <div class="icon-section">
-            <div class="icon-container">
-              <i class="fas fa-layer-group"></i>
-            </div>
-            <div class="icon-content">
-              <h3>Deep Learning Foundations</h3>
-              <p>In the late 80s and 90s, he worked on deep architectures like Boltzmann Machines and Helmholtz Machines, proving deep networks could learn hierarchical features.</p>
-            </div>
-          </div>
-
-          <div class="icon-section" style="margin-bottom: 0;">
-            <div class="icon-container">
-              <i class="fas fa-image"></i>
-            </div>
-            <div class="icon-content">
-              <h3>The Breakthrough: ImageNet (2012)</h3>
-              <p>Hinton's AlexNet model dramatically improved image classification accuracy, triggering the AI boom and industry-wide adoption of deep learning.</p>
-            </div>
-          </div>
-          <!-- Icon Section End --></div>
-      </details>
-      <!-- End Dropdown Section --><h3><i class="fas fa-calendar-alt"></i> Timeline of Key Events</h3>
-      <div class="timeline">
-        <div class="timeline-event">
-          <div class="event-year">1947</div>
-          <div class="event-description">Geoffrey Hinton is born in the UK.</div>
-        </div>
-        <div class="timeline-event">
-          <div class="event-year">1986</div>
-          <div class="event-description">Co-authors the seminal paper popularizing the backpropagation algorithm.</div>
-        </div>
-        <div class="timeline-event">
-          <div class="event-year">1987-2000s</div>
-          <div class="event-description">Becomes a professor at the University of Toronto, pioneering deep learning models despite funding challenges.</div>
-        </div>
-        <div class="timeline-event">
-          <div class="event-year">2012</div>
-          <div class="event-description">AlexNet wins the ImageNet competition, marking the "Big Bang" of modern AI.</div>
-        </div>
-        <div class="timeline-event">
-          <div class="event-year">2013</div>
-          <div class="event-description">Hinton's company DNNresearch is acquired by Google; he becomes VP & Engineering Fellow.</div>
-        </div>
-        <div class="timeline-event">
-          <div class="event-year">2018</div>
-          <div class="event-description">Awarded the Turing Award alongside Yann LeCun and Yoshua Bengio for deep learning contributions.</div>
-        </div>
-        <div class="timeline-event">
-          <div class="event-year">May 2023</div>
-          <div class="event-description">Resigns from Google to speak freely about AI dangers, making global headlines.</div>
-        </div>
-      </div>
-
-      <h3><i class="fas fa-exclamation-triangle"></i> The Paradox: The Godfather's Warning</h3>
-      <p class="story-text">
-        Despite his groundbreaking work, Hinton has expressed deep concerns about AI's future risks, including existential threats, superintelligence surpassing humans, misinformation, and job displacement. His resignation was a dramatic call to action for responsible AI development.
-      </p>
-    </section>
-
-    <!-- Divider Banner - FIXED --><section class="divider-banner">
-      <!-- Ambient Banner Image --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/TOP%20BANNERS%20(1).png" alt="Abstract AI banner" class="divider-image"
-           onerror="this.style.display='none'">
-    </section>
-
-    <!-- Section 2: OpenAI --><section class="story-section">
-      <h2>The Rise of OpenAI</h2>
-      
-      <h3><i class="fas fa-atom"></i> Founding Story</h3>
-      <p class="story-text">
-        OpenAI was founded in <strong>December 2015</strong> as a <em>non-profit</em> organization with the mission to <strong>ensure that artificial general intelligence (AGI) benefits all of humanity</strong>. The founding was motivated by concerns about AI safety and the desire to democratize AI development for the benefit of humanity, rather than for private gain. The organization started with an initial funding of <strong>$1 billion</strong>.
-      </p>
-    </section>
     
-    
-    
-    
-    
-    <section class="story-section">
-      <h2>Meet the Founders</h2>
-      <div class="founders-section">
-      
-      
-      
-      
-      
-        <article class="founder-card">
-          <!-- Image Placeholder --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/37240e07-707b-4879-8137-17b3310bdb80.jpg" alt="Sam Altman" class="founder-photo"
-               onerror="this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/37240e07-707b-4879-8137-17b3310bdb80.jpg'">
-          <h3 class="founder-name">Sam Altman</h3>
-          <p class="founder-role">Co-chair and CEO</p>
-          <p class="founder-description">Steered the organization's vision and strategy, leveraging his experience as president of the startup accelerator Y Combinator.</p>
-        </article>
-        
-        
-        
-        
-        
+    <!-- Main Content Area --><main id="ai-story-page">
+        <!-- Section 1: Geoffrey Hinton --><section class="story-section">
+            <h2>The 'Godfather' of AI: Geoffrey Hinton</h2>
+            
+            <!-- Image Placeholder for Hinton --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/f2c34455-91a4-48bc-92af-91cf9cbb1ae3.jpg"
+                alt="Portrait of Geoffrey Hinton"
+                class="founder-photo"
+                style="float: left; margin-right: 1.5rem; margin-bottom: 1rem; width: 300px; height: 300px; border-radius: 1rem;"
+                onerror="this.src='https://placehold.co/300x300/444444/ffffff?text=Image'">
 
-        <article class="founder-card">
-          <!-- Image Placeholder --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/7bdf2cfb-77fa-42c2-a640-7f17eac8fb7e.jpg" alt="Elon Musk" class="founder-photo"
-               onerror="this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/7bdf2cfb-77fa-42c2-a640-7f17eac8fb7e.jpg'">
-          <h3 class="founder-name">Elon Musk</h3>
-          <p class="founder-role">Co-chair</p>
-          <p class="founder-description">Provided crucial initial funding and strategic direction, drawing from his leadership at Tesla and SpaceX. He left the OpenAI board in 2018.</p>
-        </article>
-        
-        
-        
-        
-        
+            <h3>Why is he Called the "Godfather of AI"?</h3>
+            <p class="story-text">
+                Geoffrey Hinton is often called the "Godfather of AI," alongside Yann LeCun and Yoshua Bengio, collectively known as the "AI Titans." This title honors his decades-long advocacy for neural networks and deep learning, even when these ideas were unpopular and underfunded.
+            </p>
 
-        <article class="founder-card">
-          <!-- Image Placeholder --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/2596f790-cb25-42ae-b25c-ecc4000e31c0.jpg?updatedAt=1763405512998" alt="Greg Brockman" class="founder-photo"
-               onerror="this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/2596f790-cb25-42ae-b25c-ecc4000e31c0.jpg?updatedAt=1763405512998'">
-          <h3 class="founder-name">Greg Brockman</h3>
-          <p class="founder-role">President and CTO</p>
-          <p class="founder-description">Managed technical development and infrastructure, using his previous experience as the CTO of Stripe.</p>
-        </article>
+            <!-- Dropdown Section --><details>
+                <summary>More Information</summary>
+                <div class="details-content">
+                    <p class="story-text">
+                        His foundational work in the 1980s and 1990s laid the groundwork for modern AI learning systems. His persistence paid off spectacularly in the 2010s, when his ideas began outperforming all other AI techniques, sparking the current AI boom. Many of his students now lead AI research at top tech companies.
+                        <br><br>
+                        In essence, Hinton nurtured neural networks through their "childhood," defended them against skeptics, and provided the blueprints for technologies powering systems like ChatGPT and Google Translate.
+                    </p>
+                    
+                    <!-- UPDATED: Responsive YouTube Video Embed with new URL -->
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/QH6QqjIwv68" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            title="Geoffrey Hinton on the Future of AI"
+                        ></iframe>
+                    </div>
+                    <!-- END UPDATED VIDEO -->
+
+                    <h3><i class="fas fa-brain"></i> What He Was Working On & His Key Discoveries</h3>
+                    <p class="story-text" style="margin-bottom: 0;">
+                        Hinton dedicated his career to making machines learn inspired by the human brain, focusing on Artificial Neural Networks (ANNs).
+                        <br><br>
+                        Key contributions include:
+                    </p>
+
+                    <!-- Icon Section Start --><div class="icon-section">
+                        <div class="icon-container">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="icon-content">
+                            <h3>The Backpropagation Algorithm (1986)</h3>
+                            <p>Hinton, with Rumelhart and Williams, popularized backpropagation, the fundamental learning algorithm for neural networks. It allows networks to learn from mistakes by adjusting internal parameters.</p>
+                        </div>
+                    </div>
+
+                    <div class="icon-section">
+                        <div class="icon-container">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <div class="icon-content">
+                            <h3>Deep Learning Foundations</h3>
+                            <p>In the late 80s and 90s, he worked on deep architectures like Boltzmann Machines and Helmholtz Machines, proving deep networks could learn hierarchical features.</p>
+                        </div>
+                    </div>
+
+                    <div class="icon-section" style="margin-bottom: 0;">
+                        <div class="icon-container">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="icon-content">
+                            <h3>The Breakthrough: ImageNet (2012)</h3>
+                            <p>Hinton's AlexNet model dramatically improved image classification accuracy, triggering the AI boom and industry-wide adoption of deep learning.</p>
+                        </div>
+                    </div>
+                    <!-- Icon Section End --></div>
+            </details>
+            <!-- End Dropdown Section --><h3 id="timeline-heading"><i class="fas fa-calendar-alt"></i> Timeline of Key Events</h3>
+            <div class="timeline">
+                <div class="timeline-event">
+                    <div class="event-year">1947</div>
+                    <div class="event-description">Geoffrey Hinton is born in the UK.</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="event-year">1986</div>
+                    <div class="event-description">Co-authors the seminal paper popularizing the backpropagation algorithm.</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="event-year">1987-2000s</div>
+                    <div class="event-description">Becomes a professor at the University of Toronto, pioneering deep learning models despite funding challenges.</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="event-year">2012</div>
+                    <div class="event-description">AlexNet wins the ImageNet competition, marking the "Big Bang" of modern AI.</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="event-year">2013</div>
+                    <div class="event-description">Hinton's company DNNresearch is acquired by Google; he becomes VP & Engineering Fellow.</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="event-year">2018</div>
+                    <div class="event-description">Awarded the Turing Award alongside Yann LeCun and Yoshua Bengio for deep learning contributions.</div>
+                </div>
+                <div class="timeline-event">
+                    <div class="event-year">May 2023</div>
+                    <div class="event-description">Resigns from Google to speak freely about AI dangers, making global headlines.</div>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-exclamation-triangle"></i> The Paradox: The Godfather's Warning</h3>
+            <p class="story-text">
+                Despite his groundbreaking work, Hinton has expressed deep concerns about AI's future risks, including existential threats, superintelligence surpassing humans, misinformation, and job displacement. His resignation was a dramatic call to action for responsible AI development.
+            </p>
+        </section>
+
+        <!-- Divider Banner --><section class="divider-banner">
+            <!-- Ambient Banner Image --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/TOP%20BANNERS%20(1).png" alt="Abstract AI banner" class="divider-image"
+                onerror="this.style.display='none'">
+        </section>
+
+        <!-- Section 2: OpenAI --><section class="story-section">
+            <h2>The Rise of OpenAI</h2>
+            
+            <h3><i class="fas fa-atom"></i> Founding Story</h3>
+            <p class="story-text">
+                OpenAI was founded in <strong>December 2015</strong> as a <em>non-profit</em> organization with the mission to <strong>ensure that artificial general intelligence (AGI) benefits all of humanity</strong>. The founding was motivated by concerns about AI safety and the desire to democratize AI development for the benefit of humanity, rather than for private gain. The organization started with an initial funding of <strong>$1 billion</strong>.
+            </p>
+        </section>
         
         
-        
-        
+        <section class="story-section">
+            <h2>Meet the Founders</h2>
+            <div class="founders-section">
+                
+                <article class="founder-card">
+                    <!-- Image Placeholder --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/37240e07-707b-4879-8137-17b3310bdb80.jpg" alt="Sam Altman" class="founder-photo"
+                        onerror="this.src='https://placehold.co/120x120/444444/ffffff?text=S.A.'">
+                    <h3 class="founder-name">Sam Altman</h3>
+                    <p class="founder-role">Co-chair and CEO</p>
+                    <p class="founder-description">Steered the organization's vision and strategy, leveraging his experience as president of the startup accelerator Y Combinator.</p>
+                </article>
+                
+                <article class="founder-card">
+                    <!-- Image Placeholder --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/7bdf2cfb-77fa-42c2-a640-7f17eac8fb7e.jpg" alt="Elon Musk" class="founder-photo"
+                        onerror="this.src='https://placehold.co/120x120/444444/ffffff?text=E.M.'">
+                    <h3 class="founder-name">Elon Musk</h3>
+                    <p class="founder-role">Co-chair</p>
+                    <p class="founder-description">Provided crucial initial funding and strategic direction, drawing from his leadership at Tesla and SpaceX. He left the OpenAI board in 2018.</p>
+                </article>
+                
+                <article class="founder-card">
+                    <!-- Image Placeholder --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/2596f790-cb25-42ae-b25c-ecc4000e31c0.jpg?updatedAt=1763405512998" alt="Greg Brockman" class="founder-photo"
+                        onerror="this.src='https://placehold.co/120x120/444444/ffffff?text=G.B.'">
+                    <h3 class="founder-name">Greg Brockman</h3>
+                    <p class="founder-role">President and CTO</p>
+                    <p class="founder-description">Managed technical development and infrastructure, using his previous experience as the CTO of Stripe.</p>
+                </article>
+                
+                <article class="founder-card">
+                    <!-- Image Placeholder --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Ilya%20Sutskever%20(1).png" alt="Ilya Sutskever" class="founder-photo"
+                        onerror="this.src='https://placehold.co/120x120/444444/ffffff?text=I.S.'">
+                    <h3 class="founder-name">Ilya Sutskever</h3>
+                    <p class="founder-role">Chief Scientist</p>
+                    <p class="founder-description">A renowned expert in deep learning, he guided the organization's research initiatives and was instrumental in its early scientific direction.</p>
+                </article>
+                
+                <article class="founder-card">
+                    <!-- Image Placeholder --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/AIM%20-%20AI%20Mastery%20Program%20(1).png" alt="Wojciech Zaremba" class="founder-photo"
+                        onerror="this.src='https://placehold.co/120x120/444444/ffffff?text=W.Z.'">
+                    <h3 class="founder-name">Wojciech Zaremba</h3>
+                    <p class="founder-role">Research Scientist</p>
+                    <p class="founder-description">Contributed his expertise in machine learning and robotics to advance the organization's technical capabilities.</p>
+                </article>
+                
+                <article class="founder-card">
+                    <!-- Image Placeholder --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/AIM%20-%20AI%20Mastery%20Program%20(2).png" alt="John Schulman" class="founder-photo"
+                        onerror="this.src='https://placehold.co/120x120/444444/ffffff?text=J.S.'">
+                    <h3 class="founder-name">John Schulman</h3>
+                    <p class="founder-role">Research Scientist</p>
+                    <p class="founder-description">Specialized in reinforcement learning, and his work was fundamental to projects like OpenAI Gym.</p>
+                </article>
+            </div>
+        </section>
 
-        <article class="founder-card">
-          <!-- Image Placeholder --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Ilya%20Sutskever%20(1).png" alt="Ilya Sutskever" class="founder-photo"
-               onerror="this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Ilya%20Sutskever%20(1).png'">
-          <h3 class="founder-name">Ilya Sutskever</h3>
-          <p class="founder-role">Chief Scientist</p>
-          <p class="founder-description">A renowned expert in deep learning, he guided the organization's research initiatives and was instrumental in its early scientific direction.</p>
-        </article>
-        
-        
-        
-        
+        <section class="story-section">
+            <h3><i class="fas fa-users"></i> Other Founding Team Members</h3>
+            <ul class="team-list">
+                <li>Trevor Blackwell</li>
+                <li>Vicki Cheung</li>
+                <li>Andrej Karpathy</li>
+                <li>Durk Kingma</li>
+                <li>Pamela Vagata</li>
+            </ul>
+        </section>
 
-        <article class="founder-card">
-          <!-- Image Placeholder --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/AIM%20-%20AI%20Mastery%20Program%20(1).png" alt="Wojciech Zaremba" class="founder-photo"
-               onerror="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/AIM%20-%20AI%20Mastery%20Program%20(1).png'">
-          <h3 class="founder-name">Wojciech Zaremba</h3>
-          <p class="founder-role">Research Scientist</p>
-          <p class="founder-description">Contributed his expertise in machine learning and robotics to advance the organization's technical capabilities.</p>
-        </article>
-        
-        
-        
-        
-        
+        <section class="story-section">
+            <h3><i class="fas fa-hands-helping"></i> Early Supporters</h3>
+            <ul class="team-list">
+                <li>Reid Hoffman</li>
+                <li>Peter Thiel</li>
+                <li>Amazon Web Services (AWS)</li>
+                <li>Infosys</li>
+            </ul>
+        </section>
+    </main>
 
-        <article class="founder-card">
-          <!-- Image Placeholder --><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/AIM%20-%20AI%20Mastery%20Program%20(2).png" alt="John Schulman" class="founder-photo"
-               onerror="this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/AIM%20-%20AI%20Mastery%20Program%20(2).png'">
-          <h3 class="founder-name">John Schulman</h3>
-          <p class="founder-role">Research Scientist</p>
-          <p class="founder-description">Specialized in reinforcement learning, and his work was fundamental to projects like OpenAI Gym.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="story-section">
-      <h3><i class="fas fa-users"></i> Other Founding Team Members</h3>
-      <ul class="team-list">
-        <li>Trevor Blackwell</li>
-        <li>Vicki Cheung</li>
-        <li>Andrej Karpathy</li>
-        <li>Durk Kingma</li>
-        <li>Pamela Vagata</li>
-      </ul>
-    </section>
-
-    <section class="story-section">
-      <h3><i class="fas fa-hands-helping"></i> Early Supporters</h3>
-      <ul class="team-list">
-        <li>Reid Hoffman</li>
-        <li>Peter Thiel</li>
-        <li>Amazon Web Services (AWS)</li>
-        <li>Infosys</li>
-      </ul>
-    </section>
-  </main>
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <!-- Footer -->
-
-
-  	<footer class="footer">
-            <div class="footer-bg">
-                <div class="footer-container container grid">
-                    <div class="footer-brand">
-    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/494966047320c2c5be07bd50754a7183ffcda611.png" alt="Project Freedom Logo" class="footer-logo">
-    <div class="footer-brand-text">
-        <h3 class="footer-title"AIM™</h3>
-        <span class="footer-subtitle">AI Mastery Program</span>
-    </div>
-</div>
-					
-                    <ul class="footer-links">
-                        <li>
-                            <a href="#home" class="footer-links">Home</a>
-                        </li>
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to Top"></button>
 
 
 
- <li>
-                            <a href="#about" class="footer-links">About</a>
-                        </li>
 
- <li>
-                            <a href="#services" class="footer-links">Services</a>
-                        </li>
-                        <li>
-                            <a href="#work" class="footer-links">Work</a>
-                        </li>
-                        <li>
-                            <a href="#contact" class="footer-links">Contact</a>
-                        </li>
-
-</ul>
-
-                    <div class="footer-socials">
-                        <a href="https://www.facebook.com" target="_blank" class="footer-social">
-                            <i class="uil uil-facebook-f"></i>
-                        </a>
-                        <a href="https://www.instagram.com" target="_blank" class="footer-social">
-                            <i class="uil uil-instagram"></i>
-                        </a>
-                        <a href="https://www.linkedin.com" target="_blank" class="footer-social">
-                            <i class="uil uil-linkedin"></i>
-                        </a>
+   <!-- Standard AIM Footer -->
+	<footer class="footer">
+        <div class="footer-bg">
+            <div class="footer-container container"> 
+                <!-- Logo/Brand Block -->
+                <div class="footer-brand">
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="Project Freedom Logo" class="footer-logo">
+                    <div class="footer-brand-text">
+                        <h3 class="footer-title">AIM™</h3>
+                        <span class="footer-subtitle">AI Mastery Program</span>
                     </div>
                 </div>
-                <p class="footer-copy">Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a></p>
+					
+                <!-- Footer Links -->
+                <ul class="footer-links">
+                    <li><a href="#home" class="footer-links">Home</a></li>
+                    <li><a href="#about" class="footer-links">About</a></li>
+                    <li><a href="#services" class="footer-links">Services</a></li>
+                    <li><a href="#work" class="footer-links">Work</a></li>
+                    <li><a href="#contact" class="footer-links">Contact</a></li>
+                </ul>
+
+                <!-- Social Icons -->
+                <div class="footer-socials">
+                    <a href="https://www.youtube.com" target="_blank" class="footer-social" aria-label="Youtube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" class="footer-social" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="footer-social" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com" target="_blank" class="footer-social" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
             </div>
-        </footer>
+            <p class="footer-copy">Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a></p>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
 
     
+    <!-- JavaScript for Interactions and Animations --><script>
+        document.addEventListener('DOMContentLoaded', () => {
+             // --- Dropdown Menu Click Logic ---
+            const coursesLink = document.getElementById('courses-link');
+            const submenu = document.getElementById('courses-submenu');
+            const navBar = document.getElementById('nav-bar');
 
+            // 1. Toggle visibility on click
+            coursesLink.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                submenu.classList.toggle('active');
+                e.stopPropagation(); 
+            });
 
+            // 2. Close menu when clicking outside the entire navigation bar
+            document.addEventListener('click', (e) => {
+                if (!navBar.contains(e.target) && submenu.classList.contains('active')) {
+                    submenu.classList.remove('active');
+                }
+            });
 
+            // 3. Prevent clicks inside the submenu from closing it immediately
+            submenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
 
+            // --- Back to Top Button Logic ---
+            const toTopButton = document.getElementById('back-to-top');
 
+            window.onscroll = function() {
+                // Show the button after scrolling 300px down
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    toTopButton.classList.add('show');
+                } else {
+                    toTopButton.classList.remove('show');
+                }
+            };
 
+            toTopButton.onclick = function() {
+                // Smoothly scroll to the top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
 
+            // --- Intersection Observer for Scroll Animations ---
+            const animatedElements = document.querySelectorAll('.story-section, .founder-card, .timeline-event');
 
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // When the element is in view
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
 
-
-
-
-
-
-
-
-
-<!-- Back to Top Button -->
-<button id="back-to-top" aria-label="Back to Top"></button>
-
-
-
-
-
-
-<script>
- // --- Back to Top Button Logic ---
-const toTopButton = document.getElementById('back-to-top');
-
-window.onscroll = function() {
-    // Show the button after scrolling 300px down
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        toTopButton.classList.add('show');
-    } else {
-        toTopButton.classList.remove('show');
-    }
-};
-
-toTopButton.onclick = function() {
-    // Smoothly scroll to the top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-};
-</script>
-
-  
-
-  <!-- JavaScript for Animations --><script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Select all elements to animate
-      const animatedElements = document.querySelectorAll('.story-section, .founder-card, .timeline-event');
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          // When the element is in view
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-          // Optional: You can uncomment this to make animations replay
-          // else {
-          //   entry.target.classList.remove('is-visible');
-          // }
+            // Observe each element
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
         });
-      }, {
-        threshold: 0.1 // Trigger when 10% of the element is visible
-      });
-
-      // Observe each element
-      animatedElements.forEach(el => {
-        observer.observe(el);
-      });
-    });
-  </script>
-
+    </script>
 </body>
 </html>
