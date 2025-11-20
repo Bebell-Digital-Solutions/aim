@@ -679,87 +679,133 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Back to Top Button Logic ---
-            const toTopButton = document.getElementById('back-to-top');
-            window.onscroll = function() {
-                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                    toTopButton.classList.add('show');
-                } else {
-                    toTopButton.classList.remove('show');
-                }
-            };
-            toTopButton.onclick = function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
+       document.addEventListener('DOMContentLoaded', () => {
+    // --- Back to Top Button Logic --- (No change)
+    const toTopButton = document.getElementById('back-to-top');
+    window.onscroll = function() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            toTopButton.classList.add('show');
+        } else {
+            toTopButton.classList.remove('show');
+        }
+    };
+    toTopButton.onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
-            // --- Dropdown Menu Click Logic ---
-            const coursesLink = document.getElementById('courses-link');
-            const submenu = document.getElementById('courses-submenu');
-            const navBar = document.getElementById('nav-bar');
-            coursesLink.addEventListener('click', (e) => {
-                e.preventDefault(); 
-                submenu.classList.toggle('active');
-                e.stopPropagation(); 
-            });
-            document.addEventListener('click', (e) => {
-                if (!navBar.contains(e.target) && submenu.classList.contains('active')) {
-                    submenu.classList.remove('active');
-                }
-            });
-            submenu.addEventListener('click', (e) => {
-                e.stopPropagation();
-            });
+    // --- Dropdown Menu Click Logic --- (No change)
+    const coursesLink = document.getElementById('courses-link');
+    const submenu = document.getElementById('courses-submenu');
+    const navBar = document.getElementById('nav-bar');
+    coursesLink.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        submenu.classList.toggle('active');
+        e.stopPropagation(); 
+    });
+    document.addEventListener('click', (e) => {
+        if (!navBar.contains(e.target) && submenu.classList.contains('active')) {
+            submenu.classList.remove('active');
+        }
+    });
+    submenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
 
-            // --- GLOSSARY PAGE SCRIPT ---
-            const alphabet = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
-            const alphabetContainer = document.getElementById("alphabetFilter");
-            const searchBar = document.getElementById("searchBar");
-            const glossaryItems = document.querySelectorAll(".glossary-item");
-            let currentFilterButton = null;
+    // --- GLOSSARY PAGE SCRIPT ---
+    const alphabet = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+    const alphabetContainer = document.getElementById("alphabetFilter");
+    const searchBar = document.getElementById("searchBar");
+    const glossaryItems = document.querySelectorAll(".glossary-item");
+    let currentFilterButton = null;
 
-            // 1. Generate Alphabet Buttons
-            alphabet.forEach(letter => {
-                const btn = document.createElement("button");
-                btn.textContent = letter;
-                btn.onclick = () => filterByLetter(letter, btn);
-                alphabetContainer.appendChild(btn);
-            });
+    // Helper function to reset the list and clear active state
+    function resetFilter(buttonEl) {
+        // Deactivate any active letter filter
+        if (currentFilterButton) {
+            currentFilterButton.classList.remove("active");
+        }
+        
+        // Activate the "ALL" button if provided
+        if (buttonEl) {
+            buttonEl.classList.add("active");
+            currentFilterButton = buttonEl;
+        } else {
+            // This is likely called by the search bar clearing the filter
+            currentFilterButton = null;
+        }
 
-            // 2. Search Bar Logic
-            searchBar.addEventListener("keyup", function() {
-                const query = this.value.toLowerCase();
-                
-                // Deactivate any active letter filter
-                if (currentFilterButton) {
-                    currentFilterButton.classList.remove("active");
-                    currentFilterButton = null;
-                }
-
-                glossaryItems.forEach(item => {
-                    const term = item.getAttribute("data-term").toLowerCase();
-                    item.style.display = term.includes(query) ? "block" : "none";
-                });
-            });
-
-            // 3. Letter Filter Logic
-            function filterByLetter(letter, buttonEl) {
-                // Clear search bar
-                searchBar.value = '';
-
-                // Toggle active class on buttons
-                if (currentFilterButton) {
-                    currentFilterButton.classList.remove("active");
-                }
-                buttonEl.classList.add("active");
-                currentFilterButton = buttonEl;
-
-                glossaryItems.forEach(item => {
-                    const term = item.getAttribute("data-term").toUpperCase();
-                    item.style.display = term.startsWith(letter) ? "block" : "none";
-                });
-            }
+        // Show all items
+        glossaryItems.forEach(item => {
+            item.style.display = "block";
         });
+        
+        // Clear search bar only if called by the "ALL" button itself
+        if (buttonEl) {
+             searchBar.value = '';
+        }
+    }
+
+
+    // 1. Generate ALL Button (NEW)
+    const allBtn = document.createElement("button");
+    allBtn.textContent = "ALL";
+    allBtn.classList.add("active"); // Set 'ALL' as default active
+    allBtn.onclick = () => resetFilter(allBtn);
+    alphabetContainer.appendChild(allBtn);
+    currentFilterButton = allBtn; // Set the default active button
+
+
+    // 2. Generate Alphabet Buttons
+    alphabet.forEach(letter => {
+        const btn = document.createElement("button");
+        btn.textContent = letter;
+        btn.onclick = () => filterByLetter(letter, btn);
+        alphabetContainer.appendChild(btn);
+    });
+
+    // 3. Search Bar Logic (Updated to reset letter filter)
+    searchBar.addEventListener("keyup", function() {
+        const query = this.value.toLowerCase();
+        
+        // Deactivate any active letter filter if query is not empty
+        // If the query is empty, we effectively perform a full reset
+        if (query.length === 0) {
+            resetFilter(allBtn); // Go back to 'ALL' state
+            return;
+        }
+
+        if (currentFilterButton) {
+            currentFilterButton.classList.remove("active");
+            currentFilterButton = null;
+        }
+
+        glossaryItems.forEach(item => {
+            const term = item.getAttribute("data-term").toLowerCase();
+            item.style.display = term.includes(query) ? "block" : "none";
+        });
+    });
+
+    // 4. Letter Filter Logic (Updated to clear search bar)
+    function filterByLetter(letter, buttonEl) {
+        // Clear search bar
+        searchBar.value = '';
+
+        // Toggle active class on buttons
+        if (currentFilterButton) {
+            currentFilterButton.classList.remove("active");
+        }
+        buttonEl.classList.add("active");
+        currentFilterButton = buttonEl;
+
+        glossaryItems.forEach(item => {
+            const term = item.getAttribute("data-term").toUpperCase();
+            item.style.display = term.startsWith(letter) ? "block" : "none";
+        });
+    }
+
+    // Initial load: show all items, which is the default for an un-filtered state
+    resetFilter(allBtn); 
+});
     </script>
 </body>
 </html>
