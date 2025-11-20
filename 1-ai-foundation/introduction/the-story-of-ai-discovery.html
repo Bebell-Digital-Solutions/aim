@@ -677,6 +677,184 @@
 
 
 
+/* Footer */
+.footer {
+    padding-top: 2rem;
+}
+
+.footer-container {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 1.6rem;
+}
+
+.footer-bg {
+    background-color: var(--box-color);
+    padding: 3rem 0 3.5rem;
+}
+
+.footer-title {
+    font-size: var(--h3-font-size);
+    margin-bottom: var(--mb025);
+    color: var(--title-color);
+}
+
+.footer-subtitle {
+    font-size: var(--small-font-size);
+    color: var(--title-color);
+}
+
+.footer-links {
+    display: flex;
+    justify-self: center;
+    column-gap: 2rem;
+    color: var(--title-color);
+}
+
+.footer-links:hover {
+    color: var(--skin-color);
+}
+
+.footer-socials {
+    justify-self: flex-end;
+}
+
+.footer-social {
+    font-size: 1.25rem;
+    margin-right: var(--mb15);
+    color: var(--title-color);
+}
+
+.footer-social:hover {
+    color: var(--skin-color);
+}
+
+.footer-copy {
+    font-size: var(--smaller-font-size);
+    text-align: center;
+    margin-top: 4.5rem;
+}
+
+.footer-copy a {
+    font-family: var(--signature-font);
+    color: var(--title-color);
+}
+
+.footer-copy a:hover {
+    color: var(--skin-color);
+}
+
+.footer-title,
+.footer-subtitle,
+.footer-links,
+.footer-social,
+.footer-copy a {
+    color: var(--title-color);
+}
+
+/* Footer Logo Styles */
+.footer-logo {
+    width: 50px;
+    height: auto;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.footer-logo.large {
+    width: 80px;
+}
+
+.footer-logo.small {
+    width: 40px;
+}
+
+.footer-logo:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.footer-container > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Community Button Styles */
+.community-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.community-button {
+    font-size: var(--h3-font-size);
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(255, 80, 17, 0.3);
+}
+
+.community-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 80, 17, 0.4);
+}
+
+/* Media Queries for Footer */
+@media screen and (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 3rem;
+    }
+    
+    .footer-socials {
+        justify-self: start;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        row-gap: 1.5rem;
+    }
+    
+    .footer-bg {
+        padding: 2rem 0 3rem;
+    }
+    
+    .footer-copy {
+        margin-top: var(--mb3);
+    }
+    
+    .footer-logo {
+        width: 40px;
+        margin-bottom: 0.75rem;
+    }
+    
+    .footer-container > div:first-child {
+        align-items: center;
+        text-align: center;
+    }
+    
+    .community-button {
+        font-size: var(--normal-font-size);
+        padding: 0.875rem 1.75rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-links {
+        justify-self: flex-start;
+    }
+}
+
+
+
+
+
+    
+
 
  /* Page loader container with black background */
   .page-loader {
@@ -737,6 +915,57 @@
   }
 
 
+
+
+
+
+        /* Swiper */
+        .swiper-pagination-bullet {
+            background-color: var(--box-color);
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: var(--skin-color);
+        }
+
+        .swiper-scrollbar {
+            background: var(--scroll-box-color);
+        }
+
+        .swiper-scrollbar-drag {
+            background: var(--skin-color);
+        }
+
+
+/* --- Back to Top Button Styles --- */
+#back-to-top {
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px;
+    width: 50px; 
+    height: 50px;
+    /* Custom image URL */
+    background: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597') no-repeat center center;
+    background-size: cover;
+    border: none; 
+    border-radius: 50%;
+    cursor: pointer; 
+    opacity: 0; 
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    z-index: 999;
+}
+#back-to-top.show { 
+    opacity: 1; 
+    visibility: visible; 
+}
+#back-to-top:hover { 
+    transform: scale(1.1); 
+}
+
+
+
+    
     
   </style>
 
@@ -1037,9 +1266,115 @@
     </section>
   </main>
 
-  <!-- Footer --><footer>
-    <p>&copy; 2025 AIM™. All rights reserved. The Story of AI.</p>
-  </footer>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- Footer -->
+
+
+  	<footer class="footer">
+            <div class="footer-bg">
+                <div class="footer-container container grid">
+                    <div class="footer-brand">
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/494966047320c2c5be07bd50754a7183ffcda611.png" alt="Project Freedom Logo" class="footer-logo">
+    <div class="footer-brand-text">
+        <h3 class="footer-title"AIM™</h3>
+        <span class="footer-subtitle">AI Mastery Program</span>
+    </div>
+</div>
+					
+                    <ul class="footer-links">
+                        <li>
+                            <a href="#home" class="footer-links">Home</a>
+                        </li>
+
+
+
+ <li>
+                            <a href="#about" class="footer-links">About</a>
+                        </li>
+
+ <li>
+                            <a href="#services" class="footer-links">Services</a>
+                        </li>
+                        <li>
+                            <a href="#work" class="footer-links">Work</a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="footer-links">Contact</a>
+                        </li>
+
+</ul>
+
+                    <div class="footer-socials">
+                        <a href="https://www.facebook.com" target="_blank" class="footer-social">
+                            <i class="uil uil-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com" target="_blank" class="footer-social">
+                            <i class="uil uil-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com" target="_blank" class="footer-social">
+                            <i class="uil uil-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="footer-copy">Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a></p>
+            </div>
+        </footer>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Back to Top Button -->
+<button id="back-to-top" aria-label="Back to Top"></button>
+
+
+
+
+
+
+<script>
+ // --- Back to Top Button Logic ---
+const toTopButton = document.getElementById('back-to-top');
+
+window.onscroll = function() {
+    // Show the button after scrolling 300px down
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        toTopButton.classList.add('show');
+    } else {
+        toTopButton.classList.remove('show');
+    }
+};
+
+toTopButton.onclick = function() {
+    // Smoothly scroll to the top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+</script>
+
+  
 
   <!-- JavaScript for Animations --><script>
     document.addEventListener('DOMContentLoaded', () => {
