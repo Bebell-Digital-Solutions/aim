@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans - AIM™</title> 
+    
+    <!-- Import Inter font --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Font Awesome) --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon --><link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
+  
+    <style>
+        /* --- AIM Brand Styles (from Knowledge Base) --- */
+        :root {
+            --skin-color: #ff5011;
+            --mirage-color: hsl(210, 10%, 23%);
+            --title-color: hsl(242, 8%, 98%);
+            --text-color: hsl(242, 8%, 80%);
+            --body-color: #0d0d0d;
+            --box-color: hsl(242, 14%, 12%);
+            --body-font: 'Inter', sans-serif;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            --small-font-size: 0.95rem;
+            --h3-font-size: 1.25rem;
+            --smaller-font-size: 0.75rem;
+            --mb15: 0.75rem;
+            --mb3: 1.5rem;
+        }
+
+        /* --- Base & Scrollbar --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: var(--body-font);
+            background-color: var(--body-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 8rem; /* Space for fixed nav */
+            overflow-x: hidden;
+        }
+        main { 
+            /* Increased max-width to match the original layout's spaciousness */
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 0 20px;
+            display: grid;
+            grid-gap: 20px;
+        }
+        img { max-width: 100%; height: auto; display: block; }
+
+        a { text-decoration: none; cursor: pointer; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #333; }
+        ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
+        
+        /* Utility container class for maximum content width */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* --- Global Button Style --- */
+        .btn {
+            background: var(--skin-color);
+            color: var(--title-color);
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border: 0;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 80, 17, 0.4);
+        }
+
+        /* --- Navigation Bar (Fixed Header Skeleton) --- */
+        #nav-bar {
+            position: fixed; top: 2rem; left: 50%; transform: translateX(-50%);
+            background: rgba(25, 25, 25, 0.85); backdrop-filter: blur(10px);
+            border: 1px solid var(--box-color); border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem; display: flex; align-items: center;
+            max-width: 1100px; width: 90%; z-index: 1000;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+        #nav-logo img { height: 35px; }
+        #nav-menu { display: flex; gap: 1.5rem; margin-left: auto; align-items: center; }
+        .nav-link { color: var(--text-color); transition: color 0.3s, transform 0.2s; font-weight: 500; }
+        .nav-link:hover { color: var(--skin-color); transform: translateY(-1px); }
+        .nav-cta {
+            background: linear-gradient(90deg, var(--skin-color), #d43a00);
+            color: var(--title-color); padding: 0.5rem 1rem; border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); }
+        .has-submenu { position: relative; }
+        
+        /* Submenu Default State (Hidden) */
+        .submenu-courses {
+            position: absolute; 
+            top: 100%; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: var(--box-color); 
+            border-radius: 0.5rem; 
+            padding: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
+            opacity: 0; 
+            pointer-events: none; 
+            transition: opacity 0.3s, top 0.3s; 
+            width: 200px;
+        }
+        
+        /* Submenu Active State (Shown via JavaScript click) */
+        .submenu-courses.active { 
+            opacity: 1; 
+            pointer-events: auto; 
+            top: 100%; 
+        }
+
+        .submenu-link { display: flex; align-items: center; gap: 0.75rem; color: var(--text-color); padding: 0.5rem; border-radius: 0.25rem; transition: background-color 0.3s, color 0.3s; }
+        .submenu-link:hover { background-color: rgba(255, 80, 17, 0.1); color: var(--skin-color); }
+        .submenu-link i { width: 15px; text-align: center; }
+
+
+        /* --- Top Container Layout --- */
+        .top-container {
+            display: grid;
+            grid-gap: 20px;
+            grid-template-areas:
+                'showcase showcase top-box-a'
+                'showcase showcase top-box-b';
+        }
+
+        /* Showcase - Main Box (Background Image Fix Applied Here) */
+        .showcase {
+            grid-area: showcase;
+            min-height: 400px;
+            /* FIX: Enclosed URL in quotes to correctly handle special characters and blend with gradient */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/Untitled%20design%20(1).png?q=80&w=1170&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            border-radius: 12px;
+            border: 1px solid var(--mirage-color);
+        }
+
+        .showcase h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0;
+            color: var(--title-color);
+        }
+
+        .showcase p {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            max-width: 500px;
+        }
+
+        /* Top Box */
+        .top-box {
+            background: var(--box-color);
+            display: grid;
+            align-items: center;
+            justify-items: center;
+            text-align: center;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--mirage-color);
+        }
+
+        .top-box h4 {
+            font-size: 1.3rem;
+            color: var(--title-color);
+        }
+
+        .top-box .price {
+            font-size: 2.5rem;
+            color: var(--skin-color);
+            font-weight: 700;
+            position: relative; /* Needed for pseudo-element positioning */
+            display: inline-block; /* Make it respect width of content */
+            padding-bottom: 5px; /* Space for the line */
+        }
+        
+        /* ADDED: Hand-drawn line effect */
+        .top-box .price::after {
+            content: '';
+            position: absolute;
+            left: 5%; /* Start slightly in from the left */
+            bottom: 0;
+            width: 90%; /* Width of the line */
+            height: 3px; /* Thickness of the line */
+            background-color: var(--skin-color);
+            border-radius: 5px; /* Slightly rounded ends */
+            transform: rotate(-1deg); /* Slight rotation for a "hand-drawn" look */
+        }
+
+
+        .top-box p {
+            color: var(--text-color);
+            margin: 0.5rem 0;
+        }
+
+        .top-box-a {
+            grid-area: top-box-a;
+        }
+
+        .top-box-b {
+            grid-area: top-box-b;
+        }
+
+        /* Boxes Section */
+        .boxes {
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        .box {
+            background: var(--box-color);
+            text-align: center;
+            padding: 1.5rem 2rem;
+            box-shadow: var(--shadow);
+            border-radius: 12px;
+            border: 1px solid var(--mirage-color);
+            /* ADDED: Smooth transition for hover effects */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* ADDED: Hover effect for feature cards */
+        .box:hover {
+            transform: translateY(-5px); /* Lift the card */
+            /* Add a deeper shadow and a subtle skin-color glow */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 80, 17, 0.5);
+        }
+
+        .box h3 {
+            color: var(--title-color);
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .box i {
+            color: var(--skin-color);
+        }
+
+        /* Info Section */
+        .info {
+            background: var(--box-color);
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-gap: 30px;
+            grid-template-columns: 1fr 1fr;
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid var(--mirage-color);
+            align-items: center;
+        }
+
+        .info h2 {
+            color: var(--title-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Ensure proper spacing in the content block */
+        .info > div > p {
+            margin-bottom: 2rem;
+        }
+        
+        /* Removed .info img styling as it is replaced by video */
+        /* .info img { ... } */
+
+        /* ADDED: Responsive video container styles */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Portfolio Carousel */
+        .portfolio-carousel {
+            background: var(--box-color);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--mirage-color);
+            box-shadow: var(--shadow);
+        }
+        .portfolio-carousel h2 {
+            color: var(--title-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+        .carousel-slide img {
+            width: 100%;
+            display: block;
+        }
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(13, 13, 13, 0.7);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            z-index: 10;
+        }
+        .prev-button { left: 10px; }
+        .next-button { right: 10px; }
+
+
+        /* --- Back to Top Button --- */
+        #back-to-top {
+            position: fixed; bottom: 20px; right: 20px;
+            width: 50px; height: 50px;
+            /* Custom image URL */
+            background: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597') no-repeat center center;
+            background-size: cover;
+            border: none; border-radius: 50%;
+            cursor: pointer; 
+            opacity: 0; 
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 999;
+        }
+        #back-to-top.show { opacity: 1; visibility: visible; }
+        #back-to-top:hover { transform: scale(1.1); }
+
+        /* --- Footer (Standard AIM Footer) --- */
+        .footer {
+            padding-top: 2rem;
+        }
+
+        .footer-bg {
+            background-color: var(--box-color);
+            padding: 3rem 0 3.5rem;
+        }
+        
+        .footer-container {
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 1.6rem;
+        }
+
+        .footer-title {
+            font-size: var(--h3-font-size);
+            margin-bottom: 0.25rem; 
+            color: var(--title-color);
+        }
+
+        .footer-subtitle {
+            font-size: var(--small-font-size);
+            color: var(--title-color);
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            justify-self: center;
+            column-gap: 2rem;
+            padding: 0;
+        }
+
+        .footer-links a {
+            color: var(--title-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: var(--skin-color);
+        }
+
+        .footer-socials {
+            justify-self: flex-end;
+            display: flex; 
+            align-items: center;
+            gap: var(--mb15);
+        }
+
+        .footer-social {
+            font-size: 1.25rem;
+            color: var(--title-color);
+            transition: color 0.3s;
+        }
+
+        .footer-social:hover {
+            color: var(--skin-color);
+            cursor: pointer; 
+        }
+
+        .footer-copy {
+            font-size: var(--smaller-font-size);
+            text-align: center;
+            margin-top: 4.5rem;
+        }
+
+        .footer-copy a {
+            color: var(--title-color);
+            text-decoration: none;
+        }
+
+        .footer-copy a:hover {
+            color: var(--skin-color);
+        }
+        
+        /* Footer Logo Styles (Desktop) */
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            gap: 0.5rem; 
+        }
+        .footer-brand-text { 
+            text-align: left;
+        }
+        .footer-logo {
+            width: 30px;
+            height: auto;
+            display: block;
+        }
+
+
+        /* --- Responsive Styles --- */
+        @media screen and (max-width: 900px) {
+            .top-container {
+                grid-template-areas:
+                    'showcase showcase'
+                    'top-box-a top-box-b';
+            }
+            .showcase h1 { font-size: 2.5rem; }
+            .info { grid-template-columns: 1fr; }
+            .info .btn { display: block; text-align: center; margin: auto; }
+            #nav-menu { display: none; } /* Hide complex nav on smaller tablets/mobiles */
+        }
+        
+        @media (max-width: 500px) {
+            body { padding-top: 6rem; }
+            .top-container {
+                grid-template-areas:
+                    'showcase'
+                    'top-box-a'
+                    'top-box-b';
+            }
+            .showcase { padding: 2rem 1.5rem; }
+            .footer-container {
+                grid-template-columns: 1fr;
+                row-gap: 3rem;
+                text-align: center;
+            }
+            .footer-brand { align-items: center; text-align: center; justify-content: center; }
+            .footer-brand-text { text-align: center; }
+            .footer-socials { justify-content: center; justify-self: center; }
+            .footer-links { flex-direction: column; row-gap: 1.5rem; justify-self: center; }
+            .footer-bg { padding: 2rem 0 3rem; }
+            .footer-copy { margin-top: var(--mb3); }
+        }
+
+
+
+
+ 
+ 
+ 
+ /* Page loader container with black background */
+  .page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Added text header */
+  .loader-header {
+    color: white;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  /* Your progress bar - unchanged */
+  .progress {
+    width: 272.8px;
+    height: 41.7px;
+    border-radius: 28.8px;
+    color: #ff5011;
+    background-color: #000;
+    border: 2.9px solid;
+    position: relative;
+  }
+
+  .progress::before {
+    content: "";
+    position: absolute;
+    margin: 2.9px;
+    inset: 0 100% 0 0;
+    border-radius: inherit;
+    background: currentColor;
+    animation: progress-pf82op 1.5s forwards;
+  }
+
+  @keyframes progress-pf82op {
+    100% {
+      inset: 0;
+    }
+  }
+
+  /* Hide transition */
+  .page-loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+      
+    </style>
+
+<!-- Page Loader HTML -->
+<script>
+  // --- Page Loader Logic ---
+  function showLoader() {
+    const loader = document.createElement('div');
+    loader.className = 'page-loader';
+    loader.innerHTML = `
+      <div class="loader-header">Wait for it...</div>
+      <div class="progress"></div>
+    `;
+    document.body.appendChild(loader);
+    return loader;
+  }
+
+  function initLoader() {
+    const loader = showLoader();
+    setTimeout(() => {
+      loader.classList.add('hidden');
+      setTimeout(() => loader.remove(), 300); // Remove after fade out
+    }, 1500); // Adjust duration as needed
+  }
+
+  document.addEventListener('DOMContentLoaded', initLoader);
+</script>
+<!-- Loader Div is injected by the script above -->
+
+  
+</head>
+<body>
+
+    <!-- Navigation Bar (Header) --><nav id="nav-bar">
+      <a href="/" id="nav-logo">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
+      </a>
+      <div id="nav-menu">
+        <a href="/" class="nav-link">Homepage</a>
+        
+        <!-- Courses Dropdown --><div class="nav-item has-submenu">
+          <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
+          <div class="submenu-courses" id="courses-submenu">
+            <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
+            <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
+            <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+          </div>
+        </div>
+        
+        <a href="/pricing" class="nav-link" style="color: var(--skin-color);">Pricing</a>
+        <a href="/helpcenter" class="nav-link">HelpCenter</a>
+        <a href="/login" class="nav-cta">LOGIN</a>
+      </div>
+    </nav>
+
+    <main>
+        
+        <!-- Top Container --><section class="top-container">
+            <header class="showcase">
+                <h1>AIM™ Unlimited Access</h1>
+                <p>Unlock your full potential with our comprehensive AI courses. Choose the plan that best fits your learning journey.</p>
+                <a href="#" class="btn">Learn More</a>
+            </header>
+            <div class="top-box top-box-a">
+                <h4>Annual Access</h4>
+                <p class="price">$150/yr</p>
+                <p>Unlimited access to all courses.</p>
+                <!-- UPDATED: Added href="#" placeholder --><a href="#" class="btn">Buy Now</a>
+            </div>
+            <div class="top-box top-box-b">
+                <h4>Lifetime Pro</h4>
+                <p class="price">$499</p>
+                <p>One-time fee for lifetime access.</p>
+                <!-- UPDATED: Added href="#" placeholder --><a href="#" class="btn">Get Lifetime Access</a>
+            </div>
+        </section>
+
+        <!-- Boxes Section --><section class="boxes">
+            <div class="box">
+                <i class="fas fa-brain fa-3x"></i>
+                <h3>Expert-Led Courses</h3>
+                <p>Learn from industry leaders at the forefront of AI technology and application.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-book fa-3x"></i>
+                <h3>Pro Resources</h3>
+                <p>Gain access to exclusive guides, templates, and tools with our Lifetime plan.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-sync-alt fa-3x"></i>
+                <h3>Lifetime Updates </h3>
+                <p>The world of AI is always evolving. Your course materials will be, too.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-users fa-3x"></i>
+                <h3>Community Access</h3>
+                <p>Connect with fellow learners, share insights, and grow together.</p>
+            </div>
+        </section>
+
+        <!-- Info Section -->
+        <section class="info">
+            <!-- REPLACED: Image with responsive YouTube embed -->
+            <div class="video-wrapper">
+                <iframe 
+                    src="https://www.youtube.com/embed/moxDPPD9pyk?si=xSO36vML2v7hnNCw" 
+                    title="AI Course Introduction Video" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div>
+                <h2>Master AI, Transform Your Career</h2>
+                <p>Our curriculum is designed to take you from foundational concepts to advanced applications. Learn practical skills that you can apply immediately to solve real-world problems and drive business innovation.</p>
+                <a href="#" class="btn">View Courses</a>
+            </div>
+        </section>
+        
+        
+        
+
+        <!-- Portfolio Carousel --><section class="portfolio-carousel">
+            <h2>Student Projects Showcase</h2>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                 
+                 
+                 <div class="carousel-slide"><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/1.png?updatedAt=1763409733843" alt="Tech Image 1"></div>
+                    
+                    
+                    
+                    <div class="carousel-slide"><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/2.png?updatedAt=1763409734234" onerror="this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/2.png?updatedAt=1763409734234'" alt="Tech Image 2"></div>
+                    
+                    
+                    
+                    <div class="carousel-slide"><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/3.png?updatedAt=1763409733814'" alt="Tech Image 3"></div>
+                    
+                    
+                    <div class="carousel-slide"><img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/4.png?updatedAt=1763409734210" onerror="this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/4.png?updatedAt=1763409734210'" alt="Tech Image 4"></div>
+
+
+
+</div>
+
+
+                <button class="carousel-button prev-button" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-button next-button" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            
+            
+        </section>
+        
+    </main>
+    
+    <!-- Back to Top Button --><button id="back-to-top" aria-label="Back to Top"></button>
+    
+    <!-- Standard AIM Footer --><footer class="footer">
+        <div class="footer-bg">
+            <div class="footer-container container"> 
+                <!-- Logo/Brand Block --><div class="footer-brand">
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="AIM Logo" class="footer-logo">
+                    <div class="footer-brand-text">
+                        <h3 class="footer-title">AIM™</h3>
+                        <span class="footer-subtitle">AI Mastery Program</span>
+                    </div>
+                </div>
+
+              
+                    
+                <!-- Footer Links --><ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+
+                <!-- Social Icons --><div class="footer-socials">
+                    <a href="https://www.youtube.com" target="_blank" class="footer-social" aria-label="Youtube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" class="footer-social" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="footer-social" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com" target="_blank" class="footer-social" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <p class="footer-copy">Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a></p>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+  
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Navigation Dropdown Logic ---
+            const coursesLink = document.getElementById('courses-link');
+            const submenu = document.getElementById('courses-submenu');
+            const navBar = document.getElementById('nav-bar');
+
+            if (coursesLink && submenu && navBar) {
+                // 1. Toggle visibility on click
+                coursesLink.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    submenu.classList.toggle('active');
+                    e.stopPropagation(); 
+                });
+
+                // 2. Close menu when clicking outside the entire navigation bar
+                document.addEventListener('click', (e) => {
+                    if (!navBar.contains(e.target) && submenu.classList.contains('active')) {
+                        submenu.classList.remove('active');
+                    }
+                });
+
+                // 3. Prevent clicks inside the submenu from closing it immediately
+                submenu.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            }
+
+
+
+
+
+
+          
+
+            // --- Back to Top Button Logic ---
+            const toTopButton = document.getElementById('back-to-top');
+            
+            window.onscroll = function() {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    toTopButton.classList.add('show');
+                } else {
+                    toTopButton.classList.remove('show');
+                }
+            };
+
+            toTopButton.onclick = function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+
+
+
+          
+
+            // --- Portfolio Carousel Logic ---
+            const track = document.querySelector('.carousel-track');
+            const slides = Array.from(track.children);
+            const nextButton = document.querySelector('.next-button');
+            const prevButton = document.querySelector('.prev-button');
+            
+            if (track && slides.length > 0) {
+                const getSlideWidth = () => slides[0].getBoundingClientRect().width;
+
+                let currentIndex = 0;
+
+                const moveToSlide = (newIndex) => {
+                    if (newIndex < 0) newIndex = slides.length - 1; // Loop back to end
+                    if (newIndex >= slides.length) newIndex = 0; // Loop back to start
+                    
+                    const slideWidth = getSlideWidth();
+                    track.style.transform = 'translateX(-' + slideWidth * newIndex + 'px)';
+                    currentIndex = newIndex;
+                };
+
+                // When I click left, move slides to the left
+                prevButton.addEventListener('click', e => {
+                    moveToSlide(currentIndex - 1);
+                });
+
+                // When I click right, move slides to the right
+                nextButton.addEventListener('click', e => {
+                    moveToSlide(currentIndex + 1);
+                });
+
+                // Auto-update slide width on window resize
+                window.addEventListener('resize', () => {
+                    const newSlideWidth = getSlideWidth();
+                    track.style.transition = 'none'; // Disable transition during resize
+                    // Recalculate position based on new width
+                    track.style.transform = 'translateX(-' + newSlideWidth * currentIndex + 'px)';
+                    setTimeout(() => {
+                        track.style.transition = 'transform 0.5s ease-in-out';
+                    }, 50);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
