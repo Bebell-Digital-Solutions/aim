@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- !!! IMPORTANT: UPDATE THE TITLE TAG FOR EACH UNIQUE PAGE !!! -->
+    <title>AI Glossary - AIM™</title> 
+    
+    <!-- Import Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
+  
+    <style>
+        /* --- AIM Brand Styles (from Knowledge Base) --- */
+        :root {
+            --skin-color: #ff5011;
+            --mirage-color: hsl(210, 10%, 23%);
+            --title-color: hsl(242, 8%, 98%);
+            --text-color: hsl(242, 8%, 80%);
+            --body-color: #0d0d0d;
+            --box-color: hsl(242, 14%, 12%);
+            --body-font: 'Inter', sans-serif;
+            --small-font-size: 0.95rem;
+            --h3-font-size: 1.25rem;
+            --smaller-font-size: 0.75rem;
+            --mb15: 0.75rem;
+            --mb3: 1.5rem;
+        }
+
+        /* --- Base & Scrollbar --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: var(--body-font);
+            background-color: var(--body-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 8rem; /* Space for fixed nav */
+            overflow-x: hidden;
+        }
+        main { max-width: 980px; margin: 0 auto; padding: 0 1rem; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        a { text-decoration: none; cursor: pointer; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #333; }
+        ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
+        
+        /* Utility container class for maximum content width */
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* --- Loader and Animations (Included for completeness) --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .page-loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #000; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 9999;
+            transition: opacity 0.5s ease; opacity: 1;
+        }
+        .page-loader.hidden { opacity: 0; pointer-events: none; }
+        .loader-header { color: var(--title-color); font-size: 1.5rem; margin-bottom: 1rem; }
+        .progress { width: 80%; max-width: 300px; height: 5px; background-color: #333; border-radius: 5px; overflow: hidden; }
+        .progress::before {
+            content: ''; display: block; width: 100%; height: 100%;
+            background: var(--skin-color);
+            transform-origin: left;
+            animation: load 1.5s ease-out forwards;
+        }
+        @keyframes load { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+        /* --- Navigation Bar --- */
+        #nav-bar {
+            position: fixed; top: 2rem; left: 50%; transform: translateX(-50%);
+            background: rgba(25, 25, 25, 0.85); backdrop-filter: blur(10px);
+            border: 1px solid var(--box-color); border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem; display: flex; align-items: center;
+            max-width: 980px; width: 90%; z-index: 1000;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+        #nav-logo img { height: 35px; }
+        #nav-menu { display: flex; gap: 1.5rem; margin-left: auto; align-items: center; }
+        .nav-link { color: var(--text-color); transition: color 0.3s, transform 0.2s; font-weight: 500; }
+        .nav-link:hover { color: var(--skin-color); transform: translateY(-1px); }
+        .nav-cta {
+            background: linear-gradient(90deg, var(--skin-color), #d43a00);
+            color: var(--title-color); padding: 0.5rem 1rem; border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); }
+        .has-submenu { position: relative; }
+        
+        /* Submenu Default State (Hidden) */
+        .submenu-courses {
+            position: absolute; 
+            top: 100%; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: var(--box-color); 
+            border-radius: 0.5rem; 
+            padding: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
+            opacity: 0; 
+            pointer-events: none; 
+            transition: opacity 0.3s, top 0.3s; 
+            width: 200px;
+        }
+        
+        /* Submenu Active State (Shown via JavaScript click) */
+        .submenu-courses.active { 
+            opacity: 1; 
+            pointer-events: auto; 
+            top: 100%; 
+        }
+
+        .submenu-link { display: flex; align-items: center; gap: 0.75rem; color: var(--text-color); padding: 0.5rem; border-radius: 0.25rem; transition: background-color 0.3s, color 0.3s; }
+        .submenu-link:hover { background-color: rgba(255, 80, 17, 0.1); color: var(--skin-color); }
+        .submenu-link i { width: 15px; text-align: center; }
+
+        /* --- Back to Top Button --- */
+        #back-to-top {
+            position: fixed; bottom: 20px; right: 20px;
+            width: 50px; height: 50px;
+            /* Custom image URL */
+            background: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597') no-repeat center center;
+            background-size: cover;
+            border: none; border-radius: 50%;
+            cursor: pointer; 
+            opacity: 0; 
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 999;
+        }
+        #back-to-top.show { opacity: 1; visibility: visible; }
+        #back-to-top:hover { transform: scale(1.1); }
+
+        /* --- Footer (Main Page Footer) --- */
+        .footer {
+            padding-top: 2rem;
+        }
+
+        .footer-bg {
+            background-color: var(--box-color);
+            padding: 3rem 0 3.5rem;
+        }
+        
+        .footer-container {
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 1.6rem;
+        }
+
+        .footer-title {
+            font-size: var(--h3-font-size);
+            margin-bottom: 0.25rem; 
+            color: var(--title-color);
+        }
+
+        .footer-subtitle {
+            font-size: var(--small-font-size);
+            color: var(--title-color);
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            justify-self: center;
+            column-gap: 2rem;
+            color: var(--title-color);
+        }
+
+        .footer-links:hover {
+            color: var(--skin-color);
+        }
+
+        .footer-socials {
+            justify-self: flex-end;
+            display: flex; 
+            align-items: center;
+            gap: var(--mb15);
+        }
+
+        .footer-social {
+            font-size: 1.25rem;
+            color: var(--title-color);
+            transition: color 0.3s;
+        }
+
+        .footer-social:hover {
+            color: var(--skin-color);
+            cursor: pointer; 
+        }
+
+        .footer-copy {
+            font-size: var(--smaller-font-size);
+            text-align: center;
+            margin-top: 4.5rem;
+        }
+
+        .footer-copy a {
+            color: var(--title-color);
+        }
+
+        .footer-copy a:hover {
+            color: var(--skin-color);
+        }
+
+        .footer-title,
+        .footer-subtitle,
+        .footer-links,
+        .footer-social,
+        .footer-copy a {
+            color: var(--title-color);
+        }
+
+        /* Footer Logo Styles (Desktop) */
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            gap: 0.5rem; 
+        }
+        .footer-brand-text { 
+            text-align: left;
+        }
+        .footer-logo {
+            width: 30px;
+            height: auto;
+            display: block;
+        }
+
+        .footer-logo:hover {
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* --- Responsive Styles --- */
+        @media screen and (max-width: 767px) {
+            /* General mobile layout adjustments */
+            .footer-container {
+                grid-template-columns: 1fr;
+                row-gap: 3rem;
+                text-align: center;
+            }
+            .footer-brand {
+                align-items: center; /* Center align on mobile */
+                text-align: center;
+                justify-content: center;
+            }
+            .footer-brand-text {
+                text-align: center; /* Center align text on mobile */
+            }
+            .footer-socials {
+                justify-content: center;
+                justify-self: center;
+            }
+            .footer-links {
+                flex-direction: column;
+                row-gap: 1.5rem;
+                justify-self: center;
+            }
+            .footer-bg {
+                padding: 2rem 0 3rem;
+            }
+            .footer-copy {
+                margin-top: var(--mb3);
+            }
+        }
+
+        /* --- GLOSSARY PAGE SPECIFIC STYLES --- */
+        .glossary-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .glossary-header h1 {
+            color: var(--skin-color);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .glossary-header p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        /* Search bar */
+        #searchBar {
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 1rem;
+            border: 1px solid var(--skin-color);
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            background-color: var(--box-color);
+            color: var(--title-color);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        #searchBar:focus {
+            outline: none;
+            border-color: var(--skin-color);
+            box-shadow: 0 0 0 3px rgba(255, 80, 17, 0.2);
+        }
+
+        /* Alphabet filter */
+        .alphabet-filter {
+            margin-bottom: 2.5rem;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .alphabet-filter button {
+            background-color: var(--box-color);
+            border: 1px solid var(--mirage-color);
+            color: var(--text-color);
+            padding: 8px 14px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-family: var(--body-font);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .alphabet-filter button:hover, .alphabet-filter button.active {
+            background-color: var(--skin-color);
+            color: var(--title-color);
+            transform: translateY(-2px);
+            border-color: var(--skin-color);
+        }
+
+        /* Glossary styling */
+        .glossary-item {
+            background-color: var(--box-color);
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--mirage-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 0; /* Start hidden for animation */
+        }
+        .glossary-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 80, 17, 0.2);
+        }
+        .term {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--skin-color);
+        }
+        .definition {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar (Header) -->
+    <nav id="nav-bar">
+      <a href="/" id="nav-logo">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
+      </a>
+      <div id="nav-menu">
+        <a href="/" class="nav-link">Homepage</a>
+        <div class="nav-item has-submenu">
+          <!-- Non-navigating link to trigger dropdown on click -->
+          <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
+          <div class="submenu-courses" id="courses-submenu">
+            <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
+            <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
+            <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+          </div>
+        </div>
+        <a href="/pricing" class="nav-link">Pricing</a>
+        <a href="/helpcenter" class="nav-link">HelpCenter</a>
+        <a href="/login" class="nav-cta">LOGIN</a>
+      </div>
+    </nav>
+
+<main>
+    <!-- 
+        *** START OF PAGE CONTENT AREA ***
+    -->
+
+    <div class="glossary-header">
+        <h1>AI Glossary</h1>
+        <p>Your comprehensive guide to the language of Artificial Intelligence.</p>
+    </div>
+
+    <!-- Search bar -->
+    <input type="text" id="searchBar" placeholder="Search for a term (e.g., 'LLM', 'RAG')...">
+
+    <!-- Alphabet filter -->
+    <div class="alphabet-filter" id="alphabetFilter">
+        <!-- Buttons are auto-generated by JavaScript -->
+    </div>
+
+    <!-- Glossary list -->
+    <div id="glossaryContainer">
+        <!-- All glossary items in alphabetical order -->
+        <div class="glossary-item" data-term="3D Reconstruction"><div class="term">3D Reconstruction</div><div class="definition">Converting 2D images to 3D models.</div></div>
+        <div class="glossary-item" data-term="Accountability"><div class="term">Accountability</div><div class="definition">Assigning responsibility for outcomes.</div></div>
+        <div class="glossary-item" data-term="Activation Function"><div class="term">Activation Function</div><div class="definition">Function controlling neuron output.</div></div>
+        <div class="glossary-item" data-term="Adapter Layers"><div class="term">Adapter Layers</div><div class="definition">Lightweight fine-tuning technique.</div></div>
+        <div class="glossary-item" data-term="Adversarial Attack"><div class="term">Adversarial Attack</div><div class="definition">Manipulating model behavior.</div></div>
+        <div class="glossary-item" data-term="AI"><div class="term">AI</div><div class="definition">Computational methods that allow machines to perform tasks that normally require human intelligence.</div></div>
+        <div class="glossary-item" data-term="AI Adoption Curve"><div class="term">AI Adoption Curve</div><div class="definition">Stages of organizational maturity.</div></div>
+        <div class="glossary-item" data-term="AI Agent"><div class="term">AI Agent</div><div class="definition">Autonomous system performing tasks.</div></div>
+        <div class="glossary-item" data-term="AI Assistant"><div class="term">AI Assistant</div><div class="definition">Virtual assistant for employees or customers.</div></div>
+        <div class="glossary-item" data-term="AI Automation"><div class="term">AI Automation</div><div class="definition">Using AI technologies to automate tasks and processes.</div></div>
+        <div class="glossary-item" data-term="AI Automation System"><div class="term">AI Automation System</div><div class="definition">A system that integrates AI to automate workflows and processes.</div></div>
+        <div class="glossary-item" data-term="AI Center of Excellence (CoE)"><div class="term">AI Center of Excellence (CoE)</div><div class="definition">Centralized AI leadership team.</div></div>
+        <div class="glossary-item" data-term="AI Competency Model"><div class="term">AI Competency Model</div><div class="definition">Skill levels for employees.</div></div>
+        <div class="glossary-item" data-term="AI Governance Framework"><div class="term">AI Governance Framework</div><div class="definition">Rules for AI adoption and oversight.</div></div>
+        <div class="glossary-item" data-term="AI Literacy"><div class="term">AI Literacy</div><div class="definition">Understanding AI fundamentals.</div></div>
+        <div class="glossary-item" data-term="AI Maturity Model"><div class="term">AI Maturity Model</div><div class="definition">Framework assessing readiness and capability.</div></div>
+        <div class="glossary-item" data-term="AI Roadmap"><div class="term">AI Roadmap</div><div class="definition">Phased plan for AI adoption.</div></div>
+        <div class="glossary-item" data-term="AI Safety"><div class="term">AI Safety</div><div class="definition">Ensuring models do not cause harm.</div></div>
+        <div class="glossary-item" data-term="AI Strategy"><div class="term">AI Strategy</div><div class="definition">Roadmap aligning AI with business goals.</div></div>
+        <div class="glossary-item" data-term="Algorithm"><div class="term">Algorithm</div><div class="definition">Step by step set of rules a system follows to solve a problem.</div></div>
+        <div class="glossary-item" data-term="Anomaly Detection"><div class="term">Anomaly Detection</div><div class="definition">Identifying outliers or unusual patterns.</div></div>
+        <div class="glossary-item" data-term="API"><div class="term">API</div><div class="definition">A standard interface that allows two systems to communicate or exchange data.</div></div>
+        <div class="glossary-item" data-term="Artificial Intelligence (AI)"><div class="term">Artificial Intelligence (AI)</div><div class="definition">Systems that mimic human intelligence.</div></div>
+        <div class="glossary-item" data-term="Assistant Output"><div class="term">Assistant Output</div><div class="definition">Model's response.</div></div>
+        <div class="glossary-item" data-term="Audio Classification"><div class="term">Audio Classification</div><div class="definition">Categorizing audio signals.</div></div>
+        <div class="glossary-item" data-term="Audio Embeddings"><div class="term">Audio Embeddings</div><div class="definition">Vector representations of sound.</div></div>
+        <div class="glossary-item" data-term="Autonomous Planning"><div class="term">Autonomous Planning</div><div class="definition">AI planning steps to reach goals.</div></div>
+        <div class="glossary-item" data-term="Autoscaling"><div class="term">Autoscaling</div><div class="definition">Dynamically adjusting compute resources.</div></div>
+        <div class="glossary-item" data-term="Backpropagation"><div class="term">Backpropagation</div><div class="definition">Training method that adjusts weights based on errors.</div></div>
+        <div class="glossary-item" data-term="Batch Size"><div class="term">Batch Size</div><div class="definition">Number of examples processed per step.</div></div>
+        <div class="glossary-item" data-term="Beam Search"><div class="term">Beam Search</div><div class="definition">Search method exploring multiple candidate outputs.</div></div>
+        <div class="glossary-item" data-term="Bias"><div class="term">Bias</div><div class="definition">Systematic unfairness in AI outputs.</div></div>
+        <div class="glossary-item" data-term="BYOK"><div class="term">BYOK</div><div class="definition">Bring Your Own Key; a security model allowing users to manage their own encryption keys.</div></div>
+        <div class="glossary-item" data-term="Chain-of-Thought"><div class="term">Chain-of-Thought</div><div class="definition">Model reasoning through steps.</div></div>
+        <div class="glossary-item" data-term="Change Management"><div class="term">Change Management</div><div class="definition">Ensuring adoption of AI tools.</div></div>
+        <div class="glossary-item" data-term="Chatbot"><div class="term">Chatbot</div><div class="definition">Automated conversational tool.</div></div>
+        <div class="glossary-item" data-term="CI/CD"><div class="term">CI/CD</div><div class="definition">Continuous integration and deployment pipelines.</div></div>
+        <div class="glossary-item" data-term="Classification"><div class="term">Classification</div><div class="definition">Predicting discrete categories.</div></div>
+        <div class="glossary-item" data-term="Cloud AI"><div class="term">Cloud AI</div><div class="definition">Running AI on cloud infrastructure.</div></div>
+        <div class="glossary-item" data-term="Clustering"><div class="term">Clustering</div><div class="definition">Grouping similar data points.</div></div>
+        <div class="glossary-item" data-term="Code Generation"><div class="term">Code Generation</div><div class="definition">Models writing software code.</div></div>
+        <div class="glossary-item" data-term="Cognitive Computing"><div class="term">Cognitive Computing</div><div class="definition">Systems simulating human thought.</div></div>
+        <div class="glossary-item" data-term="Compute"><div class="term">Compute</div><div class="definition">The processing power required to perform calculations or run algorithms.</div></div>
+        <div class="glossary-item" data-term="Computer Vision (CV)"><div class="term">Computer Vision (CV)</div><div class="definition">AI interpreting images/videos.</div></div>
+        <div class="glossary-item" data-term="Containerization"><div class="term">Containerization</div><div class="definition">Packaging models into portable units (Docker).</div></div>
+        <div class="glossary-item" data-term="Context Window"><div class="term">Context Window</div><div class="definition">How much text a model can "remember."</div></div>
+        <div class="glossary-item" data-term="Contextual AI"><div class="term">Contextual AI</div><div class="definition">AI aware of environment or situation.</div></div>
+        <div class="glossary-item" data-term="Conversational AI"><div class="term">Conversational AI</div><div class="definition">Chatbots/voicebots powered by LLMs.</div></div>
+        <div class="glossary-item" data-term="Convolutional Neural Network (CNN)"><div class="term">Convolutional Neural Network (CNN)</div><div class="definition">Architecture for image tasks.</div></div>
+        <div class="glossary-item" data-term="Correlation"><div class="term">Correlation</div><div class="definition">Relationship between variables.</div></div>
+        <div class="glossary-item" data-term="Curriculum Learning"><div class="term">Curriculum Learning</div><div class="definition">Training models from easy → hard tasks.</div></div>
+        <div class="glossary-item" data-term="Data Augmentation"><div class="term">Data Augmentation</div><div class="definition">Expanding datasets artificially.</div></div>
+        <div class="glossary-item" data-term="Data Poisoning"><div class="term">Data Poisoning</div><div class="definition">Corrupting training data intentionally.</div></div>
+        <div class="glossary-item" data-term="Data Privacy"><div class="term">Data Privacy</div><div class="definition">Handling data according to policy.</div></div>
+        <div class="glossary-item" data-term="Dataset"><div class="term">Dataset</div><div class="definition">Collection of structured data for training.</div></div>
+        <div class="glossary-item" data-term="Decision Engine"><div class="term">Decision Engine</div><div class="definition">System making rule-based choices.</div></div>
+        <div class="glossary-item" data-term="Deep Learning (DL)"><div class="term">Deep Learning (DL)</div><div class="definition">ML using multi-layer neural networks.</div></div>
+        <div class="glossary-item" data-term="Differential Privacy"><div class="term">Differential Privacy</div><div class="definition">Adding noise to protect individuals.</div></div>
+        <div class="glossary-item" data-term="Digital Transformation"><div class="term">Digital Transformation</div><div class="definition">Integrating digital tech into operations.</div></div>
+        <div class="glossary-item" data-term="Digital Twin"><div class="term">Digital Twin</div><div class="definition">Virtual replica of a real-world system.</div></div>
+        <div class="glossary-item" data-term="Dimensionality Reduction"><div class="term">Dimensionality Reduction</div><div class="definition">Reducing complexity (e.g., PCA).</div></div>
+        <div class="glossary-item" data-term="Diffusion Models"><div class="term">Diffusion Models</div><div class="definition">Models generating images through noise removal.</div></div>
+        <div class="glossary-item" data-term="Diffusion Process"><div class="term">Diffusion Process</div><div class="definition">Noise removal generation method.</div></div>
+        <div class="glossary-item" data-term="Drift Detection"><div class="term">Drift Detection</div><div class="definition">Identifying degradation due to data changes.</div></div>
+        <div class="glossary-item" data-term="Dropout"><div class="term">Dropout</div><div class="definition">Randomly disabling neurons during training.</div></div>
+        <div class="glossary-item" data-term="Early Stopping"><div class="term">Early Stopping</div><div class="definition">Ending training before overfitting occurs.</div></div>
+        <div class="glossary-item" data-term="Edge AI"><div class="term">Edge AI</div><div class="definition">Running AI locally on devices.</div></div>
+        <div class="glossary-item" data-term="Edge Compute"><div class="term">Edge Compute</div><div class="definition">Local computation on device.</div></div>
+        <div class="glossary-item" data-term="Embedding"><div class="term">Embedding</div><div class="definition">Numerical representation of text meaning.</div></div>
+        <div class="glossary-item" data-term="Entity Extraction"><div class="term">Entity Extraction</div><div class="definition">Pulling key details from messages.</div></div>
+        <div class="glossary-item" data-term="Epoch"><div class="term">Epoch</div><div class="definition">One full pass through training data.</div></div>
+        <div class="glossary-item" data-term="Explainability (XAI)"><div class="term">Explainability (XAI)</div><div class="definition">Methods explaining model behavior.</div></div>
+        <div class="glossary-item" data-term="Explainable Regression"><div class="term">Explainable Regression</div><div class="definition">Transparent regression models.</div></div>
+        <div class="glossary-item" data-term="Face Recognition"><div class="term">Face Recognition</div><div class="definition">Identifying individuals from images.</div></div>
+        <div class="glossary-item" data-term="Fairness"><div class="term">Fairness</div><div class="definition">Ensuring equitable treatment.</div></div>
+        <div class="glossary-item" data-term="Feature"><div class="term">Feature</div><div class="definition">Individual measurable variable.</div></div>
+        <div class="glossary-item" data-term="Feature Engineering"><div class="term">Feature Engineering</div><div class="definition">Creating additional useful features.</div></div>
+        <div class="glossary-item" data-term="Feature Extraction"><div class="term">Feature Extraction</div><div class="definition">Identifying key elements of an image.</div></div>
+        <div class="glossary-item" data-term="Federated Learning"><div class="term">Federated Learning</div><div class="definition">Training across decentralized data sources.</div></div>
+        <div class="glossary-item" data-term="Few-Shot Learning"><div class="term">Few-Shot Learning</div><div class="definition">Model learns with minimal examples.</div></div>
+        <div class="glossary-item" data-term="Fine-Tuning"><div class="term">Fine-Tuning</div><div class="definition">Retraining a model on domain-specific data.</div></div>
+        <div class="glossary-item" data-term="GAN (Generative Adversarial Network)"><div class="term">GAN (Generative Adversarial Network)</div><div class="definition">Two-model architecture that generates new images.</div></div>
+        <div class="glossary-item" data-term="GDPR Compliance"><div class="term">GDPR Compliance</div><div class="definition">European data protection standards.</div></div>
+        <div class="glossary-item" data-term="General AI (AGI)"><div class="term">General AI (AGI)</div><div class="definition">Hypothetical AI with human-like reasoning across domains.</div></div>
+        <div class="glossary-item" data-term="Generative AI"><div class="term">Generative AI</div><div class="definition">Models that create content.</div></div>
+        <div class="glossary-item" data-term="Generative Consistency"><div class="term">Generative Consistency</div><div class="definition">Alignment between prompt and output.</div></div>
+        <div class="glossary-item" data-term="Generative Image Model"><div class="term">Generative Image Model</div><div class="definition">AI that creates images.</div></div>
+        <div class="glossary-item" data-term="GPU"><div class="term">GPU</div><div class="definition">Hardware used for ML acceleration.</div></div>
+        <div class="glossary-item" data-term="Gradient Descent"><div class="term">Gradient Descent</div><div class="definition">Optimization algorithm.</div></div>
+        <div class="glossary-item" data-term="Ground Truth"><div class="term">Ground Truth</div><div class="definition">Verified correct data.</div></div>
+        <div class="glossary-item" data-term="Hallucination"><div class="term">Hallucination</div><div class="definition">Confident but incorrect model output.</div></div>
+        <div class="glossary-item" data-term="Hidden Prompt"><div class="term">Hidden Prompt</div><div class="definition">System-level instructions invisible to user.</div></div>
+        <div class="glossary-item" data-term="Human-in-the-Loop (HITL)"><div class="term">Human-in-the-Loop (HITL)</div><div class="definition">Human oversight during AI tasks.</div></div>
+        <div class="glossary-item" data-term="Hyperparameters"><div class="term">Hyperparameters</div><div class="definition">Settings defined before training.</div></div>
+        <div class="glossary-item" data-term="Image Captioning"><div class="term">Image Captioning</div><div class="definition">Generating descriptions of images.</div></div>
+        <div class="glossary-item" data-term="Image Generation"><div class="term">Image Generation</div><div class="definition">Creating images via prompts.</div></div>
+        <div class="glossary-item" data-term="Image Recognition"><div class="term">Image Recognition</div><div class="definition">Identifying what's in an image.</div></div>
+        <div class="glossary-item" data-term="Image Segmentation"><div class="term">Image Segmentation</div><div class="definition">Partitioning image into regions.</div></div>
+        <div class="glossary-item" data-term="Imbalanced Data"><div class="term">Imbalanced Data</div><div class="definition">Uneven class distribution.</div></div>
+        <div class="glossary-item" data-term="Inference"><div class="term">Inference</div><div class="definition">Model generating answers after training.</div></div>
+        <div class="glossary-item" data-term="Inference Pipeline"><div class="term">Inference Pipeline</div><div class="definition">Infrastructure serving predictions.</div></div>
+        <div class="glossary-item" data-term="Innovation Lab"><div class="term">Innovation Lab</div><div class="definition">Internal space for experimentation.</div></div>
+        <div class="glossary-item" data-term="Inpainting"><div class="term">Inpainting</div><div class="definition">Filling missing parts of an image.</div></div>
+        <div class="glossary-item" data-term="Instruction Following"><div class="term">Instruction Following</div><div class="definition">LLM's adherence to directives.</div></div>
+        <div class="glossary-item" data-term="Instruction Tuning"><div class="term">Instruction Tuning</div><div class="definition">Training models to follow human instructions.</div></div>
+        <div class="glossary-item" data-term="Intent Detection"><div class="term">Intent Detection</div><div class="definition">Understanding what the user wants.</div></div>
+        <div class="glossary-item" data-term="Intelligent Automation"><div class="term">Intelligent Automation</div><div class="definition">RPA + AI decision-making.</div></div>
+        <div class="glossary-item" data-term="Knowledge Base"><div class="term">Knowledge Base</div><div class="definition">Collection of organizational data.</div></div>
+        <div class="glossary-item" data-term="Label"><div class="term">Label</div><div class="definition">Ground truth used in supervised learning.</div></div>
+        <div class="glossary-item" data-term="Large Language Model (LLM)"><div class="term">Large Language Model (LLM)</div><div class="definition">AI trained on massive text datasets.</div></div>
+        <div class="glossary-item" data-term="Latency"><div class="term">Latency</div><div class="definition">Time it takes for model to respond.</div></div>
+        <div class="glossary-item" data-term="Latency Budget"><div class="term">Latency Budget</div><div class="definition">Acceptable delay for predictions.</div></div>
+        <div class="glossary-item" data-term="Latent Space"><div class="term">Latent Space</div><div class="definition">Compressed representation used in generation.</div></div>
+        <div class="glossary-item" data-term="Learning Rate"><div class="term">Learning Rate</div><div class="definition">Speed at which model updates.</div></div>
+        <div class="glossary-item" data-term="Lip Reading AI"><div class="term">Lip Reading AI</div><div class="definition">Decoding speech from movement visuals.</div></div>
+        <div class="glossary-item" data-term="LoRA (Low-Rank Adaptation)"><div class="term">LoRA (Low-Rank Adaptation)</div><div class="definition">Efficient method for fine-tuning LLMs.</div></div>
+        <div class="glossary-item" data-term="Loss Function"><div class="term">Loss Function</div><div class="definition">Measures prediction error.</div></div>
+        <div class="glossary-item" data-term="Machine Learning (ML)"><div class="term">Machine Learning (ML)</div><div class="definition">Algorithms that learn patterns from data.</div></div>
+        <div class="glossary-item" data-term="MCP"><div class="term">MCP</div><div class="definition">Model Control Protocol; a framework for managing and controlling AI models.</div></div>
+        <div class="glossary-item" data-term="Microservices"><div class="term">Microservices</div><div class="definition">Modular deployment architecture.</div></div>
+        <div class="glossary-item" data-term="MLOps"><div class="term">MLOps</div><div class="definition">ML lifecycle management.</div></div>
+        <div class="glossary-item" data-term="Model Audit"><div class="term">Model Audit</div><div class="definition">Evaluation for risks or compliance.</div></div>
+        <div class="glossary-item" data-term="Model Convergence"><div class="term">Model Convergence</div><div class="definition">When training stabilizes.</div></div>
+        <div class="glossary-item" data-term="Model Monitoring"><div class="term">Model Monitoring</div><div class="definition">Tracking performance over time.</div></div>
+        <div class="glossary-item" data-term="Model Registry"><div class="term">Model Registry</div><div class="definition">Central catalog of trained models.</div></div>
+        <div class="glossary-item" data-term="Model Serving"><div class="term">Model Serving</div><div class="definition">Making a model available via API.</div></div>
+        <div class="glossary-item" data-term="Model Weights"><div class="term">Model Weights</div><div class="definition">Parameters learned by the model.</div></div>
+        <div class="glossary-item" data-term="Multi-Agent System"><div class="term">Multi-Agent System</div><div class="definition">Multiple agents collaborating.</div></div>
+        <div class="glossary-item" data-term="Multimodal Model"><div class="term">Multimodal Model</div><div class="definition">AI processing text, images, audio, and video simultaneously.</div></div>
+        <div class="glossary-item" data-term="Music Generation AI"><div class="term">Music Generation AI</div><div class="definition">Creating music algorithmically.</div></div>
+        <div class="glossary-item" data-term="Named Entity Recognition (NER)"><div class="term">Named Entity Recognition (NER)</div><div class="definition">Identifying entities in text.</div></div>
+        <div class="glossary-item" data-term="Narrow AI"><div class="term">Narrow AI</div><div class="definition">AI specialized in one task (e.g., image recognition).</div></div>
+        <div class="glossary-item" data-term="Neural Network"><div class="term">Neural Network</div><div class="definition">Model inspired by the human brain.</div></div>
+        <div class="glossary-item" data-term="Neural Radiance Fields (NeRFs)"><div class="term">Neural Radiance Fields (NeRFs)</div><div class="definition">3D scene reconstruction.</div></div>
+        <div class="glossary-item" data-term="NLG (Natural Language Generation)"><div class="term">NLG (Natural Language Generation)</div><div class="definition">Creating human-like responses.</div></div>
+        <div class="glossary-item" data-term="NLU (Natural Language Understanding)"><div class="term">NLU (Natural Language Understanding)</div><div class="definition">Machine comprehension of language.</div></div>
+        <div class="glossary-item" data-term="Object Detection"><div class="term">Object Detection</div><div class="definition">Identifying objects in images.</div></div>
+        <div class="glossary-item" data-term="OCR (Optical Character Recognition)"><div class="term">OCR (Optical Character Recognition)</div><div class="definition">Extracting text from images.</div></div>
+        <div class="glossary-item" data-term="Optimizer"><div class="term">Optimizer</div><div class="definition">Algorithm that reduces loss.</div></div>
+        <div class="glossary-item" data-term="Outpainting"><div class="term">Outpainting</div><div class="definition">Extending an image beyond its borders.</div></div>
+        <div class="glossary-item" data-term="Overfitting"><div class="term">Overfitting</div><div class="definition">Model learns noise.</div></div>
+        <div class="glossary-item" data-term="Path Planning"><div class="term">Path Planning</div><div class="definition">Determining optimal route in robotics.</div></div>
+        <div class="glossary-item" data-term="Perceptron"><div class="term">Perceptron</div><div class="definition">Simplest neural network unit.</div></div>
+        <div class="glossary-item" data-term="Personalization Engine"><div class="term">Personalization Engine</div><div class="definition">Tailoring experiences to users.</div></div>
+        <div class="glossary-item" data-term="Pilot"><div class="term">Pilot</div><div class="definition">Limited rollout prior to scaling.</div></div>
+        <div class="glossary-item" data-term="Pose Estimation"><div class="term">Pose Estimation</div><div class="definition">Determining body/joint positions.</div></div>
+        <div class="glossary-item" data-term="Privacy-Preserving ML"><div class="term">Privacy-Preserving ML</div><div class="definition">Methods protecting user data.</div></div>
+        <div class="glossary-item" data-term="Process Mining"><div class="term">Process Mining</div><div class="definition">Analyzing workflows to optimize them.</div></div>
+        <div class="glossary-item" data-term="Proof of Concept (POC)"><div class="term">Proof of Concept (POC)</div><div class="definition">Small experiment validating feasibility.</div></div>
+        <div class="glossary-item" data-term="Prompt Engineering"><div class="term">Prompt Engineering</div><div class="definition">Designing inputs for optimal outputs.</div></div>
+        <div class="glossary-item" data-term="Prompt Template"><div class="term">Prompt Template</div><div class="definition">Reusable structured prompt.</div></div>
+        <div class="glossary-item" data-term="Prompt-to-Image"><div class="term">Prompt-to-Image</div><div class="definition">Generating images from text.</div></div>
+        <div class="glossary-item" data-term="Quantum Machine Learning"><div class="term">Quantum Machine Learning</div><div class="definition">ML running on quantum computers.</div></div>
+        <div class="glossary-item" data-term="RAG"><div class="term">RAG</div><div class="definition">Retrieval-Augmented Generation; a method where models retrieve relevant information before generating answers.</div></div>
+        <div class="glossary-item" data-term="RAG (Retrieval-Augmented Generation)"><div class="term">RAG (Retrieval-Augmented Generation)</div><div class="definition">LLM retrieves relevant info before generating answers.</div></div>
+        <div class="glossary-item" data-term="Reasoning Model"><div class="term">Reasoning Model</div><div class="definition">A model designed to simulate human-like reasoning processes.</div></div>
+        <div class="glossary-item" data-term="Red Teaming"><div class="term">Red Teaming</div><div class="definition">Stress testing AI for vulnerabilities.</div></div>
+        <div class="glossary-item" data-term="Regression"><div class="term">Regression</div><div class="definition">Predicting continuous values.</div></div>
+        <div class="glossary-item" data-term="Regularization"><div class="term">Regularization</div><div class="definition">Techniques preventing overfitting.</div></div>
+        <div class="glossary-item" data-term="Reinforcement Learning"><div class="term">Reinforcement Learning</div><div class="definition">ML with reward-based feedback.</div></div>
+        <div class="glossary-item" data-term="Responsible AI"><div class="term">Responsible AI</div><div class="definition">Ensuring ethical and safe use.</div></div>
+        <div class="glossary-item" data-term="RLHF (Reinforcement Learning from Human Feedback)"><div class="term">RLHF (Reinforcement Learning from Human Feedback)</div><div class="definition">Human feedback used to align model behavior.</div></div>
+        <div class="glossary-item" data-term="ROI (Return on Investment)"><div class="term">ROI (Return on Investment)</div><div class="definition">Financial benefit of AI.</div></div>
+        <div class="glossary-item" data-term="Robotics AI"><div class="term">Robotics AI</div><div class="definition">AI controlling physical robots.</div></div>
+        <div class="glossary-item" data-term="RPA (Robotic Process Automation)"><div class="term">RPA (Robotic Process Automation)</div><div class="definition">Rule-based automation.</div></div>
+        <div class="glossary-item" data-term="Scaling AI"><div class="term">Scaling AI</div><div class="definition">Deploying across the organization.</div></div>
+        <div class="glossary-item" data-term="Self-Supervised Learning"><div class="term">Self-Supervised Learning</div><div class="definition">Model generates labels from the data itself.</div></div>
+        <div class="glossary-item" data-term="Semi-Supervised Learning"><div class="term">Semi-Supervised Learning</div><div class="definition">Hybrid of labeled and unlabeled data.</div></div>
+        <div class="glossary-item" data-term="Sentiment Analysis"><div class="term">Sentiment Analysis</div><div class="definition">Classifying emotional tone.</div></div>
+        <div class="glossary-item" data-term="Sentiment Detection"><div class="term">Sentiment Detection</div><div class="definition">Understanding customer emotions.</div></div>
+        <div class="glossary-item" data-term="SLAM"><div class="term">SLAM</div><div class="definition">Mapping and navigation in robotics.</div></div>
+        <div class="glossary-item" data-term="SLURM Cluster"><div class="term">SLURM Cluster</div><div class="definition">Distributed compute scheduling.</div></div>
+        <div class="glossary-item" data-term="Speaker Diarization"><div class="term">Speaker Diarization</div><div class="definition">Distinguishing who is speaking.</div></div>
+        <div class="glossary-item" data-term="Speech Recognition (ASR)"><div class="term">Speech Recognition (ASR)</div><div class="definition">Converting speech to text.</div></div>
+        <div class="glossary-item" data-term="Strong AI"><div class="term">Strong AI</div><div class="definition">AI with consciousness and self-awareness (theoretical).</div></div>
+        <div class="glossary-item" data-term="Style Transfer"><div class="term">Style Transfer</div><div class="definition">Applying artistic style to images.</div></div>
+        <div class="glossary-item" data-term="Super-Resolution"><div class="term">Super-Resolution</div><div class="definition">Enhancing image quality or scale.</div></div>
+        <div class="glossary-item" data-term="Supervised Learning"><div class="term">Supervised Learning</div><div class="definition">ML using labeled data.</div></div>
+        <div class="glossary-item" data-term="Synthetic Data"><div class="term">Synthetic Data</div><div class="definition">AI-generated training data.</div></div>
+        <div class="glossary-item" data-term="System Prompt"><div class="term">System Prompt</div><div class="definition">Defines model behavior and role.</div></div>
+        <div class="glossary-item" data-term="Task Automation"><div class="term">Task Automation</div><div class="definition">AI completing repetitive tasks.</div></div>
+        <div class="glossary-item" data-term="TCO (Total Cost of Ownership)"><div class="term">TCO (Total Cost of Ownership)</div><div class="definition">True cost of AI deployment.</div></div>
+        <div class="glossary-item" data-term="Temperature"><div class="term">Temperature</div><div class="definition">Controls creativity vs. precision.</div></div>
+        <div class="glossary-item" data-term="Test Data"><div class="term">Test Data</div><div class="definition">Data used to measure final performance.</div></div>
+        <div class="glossary-item" data-term="Text Classification"><div class="term">Text Classification</div><div class="definition">Categorizing text into classes.</div></div>
+        <div class="glossary-item" data-term="Text Generation"><div class="term">Text Generation</div><div class="definition">Process of producing text from a model.</div></div>
+        <div class="glossary-item" data-term="Text Generation"><div class="term">Text Generation</div><div class="definition">Producing human-like text.</div></div>
+        <div class="glossary-item" data-term="Text-to-Speech (TTS)"><div class="term">Text-to-Speech (TTS)</div><div class="definition">Generating spoken audio.</div></div>
+        <div class="glossary-item" data-term="Throughput"><div class="term">Throughput</div><div class="definition">Predictions per second.</div></div>
+        <div class="glossary-item" data-term="Token"><div class="term">Token</div><div class="definition">Unit of text (word, part of word, punctuation).</div></div>
+        <div class="glossary-item" data-term="Tokenizer"><div class="term">Tokenizer</div><div class="definition">Converts text into tokens.</div></div>
+        <div class="glossary-item" data-term="Top-K Sampling"><div class="term">Top-K Sampling</div><div class="definition">Limits tokens to the top K likely options.</div></div>
+        <div class="glossary-item" data-term="Top-P (Nucleus) Sampling"><div class="term">Top-P (Nucleus) Sampling</div><div class="definition">Chooses tokens from top cumulative probability P.</div></div>
+        <div class="glossary-item" data-term="TPU"><div class="term">TPU</div><div class="definition">Google's ML-specific processors.</div></div>
+        <div class="glossary-item" data-term="Training Data"><div class="term">Training Data</div><div class="definition">Data used to teach the model.</div></div>
+        <div class="glossary-item" data-term="Transfer Learning"><div class="term">Transfer Learning</div><div class="definition">Using knowledge from one model to improve another.</div></div>
+        <div class="glossary-item" data-term="Transparency"><div class="term">Transparency</div><div class="definition">Clarity around how AI works.</div></div>
+        <div class="glossary-item" data-term="Underfitting"><div class="term">Underfitting</div><div class="definition">Model fails to learn underlying pattern.</div></div>
+        <div class="glossary-item" data-term="Unsupervised Learning"><div class="term">Unsupervised Learning</div><div class="definition">ML finding patterns in unlabeled data.</div></div>
+        <div class="glossary-item" data-term="Use Case Prioritization"><div class="term">Use Case Prioritization</div><div class="definition">Ranking AI opportunities by impact.</div></div>
+        <div class="glossary-item" data-term="User Prompt"><div class="term">User Prompt</div><div class="definition">Instructions given by user.</div></div>
+        <div class="glossary-item" data-term="Validation Data"><div class="term">Validation Data</div><div class="definition">Data used to tune hyperparameters.</div></div>
+        <div class="glossary-item" data-term="Vibe Coding"><div class="term">Vibe Coding</div><div class="definition">A coding approach focused on creativity and intuition rather than strict rules.</div></div>
+        <div class="glossary-item" data-term="Video Generation"><div class="term">Video Generation</div><div class="definition">AI-created videos.</div></div>
+        <div class="glossary-item" data-term="Voice Analytics"><div class="term">Voice Analytics</div><div class="definition">Insights from call center conversations.</div></div>
+        <div class="glossary-item" data-term="Voice Assistant"><div class="term">Voice Assistant</div><div class="definition">Speech-driven AI interface.</div></div>
+        <div class="glossary-item" data-term="Voice Cloning"><div class="term">Voice Cloning</div><div class="definition">Replicating a voice using AI.</div></div>
+        <div class="glossary-item" data-term="Weak AI"><div class="term">Weak AI</div><div class="definition">Practical AI used today, not conscious.</div></div>
+        <div class="glossary-item" data-term="Workflow Automation"><div class="term">Workflow Automation</div><div class="definition">Streamlining processes with AI.</div></div>
+        <div class="glossary-item" data-term="Zero-Shot Learning"><div class="term">Zero-Shot Learning</div><div class="definition">Model performs tasks with no prior examples.</div></div>
+    </div>
+
+    <!-- 
+        *** END OF PAGE CONTENT AREA ***
+    -->
+</main>
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to Top"></button>
+    
+    <!-- Standard AIM Footer -->
+	<footer class="footer">
+        <div class="footer-bg">
+            <div class="footer-container container"> 
+                <!-- Logo/Brand Block -->
+                <div class="footer-brand">
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="Project Freedom Logo" class="footer-logo">
+                    <div class="footer-brand-text">
+                        <h3 class="footer-title">AIM™</h3>
+                        <span class="footer-subtitle">AI Mastery Program</span>
+                    </div>
+                </div>
+					
+                <!-- Footer Links -->
+                <ul class="footer-links">
+                    <li><a href="#home" class="footer-links">Home</a></li>
+                    <li><a href="#about" class="footer-links">About</a></li>
+                    <li><a href="#services" class="footer-links">Services</a></li>
+                    <li><a href="#work" class="footer-links">Work</a></li>
+                    <li><a href="#contact" class="footer-links">Contact</a></li>
+                </ul>
+
+                <!-- Social Icons -->
+                <div class="footer-socials">
+                    <a href="https://www.youtube.com" target="_blank" class="footer-social" aria-label="Youtube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" class="footer-social" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="footer-social" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com" target="_blank" class="footer-social" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <p class="footer-copy">Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Back to Top Button Logic ---
+            const toTopButton = document.getElementById('back-to-top');
+            window.onscroll = function() {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    toTopButton.classList.add('show');
+                } else {
+                    toTopButton.classList.remove('show');
+                }
+            };
+            toTopButton.onclick = function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            // --- Dropdown Menu Click Logic ---
+            const coursesLink = document.getElementById('courses-link');
+            const submenu = document.getElementById('courses-submenu');
+            const navBar = document.getElementById('nav-bar');
+            coursesLink.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                submenu.classList.toggle('active');
+                e.stopPropagation(); 
+            });
+            document.addEventListener('click', (e) => {
+                if (!navBar.contains(e.target) && submenu.classList.contains('active')) {
+                    submenu.classList.remove('active');
+                }
+            });
+            submenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+
+            // --- GLOSSARY PAGE SCRIPT ---
+            const alphabet = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+            const alphabetContainer = document.getElementById("alphabetFilter");
+            const searchBar = document.getElementById("searchBar");
+            const glossaryItems = document.querySelectorAll(".glossary-item");
+            let currentFilterButton = null;
+
+            // 1. Generate Alphabet Buttons
+            alphabet.forEach(letter => {
+                const btn = document.createElement("button");
+                btn.textContent = letter;
+                btn.onclick = () => filterByLetter(letter, btn);
+                alphabetContainer.appendChild(btn);
+            });
+
+            // 2. Search Bar Logic
+            searchBar.addEventListener("keyup", function() {
+                const query = this.value.toLowerCase();
+                
+                // Deactivate any active letter filter
+                if (currentFilterButton) {
+                    currentFilterButton.classList.remove("active");
+                    currentFilterButton = null;
+                }
+
+                glossaryItems.forEach(item => {
+                    const term = item.getAttribute("data-term").toLowerCase();
+                    item.style.display = term.includes(query) ? "block" : "none";
+                });
+            });
+
+            // 3. Letter Filter Logic
+            function filterByLetter(letter, buttonEl) {
+                // Clear search bar
+                searchBar.value = '';
+
+                // Toggle active class on buttons
+                if (currentFilterButton) {
+                    currentFilterButton.classList.remove("active");
+                }
+                buttonEl.classList.add("active");
+                currentFilterButton = buttonEl;
+
+                glossaryItems.forEach(item => {
+                    const term = item.getAttribute("data-term").toUpperCase();
+                    item.style.display = term.startsWith(letter) ? "block" : "none";
+                });
+            }
+        });
+    </script>
+</body>
+</html>
