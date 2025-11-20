@@ -6,9 +6,9 @@
     <!-- Favicon -->
 <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
     
-    <style>
+   <style>
     
-  
+    
       :root {
 	--hue-color: 20; /* Orange hue for #ff5011 */
 	--title: "Cyberspace Portal to AI Automation";
@@ -39,13 +39,26 @@
 }
 
 
+/* New style for the background video */
+#bgVideo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100; /* Puts it behind all other content */
+  transform: translate(-50%, -50%);
+  background-size: cover;
+  pointer-events: none; /* Disables all interaction as requested */
+}
 
 
 body {
 	overflow: hidden;
-	background: url("https://bucket.mlcdn.com/a/3336/3336910/images/3a6d0dba754abc967603ee3cbbebf0dee201eb00.png") no-repeat center center fixed;
-	background-size: cover;
-	background-color: #0a0a0a;
+    /* Removed static background image properties */
+	background-color: #0a0a0a; /* Fallback color */
 	font-family: "Unica One", sans-serif;
 	display: flex;
 	align-items: center;
@@ -53,10 +66,10 @@ body {
 	height: 100vh;
 	position: relative;
 	perspective: 2000px;
-color: #ff8a5c;
+    color: #ff8a5c;
 }
 
-	    
+    
 
 #portalCard {
 	position: absolute;
@@ -174,7 +187,8 @@ color: #ff8a5c;
 	80% { transform: translate(-30px, -20px) scale(0.9); }
 }
 
-#portalCard h1 {
+/* Removed h1 styling as it's no longer used for the main title */
+/* #portalCard h1 {
 	color: white;
 	font-weight: 800;
 	font-size: 35px;
@@ -187,7 +201,17 @@ color: #ff8a5c;
 	z-index: 5;
 	line-height: .9;
 	text-align: center;
+} */
+
+/* Style for the new image logo */
+#portalCard .title-image {
+    width: 250px; /* Set width as requested */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Keep similar spacing as the old title */
+    position: relative;
+    z-index: 5;
 }
+
 
 #portalButton {
 	padding: 16px 38px;
@@ -360,115 +384,24 @@ color: #ff8a5c;
 }
 
 
-
-
- /* Page loader container with black background */
-  .page-loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.3s ease;
-  }
-
-  /* Added text header */
-  .loader-header {
-    color: white;
-    font-size: 24px;
-    font-family: Arial, sans-serif;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-
-  /* Your progress bar - unchanged */
-  .progress {
-    width: 272.8px;
-    height: 41.7px;
-    border-radius: 28.8px;
-    color: #ff5011;
-    background-color: #000;
-    border: 2.9px solid;
-    position: relative;
-  }
-
-  .progress::before {
-    content: "";
-    position: absolute;
-    margin: 2.9px;
-    inset: 0 100% 0 0;
-    border-radius: inherit;
-    background: currentColor;
-    animation: progress-pf82op 1.5s forwards;
-  }
-
-  @keyframes progress-pf82op {
-    100% {
-      inset: 0;
-    }
-  }
-
-  /* Hide transition */
-  .page-loader.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-
-
-
+/* Loader CSS was removed as it was causing the "nothing is showing" issue.
+*/
 	
-    
     
     </style>
     
-
-
-<script>
-  // Create and show loader
-  function showLoader() {
-    const loader = document.createElement('div');
-    loader.className = 'page-loader';
-    loader.innerHTML = `
-      <div class="loader-header">Wait for it...</div>
-      <div class="progress"></div>
-    `;
-    document.body.appendChild(loader);
-    return loader;
-  }
-
-  // Hide loader after 2 seconds
-  function initLoader() {
-    const loader = showLoader();
-    
-    setTimeout(() => {
-      loader.classList.add('hidden');
-      setTimeout(() => loader.remove(), 300); // Remove after fade out
-    }, 2000); // 2 second duration
-  }
-
-  // Initialize when DOM is ready
-  document.addEventListener('DOMContentLoaded', initLoader);
-</script>
-<!-- CSS LOADER  - PROGRESS BAR WITH TEXT -->
-
-
-
-
-
-
-
-
+<!-- 
+  Loader <script> was removed from here.
+-->
 	
     
 </head>
 <body>
+    <!-- Fullscreen Video Background --><video autoplay loop muted playsinline id="bgVideo">
+        <source src="https://cdn.shopify.com/videos/c/o/v/35fe2651e2464dc1be9bcb61f2acf54d.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
     <div id="portalCard">
     <div class="gooey-effect">
 		<div class="gooey-blob"></div>
@@ -477,8 +410,8 @@ color: #ff8a5c;
 		<div class="gooey-blob"></div>
 	</div>
         <h3>WELCOME TO</h3><br>
-        <h1>PROJECT</h1>
-        <h1>FREEDOM</h1><br>
+        <!-- Replaced h1 elements with an img tag --><img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="Project Freedom" class="title-image">
+        <br>
         <button id="portalButton">ENTER NOW</button>
 <br><br>
 <p style="font-size: 10px; color: white;">Powered with 💖 by Bebell Digital Solutions</p>
@@ -534,7 +467,7 @@ const button = document.getElementById("portalButton");
 const canvasTunnel = document.getElementById("tunnelCanvas");
 
 // Destination URL
-const DESTINATION_URL = "/home";
+const DESTINATION_URL = "/form";
 
 // Event listeners
 card.addEventListener("click", startPortal);
@@ -556,7 +489,7 @@ function startPortal() {
         card.remove();
     }, 500);
     
-    // Visual setup - keep original background visible
+    // Visual setup - keep original background visible (which is now the video)
     canvasTunnel.style.display = "block";
     
     // Initialize Three.js tunnel (with transparent background)
