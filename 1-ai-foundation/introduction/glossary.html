@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- !!! IMPORTANT: UPDATE THE TITLE TAG FOR EACH UNIQUE PAGE !!! -->
     <title>AI Glossary - AIM™</title> 
     
     <!-- Import Inter font -->
@@ -16,7 +15,7 @@
     <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
   
     <style>
-        /* --- AIM Brand Styles (from Knowledge Base) --- */
+        /* --- AIM Brand Styles --- */
         :root {
             --skin-color: #ff5011;
             --mirage-color: hsl(210, 10%, 23%);
@@ -43,11 +42,17 @@
             line-height: 1.6;
             padding-top: 8rem; /* Space for fixed nav */
             overflow-x: hidden;
+            min-height: 100vh;
         }
-        main { max-width: 980px; margin: 0 auto; padding: 0 1rem; }
+        main { 
+            max-width: 980px; 
+            margin: 0 auto; 
+            padding: 2rem 1rem;
+            min-height: 60vh; /* Ensure main content has height */
+        }
         img { max-width: 100%; height: auto; display: block; }
 
-        a { text-decoration: none; cursor: pointer; }
+        a { text-decoration: none; cursor: pointer; color: inherit; }
 
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #333; }
@@ -60,64 +65,103 @@
             padding: 0 1rem;
         }
 
- 
-
         /* --- Navigation Bar --- */
         #nav-bar {
-            position: fixed; top: 2rem; left: 50%; transform: translateX(-50%);
-            background: rgba(25, 25, 25, 0.85); backdrop-filter: blur(10px);
-            border: 1px solid var(--box-color); border-radius: 0.75rem;
-            padding: 0.75rem 1.5rem; display: flex; align-items: center;
-            max-width: 980px; width: 90%; z-index: 1000;
+            position: fixed; 
+            top: 2rem; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: rgba(25, 25, 25, 0.95); 
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--box-color); 
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem; 
+            display: flex; 
+            align-items: center;
+            max-width: 980px; 
+            width: 90%; 
+            z-index: 1000;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
         }
         #nav-logo img { height: 35px; }
-        #nav-menu { display: flex; gap: 1.5rem; margin-left: auto; align-items: center; }
-        .nav-link { color: var(--text-color); transition: color 0.3s, transform 0.2s; font-weight: 500; }
+        #nav-menu { 
+            display: flex; 
+            gap: 1.5rem; 
+            margin-left: auto; 
+            align-items: center; 
+        }
+        .nav-link { 
+            color: var(--text-color); 
+            transition: color 0.3s, transform 0.2s; 
+            font-weight: 500; 
+            padding: 0.5rem 0;
+        }
         .nav-link:hover { color: var(--skin-color); transform: translateY(-1px); }
         .nav-cta {
             background: linear-gradient(90deg, var(--skin-color), #d43a00);
-            color: var(--title-color); padding: 0.5rem 1rem; border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); transition: transform 0.3s, box-shadow 0.3s;
+            color: var(--title-color); 
+            padding: 0.5rem 1rem; 
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); 
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); }
+        .nav-cta:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); 
+            color: var(--title-color);
+        }
         .has-submenu { position: relative; }
         
-        /* Submenu Default State (Hidden) */
+        /* Submenu Styles */
         .submenu-courses {
             position: absolute; 
             top: 100%; 
-            left: 50%; 
-            transform: translateX(-50%);
+            left: 0;
             background: var(--box-color); 
             border-radius: 0.5rem; 
             padding: 0.75rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
             opacity: 0; 
             pointer-events: none; 
-            transition: opacity 0.3s, top 0.3s; 
-            width: 200px;
+            transition: opacity 0.3s, transform 0.3s; 
+            width: 220px;
+            transform: translateY(-10px);
+            z-index: 1001;
         }
         
-        /* Submenu Active State (Shown via JavaScript click) */
         .submenu-courses.active { 
             opacity: 1; 
             pointer-events: auto; 
-            top: 100%; 
+            transform: translateY(0);
         }
 
-        .submenu-link { display: flex; align-items: center; gap: 0.75rem; color: var(--text-color); padding: 0.5rem; border-radius: 0.25rem; transition: background-color 0.3s, color 0.3s; }
-        .submenu-link:hover { background-color: rgba(255, 80, 17, 0.1); color: var(--skin-color); }
+        .submenu-link { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.75rem; 
+            color: var(--text-color); 
+            padding: 0.5rem; 
+            border-radius: 0.25rem; 
+            transition: background-color 0.3s, color 0.3s; 
+            white-space: nowrap;
+        }
+        .submenu-link:hover { 
+            background-color: rgba(255, 80, 17, 0.1); 
+            color: var(--skin-color); 
+        }
         .submenu-link i { width: 15px; text-align: center; }
 
         /* --- Back to Top Button --- */
         #back-to-top {
-            position: fixed; bottom: 20px; right: 20px;
-            width: 50px; height: 50px;
-            /* Custom image URL */
+            position: fixed; 
+            bottom: 20px; 
+            right: 20px;
+            width: 50px; 
+            height: 50px;
             background: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597') no-repeat center center;
             background-size: cover;
-            border: none; border-radius: 50%;
+            border: none; 
+            border-radius: 50%;
             cursor: pointer; 
             opacity: 0; 
             visibility: hidden;
@@ -127,9 +171,10 @@
         #back-to-top.show { opacity: 1; visibility: visible; }
         #back-to-top:hover { transform: scale(1.1); }
 
-        /* --- Footer (Main Page Footer) --- */
+        /* --- Footer --- */
         .footer {
             padding-top: 2rem;
+            margin-top: 3rem;
         }
 
         .footer-bg {
@@ -159,10 +204,14 @@
             display: flex;
             justify-self: center;
             column-gap: 2rem;
-            color: var(--title-color);
         }
 
-        .footer-links:hover {
+        .footer-links a {
+            color: var(--title-color);
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
             color: var(--skin-color);
         }
 
@@ -198,15 +247,7 @@
             color: var(--skin-color);
         }
 
-        .footer-title,
-        .footer-subtitle,
-        .footer-links,
-        .footer-social,
-        .footer-copy a {
-            color: var(--title-color);
-        }
-
-        /* Footer Logo Styles (Desktop) */
+        /* Footer Logo Styles */
         .footer-brand {
             display: flex;
             flex-direction: column;
@@ -230,19 +271,35 @@
         
         /* --- Responsive Styles --- */
         @media screen and (max-width: 767px) {
-            /* General mobile layout adjustments */
+            body {
+                padding-top: 7rem;
+            }
+            
+            #nav-bar {
+                top: 1rem;
+                padding: 0.5rem 1rem;
+                flex-wrap: wrap;
+            }
+            
+            #nav-menu {
+                gap: 1rem;
+                margin-left: 0;
+                width: 100%;
+                justify-content: center;
+                margin-top: 0.5rem;
+            }
+            
             .footer-container {
                 grid-template-columns: 1fr;
                 row-gap: 3rem;
                 text-align: center;
             }
             .footer-brand {
-                align-items: center; /* Center align on mobile */
+                align-items: center;
                 text-align: center;
-                justify-content: center;
             }
             .footer-brand-text {
-                text-align: center; /* Center align text on mobile */
+                text-align: center;
             }
             .footer-socials {
                 justify-content: center;
@@ -314,7 +371,8 @@
             font-weight: 600;
             transition: all 0.3s ease;
         }
-        .alphabet-filter button:hover, .alphabet-filter button.active {
+        .alphabet-filter button:hover, 
+        .alphabet-filter button.active {
             background-color: var(--skin-color);
             color: var(--title-color);
             transform: translateY(-2px);
@@ -329,8 +387,6 @@
             border-radius: 12px;
             border: 1px solid var(--mirage-color);
             transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeInUp 0.5s ease-out forwards;
-            opacity: 0; /* Start hidden for animation */
         }
         .glossary-item:hover {
             transform: translateY(-5px);
@@ -340,126 +396,93 @@
             font-weight: 700;
             font-size: 1.25rem;
             color: var(--skin-color);
+            margin-bottom: 0.5rem;
         }
         .definition {
-            margin-top: 0.5rem;
             font-size: 1rem;
             color: var(--text-color);
+            line-height: 1.5;
         }
         
-/* Page loader container with black background */
-  .page-loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.3s ease;
-  }
+        /* Page loader */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
 
-  /* Added text header */
-  .loader-header {
-    color: white;
-    font-size: 24px;
-    font-family: Arial, sans-serif;
-    margin-bottom: 20px;
-    text-align: center;
-  }
+        .loader-header {
+            color: white;
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-  /* Your progress bar - unchanged */
-  .progress {
-    width: 272.8px;
-    height: 41.7px;
-    border-radius: 28.8px;
-    color: #ff5011;
-    background-color: #000;
-    border: 2.9px solid;
-    position: relative;
-  }
+        .progress {
+            width: 272.8px;
+            height: 41.7px;
+            border-radius: 28.8px;
+            color: #ff5011;
+            background-color: #000;
+            border: 2.9px solid;
+            position: relative;
+        }
 
-  .progress::before {
-    content: "";
-    position: absolute;
-    margin: 2.9px;
-    inset: 0 100% 0 0;
-    border-radius: inherit;
-    background: currentColor;
-    animation: progress-pf82op 1.5s forwards;
-  }
+        .progress::before {
+            content: "";
+            position: absolute;
+            margin: 2.9px;
+            inset: 0 100% 0 0;
+            border-radius: inherit;
+            background: currentColor;
+            animation: progress-pf82op 1.5s forwards;
+        }
 
-  @keyframes progress-pf82op {
-    100% {
-      inset: 0;
-    }
-  }
+        @keyframes progress-pf82op {
+            100% {
+                inset: 0;
+            }
+        }
 
-  /* Hide transition */
-  .page-loader.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-
-    
-  </style>
-
-<!-- Page Loader HTML -->
-<script>
-  // --- Page Loader Logic ---
-  function showLoader() {
-    const loader = document.createElement('div');
-    loader.className = 'page-loader';
-    loader.innerHTML = `
-      <div class="loader-header">Wait for it...</div>
-      <div class="progress"></div>
-    `;
-    document.body.appendChild(loader);
-    return loader;
-  }
-
-  function initLoader() {
-    const loader = showLoader();
-    setTimeout(() => {
-      loader.classList.add('hidden');
-      setTimeout(() => loader.remove(), 300); // Remove after fade out
-    }, 1500); // Adjust duration as needed
-  }
-
-  document.addEventListener('DOMContentLoaded', initLoader);
-</script>
-<!-- Loader Div is injected by the script above -->
+        .page-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Navigation Bar (Header) -->
+    <!-- Navigation Bar -->
     <nav id="nav-bar">
-      <a href="/" id="nav-logo">
-        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
-      </a>
-      <div id="nav-menu">
-        <a href="/" class="nav-link">Homepage</a>
-        <div class="nav-item has-submenu">
-          <!-- Non-navigating link to trigger dropdown on click -->
-          <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
-          <div class="submenu-courses" id="courses-submenu">
-            <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
-            <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
-            <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
-          <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
-          <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+        <a href="/" id="nav-logo">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
+        </a>
+        <div id="nav-menu">
+            <a href="/" class="nav-link">Homepage</a>
+            <div class="nav-item has-submenu">
+                <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
+                <div class="submenu-courses" id="courses-submenu">
+                    <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
+                    <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
+                    <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+                    <a href="/courses#ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
+                    <a href="/courses#autonomous-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+                </div>
+            </div>
+            <a href="/pricing" class="nav-link">Pricing</a>
+            <a href="/helpcenter" class="nav-link">HelpCenter</a>
+            <a href="/login" class="nav-cta">LOGIN</a>
         </div>
-      </div>
-	
-        <a href="/pricing" class="nav-link">Pricing</a>
-        <a href="/helpcenter" class="nav-link">HelpCenter</a>
-        <a href="/login" class="nav-cta">LOGIN</a>
-      </div>
     </nav>
 
 <main>
