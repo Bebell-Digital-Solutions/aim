@@ -78,28 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  // --- Page Loader Logic ---
-  function showLoader() {
-    const loader = document.createElement('div');
-    loader.className = 'page-loader';
-    loader.innerHTML = `
-      <div class="loader-header">Wait for it...</div>
-      <div class="progress"></div>
-    `;
-    document.body.appendChild(loader);
-    return loader;
-  }
-
-  function initLoader() {
-    const loader = showLoader();
-    setTimeout(() => {
-      loader.classList.add('hidden');
-      setTimeout(() => loader.remove(), 300); // Remove after fade out
-    }, 1500); // Adjust duration as needed
-  }
-
-  document.addEventListener('DOMContentLoaded', initLoader);
-
 
 
 
