@@ -249,6 +249,7 @@
                 justify-content: flex-start; 
                 width: 300px; /* Fixed width as requested */
                 text-align: left;
+                margin-left: 30px;
             }
             
             /* FIX: Mobile CTA button (Styled for full prominence and padding) */
