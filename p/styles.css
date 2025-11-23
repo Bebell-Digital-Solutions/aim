@@ -1,0 +1,376 @@
+        /* --- AIM Brand Styles (from Knowledge Base) --- */
+        :root {
+            --skin-color: #ff5011;
+            --mirage-color: hsl(210, 10%, 23%);
+            --title-color: hsl(242, 8%, 98%);
+            --text-color: hsl(242, 8%, 80%);
+            --body-color: #0d0d0d;
+            --box-color: hsl(242, 14%, 12%);
+            --body-font: 'Inter', sans-serif;
+            --small-font-size: 0.95rem;
+            --h3-font-size: 1.25rem;
+            --smaller-font-size: 0.75rem;
+            --mb15: 0.75rem;
+            --mb3: 1.5rem;
+        }
+
+        /* --- Base & Scrollbar --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: var(--body-font);
+            background-color: var(--body-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 8rem; /* Space for fixed nav */
+            overflow-x: hidden;
+        }
+        main { max-width: 980px; margin: 0 auto; padding: 0 1rem; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        a { text-decoration: none; cursor: pointer; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #333; }
+        ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
+        
+        /* Utility container class for maximum content width */
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* --- Loader and Animations (Included for completeness) --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .page-loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #000; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 9999;
+            transition: opacity 0.5s ease; opacity: 1;
+        }
+        .page-loader.hidden { opacity: 0; pointer-events: none; }
+        .loader-header { color: var(--title-color); font-size: 1.5rem; margin-bottom: 1rem; }
+        .progress { width: 80%; max-width: 300px; height: 5px; background-color: #333; border-radius: 5px; overflow: hidden; }
+        .progress::before {
+            content: ''; display: block; width: 100%; height: 100%;
+            background: var(--skin-color);
+            transform-origin: left;
+            animation: load 1.5s ease-out forwards;
+        }
+        @keyframes load { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+        /* --- Navigation Bar (Desktop Styles) --- */
+        #nav-bar {
+            position: fixed; top: 2rem; left: 50%; transform: translateX(-50%);
+            background: rgba(25, 25, 25, 0.85); backdrop-filter: blur(10px);
+            border: 1px solid var(--box-color); border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem; display: flex; align-items: center;
+            max-width: 980px; width: 90%; z-index: 1000;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+        #nav-logo img { height: 35px; }
+        /* Desktop: nav-menu contains all links and is flexed */
+        #nav-menu { 
+            display: flex; 
+            gap: 1.5rem; 
+            margin-left: auto; 
+            align-items: center; 
+        }
+
+        /* Nav links and CTA */
+        .nav-link { color: var(--text-color); transition: color 0.3s, transform 0.2s; font-weight: 500; }
+        .nav-link:hover { color: var(--skin-color); transform: translateY(-1px); }
+        .nav-cta {
+            background: linear-gradient(90deg, var(--skin-color), #d43a00);
+            color: var(--title-color); padding: 0.5rem 1rem; border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); }
+        .has-submenu { position: relative; }
+        
+        /* Submenu Default State (Hidden - Desktop) */
+        .submenu-courses {
+            position: absolute; 
+            top: 100%; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: var(--box-color); 
+            border-radius: 0.5rem; 
+            padding: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
+            opacity: 0; 
+            pointer-events: none; 
+            transition: opacity 0.3s, top 0.3s; 
+            width: 200px;
+        }
+        
+        /* Submenu Active State (Shown via JavaScript click - Desktop) */
+        .submenu-courses.active { 
+            opacity: 1; 
+            pointer-events: auto; 
+            top: 100%; 
+        }
+        .submenu-link { display: flex; align-items: center; gap: 0.75rem; color: var(--text-color); padding: 0.5rem; border-radius: 0.25rem; transition: background-color 0.3s, color 0.3s; }
+        .submenu-link:hover { background-color: rgba(255, 80, 17, 0.1); color: var(--skin-color); }
+        .submenu-link i { width: 15px; text-align: center; }
+
+        /* Mobile visibility controls (Default/Desktop state) */
+        #mobile-menu-toggle { display: none; }
+        .nav-cta.mobile-cta-only { display: none; }
+        .nav-cta.desktop-cta-only { display: block; } /* Default desktop CTA */
+
+        /* --- Back to Top Button --- */
+        #back-to-top {
+            position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px;
+            background: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597') no-repeat center center;
+            background-size: cover; border: none; border-radius: 50%; cursor: pointer; 
+            opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 999;
+        }
+        #back-to-top.show { opacity: 1; visibility: visible; }
+        #back-to-top:hover { transform: scale(1.1); }
+
+        /* --- Footer Styles (Ensured to be untouched from the approved state) --- */
+        .footer { padding-top: 2rem; }
+        .footer-bg { background-color: var(--box-color); padding: 3rem 0 3.5rem; }
+        .footer-container { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 1.6rem; }
+        .footer-title { font-size: var(--h3-font-size); margin-bottom: 0.25rem; color: var(--title-color); }
+        .footer-subtitle { font-size: var(--small-font-size); color: var(--title-color); }
+        .footer-links { list-style: none; display: flex; justify-self: center; column-gap: 2rem; color: var(--title-color); }
+        .footer-links:hover { color: var(--skin-color); }
+        .footer-socials { justify-self: flex-end; display: flex; align-items: center; gap: var(--mb15); }
+        .footer-social { font-size: 1.25rem; color: var(--title-color); transition: color 0.3s; }
+        .footer-social:hover { color: var(--skin-color); cursor: pointer; }
+        .footer-copy { font-size: var(--smaller-font-size); text-align: center; margin-top: 4.5rem; }
+        .footer-copy a { color: var(--title-color); }
+        .footer-copy a:hover { color: var(--skin-color); }
+        .footer-title, .footer-subtitle, .footer-links, .footer-social, .footer-copy a { color: var(--title-color); }
+        .footer-brand { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 0.5rem; }
+        .footer-brand-text { text-align: left; }
+        .footer-logo { width: 30px; height: auto; display: block; }
+        .footer-logo:hover { opacity: 0.8; transition: opacity 0.3s ease; }
+
+
+        /* --- MOBILE LAYOUT (max-width: 767px) --- */
+        @media screen and (max-width: 767px) {
+            
+            /* 1. Fixed Header (Only Logo and Toggle) */
+            #nav-bar {
+                padding: 0.5rem 1rem;
+                justify-content: space-between;
+                /* Remove box shadow on mobile nav bar */
+                box-shadow: none; 
+            }
+            
+            /* The main menu container is the overlay */
+            #nav-menu {
+                display: none; 
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: var(--body-color); 
+                z-index: 1001; 
+                
+                flex-direction: column;
+                justify-content: center; 
+                align-items: center; 
+                gap: 2rem; /* Reduced gap to allow links to sit closer when submenu is closed */
+            }
+
+            #nav-menu.mobile-open {
+                display: flex; /* Show overlay */
+                padding: 0; 
+            }
+            
+            /* 2. Mobile Toggle (Visible) */
+            #mobile-menu-toggle {
+                display: block;
+                position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%);
+                z-index: 1002; 
+                font-size: 1.8rem; 
+                padding: 0; 
+                margin-left: auto; 
+                background: transparent; /* Ensure no background */
+                color: var(--skin-color); 
+                border: none;
+                box-shadow: none; /* Ensure no shadow */
+            }
+            
+            /* 3. Content Inside Overlay: Centered and Spacious */
+            
+            /* Mobile links styling */
+            #nav-menu .nav-link,
+            #nav-menu .nav-item {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: var(--title-color);
+                padding: 0.5rem 0;
+                margin: 0;
+                border-bottom: none; 
+                width: auto; 
+                text-align: center;
+            }
+            #nav-menu .nav-item {
+                /* Reset margin/padding for spacing fix */
+                margin: 0; 
+                padding: 0;
+            }
+
+            #nav-menu .nav-link:hover {
+                 color: var(--skin-color);
+                 transform: none;
+            }
+            
+            /* Courses Dropdown (Left-aligned submenu, fixed width) */
+            .has-submenu {
+                display: flex;
+                flex-direction: column;
+                align-items: center; 
+                width: 100%; 
+            }
+            
+            /* FIX: Ensure the submenu is truly hidden and does not consume space when inactive. */
+            .submenu-courses {
+                position: static; 
+                width: auto; 
+                background: none;
+                box-shadow: none;
+                padding: 0; /* Removed default padding/margin */
+                margin: 0; /* Removed default padding/margin */
+                opacity: 0; 
+                display: none; /* Default state: hidden and occupies NO space */
+                transition: opacity 0.3s ease-out;
+                
+                flex-direction: column; /* Keep flex properties for when it is shown */
+                align-items: center; 
+            }
+            
+            .submenu-courses.active { 
+                display: flex; /* Active state: show and allow it to occupy space */
+                opacity: 1;
+                pointer-events: auto;
+                
+                /* Re-add necessary spacing/padding when active */
+                padding: 0.5rem 0 0 0; 
+                margin-top: 0.5rem; 
+            }
+            
+            .submenu-courses .submenu-link {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+                
+                /* Alignment and Width */
+                justify-content: flex-start; 
+                width: 300px; /* Fixed width as requested */
+                text-align: left;
+            }
+            
+            /* FIX: Mobile CTA button (Styled for full prominence and padding) */
+            .nav-cta.mobile-cta-only {
+                background: linear-gradient(90deg, var(--skin-color), #d43a00);
+                color: var(--title-color); 
+                border-radius: 0.5rem;
+                box-shadow: 0 4px 15px rgba(255, 80, 17, 0.7); 
+                
+                /* Requested padding */
+                padding: 1rem 60px; 
+                
+                /* Ensure button fits the screen space well */
+                width: 90%; 
+                max-width: 400px; 
+                
+                font-size: 1.4rem; 
+                font-weight: 900;
+                margin-top: 2rem; 
+                
+                display: block !important; 
+                align-self: center; 
+                text-align: center;
+            }
+            
+            /* Hide desktop items on mobile */
+            .nav-cta.desktop-cta-only { display: none !important; }
+            
+            /* Show all overlay items */
+            #nav-menu.mobile-open > .nav-link,
+            #nav-menu.mobile-open > .nav-item,
+            #nav-menu.mobile-open > .nav-cta {
+                 display: block;
+            }
+
+
+
+
+
+
+
+
+          
+
+            /* --- Footer Mobile Styles (Ensured to be correct for centering) --- */
+            .footer-container {
+                grid-template-columns: 1fr;
+                row-gap: 3rem;
+                text-align: center;
+            }
+            
+            .footer-brand {
+                align-items: center; /* Center align on mobile */
+                text-align: center;
+                justify-content: center;
+            }
+            .footer-brand-text {
+                text-align: center; /* Center align text on mobile */
+            }
+            
+            .footer-socials {
+                justify-content: center;
+                justify-self: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                row-gap: 1.5rem;
+                justify-self: center;
+            }
+            
+            .footer-bg {
+                padding: 2rem 0 3rem;
+            }
+            
+            .footer-copy {
+                margin-top: var(--mb3);
+            }
+        }
+
+
+
+
+        
+        /* Desktop: Ensure correct visibility when not mobile */
+        @media screen and (min-width: 768px) {
+            #nav-menu {
+                display: flex !important; /* Show desktop menu/links */
+            }
+            /* Show the CTA used on desktop in the fixed bar */
+            .nav-cta.desktop-cta-only { 
+                 display: block !important; 
+            }
+        }
+
+
+
+
+
+
+
+
+
+
