@@ -42,27 +42,6 @@
             padding: 0 1rem;
         }
 
-        /* --- Loader and Animations (Included for completeness) --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .page-loader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #000; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; z-index: 9999;
-            transition: opacity 0.5s ease; opacity: 1;
-        }
-        .page-loader.hidden { opacity: 0; pointer-events: none; }
-        .loader-header { color: var(--title-color); font-size: 1.5rem; margin-bottom: 1rem; }
-        .progress { width: 80%; max-width: 300px; height: 5px; background-color: #333; border-radius: 5px; overflow: hidden; }
-        .progress::before {
-            content: ''; display: block; width: 100%; height: 100%;
-            background: var(--skin-color);
-            transform-origin: left;
-            animation: load 1.5s ease-out forwards;
-        }
-        @keyframes load { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
         /* --- Navigation Bar (Desktop Styles) --- */
         #nav-bar {
