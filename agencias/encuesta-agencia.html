@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Encuesta para Agencias · Diagnóstico de IA y Automatización</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #DF1783;
+      --primary-light: #FCE4EC;
+      --bg: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-primary: #202124;
+      --text-secondary: #5f6368;
+      --border-color: #dadce0;
+      --ok: #1e8e3e;
+      --danger: #d93025;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 760px;
+      margin: 40px auto;
+      padding: 0 16px;
+    }
+    
+    /* --- PROGRESS BAR STYLES --- */
+    .progress-container {
+        position: relative;
+        margin: 20px 0 32px;
+    }
+
+    .progress {
+        height: 8px;
+        background: #e9ecef;
+        border-radius: 999px;
+    }
+
+    .progress .bar {
+        height: 100%;
+        width: 0%;
+        background: var(--primary);
+        border-radius: 999px;
+        transition: width .35s ease;
+        position: relative;
+    }
+
+    .tooltip {
+        position: absolute;
+        bottom: 100%;
+        left: 0; /* Updated by JS */
+        transform: translateX(-50%);
+        margin-bottom:12px; /* Adjusted spacing */
+        background: #f1f1f1; /* Light translucent grey */
+        color: #000;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 10px; /* Smaller text */
+        font-weight: 400; /* Thinner text */
+        white-space: nowrap;
+        box-shadow: 0 1px 4px rgba(0,0,0,.15);
+        transition: left .35s ease, opacity .2s ease, visibility .2s ease;
+        pointer-events: none;
+        max-width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        opacity: 0; /* Hidden by default */
+        visibility: hidden; /* Hidden by default */
+    }
+
+    .progress-container:hover .tooltip {
+        opacity: 1; /* Show on hover */
+        visibility: visible; /* Show on hover */
+    }
+
+    .tooltip::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 5px;
+        border-style: solid;
+        border-color: rgba(60, 64, 67, 0.9) transparent transparent transparent;
+    }
+    /* --- END PROGRESS BAR STYLES --- */
+
+    .card {
+      margin-top: 18px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
+      overflow: hidden;
+    }
+
+    .slide {
+      display: none;
+      padding: 32px 28px 20px;
+    }
+
+    .slide.active {
+      display: block;
+    }
+    
+    .slide.conditional {
+        /* Initially hidden by JS, but this is a fallback */
+    }
+
+    .q-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin: 2px 0 8px;
+      color: var(--text-primary);
+    }
+
+    .q-help {
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin: 0 0 24px;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .opt {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color .2s, background-color .2s;
+    }
+    
+    .opt:hover {
+      border-color: #c0c0c0;
+    }
+
+    .opt input {
+      accent-color: var(--primary);
+      transform: scale(1.2);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 0px solid var(--border-color);
+      cursor: pointer;
+      user-select: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all .2s;
+      background: #FCE4EC;
+    }
+    
+    .chip:hover {
+      background: #df1783;
+      color: #fff;
+    }
+
+    .chip.active {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 20px 28px;
+      border-top: 1px solid var(--border-color);
+      background: #fdfdfd;
+    }
+
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      background: var(--primary);
+      color: #fff;
+      transition: background-color .2s, box-shadow .2s;
+    }
+    
+    button:hover {
+      box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    }
+
+    button.secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 1px solid var(--border-color);
+    }
+    
+    button.secondary:hover {
+      background: var(--primary-light);
+      border-color: var(--primary-light);
+    }
+
+    button:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .two-cols {
+      display: grid;
+      gap: 16px;
+    }
+
+    @media(min-width: 760px) {
+      .two-cols {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 15px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="number"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-light);
+    }
+
+    .range {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    input[type=range] {
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      background: #e0e0e0;
+      height: 6px;
+      border-radius: 3px;
+    }
+    input[type=range]::-moz-range-track {
+      background: #e0e0e0;
+      height: 6px;
+      border-radius: 3px;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      margin-top: -6px;
+      background-color: var(--primary);
+      height: 18px;
+      width: 18px;
+      border-radius: 50%;
+    }
+     input[type=range]::-moz-range-thumb {
+      border: none;
+      border-radius: 50%;
+      background-color: var(--primary);
+      height: 18px;
+      width: 18px;
+    }
+
+    .result {
+      padding: 32px 28px 28px;
+    }
+    
+    .bars{display:grid; gap:10px; margin:12px 0 24px}
+    .baritem{display:grid; grid-template-columns:100px 1fr; align-items:center; gap:12px; font-size: 14px;}
+    .baritem .b{
+      height:8px; background: #e0e0e0; border-radius:999px; overflow:hidden
+    }
+    .baritem .b span{display:block; height:100%; width:0%; background:var(--primary); transition:width .6s ease}
+
+    .pill {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: #f1f3f4;
+      border: 1px solid transparent;
+      margin: 4px 4px 0 0;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .small {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    
+    footer {
+      text-align: center;
+      padding: 24px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    
+    <!-- HEADER REMOVED AND PROGRESS BAR MOVED HERE -->
+    <div class="progress-container">
+        <div class="progress">
+            <div class="bar" id="progressBar"></div>
+        </div>
+        <div class="tooltip" id="progressTooltip"></div>
+    </div>
+
+    <div class="card" id="survey">
+      <!-- Slides -->
+      <form id="form">
+
+
+
+
+        
+        <!-- 1 Perfil de agencia -->
+        <section class="slide active" data-key="perfil_agencia">
+          <h2 class="q-title">1) ¿Cuál es el enfoque principal de tu negocio?</h2>
+          <p class="q-help">Selecciona todas las que apliquen.</p>
+          <div class="chips" data-multi>
+            <div class="chip" data-value="Performance Ads">Performance Ads</div>
+            <div class="chip" data-value="Branding / Creativo">Branding / Creativo</div>
+            <div class="chip" data-value="Contenido / Social">Contenido / Social</div>
+            <div class="chip" data-value="Email / CRM">Email / CRM</div>
+            <div class="chip" data-value="Operaciones E-commerce">Operaciones E-commerce</div>
+            <div class="chip" data-value="Otro">Otro</div>
+          </div>
+          <div style="margin-top:16px"><input type="text" placeholder="Si elegiste ‘Otro’, ¿cuál?" data-free="perfil_agencia_otro"></div>
+        </section>
+
+
+
+        
+
+        <!-- 2 Tipo de clientes -->
+        <section class="slide" data-key="tipo_clientes">
+          <h2 class="q-title">2) ¿Qué tipo de clientes atiendes con más frecuencia?</h2>
+          <p class="q-help">Selecciona todas las que apliquen.</p>
+          <div class="chips" data-multi>
+            <div class="chip" data-value="Retail / Tiendas">Retail / Tiendas</div>
+            <div class="chip" data-value="Servicios">Servicios</div>
+            <div class="chip" data-value="Educación">Educación</div>
+            <div class="chip" data-value="Salud / Beauty">Salud / Beauty</div>
+            <div class="chip" data-value="Restaurantes / QSR">Restaurantes / QSR</div>
+            <div class="chip" data-value="B2B / SaaS">B2B / SaaS</div>
+            <div class="chip" data-value="Otro">Otro</div>
+          </div>
+          <div style="margin-top:16px"><input type="text" placeholder="Si elegiste ‘Otro’, ¿cuál?" data-free="tipo_clientes_otro"></div>
+        </section>
+
+        <!-- 3 Peso del e-commerce -->
+        <section class="slide" data-key="peso_ecom">
+          <h2 class="q-title">3) ¿Qué porcentaje de tu negocio es digital?</h2>
+          <p class="q-help">Este valor indica qué tanto de tus ventas y operaciones provienen de canales digitales como tu tienda en línea, redes sociales o marketplaces.
+</p>
+          <div class="range">
+            <input type="range" min="0" max="100" value="40" step="5" data-range="peso_ecom">
+            <strong><span id="peso_ecom_val">40</span>%</strong>
+          </div>
+        </section>
+
+
+        
+
+        <!-- 4 Herramientas -->
+        <section class="slide" data-key="herramientas">
+          <h2 class="q-title">4) ¿Qué herramientas usas a diario?</h2>
+          <p class="q-help">Selecciona todas las que apliquen.</p>
+          <div class="two-cols chips" data-multi>
+            <div class="chip" data-value="Meta Ads">Meta Ads</div>
+            <div class="chip" data-value="Google Ads">Google Ads</div>
+            <div class="chip" data-value="GA4 / Analytics">GA4 / Analytics</div>
+            <div class="chip" data-value="Shopify">Shopify</div>
+            <div class="chip" data-value="WooCommerce">WooCommerce</div>
+            <div class="chip" data-value="Klaviyo">Klaviyo</div>
+            <div class="chip" data-value="Mailchimp">Mailchimp</div>
+            <div class="chip" data-value="HubSpot / CRM">HubSpot / CRM</div>
+            <div class="chip" data-value="Notion">Notion</div>
+            <div class="chip" data-value="Google Sheets">Google Sheets</div>
+            <div class="chip" data-value="Asana / Trello">Asana / Trello</div>
+            <div class="chip" data-value="WhatsApp Business">WhatsApp Business</div>
+            <div class="chip" data-value="Otro">Otro</div>
+          </div>
+          <div style="margin-top:16px"><input type="text" placeholder="Si elegiste ‘Otro’, ¿cuál?" data-free="herramientas_otro"></div>
+        </section>
+
+
+
+
+        
+
+        <!-- 5 Tareas repetitivas -->
+        <section class="slide" data-key="tareas">
+          <h2 class="q-title">5) ¿Qué tareas sientes más repetitivas o manuales?</h2>
+          <p class="q-help">Selecciona todas las que apliquen.</p>
+          <div class="chips" data-multi>
+            <div class="chip" data-value="Reportes a clientes">Reportes a clientes</div>
+            <div class="chip" data-value="Ingreso/Limpieza de datos">Ingreso/Limpieza de datos</div>
+            <div class="chip" data-value="Segmentación / Audiencias">Segmentación / Audiencias</div>
+            <div class="chip" data-value="Generación de contenidos">Generación de contenidos</div>
+            <div class="chip" data-value="Aprobaciones internas">Aprobaciones internas</div>
+            <div class="chip" data-value="Soporte al cliente">Soporte al cliente</div>
+            <div class="chip" data-value="Facturación / Cobros">Facturación / Cobros</div>
+            <div class="chip" data-value="Gestión de leads">Gestión de leads</div>
+            <div class="chip" data-value="Otro">Otro</div>
+          </div>
+          <div style="margin-top:16px"><input type="text" placeholder="Si elegiste ‘Otro’, ¿cuál?" data-free="tareas_otro"></div>
+        </section>
+
+
+
+
+
+        
+        
+        <!-- 6 NEW QUESTION for Bienestar -->
+        <section class="slide" data-key="estres">
+          <h2 class="q-title">6) ¿Qué aspectos de tu trabajo te generan más estrés?</h2>
+          <p class="q-help">Selecciona todas las que apliquen.</p>
+          <div class="chips" data-multi>
+            <div class="chip" data-value="Cumplir deadlines">Cumplir deadlines</div>
+            <div class="chip" data-value="Comunicación con clientes">Comunicación con clientes</div>
+            <div class="chip" data-value="Sobrecarga de tareas">Sobrecarga de tareas</div>
+            <div class="chip" data-value="Resultados de campañas">Resultados de campañas</div>
+            <div class="chip" data-value="Gestión del equipo">Gestión del equipo</div>
+            <div class
+              ="chip" data-value="Incertidumbre">Incertidumbre</div>
+          </div>
+        </section>
+
+
+
+
+        
+
+        <!-- 7 Prioridad (was 6) -->
+        <section class="slide" data-key="prioridad">
+          <h2 class="q-title">7) Si tuvieras que elegir una prioridad hoy, sería…</h2>
+          <div class="options">
+            <label class="opt"><input type="radio" name="prioridad" value="Tiempo"> Ahorrar tiempo</label>
+            <label class="opt"><input type="radio" name="prioridad" value="Dinero"> Optimizar costos / aumentar ingresos</label>
+            <label class="opt"><input type="radio" name="prioridad" value="Bienestar"> Liberar estrés y presión</label>
+            <label class="opt"><input type="radio" name="prioridad" value="Estatus"> Reforzar la imagen innovadora</label>
+          </div>
+        </section>
+
+
+
+
+
+
+        
+        <!-- 8 Familiaridad IA (was 7) -->
+        <section class="slide" data-key="madurez_ia">
+          <h2 class="q-title">8) ¿Qué nivel de familiaridad tienes con IA?</h2>
+          <div class="options">
+            <label class="opt"><input type="radio" name="madurez_ia" value="Nunca he usado"> Nunca he usado</label>
+            <label class="opt"><input type="radio" name="madurez_ia" value="Básico"> Básico (uso esporádico)</label>
+            <label class="opt"><input type="radio" name="madurez_ia" value="Intermedio"> Intermedio (ya integro algunas tareas)</label>
+            <label class="opt"><input type="radio" name="madurez_ia" value="Avanzado"> Avanzado (flujos estables con IA)</label>
+          </div>
+        </section>
+
+
+
+
+
+
+
+
+
+        
+
+        <!-- 9 NEW SLIDE: ChatGPT Usage Trigger -->
+        <section class="slide" data-key="uso_chatgpt">
+            <h2 class="q-title">9) ¿Has usado o usas la inteligencia artificial como ChatGPT?</h2>
+            <div class="options">
+                <label class="opt"><input type="radio" name="uso_chatgpt" value="si"> Sí</label>
+                <label class="opt"><input type="radio" name="uso_chatgpt" value="no"> No</label>
+            </div>
+        </section>
+
+
+
+
+
+
+
+        
+
+        <!-- 10 NEW CONDITIONAL SLIDE: Models Used -->
+        <section class="slide conditional" data-key="modelos_ia">
+            <h2 class="q-title">10) ¿Cuáles de estos modelos de Asistentes Inteligentes LLM usas o has usado?</h2>
+            <p class="q-help">Selecciona todas las que apliquen.</p>
+            <div class="chips" data-multi>
+                <div class="chip" data-value="ChatGPT">ChatGPT</div>
+                <div class="chip" data-value="DeepSeek">DeepSeek</div>
+                <div class="chip" data-value="Claude">Claude</div>
+                <div class="chip" data-value="Kimi">Kimi</div>
+                <div class="chip" data-value="Qwen 2.0">Qwen 2.0</div>
+                <div class="chip" data-value="Grok">Grok</div>
+                <div class="chip" data-value="Gemini">Gemini</div>
+                <div class="chip" data-value="Copilot">Copilot</div>
+                <div class="chip" data-value="Mistral">Mistral</div>
+              <div class="chip" data-value="Midjourney">Midjourney</div>
+              <div class="chip" data-value="Veo3">Google Veo3</div>
+                <div class="chip" data-value="Otro">Otro</div>
+            </div>
+            <div style="margin-top:16px"><input type="text" placeholder="Si elegiste ‘Otro’, ¿cuál?" data-free="modelos_ia_otro"></div>
+        </section>
+
+
+
+        
+
+        <!-- 11 NEW CONDITIONAL SLIDE: Frequency of Use -->
+        <section class="slide conditional" data-key="frecuencia_ia">
+            <h2 class="q-title">11) ¿Con qué nivel de frecuencia usas estas herramientas?</h2>
+            <div class="options">
+                <label class="opt"><input type="radio" name="frecuencia_ia" value="Diario"> Diario</label>
+                <label class="opt"><input type="radio" name="frecuencia_ia" value="Frecuentemente"> Frecuentemente</label>
+                <label class="opt"><input type="radio" name="frecuencia_ia" value="Semanal"> Semanal</label>
+                <label class="opt"><input type="radio" name="frecuencia_ia" value="De vez en cuando"> De vez en cuando</label>
+                <label class="opt"><input type="radio" name="frecuencia_ia" value="Mensual"> Mensual</label>
+                <label class="opt"><input type="radio" name="frecuencia_ia" value="No tanto"> No tanto</label>
+            </div>
+        </section>
+
+
+
+        
+
+        <!-- 12 Casos de interés (was 9) -->
+        <section class="slide" data-key="interes">
+          <h2 class="q-title">12) ¿Con cuáles casos de uso te identificas más?</h2>
+          <p class="q-help">Selecciona todas las que apliquen.</p>
+          <div class="chips" data-multi>
+            <div class="chip" data-value="Reportes automáticos a clientes">Reportes automáticos a clientes</div>
+            <div class="chip" data-value="Generación de emails y contenidos">Generación de emails y contenidos</div>
+            <div class="chip" data-value="Chatbot de soporte 24/7">Chatbot de soporte 24/7</div>
+            <div class="chip" data-value="Lead scoring / Cualificación">Lead scoring / Cualificación</div>
+            <div class="chip" data-value="Recomendaciones de producto">Recomendaciones de producto</div>
+            <div class="chip" data-value="Resumen inteligente de analíticas">Resumen inteligente de analíticas</div>
+            <div class="chip" data-value="Traducciones / Localización">Traducciones / Localización</div>
+            <div class="chip" data-value="Enriquecimiento / Limpieza de datos">Enriquecimiento / Limpieza de datos</div>
+          </div>
+        </section>
+
+
+
+
+        
+        
+
+        <!-- 13 Tarea a automatizar primero (was 10) -->
+        <section class="slide" data-key="primera_tarea">
+          <h2 class="q-title">13) Si mañana pudiéras automatizar una sola tarea o flujo de trabajo en tu vida personal o en tu negocio, ¿cuál sería?</h2>
+          <input type="text" placeholder="Describe la tarea" data-free="primera_tarea">
+        </section>
+
+
+        
+
+        
+
+        <!-- 14 Disposición a piloto (was 11) -->
+        <section class="slide" data-key="piloto">
+          <h2 class="q-title">14) ¿Te interesaría adaptar esta tecnología en tu vida o negocio?</h2>
+          <div class="options">
+            <label class="opt"><input type="radio" name="piloto" value="Sí, probemos un piloto pequeño"> Sí, probemos un piloto pequeño</label>
+            <label class="opt"><input type="radio" name="piloto" value="Necesito verlo en acción"> Necesito verlo en acción (demo)</label>
+            <label class="opt"><input type="radio" name="piloto" value="Aún explorando"> Aún explorando</label>
+          </div>
+        </section>
+
+
+
+        
+
+        
+
+        <!-- 15 Preocupaciones (was 12) -->
+        <section class="slide" data-key="riesgos">
+          <h2 class="q-title">15) ¿Cuáles preocupaciones tienes sobre IA y automatización?</h2>
+          <p class="q-help">Selecciona todas las que apliquen.</p>
+          <div class="chips" data-multi>
+            <div class="chip" data-value="Privacidad / Datos">Privacidad / Datos</div>
+            <div class="chip" data-value="Costos">Costos</div>
+            <div class="chip" data-value="Tiempo de implementación">Tiempo de implementación</div>
+            <div class="chip" data-value="Integración con mis herramientas">Integración con mis herramientas</div>
+            <div class="chip" data-value="Control / Propiedad">Control / Propiedad</div>
+            <div class="chip" data-value="Calidad de resultados">Calidad de resultados</div>
+            <div class="chip" data-value="Otro">Otro</div>
+          </div>
+          <div style="margin-top:16px"><input type="text" placeholder="Si elegiste ‘Otro’, ¿cuál?" data-free="riesgos_otro"></div>
+        </section>
+
+
+
+
+
+
+        
+
+        <!-- 16 Contacto (was 13) -->
+        <section class="slide" data-key="contacto">
+          <h2 class="q-title">16) Si deseas recibir el resumen por email/WhatsApp</h2>
+          <div class="two-cols">
+            <div><input type="email" placeholder="Email (opcional)" data-free="email"></div>
+            <div><input type="text" placeholder="WhatsApp (opcional)" data-free="whatsapp"></div>
+          </div>
+          <p class="small" style="margin-top: 16px;">No compartimos tu información. Solo usaremos estos datos para enviarte el resumen si lo solicitas.</p>
+        </section>
+      </form>
+
+
+
+
+      
+      
+
+      <!-- Controles -->
+      <div class="controls">
+        <button class="secondary" id="prevBtn">Atrás</button>
+        <div style="display:flex; gap:10px">
+          <button class="secondary" id="saveBtn" title="Guardar progreso en este navegador">Guardar</button>
+          <button id="nextBtn">Siguiente</button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    
+
+    <!-- RESULTADOS -->
+    <div class="card" id="results" style="display:none">
+      <div class="result">
+        <h2 style="margin-top:6px">Resultados de la encuesta:</h2>
+        <p class="small">Resumen basado en tus respuestas. Los puntajes miden la orientación actual de tu negocio.</p>
+
+        <h3 style="margin:24px 0 6px">Enfoque: Tiempo / Dinero / Bienestar / Estatus</h3>
+        <div class="bars">
+          <div class="baritem"><strong>Tiempo</strong><div class="b"><span id="barTiempo"></span></div></div>
+          <div class="baritem"><strong>Dinero</strong><div class="b"><span id="barDinero"></span></div></div>
+          <div class="baritem"><strong>Bienestar</strong><div class="b"><span id="barBienestar"></span></div></div>
+          <div class="baritem"><strong>Estatus</strong><div class="b"><span id="barEstatus"></span></div></div>
+        </div>
+
+
+        
+
+
+
+        
+        <div id="topInsights"></div>
+
+        <h3 style="margin:24px 0 8px">Recomendaciones iniciales (n8n + IA)</h3>
+        <ul id="recs" style="padding-left: 20px; color: var(--text-secondary); font-size: 15px;"></ul>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:24px">
+          <button id="downloadBtn">Descargar resultados (JSON)</button>
+          <button id="restartBtn" class="secondary">Reiniciar encuesta</button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    
+
+    <footer class="small">
+      Hecho con ❤️ para conversaciones consultivas.
+    </footer>
+  </div>
+
+
+
+
+
+
+
+  
+
+  <script>
+    // ---- Utilidades ----
+    const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+    const $ = (sel, ctx=document) => ctx.querySelector(sel);
+
+    const form = $('#form');
+    const allSlides = $$('.slide');
+    const progressBar = $('#progressBar');
+    const prevBtn = $('#prevBtn');
+    const nextBtn = $('#nextBtn');
+    const saveBtn = $('#saveBtn');
+    const resultsCard = $('#results');
+    const chatGptTrigger = $('[name="uso_chatgpt"]');
+
+    let current = 0;
+    let visibleSlides = [];
+    const state = {}; // respuestas
+
+    function rebuildVisibleSlides() {
+        const useChatGpt = $('[name="uso_chatgpt"]:checked')?.value === 'si';
+        visibleSlides = allSlides.filter(slide => {
+            const isConditional = slide.classList.contains('conditional');
+            return !isConditional || (isConditional && useChatGpt);
+        });
+        updateProgress();
+    }
+
+    function updateProgress(){
+      const total = visibleSlides.length;
+      if (total === 0) return;
+      
+      const pct = Math.round(((current + 1) / total) * 100);
+      progressBar.style.width = pct + '%';
+      
+      const tooltip = $('#progressTooltip');
+      const currentSlide = visibleSlides[current];
+      const titleText = currentSlide.querySelector('.q-title').textContent;
+      
+      const questionNumberMatch = titleText.match(/^(\d+)\)/);
+      const questionNumber = questionNumberMatch ? questionNumberMatch[1] : current + 1;
+
+      tooltip.textContent = `${current + 1}/${total}: ${titleText.substring(titleText.indexOf(')') + 1).trim()}`;
+      tooltip.style.left = `calc(${pct}% - 2px)`;
+
+      prevBtn.disabled = current === 0;
+      nextBtn.textContent = current === total - 1 ? 'Finalizar' : 'Siguiente';
+    }
+
+    function showSlide(index){
+      allSlides.forEach(s => s.classList.remove('active'));
+      if (visibleSlides[index]) {
+        visibleSlides[index].classList.add('active');
+        current = index;
+      }
+      updateProgress();
+    }
+
+    // Event Listeners
+    $$('[name="uso_chatgpt"]').forEach(radio => {
+        radio.addEventListener('change', rebuildVisibleSlides);
+    });
+
+    $$('.chips[data-multi]').forEach(group => {
+      group.addEventListener('click', (e) => {
+        const chip = e.target.closest('.chip');
+        if(!chip) return;
+        chip.classList.toggle('active');
+      });
+    });
+
+    $('[data-range="peso_ecom"]').addEventListener('input', (e) => {
+      $('#peso_ecom_val').textContent = e.target.value;
+    });
+
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault(); 
+      if(current > 0) showSlide(current - 1);
+    });
+
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if(current === visibleSlides.length - 1){
+        collectAnswers();
+        computeAndShowResults();
+        return;
+      }
+      if (current < visibleSlides.length - 1) {
+        showSlide(current + 1);
+      }
+    });
+
+    saveBtn.addEventListener('click', (e) => {
+      e.preventDefault(); 
+      collectAnswers();
+      localStorage.setItem('diagIA', JSON.stringify(state));
+      saveBtn.textContent = 'Guardado ✓';
+      setTimeout(()=> saveBtn.textContent = 'Guardar', 1200);
+    });
+
+    function restoreState(){
+      const saved = localStorage.getItem('diagIA');
+      if(!saved) return; 
+      try {
+        const data = JSON.parse(saved);
+        Object.assign(state, data); // Load saved data into state
+
+        allSlides.forEach(sl => {
+          const key = sl.dataset.key; if(!key) return;
+          if(Array.isArray(data[key])){
+            $$('.chip', sl).forEach(ch => {
+              if(data[key].includes(ch.dataset.value)) ch.classList.add('active');
+            });
+          }
+          $$('input[type=radio]', sl).forEach(r => { 
+            if(data[key] === r.value) {
+                r.checked = true;
+                // If it's the trigger, rebuild slides based on saved value
+                if (r.name === 'uso_chatgpt') {
+                    rebuildVisibleSlides();
+                }
+            }
+          });
+          $$('[data-free]', sl).forEach(inp => { 
+            const k = inp.getAttribute('data-free'); 
+            if(data[k]) inp.value = data[k]; 
+          });
+          const rg = $('[data-range="peso_ecom"]', sl); 
+          if(rg && data['peso_ecom'] !== undefined){ 
+            rg.value = data['peso_ecom']; 
+            $('#peso_ecom_val').textContent = rg.value;
+          }
+        });
+      } catch(err) { console.warn('No se pudo restaurar', err) }
+    }
+
+    function collectAnswers(){
+      visibleSlides.forEach(sl => {
+        const key = sl.dataset.key; if(!key) return;
+        const chips = $$('.chip.active', sl);
+        if(chips.length){ state[key] = chips.map(c => c.dataset.value); }
+        else { state[key] = undefined; }
+        
+        const r = $(`input[name=${key}]:checked`, sl); 
+        if(r) { state[key] = r.value; }
+        
+        $$('[data-free]', sl).forEach(inp => { 
+          const freeKey = inp.getAttribute('data-free');
+          if (inp.value.trim()){
+            state[freeKey] = inp.value.trim();
+          } else {
+             state[freeKey] = undefined;
+          }
+        });
+
+        const rg = $('[data-range="peso_ecom"]', sl); 
+        if(rg){ state['peso_ecom'] = Number(rg.value); }
+      });
+    }
+
+    function sendDataToSheet(data) {
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzj8p8X85Ee8JcUHp6XJ6D-C6iuMiMItDJD9UTzNPXlCuLYchUJT1tE03hYg5pRLt6R/exec';
+      const downloadBtn = $('#downloadBtn');
+      if ($('#sendBtn')) return;
+
+      let sendBtn = document.createElement('button');
+      sendBtn.id = 'sendBtn';
+      sendBtn.textContent = 'Enviar a Google Sheets';
+      downloadBtn.parentElement.insertBefore(sendBtn, downloadBtn.nextSibling);
+
+      sendBtn.addEventListener('click', () => {
+        sendBtn.disabled = true;
+        sendBtn.textContent = 'Enviando...';
+
+        fetch(scriptURL, {
+          method: 'POST',
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(res => {
+          if (res.result === 'success') {
+            sendBtn.textContent = 'Enviado ✓';
+            sendBtn.style.background = 'var(--ok)';
+            sendBtn.style.color = '#fff';
+          } else {
+            throw new Error(res.error || 'Unknown error');
+          }
+        })
+        .catch(error => {
+          console.error('Error!', error.message);
+          sendBtn.textContent = 'Error al Enviar';
+          sendBtn.style.background = 'var(--danger)';
+          sendBtn.style.color = '#fff';
+        });
+      });
+    }
+
+    function computeAndShowResults(){
+      let score = {Tiempo:0, Dinero:0, Estatus:0, Bienestar:0};
+      
+      if(state.prioridad && score[state.prioridad] !== undefined){ score[state.prioridad] += 3; }
+      
+      const mapTiempo = ['Reportes a clientes','Ingreso/Limpieza de datos','Aprobaciones internas','Facturación / Cobros'];
+      const mapDinero = ['Segmentación / Audiencias','Gestión de leads','Recomendaciones de producto'];
+      const mapEstatus = ['Generación de contenidos'];
+      const mapBienestar = ['Soporte al cliente', 'Aprobaciones internas'];
+      
+      (state.tareas || []).forEach(t => {
+        if(mapTiempo.includes(t)) score.Tiempo += 1;
+        if(mapDinero.includes(t)) score.Dinero += 1;
+        if(mapEstatus.includes(t)) score.Estatus += 1;
+        if(mapBienestar.includes(t)) score.Bienestar += 1;
+      });
+
+      (state.estres || []).forEach(() => {
+          score.Bienestar += 1;
+      });
+
+      const max = Math.max(1, ...Object.values(score));
+      const pct = {
+        Tiempo: Math.round((score.Tiempo/max)*100),
+        Dinero: Math.round((score.Dinero/max)*100),
+        Estatus: Math.round((score.Estatus/max)*100),
+        Bienestar: Math.round((score.Bienestar/max)*100)
+      };
+
+      sendDataToSheet(state);
+
+      $('#barTiempo').style.width = pct.Tiempo + '%';
+      $('#barDinero').style.width = pct.Dinero + '%';
+      $('#barEstatus').style.width = pct.Estatus + '%';
+      $('#barBienestar').style.width = pct.Bienestar + '%';
+
+      const insights = [];
+      if(state.prioridad) insights.push(`<p><strong>Prioridad principal:</strong> ${state.prioridad}</p>`);
+      if(state.madurez_ia) insights.push(`<p><strong>Madurez en IA:</strong> ${state.madurez_ia}</p>`);
+      if(state.peso_ecom!==undefined) insights.push(`<p><strong>Peso del e‑commerce:</strong> ${state.peso_ecom}%</p>`);
+      const tareas = (state.tareas||[]).concat(state.tareas_otro?['Otro: '+state.tareas_otro]:[]);
+      if(tareas.length) insights.push(`<div><strong>Cuellos de botella:</strong> ${tareas.map(x=>`<span class="pill">${x}</span>`).join(' ')}</div>`);
+      const intereses = (state.interes||[]);
+      if(intereses.length) insights.push(`<div><strong>Intereses de automatización:</strong> ${intereses.map(x=>`<span class="pill">${x}</span>`).join(' ')}</div>`);
+      $('#topInsights').innerHTML = insights.join('\n');
+
+      const recs = [];
+      function addRec(t, d){ recs.push(`<li><strong>${t}:</strong> ${d}</li>`); }
+      if(intereses.includes('Reportes automáticos a clientes') || (state.tareas||[]).includes('Reportes a clientes')){
+        addRec('Reportes automáticos', 'Genera resúmenes y KPIs y envíalos por email o WhatsApp.');
+      }
+      if(intereses.includes('Generación de emails y contenidos')){
+        addRec('Borradores de email/social con IA', 'Plantillas con prompts y aprobación en un clic.');
+      }
+      if(intereses.includes('Chatbot de soporte 24/7') || (state.tareas||[]).includes('Soporte al cliente')){
+        addRec('Chatbot + Helpdesk', 'Atiende FAQs, clasifica tickets y deriva casos complejos.');
+      }
+      if(intereses.includes('Lead scoring / Cualificación') || (state.tareas||[]).includes('Gestión de leads')){
+        addRec('Lead scoring y enrutamiento', 'Puntúa leads y envía los de alto valor al equipo correcto.');
+      }
+      if(!recs.length && state.primera_tarea){ addRec('Piloto sugerido', `Automatiza la tarea prioritaria ("${state.primera_tarea}").`); }
+      $('#recs').innerHTML = recs.join('\n');
+
+      $('#survey').style.display = 'none';
+      resultsCard.style.display = 'block';
+
+      $('#downloadBtn').onclick = () => {
+        const blob = new Blob([JSON.stringify({state, score, pct}, null, 2)], {type:'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'diagnostico-ia-n8n.json'; a.click();
+        URL.revokeObjectURL(url);
+      };
+
+      $('#restartBtn').onclick = () => {
+        localStorage.removeItem('diagIA');
+        location.reload();
+      };
+    }
+
+    // --- INITIALIZATION ---
+    restoreState();
+    rebuildVisibleSlides();
+    showSlide(0);
+  </script>
+</body>
+</html>
