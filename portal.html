@@ -37,13 +37,14 @@
 
         /* Spline Background */
         spline-viewer {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            transform: scale(1.13);
             z-index: -2; /* Behind everything but above fallback */
-            pointer-events: none; /* Disables interaction */
+            
         }
 
         /* Fallback background (shown if Spline fails to load) */
