@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- !!! IMPORTANT: UPDATE THE TITLE TAG FOR EACH UNIQUE PAGE !!! -->
+    <title>AIM Bootcamp: AI Training for Professionals and Teams | Hands-on, ROI-Driven</title>
+    <meta name="description" content="Become AI fluent in weeks. Cohort-based training for professionals and corporate teams. Hands-on labs, governance, and measurable outcomes. Apply or book a demo.">
+    
+    <!-- Import Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
+
+    <!-- Spline Viewer for Hero Background -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.28/build/spline-viewer.js"></script>
+  
+    <style>
+        /* --- AIM Brand Styles (from Knowledge Base) --- */
+        :root {
+            --skin-color: #ff5011;
+            --mirage-color: hsl(210, 10%, 23%);
+            --title-color: hsl(242, 8%, 98%);
+            --text-color: hsl(242, 8%, 80%);
+            --body-color: #0d0d0d;
+            --box-color: hsl(242, 14%, 12%);
+            --body-font: 'Inter', sans-serif;
+            --small-font-size: 0.95rem;
+            --h3-font-size: 1.25rem;
+            --smaller-font-size: 0.75rem;
+            --mb15: 0.75rem;
+            --mb3: 1.5rem;
+        }
+        
+        
+        
+        
+        
+
+        /* --- Base & Scrollbar --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        
+        
+        
+        html { scroll-behavior: smooth; }
+        
+        
+        
+        
+        
+        body {
+            margin: 0;
+            font-family: var(--body-font);
+            background-color: var(--body-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 8rem; /* Space for fixed nav */
+            overflow-x: hidden;
+        }
+        
+        
+        
+        
+        
+        main { max-width: 980px; margin: 0 auto; padding: 0 1rem; }
+        
+        
+        
+        img { max-width: 100%; height: auto; display: block; }
+        
+        
+        
+        
+
+        a { text-decoration: none; cursor: pointer; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #333; }
+        ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
+        
+        
+        
+        
+        
+        /* Utility container class for maximum content width */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        
+        
+        
+        
+        
+
+        /* --- Loader and Animations (Included for completeness) --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /* Page loader container with black background */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+
+        /* Added text header */
+        .loader-header {
+            color: white;
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        
+        
+        
+        
+        
+        
+
+        /* Your progress bar - unchanged */
+        .progress {
+            width: 272.8px;
+            height: 41.7px;
+            border-radius: 28.8px;
+            color: #ff5011;
+            background-color: #000;
+            border: 2.9px solid;
+            position: relative;
+        }
+
+        .progress::before {
+            content: "";
+            position: absolute;
+            margin: 2.9px;
+            inset: 0 100% 0 0;
+            border-radius: inherit;
+            background: currentColor;
+            animation: progress-pf82op 1.5s forwards;
+        }
+
+        @keyframes progress-pf82op {
+            100% {
+                inset: 0;
+            }
+        }
+
+        /* Hide transition */
+        .page-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+
+        /* --- Navigation Bar --- */
+        #nav-bar {
+            position: fixed; top: 2rem; left: 50%; transform: translateX(-50%);
+            background: rgba(25, 25, 25, 0.85); backdrop-filter: blur(10px);
+            border: 1px solid var(--box-color); border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem; display: flex; align-items: center;
+            max-width: 980px; width: 90%; z-index: 1000;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+        #nav-logo img { height: 35px; }
+        #nav-menu { display: flex; gap: 1.5rem; margin-left: auto; align-items: center; }
+        .nav-link { color: var(--text-color); transition: color 0.3s, transform 0.2s; font-weight: 500; }
+        .nav-link:hover { color: var(--skin-color); transform: translateY(-1px); }
+        .nav-cta {
+            background: linear-gradient(90deg, var(--skin-color), #d43a00);
+            color: var(--title-color); padding: 0.5rem 1rem; border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); }
+        .has-submenu { position: relative; }
+        
+        
+        
+        
+        
+        /* Submenu Default State (Hidden) */
+        .submenu-courses {
+            position: absolute; 
+            top: 100%; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: var(--box-color); 
+            border-radius: 0.5rem; 
+            padding: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
+            opacity: 0; 
+            pointer-events: none; 
+            transition: opacity 0.3s, top 0.3s; 
+            width: 200px;
+        }
+        
+        
+        
+        
+        
+        /* Submenu Active State (Shown via JavaScript click) */
+        .submenu-courses.active { 
+            opacity: 1; 
+            pointer-events: auto; 
+            top: 100%; 
+        }
+
+        .submenu-link { display: flex; align-items: center; gap: 0.75rem; color: var(--text-color); padding: 0.5rem; border-radius: 0.25rem; transition: background-color 0.3s, color 0.3s; }
+        .submenu-link:hover { background-color: rgba(255, 80, 17, 0.1); color: var(--skin-color); }
+        .submenu-link i { width: 15px; text-align: center; }
+
+        
+        
+        
+        
+        
+        
+        
+        /* --- Back to Top Button --- */
+        #back-to-top {
+            position: fixed; bottom: 20px; right: 20px;
+            width: 50px; height: 50px;
+            /* Custom image URL */
+            background: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597') no-repeat center center;
+            background-size: cover;
+            border: none; border-radius: 50%;
+            cursor: pointer; 
+            opacity: 0; 
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 999;
+        }
+        #back-to-top.show { opacity: 1; visibility: visible; }
+        #back-to-top:hover { transform: scale(1.1); }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        /* --- Footer (Main Page Footer) --- */
+        .footer {
+            padding-top: 2rem;
+        }
+
+        .footer-bg {
+            background-color: var(--box-color);
+            padding: 3rem 0 3.5rem;
+        }
+        
+        .footer-container {
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 1.6rem;
+        }
+
+        .footer-title {
+            font-size: var(--h3-font-size);
+            margin-bottom: 0.25rem; 
+            color: var(--title-color);
+        }
+
+        .footer-subtitle {
+            font-size: var(--small-font-size);
+            color: var(--title-color);
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            justify-self: center;
+            column-gap: 2rem;
+            color: var(--title-color);
+        }
+
+        .footer-links:hover {
+            color: var(--skin-color);
+        }
+
+        .footer-socials {
+            justify-self: flex-end;
+            display: flex; 
+            align-items: center;
+            gap: var(--mb15);
+        }
+
+        .footer-social {
+            font-size: 1.25rem;
+            color: var(--title-color);
+            transition: color 0.3s;
+        }
+
+        .footer-social:hover {
+            color: var(--skin-color);
+            cursor: pointer; 
+        }
+
+        .footer-copy {
+            font-size: var(--smaller-font-size);
+            text-align: center;
+            margin-top: 4.5rem;
+        }
+
+        .footer-copy a {
+            color: var(--title-color);
+        }
+
+        .footer-copy a:hover {
+            color: var(--skin-color);
+        }
+
+        .footer-title,
+        .footer-subtitle,
+        .footer-links,
+        .footer-social,
+        .footer-copy a {
+            color: var(--title-color);
+        }
+
+        /* Footer Logo Styles (Desktop) */
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            gap: 0.5rem; 
+        }
+        .footer-brand-text { 
+            text-align: left;
+        }
+        .footer-logo {
+            width: 30px;
+            height: auto;
+            display: block;
+        }
+
+        .footer-logo:hover {
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        /* --- Custom Styles for Homepage Wireframe --- */
+        .section {
+            background-color: var(--box-color);
+            border-radius: 12px;
+            border: 1px solid var(--mirage-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0; /* Start hidden for animation */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 80, 17, 0.2); /* Subtle glow */
+        }
+
+        h1 {
+            color: var(--skin-color);
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        h2 {
+            color: var(--title-color);
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-weight: 700;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 80%;
+            background-color: var(--skin-color);
+            border-radius: 3px;
+        }
+
+        h3 {
+            color: var(--title-color);
+            font-size: var(--h3-font-size);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .h3-with-icon {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .h3-with-icon i {
+            color: var(--skin-color);
+            font-size: 1.5rem;
+        }
+
+        ul.icon-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul.icon-list li {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon {
+            color: var(--skin-color);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            min-width: 30px;
+            margin-top: 0.2rem;
+        }
+
+        .feature-content h4 {
+            color: var(--title-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .feature-content p {
+            color: var(--text-color);
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        
+        
+        
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: -10rem; /* Compensate for body padding-top */
+        }
+        
+        
+        
+        
+        .hero spline-viewer {
+            position: absolute;
+            top: 90px;
+            left: 0;
+            width: 100%;
+            max-width: 100vw;
+            height: 100%;
+            z-index: 0;
+              transform: scale(1.13);
+        }
+        
+        
+        
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 1rem;
+            color: var(--title-color);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+        }
+        
+        .hero-content h1 {
+            color: var(--title-color);
+            font-size: 3.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-cta-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .hero-cta-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .hero-cta-label {
+            font-size: 1.1rem;
+            color: var(--title-color);
+            font-weight: 600;
+        }
+        
+        .hero-cta {
+            background: linear-gradient(90deg, var(--skin-color), #d43a00);
+            color: var(--title-color);
+            padding: 0.8rem 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(255, 80, 17, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            min-width: 200px;
+        }
+        
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 80, 17, 0.6);
+        }
+        
+        .hero-micro-reassurance {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-top: 1rem;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .reassurance-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0 1rem;
+        }
+        
+        .reassurance-item i {
+            color: var(--skin-color);
+        }
+        
+        
+        
+        
+        
+
+        /* Social Proof Bar */
+        .social-proof-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin: 3rem auto; /* Restored space beneath hero */
+            margin-top: 0;
+            flex-wrap: wrap;
+            padding: 1rem 0;
+            background-color: var(--box-color);
+            color: linear-gradient(90deg, var(--skin-color), #d43a00);
+            border-radius: 12px;
+            border: 1px solid var(--mirage-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+            position: relative;
+            z-index: 3; /* Ensure it's above hero background */
+        }
+        
+        
+        
+        
+        
+        
+        .social-proof-bar img {
+            height: 50px; /* Adjust as needed */
+            filter: grayscale(100%) brightness(150%); /* Lighten for dark background */
+            opacity: 0.7;
+            transition: opacity 0.3s, filter 0.3s;
+        }
+        
+        .social-proof-bar img:hover {
+            filter: grayscale(0%) brightness(100%);
+            opacity: 1;
+        }
+        
+        
+        
+        
+        
+
+        /* Secondary CTA (Download Syllabus) */
+        .secondary-cta-link {
+            display: inline-block;
+            color: var(--skin-color);
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: transform 0.2s, color 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .secondary-cta-link:hover {
+            transform: translateX(5px);
+            color: var(--title-color);
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+
+        /* Why AIM Section with Image */
+
+
+    /* Boxes Section */
+        .boxes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            gap: 20px; /* Space between cards */
+            margin-bottom: 30px;
+        }
+
+        .box {
+            background: var(--box-color);
+            text-align: center;
+            padding: 1.5rem 2rem;
+            box-shadow: var(--shadow);
+            border-radius: 12px;
+            border: 1px solid var(--mirage-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover effect for feature cards */
+        .box:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 80, 17, 0.5);
+        }
+
+        .box h3 { 
+            color: var(--title-color); 
+            margin-top: 1rem; 
+            margin-bottom: 0.5rem; 
+        }
+        
+        .box i { 
+            color: var(--skin-color); 
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .boxes {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+        }
+
+
+
+
+
+
+
+
+        
+        .why-aim-section {
+            background-color: var(--box-color);
+            border-radius: 12px;
+            border: 1px solid var(--mirage-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .why-aim-content {
+            text-align: left;
+        }
+
+        .why-aim-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .why-aim-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+
+        /* Choose Your Path Section - NO CARD BACKGROUND */
+        .path-section {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .path-section h2 {
+            text-align: center;
+            padding-left: 0;
+        }
+
+        .path-section h2::before {
+            display: none;
+        }
+
+        .path-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .path-card {
+            background-color: var(--body-color);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            border: 1px solid var(--mirage-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .path-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(255, 80, 17, 0.2);
+        }
+        
+        .path-card h3 {
+            color: var(--skin-color);
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        
+        .path-card p {
+            margin-bottom: 1rem;
+            font-size: var(--small-font-size);
+        }
+        
+        .path-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+        
+        .path-card ul li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            font-size: var(--small-font-size);
+        }
+        
+        .path-card ul li i {
+            color: var(--skin-color);
+            margin-right: 0.6rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .path-card .cta {
+            display: block;
+            width: 100%; /* Full width only inside cards */
+            margin-top: auto;
+            text-align: center;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+
+        /* What You'll Be Able to Do Section with Image */
+        .skills-section {
+            background-color: var(--box-color);
+            border-radius: 12px;
+            border: 1px solid var(--mirage-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .skills-content {
+            text-align: left;
+        }
+
+        .skills-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .skills-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+
+        /* Curriculum Timeline */
+        .timeline-section {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 4rem 1rem;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .timeline-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-left: 0;
+        }
+
+        .timeline-section h2::before {
+            display: none;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--mirage-color);
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .timeline-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--box-color);
+            border: 4px solid var(--skin-color);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 0 2rem;
+        }
+
+        .timeline-content.left {
+            text-align: right;
+            padding-right: 2rem;
+        }
+
+        .timeline-content.right {
+            padding-left: 2rem;
+        }
+
+        .timeline-week {
+            color: var(--skin-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--title-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        
+        
+        
+        
+        
+
+        /* Testimonials */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .testimonial-card {
+            background-color: var(--body-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid var(--mirage-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            font-style: italic;
+            font-size: var(--small-font-size);
+            position: relative;
+        }
+        .testimonial-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            font-size: 3rem;
+            color: var(--skin-color);
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            opacity: 0.3;
+            line-height: 1;
+        }
+        .testimonial-card p {
+            margin-bottom: 1rem;
+            padding-top: 1rem; /* Space for quote mark */
+        }
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--title-color);
+            display: block;
+            margin-top: 0.5rem;
+            font-style: normal;
+        }
+        .testimonial-company {
+            font-size: var(--smaller-font-size);
+            color: var(--text-color);
+            font-style: normal;
+        }
+        
+        
+        
+        
+
+        /* Social Proof & Outcomes Section */
+        .social-proof-section h2 {
+            text-align: center;
+            padding-left: 0;
+        }
+
+        .social-proof-section h2::before {
+            display: none;
+        }
+        
+        
+        
+        
+        
+
+        /* Pricing Section - NO CARD BACKGROUND */
+        .pricing-section {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .pricing-section h2 {
+            text-align: center;
+            padding-left: 0;
+        }
+
+        .pricing-section h2::before {
+            display: none;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .pricing-card {
+            background-color: var(--body-color);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            border: 1px solid var(--mirage-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .pricing-card h3 {
+            color: var(--skin-color);
+            margin-bottom: 1rem;
+        }
+        .pricing-card .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--title-color);
+            margin-bottom: 1rem;
+        }
+        .pricing-card .guarantee {
+            font-size: var(--small-font-size);
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+        .pricing-card ul {
+            list-style: none;
+            padding-left: 0;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+        .pricing-card ul li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-size: var(--small-font-size);
+            color: var(--text-color);
+        }
+        .pricing-card ul li i {
+            color: var(--skin-color);
+            margin-right: 0.6rem;
+            font-size: 0.9rem;
+        }
+        .pricing-card .cta {
+            display: block;
+            width: 100%; /* Full width only inside cards */
+            margin-top: auto;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+        }
+        
+        
+        
+        
+        
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--box-color);
+            border-radius: 12px;
+            border: 1px solid var(--mirage-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-left: 0;
+        }
+
+        .faq-section h2::before {
+            display: none;
+        }
+
+        .faq-item {
+            background-color: var(--body-color);
+            border-radius: 0.75rem;
+            border: 1px solid var(--mirage-color);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            color: var(--title-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        .faq-question:hover {
+            color: var(--skin-color);
+        }
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            color: var(--text-color);
+            font-size: var(--small-font-size);
+            padding-top: 0;
+        }
+        .faq-answer.show {
+            max-height: 200px; /* Adjust based on content, or use JS to calculate */
+            padding-top: 1rem;
+        }
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+        
+        
+        
+        
+        
+        
+
+        /* General CTA Button Style - NOT full width */
+        .cta-button {
+            background: linear-gradient(90deg, var(--skin-color), #d43a00);
+            color: var(--title-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5);
+        }
+        
+        
+        
+        
+        
+
+        /* Microcopy */
+        .microcopy {
+            font-size: var(--small-font-size);
+            color: var(--text-color);
+            margin-top: 1rem;
+        }
+
+        /* --- Responsive Styles --- */
+        @media screen and (max-width: 767px) {
+            /* General mobile layout adjustments */
+            .footer-container {
+                grid-template-columns: 1fr;
+                row-gap: 3rem;
+                text-align: center;
+            }
+            .footer-brand {
+                align-items: center; /* Center align on mobile */
+                text-align: center;
+                justify-content: center;
+            }
+            .footer-brand-text {
+                text-align: center; /* Center align text on mobile */
+            }
+            .footer-socials {
+                justify-content: center;
+                justify-self: center;
+            }
+            .footer-links {
+                flex-direction: column;
+                row-gap: 1.5rem;
+                justify-self: center;
+            }
+            .footer-bg {
+                padding: 2rem 0 3rem;
+            }
+            .footer-copy {
+                margin-top: var(--mb3);
+            }
+
+            /* Homepage specific mobile adjustments */
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .hero-cta-group {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .hero-cta-block {
+                width: 100%;
+            }
+            .social-proof-bar {
+                gap: 1rem;
+                padding: 1rem;
+            }
+            .social-proof-bar img {
+                height: 25px;
+            }
+            h1 {
+                font-size: 2.8rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+                padding-left: 0;
+            }
+            h2::before {
+                display: none;
+            }
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            /* Why AIM section mobile */
+            .why-aim-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .why-aim-image {
+                order: -1;
+            }
+
+            /* Skills section mobile */
+            .skills-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            /* Timeline mobile */
+            .timeline-container {
+                padding-left: 30px;
+            }
+            
+            .timeline-line {
+                left: 15px;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                margin-bottom: 2rem;
+            }
+            
+            .timeline-dot {
+                left: 15px;
+                top: 0;
+            }
+            
+            .timeline-content {
+                width: 100%;
+                padding: 0 0 0 40px;
+                text-align: left !important;
+            }
+            
+            .timeline-content.left,
+            .timeline-content.right {
+                padding-left: 40px;
+                padding-right: 0;
+                text-align: left;
+            }
+        }
+        
+        
+            /* Fix for card backgrounds to match other sections */
+        .path-card,
+        .pricing-card {
+            background-color: var(--box-color);
+        }    
+        
+        
+        
+        
+    </style>
+</head>
+<body>
+
+    
+    
+    
+    
+    
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="loader-header">Loading AIM™</div>
+        <div class="progress"></div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- Navigation Bar (Header) -->
+    <nav id="nav-bar">
+      <a href="/" id="nav-logo">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
+      </a>
+      <div id="nav-menu">
+        <a href="/" class="nav-link">Home</a>
+         
+
+        
+          
+          <!-- Courses Dropdown -->
+          <div class="nav-item has-submenu">
+                <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
+                <div class="submenu-courses" id="courses-submenu">
+                    <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
+                    <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
+                    <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+                    <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
+                    <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+                </div>
+            </div>
+ 
+        <a href="/pricing-page" class="nav-link">Pricing</a>
+        <a href="/resources" class="nav-link">Resources</a>
+        <a href="/login" class="nav-cta">MEMBER LOGIN</a>
+      </div>
+    </nav>
+
+    
+    <main>
+    
+    
+    
+    
+    
+    
+        <!-- Hero Section -->
+        <section class="hero">
+  
+            <spline-viewer url="https://prod.spline.design/w5vaKcpN4KUx8TDq/scene.splinecode"></spline-viewer>
+        
+            <div class="hero-content">
+                <h1>Become AI fluent. Deliver 10X outputs in 6 weeks.</h1>
+                <p>AIM Bootcamp turns busy professionals and teams into confident AI operators. Hands-on labs, enterprise-safe workflows, measurable outcomes.</p>
+                
+                <div class="hero-cta-group">
+                    <div class="hero-cta-block">
+                        <div class="hero-cta-label">I'm a Professional</div>
+                        <a href="#professionals-path" class="hero-cta">Apply to Cohort</a>
+                    </div>
+                    
+                    <div class="hero-cta-block">
+                        <div class="hero-cta-label">I lead a Team</div>
+                        <a href="#teams-path" class="hero-cta">Book a Demo</a>
+                    </div>
+                </div>
+                
+                <div class="hero-micro-reassurance">
+                    <span class="reassurance-item"><i class="fa-solid fa-star"></i> 4.9/5 average rating</span>
+                    <span class="reassurance-item"><i class="fa-solid fa-certificate"></i> Certificate upon completion</span>
+                    <span class="reassurance-item"><i class="fa-solid fa-shield-halved"></i> Money-back guarantee</span>
+                </div>
+                
+                <a href="/syllabus.pdf" class="secondary-cta-link" download>Download Syllabus (PDF) <i class="fa-solid fa-download"></i></a>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- Social Proof Bar -->
+        <section class="social-proof-bar container">
+            <p style="color: var(--skin-color); font-weight: 500; margin-right: 1rem; white-space: nowrap;">Trusted by:</p>
+            
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/5a670bcb835fe1f260086188d1059285e3baab8e.png" alt="OpenAI Logo">
+            
+        
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/435e8f207e68acfb6e491f39a0defdbe88cd8709.png" alt="Meta Logo">
+            
+            
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/3ba4b1a4a17452494fb4272871453b8bbb4485d7.png" alt="Google Logo">
+            
+            
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/55834c6ba4b15fb016a860e42c6539c677cbfe27.png" alt="Microsoft Logo">
+            
+            
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- Why AIM (Value Props) Section -->
+        
+ 
+        
+        <section class="why-aim-section container" style="animation-delay: 0.4s;">
+            
+            <div class="why-aim-content">
+                <h2>Welcome to AIM™!</h2>
+            
+                <div class="feature-item">
+<div class="feature-content">
+                        <h4>Welcome to the AI Mastery Program and Bootcamp Where professionals and teams learn fast, build responsibly, and scale impact.</h4>
+
+<p>AIM is your all‑in‑one hub to go from AI curiosity to real-world results. Whether you’re a solo professional growing your business or a corporate leader enabling your teams, we combine practical training, hands-on labs, and governance-by-design to help you work smarter today and stay competitive tomorrow.</p>
+                    </div>
+                </div>
+                </div>
+      
+            <div class="why-aim-image">
+                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/1a6f90e9d77dc969ff7e463de8573a2c4851e23a.png" alt="AIM Learning Experience">
+            </div>
+        </section>
+        
+             
+        
+
+        
+
+        <!-- Boxes Section -->
+        <section class="boxes">
+            <div class="box">
+                <i class="fas fa-brain fa-3x"></i>
+                <h3>Expert-Led Courses</h3>
+                <p>Learn from industry leaders at the forefront of AI technology and application.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-book fa-3x"></i>
+                <h3>Pro Resources</h3>
+                <p>Gain access to exclusive guides, templates, and tools with our Lifetime plan.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-sync-alt fa-3x"></i>
+                <h3>Lifetime Updates</h3>
+                <p>The world of AI is always evolving. Your course materials will be, too.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-users fa-3x"></i>
+                <h3>Community Access</h3>
+                <p>Connect with fellow learners, share insights, and grow together.</p>
+            </div>
+        </section>
+
+
+
+
+
+           <!-- Why AIM (Value Props) Section -->     
+        <section class="why-aim-section container" style="animation-delay: 0.4s;">
+            <div class="why-aim-content">
+                <h2>Why AIM?</h2>
+            
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-flask"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Learn by Doing:</h4>
+                        <p>Ship real deliverables like AI automations, prompt libraries, and a capstone tailored to your role.</p>
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                  
+                    <div class="feature-content">
+                        <h4>Enterprise-Safe:</h4>
+                        <p>Governance-first practices. Data privacy, risk controls, and policy templates baked in.</p>
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+
+                    <div class="feature-content">
+                        <h4>Tool-Agnostic Mastery:</h4>
+                        <p>Principles over hype. Use ChatGPT/Copilot, plus no-code/low-code stacks your company already has.</p>
+                    </div>
+                </div>
+
+                
+                
+                
+                
+                <p class="microcopy">Key takeaway: We're selling outcomes, not hours.</p>
+                <div style="margin-top: 2rem;">
+                    <a href="/syllabus.pdf" class="cta-button">View the Syllabus →</a>
+                </div>
+            </div>
+            
+            
+            <div class="why-aim-image">
+                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/1a6f90e9d77dc969ff7e463de8573a2c4851e23a.png" alt="AIM Learning Experience">
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- Choose Your Path Section - NO CARD BACKGROUND -->
+        <section class="path-section container" style="animation-delay: 0.6s;">
+            <h2>Choose Your Path</h2>
+            <div class="path-options">
+                <div class="path-card" id="professionals-path">
+                    <h3>For Professionals</h3>
+                    <p><strong>Outcome:</strong> Become the "AI person" at work. Save 5–10 hours a week, level up your work product, and earn a certificate recognized by employers.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-calendar-alt"></i> <strong>Format:</strong></li>
+                        <p>6 weeks, 4–6 hours/week, live workshops + async labs, cohort community.</p>
+                        <li><i class="fa-solid fa-box-open"></i> <strong>Deliverables:</strong></li>
+                        <p> Personal AI toolkit, role-specific prompt pack, automation pilot, capstone report to showcase.</p>
+                    </ul>
+                    <a href="/apply" class="cta-button cta">Apply to Next Cohort</a>
+                </div>
+                <div class="path-card" id="teams-path">
+                    <h3>For Teams</h3>
+                    <p><strong>Outcome:</strong> Stand up AI safely and at scale. Train your team, harden governance, and land 3–5 quick-win automations in 30 days.</p>
+                    <ul>
+   
+                        <li><i class="fa-solid fa-users"></i> <strong>Format:</strong></li>
+                        <p>Private cohort (20–500), tailored playbooks, compliance review, optional onsite kickoff.</p>
+                        
+                        
+                        <li><i class="fa-solid fa-file-contract"></i> <strong>Deliverables:</strong></li>
+                        <p>Approved AI policy, risk register, department use-case pipeline, ROI dashboard.</p>
+                    </ul>
+                    <a href="/book-demo" class="cta-button cta">Book a Team Demo</a>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- What you'll be able to do (skills → proof of competence) Section -->
+        <section class="skills-section container" style="animation-delay: 0.8s;">
+            <div class="skills-content">
+                <h2>What You'll Be Capable of</h2>
+                <ul class="icon-list">
+                    <li><i class="fa-solid fa-bullseye"></i> Scope high-ROI AI use cases with our Value vs. Complexity framework.</li>
+                    <li><i class="fa-solid fa-lightbulb"></i> Design enterprise-safe prompts and retrieval strategies that stick.</li>
+                    <li><i class="fa-solid fa-robot"></i> Build no-code automations (e.g., Power Automate/Zapier) that save hours weekly.</li>
+                    <li><i class="fa-solid fa-pen-fancy"></i> Craft LLM-powered workflows for research, analysis, and content—quality-checked and audit-ready.</li>
+                    <li><i class="fa-solid fa-award"></i> Present an AI capstone with measurable impact (time saved, quality uplift, error reduction).</li>
+                </ul>
+                <p class="microcopy">Key takeaway: Skills are framed as business outcomes. We highlight practical tools like Power Automate/Zapier.</p>
+                <div style="margin-top: 2rem;">
+                    <a href="/sample-capstones" class="cta-button">See Sample Capstones →</a>
+                </div>
+            </div>
+            <div class="skills-image">
+                <img src="https://via.placeholder.com/400x400/333/ff5011?text=AI+Skills" alt="AI Skills Development">
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- Curriculum snapshot (Timeline) Section -->
+        <section class="timeline-section container" style="animation-delay: 1s;">
+            <h2>Curriculum Snapshot</h2>
+            
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                
+                <!-- Week 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content left">
+                        <div class="timeline-week">Week 1</div>
+                        <div class="timeline-title">Foundations & Quick Wins</div>
+                        <p><strong>See:</strong> Modern AI in business; case studies.</p>
+                        <p><strong>Do:</strong> 5 productivity workflows you'll use this week.</p>
+                    </div>
+                    <div class="timeline-content right"></div>
+                </div>
+                
+                <!-- Week 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content left"></div>
+                    <div class="timeline-content right">
+                        <div class="timeline-week">Week 2</div>
+                        <div class="timeline-title">Prompt Systems & Retrieval</div>
+                        <p><strong>Do:</strong> Build your role-specific prompt library.</p>
+                    </div>
+                </div>
+                
+                <!-- Week 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content left">
+                        <div class="timeline-week">Week 3</div>
+                        <div class="timeline-title">No-Code Automations</div>
+                        <p><strong>Do:</strong> Ship one automation that saves 1–3 hours/week.</p>
+                    </div>
+                    <div class="timeline-content right"></div>
+                </div>
+                
+                <!-- Week 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content left"></div>
+                    <div class="timeline-content right">
+                        <div class="timeline-week">Week 4</div>
+                        <div class="timeline-title">Governance & Risk</div>
+                        <p><strong>Do:</strong> Draft an AI policy one-pager and data-handling checklist.</p>
+                    </div>
+                </div>
+                
+                <!-- Week 5 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content left">
+                        <div class="timeline-week">Week 5</div>
+                        <div class="timeline-title">Team Workflows & Analytics</div>
+                        <p><strong>Do:</strong> Create dashboards to track AI impact.</p>
+                    </div>
+                    <div class="timeline-content right"></div>
+                </div>
+                
+                <!-- Week 6 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content left"></div>
+                    <div class="timeline-content right">
+                        <div class="timeline-week">Week 6</div>
+                        <div class="timeline-title">Capstone & Presentation</div>
+                        <p><strong>Do:</strong> Present measurable results; get certified.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="/syllabus.pdf" class="cta-button">Download Full Syllabus (PDF)</a>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- Social proof and outcomes Section -->
+        <section class="section social-proof-section container" style="animation-delay: 1.2s;">
+            <h2>Social Proof & Outcomes</h2>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <p style="font-size: 1.2rem; color: var(--title-color); font-weight: 600;">
+                    <span style="color: var(--skin-color);">92%</span> report time savings within 2 weeks; average <span style="color: var(--skin-color);">6.4 hours/week</span> saved by Week 6.
+                </p>
+            </div>
+            
+            
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"Our sales ops team automated reporting and reclaimed 12 hours/week—safely."</p>
+                    <span class="testimonial-author">[Name, Title, Company]</span>
+                </div>
+                
+                
+                
+                <div class="testimonial-card">
+                    <p>"This is the first AI program that stuck. We left with playbooks, not theory."</p>
+                    <span class="testimonial-author">[Name, Director, Industry]</span>
+                </div>
+                
+                
+                <div class="testimonial-card">
+                    <p>"AIM transformed how we approach AI. The practical, hands-on approach made all the difference."</p>
+                    <span class="testimonial-author">[Name, Head of Innovation, Tech Company]</span>
+                </div>
+                
+                  <div class="testimonial-card">
+                    <p>"Our sales ops team automated reporting and reclaimed 12 hours/week—safely."</p>
+                    <span class="testimonial-author">[Name, Title, Company]</span>
+                </div>
+                
+                
+                
+            </div>
+            <div class="social-proof-bar" style="margin-top: 3rem; background: none; border: none; box-shadow: none;">
+                <img src="https://via.placeholder.com/100x30/0d0d0d/ffffff?text=CLIENT1" alt="Client Logo 1">
+                <img src="https://via.placeholder.com/100x30/0d0d0d/ffffff?text=CLIENT2" alt="Client Logo 2">
+                <img src="https://via.placeholder.com/100x30/0d0d0d/ffffff?text=CLIENT3" alt="Client Logo 3">
+                <img src="https://via.placeholder.com/100x30/0d0d0d/ffffff?text=CLIENT4" alt="Client Logo 4">
+                <img src="https://via.placeholder.com/100x30/0d0d0d/ffffff?text=CLIENT5" alt="Client Logo 5">
+                <img src="https://via.placeholder.com/100x30/0d0d0d/ffffff?text=CLIENT6" alt="Client Logo 6">
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="/case-studies" class="cta-button">Read Case Studies →</a>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- Pricing and guarantees Section - NO CARD BACKGROUND -->
+        <section class="pricing-section container" style="animation-delay: 1.4s;">
+            <h2>Pricing & Guarantees</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>For Professionals</h3>
+                    <p class="price">$150/yr</p>
+                    <p class="guarantee">Payment plans available.</p>
+                    <p class="guarantee"><strong>Guarantee:</strong> Try it for 14 days. If it's not delivering value, get a full refund.</p>
+                    <a href="/apply" class="cta-button cta">Apply to Next Cohort</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>For Teams</h3>
+                    <p class="price">Custom Pricing</p>
+                    <p class="guarantee">By team size and objectives.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-check-circle"></i> Private cohort</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Tailored curriculum</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Governance workshop</li>
+                        <li><i class="fa-solid fa-check-circle"></i> ROI dashboard</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Optional onsite</li>
+                    </ul>
+                    <a href="/get-corporate-pricing" class="cta-button cta">Get Corporate Pricing</a>
+                </div>
+            </div>
+            <p class="microcopy" style="margin-top: 2rem; text-align: center;">Risk reversals reduce friction. We offer payment plans and a strong guarantee.</p>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- FAQs (objection handling) Section -->
+        <section class="faq-section container" style="animation-delay: 1.6s;">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Is my data safe? <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We use enterprise-safe tools and best practices; you'll get a data-handling checklist and policy template.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How technical do I need to be? <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>No coding required; optional low-code labs included.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Will this help my career? <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>You'll complete a capstone and earn a certificate with practical proof of impact.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What is the time commitment? <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>4–6 hours/week for 6 weeks, live + async, designed for full-time professionals.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can you tailor for our industry? <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! We can definitely design a tailored curriculum to your industry whether it's finance, healthcare, retail, manufacturing, and more.</p>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+    </main>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to Top"></button>
+    
+    <!-- Standard AIM Footer -->
+    <footer class="footer">
+        <div class="footer-bg">
+            <div class="footer-container container"> 
+                <!-- Logo/Brand Block -->
+                <div class="footer-brand">
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="Project Freedom Logo" class="footer-logo">
+                    <div class="footer-brand-text">
+                        <h3 class="footer-title">AIM™</h3>
+                        <span class="footer-subtitle">AI Mastery Program</span>
+                    </div>
+                </div>
+                    
+                <!-- Footer Links -->
+                <ul class="footer-links">
+                    <li><a href="/" class="footer-links">Home</a></li>
+                    <li><a href="/about" class="footer-links">About</a></li>
+                    <li><a href="/programs" class="footer-links">Programs</a></li>
+                    <li><a href="/pricing" class="footer-links">Pricing</a></li>
+                    <li><a href="/contact" class="footer-links">Contact</a></li>
+                </ul>
+
+                <!-- Social Icons -->
+                <div class="footer-socials">
+                    <a href="https://www.youtube.com" target="_blank" class="footer-social" aria-label="Youtube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" class="footer-social" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="footer-social" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com" target="_blank" class="footer-social" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <p class="footer-copy">Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Page Loader Logic ---
+            const pageLoader = document.querySelector('.page-loader');
+            window.addEventListener('load', () => {
+                pageLoader.classList.add('hidden');
+            });
+
+            // --- Back to Top Button Logic ---
+            const toTopButton = document.getElementById('back-to-top');
+            
+            window.onscroll = function() {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    toTopButton.classList.add('show');
+                } else {
+                    toTopButton.classList.remove('show');
+                }
+            };
+
+            toTopButton.onclick = function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            // --- Dropdown Menu Click Logic ---
+            const coursesLink = document.getElementById('courses-link');
+            const submenu = document.getElementById('courses-submenu');
+            const navBar = document.getElementById('nav-bar');
+
+            // 1. Toggle visibility on click
+            coursesLink.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                submenu.classList.toggle('active');
+                e.stopPropagation(); 
+            });
+
+            // 2. Close menu when clicking outside the entire navigation bar
+            document.addEventListener('click', (e) => {
+                if (!navBar.contains(e.target) && submenu.classList.contains('active')) {
+                    submenu.classList.remove('active');
+                }
+            });
+
+            // 3. Prevent clicks inside the submenu from closing it immediately
+            submenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+
+            // --- FAQ Accordion Logic ---
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+
+                question.addEventListener('click', () => {
+                    const isActive = question.classList.contains('active');
+
+                    // Close all other open FAQs
+                    faqItems.forEach(otherItem => {
+                        const otherQuestion = otherItem.querySelector('.faq-question');
+                        const otherAnswer = otherItem.querySelector('.faq-answer');
+                        if (otherQuestion !== question && otherQuestion.classList.contains('active')) {
+                            otherQuestion.classList.remove('active');
+                            otherAnswer.classList.remove('show');
+                            otherAnswer.style.maxHeight = null;
+                        }
+                    });
+
+                    // Toggle current FAQ
+                    question.classList.toggle('active');
+                    answer.classList.toggle('show');
+
+                    if (answer.classList.contains('show')) {
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    } else {
+                        answer.style.maxHeight = null;
+                    }
+                });
+            });
+
+            // --- Staggered Animation for Sections ---
+            const sections = document.querySelectorAll('.section, .why-aim-section, .skills-section, .timeline-section, .faq-section, .path-section, .pricing-section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+
+            // --- Timeline Animation ---
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const timelineObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            timelineItems.forEach(item => {
+                timelineObserver.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>
