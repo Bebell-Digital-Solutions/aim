@@ -660,6 +660,56 @@
         
 
         /* Why AIM Section with Image */
+
+
+    /* Boxes Section */
+        .boxes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            gap: 20px; /* Space between cards */
+        }
+
+        .box {
+            background: var(--box-color);
+            text-align: center;
+            padding: 1.5rem 2rem;
+            box-shadow: var(--shadow);
+            border-radius: 12px;
+            border: 1px solid var(--mirage-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover effect for feature cards */
+        .box:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 80, 17, 0.5);
+        }
+
+        .box h3 { 
+            color: var(--title-color); 
+            margin-top: 1rem; 
+            margin-bottom: 0.5rem; 
+        }
+        
+        .box i { 
+            color: var(--skin-color); 
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .boxes {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+        }
+
+
+
+
+
+
+
+
+        
         .why-aim-section {
             background-color: var(--box-color);
             border-radius: 12px;
@@ -1443,10 +1493,51 @@
         
 
         <!-- Why AIM (Value Props) Section -->
+
+        <!-- Boxes Section -->
+        <section class="boxes">
+            <div class="box">
+                <i class="fas fa-brain fa-3x"></i>
+                <h3>Expert-Led Courses</h3>
+                <p>Learn from industry leaders at the forefront of AI technology and application.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-book fa-3x"></i>
+                <h3>Pro Resources</h3>
+                <p>Gain access to exclusive guides, templates, and tools with our Lifetime plan.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-sync-alt fa-3x"></i>
+                <h3>Lifetime Updates</h3>
+                <p>The world of AI is always evolving. Your course materials will be, too.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-users fa-3x"></i>
+                <h3>Community Access</h3>
+                <p>Connect with fellow learners, share insights, and grow together.</p>
+            </div>
+        </section>
+
+
+
+
+
+        
         <section class="why-aim-section container" style="animation-delay: 0.4s;">
             <div class="why-aim-content">
                 <h2>Why AIM?</h2>
                 
+
+
+
+
+
+
+
+
+
+
+
                 
                 
                 <div class="feature-item">
