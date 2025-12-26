@@ -3,123 +3,582 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- !!! IMPORTANT: UPDATE THE TITLE TAG FOR EACH UNIQUE PAGE !!! -->
-    <title>Page Title Here - AIM™</title> 
-      
-  <!-- Import Poppins font --><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  
-
+    <title>Contact Us - AIM™</title> 
+    
+    <!-- Import Poppins font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <!-- Import Inter font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     
     <!-- Icons (Font Awesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Icons --><link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-
-  
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Favicon -->
     <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
-
-
-    <!-- YOUR CSS FILE -->
-    <link rel="stylesheet" href="styles.css">
-
-
-<!-- Page Loader HTML -->
-<script>
-  // --- Page Loader Logic ---
-  function showLoader() {
-    const loader = document.createElement('div');
-    loader.className = 'page-loader';
-    loader.innerHTML = `
-      <div class="loader-header">Wait for it...</div>
-      <div class="progress"></div>
-    `;
-    document.body.appendChild(loader);
-    return loader;
-  }
-
-  function initLoader() {
-    const loader = showLoader();
-    setTimeout(() => {
-      loader.classList.add('hidden');
-      setTimeout(() => loader.remove(), 300); // Remove after fade out
-    }, 1500); // Adjust duration as needed
-  }
-
-  document.addEventListener('DOMContentLoaded', initLoader);
-</script>
-<!-- Loader Div is injected by the script above -->
-
     
+    <!-- YOUR CSS FILE -->
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            padding-top: 80px; /* Account for fixed navbar */
+        }
+        
+        /* Navigation Bar (from your template) */
+        #nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #nav-logo img {
+            height: 40px;
+        }
+        
+        #mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #333;
+            cursor: pointer;
+        }
+        
+        #nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: #ff5011;
+        }
+        
+        .nav-cta {
+            background-color: #ff5011;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-cta:hover {
+            background-color: #e0450f;
+        }
+        
+        /* Contact Page Header */
+        .contact-header {
+            text-align: center;
+            padding: 60px 5% 40px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            margin-bottom: 40px;
+        }
+        
+        .contact-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: #222;
+            font-weight: 900;
+        }
+        
+        .contact-header p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #555;
+        }
+        
+        .contact-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* Two Column Layout */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto 80px;
+            padding: 0 5%;
+        }
+        
+        .contact-column {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .contact-column:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .column-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .column-icon {
+            background-color: #ff5011;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .column-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #222;
+        }
+        
+        .column-description {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        /* Form Column */
+        .form-container {
+            height: 100%;
+        }
+        
+        /* Calendar Column */
+        .calendar-container {
+            height: 100%;
+            min-height: 700px;
+        }
+        
+        #my-cal-inline-booking-project-freedom {
+            width: 100%;
+            height: 700px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #eaeaea;
+        }
+        
+        /* Footer (from your template) */
+        .footer {
+            background-color: #222;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0 5%;
+        }
+        
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .footer-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .footer-subtitle {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #ff5011;
+        }
+        
+        .footer-socials {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .footer-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .footer-social:hover {
+            background-color: #ff5011;
+        }
+        
+        .footer-copy {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .footer-copy a {
+            color: #ff5011;
+            text-decoration: none;
+        }
+        
+        .footer-copy a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ff5011;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(255, 80, 17, 0.4);
+            z-index: 999;
+            transition: all 0.3s;
+        }
+        
+        #back-to-top:hover {
+            background-color: #e0450f;
+            transform: translateY(-3px);
+        }
+        
+        #back-to-top:after {
+            content: "↑";
+        }
+        
+        /* Page Loader */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+        
+        .loader-header {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .progress {
+            width: 200px;
+            height: 4px;
+            background-color: #eee;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress:after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 100%;
+            background-color: #ff5011;
+            animation: progress 1.5s ease-in-out forwards;
+        }
+        
+        @keyframes progress {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+        
+        .page-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .contact-column {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #nav-menu {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            #nav-menu.active {
+                display: flex;
+            }
+            
+            #mobile-menu-toggle {
+                display: block;
+            }
+            
+            .contact-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-column {
+                padding: 20px;
+            }
+            
+            .column-title {
+                font-size: 1.4rem;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-brand {
+                justify-content: center;
+                margin-bottom: 30px;
+            }
+            
+            .footer-links {
+                justify-content: center;
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .contact-header {
+                padding: 40px 5% 30px;
+            }
+            
+            .contact-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .column-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .column-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
 </head>
 
-
-
-
-    
 <body>
+    <!-- Page Loader HTML -->
+    <script>
+        // --- Page Loader Logic ---
+        function showLoader() {
+            const loader = document.createElement('div');
+            loader.className = 'page-loader';
+            loader.innerHTML = `
+                <div class="loader-header">Wait for it...</div>
+                <div class="progress"></div>
+            `;
+            document.body.appendChild(loader);
+            return loader;
+        }
+        
+        function initLoader() {
+            const loader = showLoader();
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                setTimeout(() => loader.remove(), 300); // Remove after fade out
+            }, 1500); // Adjust duration as needed
+        }
+        
+        document.addEventListener('DOMContentLoaded', initLoader);
+    </script>
 
     <!-- Navigation Bar (Fixed Header) -->
     <nav id="nav-bar">
-      <a href="/" id="nav-logo">
-        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
-      </a>
-      
-      <!-- Mobile Menu Toggle (Visible only on mobile) -->
-      <button id="mobile-menu-toggle" aria-label="Toggle Navigation">
-          <i class="fa-solid fa-bars" id="mobile-menu-icon"></i> 
-      </button>
-
-      
-
-      <!-- Nav Menu (Full-Screen Overlay on Mobile, Link Container on Desktop) -->
-      <div id="nav-menu">
-        <a href="/" class="nav-link">Home</a>
-        <a href="/about" class="nav-link">About</a>
-
+        <a href="/" id="nav-logo">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
+        </a>
         
-        <div class="nav-item has-submenu">
-          <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
-          <div class="submenu-courses" id="courses-submenu">
-            <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
-            <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
-            <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
-            <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
-          <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
-          </div>
+        <!-- Mobile Menu Toggle (Visible only on mobile) -->
+        <button id="mobile-menu-toggle" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars" id="mobile-menu-icon"></i> 
+        </button>
+        
+        <!-- Nav Menu (Full-Screen Overlay on Mobile, Link Container on Desktop) -->
+        <div id="nav-menu">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/about" class="nav-link">About</a>
+            
+            <div class="nav-item has-submenu">
+                <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
+                <div class="submenu-courses" id="courses-submenu">
+                    <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
+                    <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
+                    <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+                    <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
+                    <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+                </div>
+            </div>
+            
+            <a href="/pricing-page" class="nav-link">Pricing</a>
+            <a href="/helpcenter" class="nav-link">Resources</a>
+            <a href="/contact" class="nav-link">Contact</a>
+            
+            <!-- Desktop CTA (Visible on Desktop, hidden on Mobile) -->
+            <a href="/login" class="nav-cta desktop-cta-only">LOGIN</a>
+            
+            <!-- Mobile CTA (Visible ONLY in Mobile Overlay) -->
+            <a href="/login" class="nav-cta mobile-cta-only">LOGIN</a>
         </div>
-        
-        <a href="/pricing-page" class="nav-link">Pricing</a>
-        <a href="/helpcenter" class="nav-link">Resources</a>
-        <a href="/contact" class="nav-link">Contact</a>
-        
-        <!-- Desktop CTA (Visible on Desktop, hidden on Mobile) -->
-        <a href="/login" class="nav-cta desktop-cta-only">LOGIN</a>
-
-        <!-- Mobile CTA (Visible ONLY in Mobile Overlay) -->
-        <a href="/login" class="nav-cta mobile-cta-only">LOGIN</a>
-      </div>
     </nav>
-<main>
 
+    <main>
+        <!-- Contact Page Header -->
+        <section class="contact-header">
+            <h1>Get in Touch with AIM™</h1>
+            <p class="contact-subtitle">Have questions about our AI Mastery Program? Want to schedule a consultation? Choose how you'd like to connect with us below.</p>
+        </section>
+        
+        <!-- Two Column Contact Section -->
+        <section class="contact-container">
+            <!-- Left Column: Contact Form -->
+            <div class="contact-column form-container">
+                <div class="column-header">
+                    <div class="column-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <h2 class="column-title">Send us a Message</h2>
+                </div>
+                
+                <p class="column-description">
+                    Fill out the form below to send us your questions, feedback, or inquiries. Our team typically responds within 24 hours.
+                </p>
+                
+                <!-- MailerLite Form Embed -->
+                <div class="ml-form-embed" 
+                     data-account="3336910:t8p6n6m7b3"
+                     data-form="6110822:z6h0l3">
+                </div>
+            </div>
+            
+            <!-- Right Column: Booking Widget -->
+            <div class="contact-column calendar-container">
+                <div class="column-header">
+                    <div class="column-icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <h2 class="column-title">Book a Consultation</h2>
+                </div>
+                
+                <p class="column-description">
+                    Schedule a 30-minute consultation with our AI experts. Choose a time that works for you to discuss how AIM™ can help you master artificial intelligence.
+                </p>
+                
+                <!-- Cal.com Booking Widget -->
+                <div style="width:100%;height:100%;" id="my-cal-inline-booking-project-freedom"></div>
+            </div>
+        </section>
+    </main>
 
-
-
-
-
-
-
-
-
-
-
-
-    
-</main>
     <!-- Back to Top Button -->
     <button id="back-to-top" aria-label="Back to Top"></button>
     
@@ -135,8 +594,6 @@
                         <span class="footer-subtitle">AI Mastery Program</span>
                     </div>
                 </div>
-
-              
                     
                 <!-- Footer Links -->
                 <ul class="footer-links">
@@ -147,8 +604,6 @@
                     <li><a href="/resources" class="footer-links">Resources</a></li>
                     <li><a href="/contact" class="footer-links">Contact</a></li>
                 </ul>
-
-              
 
                 <!-- Social Icons -->
                 <div class="footer-socials">
@@ -170,11 +625,80 @@
         </div>
     </footer>
 
+    <!-- MailerLite Universal -->
+    <script>
+        (function(m,a,i,l,e,r){ m['MailerLiteObject']=e;function f(){
+        var c={ a:arguments,q:[]};var r=this.push(c);return "number"!=typeof r?r:f.bind(c.q);}
+        f.q=f.q||[];m[e]=m[e]||f.bind(f.q);m[e].q=m[e].q||f.q;r=a.createElement(i);
+        var _=a.getElementsByTagName(i)[0];r.async=1;r.src=l+'?v'+(~~(new Date().getTime()/1000000));
+        _.parentNode.insertBefore(r,_);})(window, document, 'script', 'https://static.mailerlite.com/js/universal.js', 'ml');
+        
+        var ml_account = ml('accounts', '3336910', 't8p6n6m7b3', 'load');
+    </script>
+    <!-- End MailerLite Universal -->
 
-
-  
+    <!-- Cal.com Booking Widget -->
+    <script type="text/javascript">
+        (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+        Cal("init", "booking-project-freedom", {origin:"https://app.cal.com"});
+        
+        Cal.ns["booking-project-freedom"]("inline", {
+            elementOrSelector:"#my-cal-inline-booking-project-freedom",
+            config: {"layout":"month_view","theme":"dark"},
+            calLink: "bebell-digital-solutions/booking-project-freedom",
+        });
+        
+        Cal.ns["booking-project-freedom"]("ui", {"theme":"dark","cssVarsPerTheme":{"light":{"cal-brand":"#ff5011"},"dark":{"cal-brand":"#ff5011"}},"hideEventTypeDetails":true,"layout":"month_view"});
+    </script>
 
     <!-- YOUR JAVASCRIPT FILE -->
-    <script src="script.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('active');
+            
+            // Toggle between hamburger and close icon
+            const icon = document.getElementById('mobile-menu-icon');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'flex';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const navMenu = document.getElementById('nav-menu');
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    const icon = document.getElementById('mobile-menu-icon');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
