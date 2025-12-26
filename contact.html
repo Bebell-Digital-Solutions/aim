@@ -296,6 +296,10 @@
             color: var(--skin-color);
         }
 
+
+
+        
+
         /* --- Contact Page Specific Styles --- */
         .contact-header {
             text-align: center;
@@ -385,6 +389,46 @@
             overflow: hidden;
             margin-top: var(--mb15);
         }
+
+
+
+ /* --- Footer Mobile Styles --- */
+            .footer-container {
+                grid-template-columns: 1fr;
+                row-gap: 3rem;
+                text-align: center;
+            }
+            
+            .footer-brand {
+                align-items: center; /* Center align on mobile */
+                text-align: center;
+                justify-content: center;
+            }
+            .footer-brand-text {
+                text-align: center; /* Center align text on mobile */
+            }
+            
+            .footer-socials {
+                justify-content: center;
+                justify-self: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                row-gap: 1.5rem;
+                justify-self: center;
+            }
+            
+            .footer-bg {
+                padding: 2rem 0 3rem;
+            }
+            
+            .footer-copy {
+                margin-top: var(--mb3);
+            }
+        }
+
+        
 
         /* --- Responsive Adjustments --- */
         @media (max-width: 1024px) {
