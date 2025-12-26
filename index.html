@@ -1067,7 +1067,40 @@
         
         
         
-        
+                /* Client Logos Bar - BIGGER LOGOS */
+        .social-proof-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 3rem; /* Increased spacing for bigger logos */
+            margin: 3rem 0;
+            padding: 2rem 0;
+            background: none;
+            border: none;
+            box-shadow: none;
+            border-top: 1px solid var(--mirage-color);
+            border-bottom: 1px solid var(--mirage-color);
+        }
+
+        /* BIGGER LOGO IMAGES */
+        .social-proof-bar img {
+            height: 80px; /* BIGGER size */
+            width: auto;
+            max-width: 160px; /* Allow logos to be wider */
+            object-fit: contain;
+            filter: grayscale(100%) brightness(150%);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover effect for logos */
+        .social-proof-bar img:hover {
+            filter: grayscale(0%) brightness(100%);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
 
         /* Social Proof & Outcomes Section */
         .social-proof-section h2 {
@@ -1079,7 +1112,49 @@
             display: none;
         }
         
-        
+          /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .social-proof-section {
+                padding: 2rem;
+            }
+            
+            .social-proof-bar {
+                gap: 2rem; /* Slightly less gap on mobile */
+                padding: 1.5rem 0;
+            }
+            
+            .social-proof-bar img {
+                height: 60px; /* Still big but scaled for mobile */
+                max-width: 120px;
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .social-proof-bar {
+                gap: 1.5rem;
+            }
+            
+            .social-proof-bar img {
+                height: 50px;
+                max-width: 100px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         
         
         
@@ -1813,61 +1888,51 @@
         
         
         
+          <!-- Social proof and outcomes Section -->
+    <section class="section social-proof-section container" style="animation-delay: 1.2s;">
+        <h2>Social Proof & Outcomes</h2>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <p style="font-size: 1.2rem; color: var(--title-color); font-weight: 600;">
+                <span style="color: var(--skin-color);">92%</span> report time savings within 2 weeks; average <span style="color: var(--skin-color);">6.4 hours/week</span> saved by Week 6.
+            </p>
+        </div>
         
-        
-        
-
-        <!-- Social proof and outcomes Section -->
-        <section class="section social-proof-section container" style="animation-delay: 1.2s;">
-            <h2>Social Proof & Outcomes</h2>
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <p style="font-size: 1.2rem; color: var(--title-color); font-weight: 600;">
-                    <span style="color: var(--skin-color);">92%</span> report time savings within 2 weeks; average <span style="color: var(--skin-color);">6.4 hours/week</span> saved by Week 6.
-                </p>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p>"Our sales ops team automated reporting and reclaimed 12 hours/week—safely."</p>
+                <span class="testimonial-author">[Name, Title, Company]</span>
             </div>
             
+            <div class="testimonial-card">
+                <p>"This is the first AI program that stuck. We left with playbooks, not theory."</p>
+                <span class="testimonial-author">[Name, Director, Industry]</span>
+            </div>
             
+            <div class="testimonial-card">
+                <p>"AIM transformed how we approach AI. The practical, hands-on approach made all the difference."</p>
+                <span class="testimonial-author">[Name, Head of Innovation, Tech Company]</span>
+            </div>
             
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <p>"Our sales ops team automated reporting and reclaimed 12 hours/week—safely."</p>
-                    <span class="testimonial-author">[Name, Title, Company]</span>
-                </div>
-                
-                
-                
-                <div class="testimonial-card">
-                    <p>"This is the first AI program that stuck. We left with playbooks, not theory."</p>
-                    <span class="testimonial-author">[Name, Director, Industry]</span>
-                </div>
-                
-                
-                <div class="testimonial-card">
-                    <p>"AIM transformed how we approach AI. The practical, hands-on approach made all the difference."</p>
-                    <span class="testimonial-author">[Name, Head of Innovation, Tech Company]</span>
-                </div>
-                
-                  <div class="testimonial-card">
-                    <p>"Our sales ops team automated reporting and reclaimed 12 hours/week—safely."</p>
-                    <span class="testimonial-author">[Name, Title, Company]</span>
-                </div>
-                
-                
-                
+            <div class="testimonial-card">
+                <p>"Our sales ops team automated reporting and reclaimed 12 hours/week—safely."</p>
+                <span class="testimonial-author">[Name, Title, Company]</span>
             </div>
-            <div class="social-proof-bar" style="margin-top: 3rem; background: none; border: none; box-shadow: none;">
-                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/58ac0b4105cb33a247c72b3321f0b62cce3dad8e.png" alt="Client Logo 1">
-                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/ed9250dabc3b2cb4105d8f77f920a75939466911.png" alt="Client Logo 2">
-                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/16ac852435d7f7fd11132df84e01e3491b2a09a8.png" alt="Client Logo 3">
-                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/bb035f4b4830d8e4b94ca659d0993a1335502ba9.png" alt="Client Logo 4">
-                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/6ffd54edc8e2af0b28af37918507b7d4549c21ea.png" alt="Client Logo 5">
-                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/01292dd657e31919e7ab08cb9efbfae503dc4c7c.png" alt="Client Logo 6">
-            </div>
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="/case-studies" class="cta-button">Read Case Studies →</a>
-            </div>
-        </section>
+        </div>
         
+        <!-- Client Logos Section with BIGGER logos -->
+        <div class="social-proof-bar" style="margin-top: 3rem; background: none; border: none; box-shadow: none;">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/58ac0b4105cb33a247c72b3321f0b62cce3dad8e.png" alt="Client Logo 1">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/ed9250dabc3b2cb4105d8f77f920a75939466911.png" alt="Client Logo 2">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/16ac852435d7f7fd11132df84e01e3491b2a09a8.png" alt="Client Logo 3">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/bb035f4b4830d8e4b94ca659d0993a1335502ba9.png" alt="Client Logo 4">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/6ffd54edc8e2af0b28af37918507b7d4549c21ea.png" alt="Client Logo 5">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/01292dd657e31919e7ab08cb9efbfae503dc4c7c.png" alt="Client Logo 6">
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="/case-studies" class="cta-button">Read Case Studies →</a>
+        </div>
+    </section>
         
         
         
