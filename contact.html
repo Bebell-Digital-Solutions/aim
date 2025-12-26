@@ -274,12 +274,18 @@
 
         /* --- Footer --- */
         .footer-bg { /* Full-width background */
-            background-color: var(--box-color); padding: 3rem 0 3.5rem; width: 100%;
+            background-color: var(--box-color); 
+            padding: 3rem 0 3.5rem; 
+            width: 100%;
         }
 
         .footer-container { /* Max-width container for content */
-            max-width: 980px; margin: 0 auto; padding: 0 1rem; display: grid;
-            grid-template-columns: repeat(3, 1fr); column-gap: 1.6rem;
+            max-width: 980px; 
+            margin: 0 auto; 
+            padding: 0 1rem; 
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            column-gap: 1.6rem;
         }
 
         .footer-links {
@@ -296,7 +302,142 @@
             color: var(--skin-color);
         }
 
+        /* --- Footer (Main Page Footer) --- */
+        .footer {
+            padding-top: 2rem;
+            background-color: var(--box-color); 
+            padding: 3rem 0 3.5rem; 
+            width: 100%;
+        }
 
+        .footer-bg {
+            background-color: var(--box-color);
+            padding: 3rem 0 3.5rem;
+        }
+        
+        .footer-container {
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 1.6rem;
+        }
+
+        .footer-title {
+            font-size: var(--h3-font-size);
+            margin-bottom: 0.25rem; 
+            color: var(--title-color);
+        }
+
+        .footer-subtitle {
+            font-size: var(--small-font-size);
+            color: var(--title-color);
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            justify-self: center;
+            column-gap: 2rem;
+        }
+
+        .footer-link {
+            color: var(--title-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--skin-color);
+        }
+
+        .footer-socials {
+            justify-self: flex-end;
+            display: flex; 
+            align-items: center;
+            gap: var(--mb15);
+        }
+
+        .footer-social {
+            font-size: 1.25rem;
+            color: var(--title-color);
+            transition: color 0.3s;
+        }
+
+        .footer-social:hover {
+            color: var(--skin-color);
+        }
+
+        .footer-copy {
+            font-size: var(--smaller-font-size);
+            text-align: center;
+            margin-top: 4.5rem;
+        }
+
+        .footer-copy a {
+            color: var(--title-color);
+        }
+
+        .footer-copy a:hover {
+            color: var(--skin-color);
+        }
+
+        /* Footer Logo Styles (Desktop) */
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            gap: 0.5rem; 
+        }
+        .footer-brand-text { 
+            text-align: left;
+        }
+        .footer-logo {
+            width: 30px;
+            height: auto;
+            display: block;
+        }
+
+        .footer-logo:hover {
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        /* --- Footer Mobile Styles --- */
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                row-gap: 3rem;
+                text-align: center;
+            }
+            
+            .footer-brand {
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+            }
+            .footer-brand-text {
+                text-align: center;
+            }
+            
+            .footer-socials {
+                justify-content: center;
+                justify-self: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                row-gap: 1.5rem;
+                justify-self: center;
+            }
+            
+            .footer-bg {
+                padding: 2rem 0 3rem;
+            }
+            
+            .footer-copy {
+                margin-top: var(--mb25);
+            }
+        }
 
         
 
@@ -620,6 +761,7 @@
     <button id="back-to-top" aria-label="Back to Top"></button>
     
     <!-- Standard AIM Footer -->
+    <!-- Standard AIM Footer -->
     <footer class="footer">
         <div class="footer-bg">
             <div class="footer-container container"> 
@@ -634,12 +776,12 @@
                     
                 <!-- Footer Links -->
                 <ul class="footer-links">
-                    <li><a href="/" class="footer-links">Home</a></li>
-                    <li><a href="/about" class="footer-links">About</a></li>
-                    <li><a href="/courses" class="footer-links">Courses</a></li>
-                    <li><a href="/pricing-page" class="footer-links">Pricing</a></li>
-                    <li><a href="/resources" class="footer-links">Resources</a></li>
-                    <li><a href="/contact" class="footer-links">Contact</a></li>
+                    <li><a href="/" class="footer-link">Home</a></li>
+                    <li><a href="/about" class="footer-link">About</a></li>
+                    <li><a href="/courses" class="footer-link">Courses</a></li>
+                    <li><a href="/pricing-page" class="footer-link">Pricing</a></li>
+                    <li><a href="/resources" class="footer-link">Resources</a></li>
+                    <li><a href="/contact" class="footer-link">Contact</a></li>
                 </ul>
 
                 <!-- Social Icons -->
