@@ -1442,6 +1442,179 @@
         .pricing-card {
             background-color: var(--box-color);
         }    
+
+
+
+
+
+
+
+
+        /* Mobile visibility controls (Default/Desktop state) */
+        #mobile-menu-toggle { 
+            display: none; 
+            border: none;
+            background: transparent;
+            color: var(--skin-color);
+            font-size: 1.8rem;
+            cursor: pointer;
+            margin-left: auto;
+        }
+        .nav-cta.mobile-cta-only { display: none; }
+        .nav-cta.desktop-cta-only { display: block; }
+
+        /* ====================================================== */
+        /* --- MOBILE LAYOUT (max-width: 767px) --- */
+        /* ====================================================== */
+        @media screen and (max-width: 767px) {
+            body { 
+                padding-top: 6rem; 
+            }
+            
+            /* Mobile Navigation */
+            #nav-bar {
+                padding: 0.5rem 1rem;
+                justify-content: space-between;
+                box-shadow: none; 
+                width: 100%;
+                top: 0;
+                left: 0;
+                transform: none;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+            }
+            
+            #mobile-menu-toggle {
+                display: block;
+                position: static;
+                transform: none;
+                z-index: 1002;
+                margin-left: auto;
+            }
+            
+            #nav-menu {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: var(--body-color); 
+                z-index: 1001; 
+                flex-direction: column;
+                justify-content: center; 
+                align-items: center; 
+                gap: 2rem;
+            }
+
+            #nav-menu.mobile-open {
+                display: flex;
+                padding: 0; 
+                overflow-y: auto;
+            }
+            
+            #nav-menu .nav-link,
+            #nav-menu .nav-item {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: var(--title-color);
+                padding: 0.5rem 0;
+                margin: 0;
+                width: auto; 
+                text-align: center;
+            }
+            
+            #nav-menu .nav-item { 
+                margin: 0; 
+                padding: 0; 
+            }
+
+            #nav-menu .nav-link:hover {
+                color: var(--skin-color);
+                transform: none;
+            }
+            
+            /* Courses Dropdown (Mobile alignment) */
+            .has-submenu {
+                display: flex;
+                flex-direction: column;
+                align-items: center; 
+                width: 100%; 
+            }
+            
+            .submenu-courses {
+                position: static; 
+                width: auto; 
+                background: none;
+                box-shadow: none;
+                padding: 0; 
+                margin: 0; 
+                opacity: 0; 
+                display: none;
+                transition: none;
+                flex-direction: column; 
+                align-items: center; 
+                text-align: left;
+            }
+            
+            .submenu-courses.active { 
+                display: flex;
+                opacity: 1;
+                pointer-events: auto;
+                padding: 0.5rem 0 0 0; 
+                margin-top: 0.5rem; 
+            }
+            
+            .submenu-courses .submenu-link {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+                justify-content: flex-start; 
+                width: 300px;
+                text-align: left;
+                margin-left: 50px;
+                background-color: transparent !important;
+            }
+            
+            /* Mobile CTA button */
+            .nav-cta.mobile-cta-only {
+                padding: 1rem 60px; 
+                width: 90%; 
+                max-width: 400px; 
+                font-size: 1.4rem; 
+                font-weight: 900;
+                margin-top: 2rem; 
+                display: block !important; 
+                align-self: center; 
+                text-align: center;
+            }
+            
+            /* Hide desktop items on mobile */
+            .nav-cta.desktop-cta-only,
+            .nav-cta:not(.mobile-cta-only) { 
+                display: none !important; 
+            }
+
+            /* Add your existing mobile styles here... */
+        }
+
+        /* Desktop: Ensure correct visibility when not mobile */
+        @media screen and (min-width: 768px) {
+            #nav-menu {
+                display: flex !important;
+            }
+            .nav-cta.desktop-cta-only { 
+                display: block !important; 
+            }
+        }
+
+
+
+
+
+
+
+
         
         
 /* Base snowflake layer with blurry effects */
@@ -1610,20 +1783,23 @@ function init_tracer() {
     
     
     
-
     <!-- Navigation Bar (Header) -->
     <nav id="nav-bar">
-      <a href="/" id="nav-logo">
-        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
-      </a>
-      <div id="nav-menu">
-        <a href="/" class="nav-link">Home</a>
-        <a href="/about" class="nav-link">About</a>
-
+        <a href="/" id="nav-logo">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
+        </a>
         
-          
-          <!-- Courses Dropdown -->
-          <div class="nav-item has-submenu">
+        <!-- MOBILE TOGGLE BUTTON - ADD THIS -->
+        <button id="mobile-menu-toggle" aria-label="Open Menu">
+            <i class="fa-solid fa-bars" id="toggle-icon"></i>
+        </button>
+        
+        <div id="nav-menu">
+            <a href="/" class="nav-link" style="color: var(--skin-color);">Home</a>
+            <a href="/about" class="nav-link">About</a>
+            
+            <!-- Courses Dropdown -->
+            <div class="nav-item has-submenu">
                 <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
                 <div class="submenu-courses" id="courses-submenu">
                     <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
@@ -1633,12 +1809,17 @@ function init_tracer() {
                     <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
                 </div>
             </div>
- 
-        <a href="/pricing-page" class="nav-link">Pricing</a>
-        <a href="/resources" class="nav-link">Resources</a>
-        <a href="/contact" class="nav-link">Contact</a>
-        <a href="/portal" class="nav-cta">MEMBER LOGIN</a>
-      </div>
+            
+            <a href="/pricing-page" class="nav-link">Pricing</a>
+            <a href="/resources" class="nav-link">Resources</a>
+            <a href="/contact" class="nav-link">Contact</a>
+            
+            <!-- DESKTOP CTA (VISIBLE ON DESKTOP NAV BAR) - UPDATE THIS -->
+            <a href="/portal" class="nav-cta desktop-cta-only">MEMBER LOGIN</a>
+            
+            <!-- MOBILE CTA (VISIBLE ONLY IN MOBILE OVERLAY) - ADD THIS -->
+            <a href="/portal" class="nav-cta mobile-cta-only">LOGIN</a>
+        </div>
     </nav>
 
     
@@ -2345,6 +2526,50 @@ function init_tracer() {
                 timelineObserver.observe(item);
             });
         });
+
+
+
+
+
+
+            // --- Mobile Menu Toggle Logic (Hamburger Icon) ---
+            const mobileToggle = document.getElementById('mobile-menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const toggleIcon = document.getElementById('toggle-icon');
+
+            if (mobileToggle && navMenu && toggleIcon) {
+                mobileToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('mobile-open');
+                    
+                    if (navMenu.classList.contains('mobile-open')) {
+                        toggleIcon.classList.remove('fa-bars');
+                        toggleIcon.classList.add('fa-xmark');
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        toggleIcon.classList.remove('fa-xmark');
+                        toggleIcon.classList.add('fa-bars');
+                        document.body.style.overflow = 'auto';
+                        if (submenu) submenu.classList.remove('active');
+                    }
+                });
+                
+                navMenu.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth < 768 && !link.parentElement.classList.contains('has-submenu')) {
+                            navMenu.classList.remove('mobile-open');
+                            toggleIcon.classList.remove('fa-xmark');
+                            toggleIcon.classList.add('fa-bars');
+                            document.body.style.overflow = 'auto';
+                            if (submenu) submenu.classList.remove('active');
+                        }
+                    });
+                });
+            }
+
+
+
+
+        
     </script>
 </body>
 </html>
