@@ -332,61 +332,56 @@
 
 
 /* Create snowflakes using pseudo-elements */
-body::before {
+/* This creates individual flake-like elements using box shadows */
+.snow-blizzard::before {
   content: "";
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: -10px;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
   z-index: 9999;
-  background-image: 
-    /* Create multiple box shadows to simulate snowflakes */
-    radial-gradient(2px 2px at 10% 20%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
-    radial-gradient(3px 3px at 20% 30%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 30% 10%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
-    radial-gradient(2.5px 2.5px at 40% 40%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
-    radial-gradient(3px 3px at 50% 60%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
-    radial-gradient(1.8px 1.8px at 60% 80%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
-    radial-gradient(2.2px 2.2px at 70% 50%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
-    radial-gradient(2.7px 2.7px at 80% 20%, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 90% 70%, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
-    radial-gradient(3px 3px at 15% 90%, rgba(255, 255, 255, 0.7) 50%, transparent 100%);
-  background-repeat: no-repeat;
-  animation: snowfall 15s linear infinite;
+  
+  /* Create snowflakes with box-shadow - each is a "flake" */
+  box-shadow: 
+    /* Large blurry flakes */
+    10vw 10vh 20px 2px rgba(255, 255, 255, 0.8),
+    20vw 20vh 15px 1px rgba(255, 255, 255, 0.7),
+    30vw 5vh 25px 3px rgba(255, 255, 255, 0.6),
+    40vw 30vh 18px 2px rgba(255, 255, 255, 0.9),
+    50vw 15vh 22px 4px rgba(255, 255, 255, 0.5),
+    
+    /* Medium flakes */
+    60vw 25vh 12px 1px rgba(255, 255, 255, 0.8),
+    70vw 10vh 14px 2px rgba(255, 255, 255, 0.7),
+    80vw 35vh 16px 1px rgba(255, 255, 255, 0.6),
+    90vw 20vh 10px 1px rgba(255, 255, 255, 0.9),
+    15vw 40vh 13px 2px rgba(255, 255, 255, 0.5),
+    
+    /* More flakes */
+    25vw 45vh 20px 3px rgba(255, 255, 255, 0.4),
+    35vw 50vh 17px 2px rgba(255, 255, 255, 0.7),
+    45vw 35vh 19px 1px rgba(255, 255, 255, 0.6),
+    55vw 60vh 21px 4px rgba(255, 255, 255, 0.3),
+    65vw 45vh 15px 2px rgba(255, 255, 255, 0.8);
+  
+  animation: blizzard 20s linear infinite;
+  filter: blur(3px);
 }
 
-/* Animation for the snowflakes */
-@keyframes snowfall {
+@keyframes blizzard {
   0% {
-    transform: translateY(-100%);
+    transform: translateY(-100vh) translateX(0);
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
   }
   100% {
-    transform: translateY(100vh);
+    transform: translateY(100vh) translateX(100px);
+    opacity: 0.5;
   }
-}
-
-/* Enhanced version with multiple layers for depth */
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9998;
-  background-image: 
-    radial-gradient(1px 1px at 5% 15%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
-    radial-gradient(2px 2px at 25% 35%, rgba(255, 255, 255, 0.5) 50%, transparent 100%),
-    radial-gradient(1px 1px at 35% 5%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 45% 45%, rgba(255, 255, 255, 0.4) 50%, transparent 100%),
-    radial-gradient(2px 2px at 55% 65%, rgba(255, 255, 255, 0.5) 50%, transparent 100%),
-    radial-gradient(1.2px 1.2px at 65% 85%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
-  background-repeat: no-repeat;
-  animation: snowfall 20s linear infinite;
-  opacity: 0.7;
 }
 
 
@@ -459,7 +454,7 @@ body::after {
         const splineViewer = document.querySelector('spline-viewer');
 
         // Destination URL
-        const DESTINATION_URL = "/form";
+        const DESTINATION_URL = "https://app.aimbootcamp.com";
 
         // Event listeners
         card.addEventListener("click", startPortal);
