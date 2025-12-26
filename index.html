@@ -537,7 +537,7 @@
             max-width: 100vw;
             height: 100%;
             z-index: 0;
-              transform: scale(1.13);
+            transform: scale(1.13);
         }
         
         
@@ -1088,7 +1088,7 @@
 #social-proof-logos-section .social-proof-bar img {
     height: 80px; /* BIGGER size */
     width: auto;
-    max-width: 160px; /* Allow logos to be wider */
+    max-width: 260px; /* Allow logos to be wider */
     object-fit: contain;
     filter: grayscale(100%) brightness(150%);
     opacity: 0.8;
@@ -1313,6 +1313,13 @@
 
         /* --- Responsive Styles --- */
         @media screen and (max-width: 767px) {
+
+
+        .hero spline-viewer {
+            position: absolute;
+            top: 40px;
+            }
+            
             /* General mobile layout adjustments */
             .footer-container {
                 grid-template-columns: 1fr;
