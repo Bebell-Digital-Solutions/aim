@@ -332,58 +332,218 @@
 
 
 /* Create snowflakes using pseudo-elements */
-/* This creates individual flake-like elements using box shadows */
-.snow-blizzard::before {
+/* Realistic snowflakes with blur effects */
+body::before,
+body::after,
+body span::before {
   content: "";
-  position: absolute;
+  position: fixed;
   top: -10px;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
   z-index: 9999;
-  
-  /* Create snowflakes with box-shadow - each is a "flake" */
-  box-shadow: 
-    /* Large blurry flakes */
-    10vw 10vh 20px 2px rgba(255, 255, 255, 0.8),
-    20vw 20vh 15px 1px rgba(255, 255, 255, 0.7),
-    30vw 5vh 25px 3px rgba(255, 255, 255, 0.6),
-    40vw 30vh 18px 2px rgba(255, 255, 255, 0.9),
-    50vw 15vh 22px 4px rgba(255, 255, 255, 0.5),
+  background-image: 
+    /* Large blurry snowflakes */
+    radial-gradient(10px 10px at 10% 20%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 30%, transparent 70%),
+    radial-gradient(8px 8px at 20% 30%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 40%, transparent 80%),
+    radial-gradient(12px 12px at 30% 10%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.2) 50%, transparent 90%),
+    radial-gradient(15px 15px at 40% 40%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 35%, transparent 85%),
     
-    /* Medium flakes */
-    60vw 25vh 12px 1px rgba(255, 255, 255, 0.8),
-    70vw 10vh 14px 2px rgba(255, 255, 255, 0.7),
-    80vw 35vh 16px 1px rgba(255, 255, 255, 0.6),
-    90vw 20vh 10px 1px rgba(255, 255, 255, 0.9),
-    15vw 40vh 13px 2px rgba(255, 255, 255, 0.5),
+    /* Medium snowflakes */
+    radial-gradient(6px 6px at 50% 60%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 60%, transparent 100%),
+    radial-gradient(7px 7px at 60% 80%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 70%, transparent 100%),
+    radial-gradient(9px 9px at 70% 50%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.2) 65%, transparent 100%),
     
-    /* More flakes */
-    25vw 45vh 20px 3px rgba(255, 255, 255, 0.4),
-    35vw 50vh 17px 2px rgba(255, 255, 255, 0.7),
-    45vw 35vh 19px 1px rgba(255, 255, 255, 0.6),
-    55vw 60vh 21px 4px rgba(255, 255, 255, 0.3),
-    65vw 45vh 15px 2px rgba(255, 255, 255, 0.8);
+    /* Small distant snowflakes */
+    radial-gradient(4px 4px at 80% 20%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.1) 80%, transparent 100%),
+    radial-gradient(5px 5px at 90% 70%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 85%, transparent 100%),
+    radial-gradient(3px 3px at 15% 90%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.2) 90%, transparent 100%),
+    
+    /* More varied snowflakes */
+    radial-gradient(11px 11px at 25% 50%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 45%, transparent 95%),
+    radial-gradient(14px 14px at 65% 30%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 55%, transparent 100%),
+    radial-gradient(13px 13px at 85% 60%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 40%, transparent 90%);
   
-  animation: blizzard 20s linear infinite;
-  filter: blur(3px);
+  background-repeat: no-repeat;
+  animation: snowfall 15s linear infinite;
+  filter: blur(0.5px); /* Adds soft blur to all flakes */
 }
 
-@keyframes blizzard {
+/* Different animation for each layer */
+body::before {
+  animation: snowfall 15s linear infinite, drift 8s ease-in-out infinite alternate;
+  opacity: 0.9;
+  filter: blur(1px); /* Extra blur for distant large flakes */
+}
+
+body::after {
+  background-image: 
+    radial-gradient(8px 8px at 5% 15%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%),
+    radial-gradient(6px 6px at 25% 35%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 60%, transparent 100%),
+    radial-gradient(10px 10px at 35% 5%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 70%, transparent 100%),
+    radial-gradient(7px 7px at 45% 45%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 65%, transparent 100%),
+    radial-gradient(9px 9px at 55% 65%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 55%, transparent 100%),
+    radial-gradient(12px 12px at 65% 85%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 75%, transparent 100%),
+    radial-gradient(5px 5px at 75% 25%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 80%, transparent 100%),
+    radial-gradient(11px 11px at 85% 55%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 45%, transparent 100%);
+  
+  animation: snowfall 12s linear infinite, drift 6s ease-in-out infinite alternate;
+  animation-delay: -5s;
+  opacity: 0.7;
+  filter: blur(0.8px);
+}
+
+/* Create a third layer for more depth */
+body::before,
+body::after,
+body span::before {
+  /* Create the third layer using a span's pseudo-element */
+  /* This would require a <span> inside body, or use another approach */
+}
+
+/* Improved animations */
+@keyframes snowfall {
   0% {
-    transform: translateY(-100vh) translateX(0);
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 1;
+    transform: translateY(-100vh) translateX(0) rotate(0deg);
   }
   100% {
-    transform: translateY(100vh) translateX(100px);
-    opacity: 0.5;
+    transform: translateY(100vh) translateX(100px) rotate(360deg);
   }
 }
 
+@keyframes drift {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(25px);
+  }
+  50% {
+    transform: translateX(-15px);
+  }
+  75% {
+    transform: translateX(20px);
+  }
+}
+
+/* Alternative with CSS variables for more control */
+.winter-snow {
+  position: relative;
+  overflow: hidden;
+}
+
+.winter-snow::before,
+.winter-snow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%; /* Extra height for continuous falling */
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.winter-snow::before {
+  /* Layer 1: Large blurry flakes */
+  background-image: 
+    /* Create star-shaped snowflakes using multiple gradients */
+    radial-gradient(circle at 10% 5%, 
+      rgba(255, 255, 255, 0.8) 0%, 
+      rgba(255, 255, 255, 0.4) 20%, 
+      transparent 60%),
+    radial-gradient(circle at 30% 15%, 
+      rgba(255, 255, 255, 0.9) 0%, 
+      rgba(255, 255, 255, 0.5) 25%, 
+      transparent 70%),
+    radial-gradient(circle at 50% 8%, 
+      rgba(255, 255, 255, 0.7) 0%, 
+      rgba(255, 255, 255, 0.3) 30%, 
+      transparent 80%),
+    radial-gradient(circle at 70% 25%, 
+      rgba(255, 255, 255, 0.6) 0%, 
+      rgba(255, 255, 255, 0.2) 35%, 
+      transparent 75%),
+    radial-gradient(circle at 90% 12%, 
+      rgba(255, 255, 255, 0.8) 0%, 
+      rgba(255, 255, 255, 0.4) 15%, 
+      transparent 65%);
+  
+  background-size: 100% 100%;
+  animation: snow-fall 18s linear infinite;
+  filter: blur(2px);
+  opacity: 0.8;
+}
+
+.winter-snow::after {
+  /* Layer 2: Medium flakes */
+  background-image: 
+    radial-gradient(circle at 5% 10%, 
+      rgba(255, 255, 255, 0.9) 0%, 
+      rgba(255, 255, 255, 0.6) 15%, 
+      transparent 50%),
+    radial-gradient(circle at 25% 20%, 
+      rgba(255, 255, 255, 0.8) 0%, 
+      rgba(255, 255, 255, 0.5) 20%, 
+      transparent 60%),
+    radial-gradient(circle at 45% 5%, 
+      rgba(255, 255, 255, 0.7) 0%, 
+      rgba(255, 255, 255, 0.4) 25%, 
+      transparent 70%),
+    radial-gradient(circle at 65% 30%, 
+      rgba(255, 255, 255, 0.6) 0%, 
+      rgba(255, 255, 255, 0.3) 30%, 
+      transparent 80%),
+    radial-gradient(circle at 85% 18%, 
+      rgba(255, 255, 255, 0.9) 0%, 
+      rgba(255, 255, 255, 0.5) 18%, 
+      transparent 55%);
+  
+  background-size: 100% 100%;
+  animation: snow-fall 12s linear infinite;
+  animation-delay: -6s;
+  filter: blur(1px);
+  opacity: 0.6;
+}
+
+@keyframes snow-fall {
+  0% {
+    transform: translateY(-100%) translateX(0);
+    background-position: 0 0;
+  }
+  100% {
+    transform: translateY(0) translateX(50px);
+    background-position: 50px 100%;
+  }
+}
+
+/* Add wind effect */
+@keyframes snow-wind {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(30px);
+  }
+  50% {
+    transform: translateX(-20px);
+  }
+  75% {
+    transform: translateX(25px);
+  }
+}
+
+/* Combine animations */
+.winter-snow::before {
+  animation: snow-fall 20s linear infinite, snow-wind 8s ease-in-out infinite;
+}
+
+.winter-snow::after {
+  animation: snow-fall 15s linear infinite, snow-wind 6s ease-in-out infinite;
+  animation-delay: -4s;
+}
 
 
         
