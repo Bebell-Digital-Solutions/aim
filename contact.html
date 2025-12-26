@@ -1,1 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- !!! IMPORTANT: UPDATE THE TITLE TAG FOR EACH UNIQUE PAGE !!! -->
+    <title>Page Title Here - AIM™</title> 
+      
+  <!-- Import Poppins font --><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  
 
+    <!-- Import Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Icons --><link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+  
+    <!-- Favicon -->
+    <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
+
+
+    <!-- YOUR CSS FILE -->
+    <link rel="stylesheet" href="styles.css">
+
+
+<!-- Page Loader HTML -->
+<script>
+  // --- Page Loader Logic ---
+  function showLoader() {
+    const loader = document.createElement('div');
+    loader.className = 'page-loader';
+    loader.innerHTML = `
+      <div class="loader-header">Wait for it...</div>
+      <div class="progress"></div>
+    `;
+    document.body.appendChild(loader);
+    return loader;
+  }
+
+  function initLoader() {
+    const loader = showLoader();
+    setTimeout(() => {
+      loader.classList.add('hidden');
+      setTimeout(() => loader.remove(), 300); // Remove after fade out
+    }, 1500); // Adjust duration as needed
+  }
+
+  document.addEventListener('DOMContentLoaded', initLoader);
+</script>
+<!-- Loader Div is injected by the script above -->
+
+    
+</head>
+
+
+
+
+    
+<body>
+
+    <!-- Navigation Bar (Fixed Header) -->
+    <nav id="nav-bar">
+      <a href="/" id="nav-logo">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
+      </a>
+      
+      <!-- Mobile Menu Toggle (Visible only on mobile) -->
+      <button id="mobile-menu-toggle" aria-label="Toggle Navigation">
+          <i class="fa-solid fa-bars" id="mobile-menu-icon"></i> 
+      </button>
+
+      
+
+      <!-- Nav Menu (Full-Screen Overlay on Mobile, Link Container on Desktop) -->
+      <div id="nav-menu">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/about" class="nav-link">About</a>
+
+        
+        <div class="nav-item has-submenu">
+          <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
+          <div class="submenu-courses" id="courses-submenu">
+            <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
+            <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
+            <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+            <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
+          <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+          </div>
+        </div>
+        
+        <a href="/pricing-page" class="nav-link">Pricing</a>
+        <a href="/helpcenter" class="nav-link">Resources</a>
+        <a href="/contact" class="nav-link">Contact</a>
+        
+        <!-- Desktop CTA (Visible on Desktop, hidden on Mobile) -->
+        <a href="/login" class="nav-cta desktop-cta-only">LOGIN</a>
+
+        <!-- Mobile CTA (Visible ONLY in Mobile Overlay) -->
+        <a href="/login" class="nav-cta mobile-cta-only">LOGIN</a>
+      </div>
+    </nav>
+<main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</main>
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to Top"></button>
+    
+    <!-- Standard AIM Footer -->
+    <footer class="footer">
+        <div class="footer-bg">
+            <div class="footer-container container"> 
+                <!-- Logo/Brand Block -->
+                <div class="footer-brand">
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="Project Freedom Logo" class="footer-logo">
+                    <div class="footer-brand-text">
+                        <h3 class="footer-title">AIM™</h3>
+                        <span class="footer-subtitle">AI Mastery Program</span>
+                    </div>
+                </div>
+
+              
+                    
+                <!-- Footer Links -->
+                <ul class="footer-links">
+                    <li><a href="/" class="footer-links">Home</a></li>
+                    <li><a href="/about" class="footer-links">About</a></li>
+                    <li><a href="/courses" class="footer-links">Courses</a></li>
+                    <li><a href="/pricing-page" class="footer-links">Pricing</a></li>
+                    <li><a href="/resources" class="footer-links">Resources</a></li>
+                    <li><a href="/contact" class="footer-links">Contact</a></li>
+                </ul>
+
+              
+
+                <!-- Social Icons -->
+                <div class="footer-socials">
+                    <a href="https://www.youtube.com/" target="_blank" class="footer-social" aria-label="Youtube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.facebook.com/" target="_blank" class="footer-social" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank" class="footer-social" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/" target="_blank" class="footer-social" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <p class="footer-copy">Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a></p>
+        </div>
+    </footer>
+
+
+
+  
+
+    <!-- YOUR JAVASCRIPT FILE -->
+    <script src="script.js"></script>
+</body>
+</html>
