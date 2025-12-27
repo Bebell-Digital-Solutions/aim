@@ -83,13 +83,23 @@
 
         /* =========================== -->
         <!-- SECTION 4: NAVIGATION BAR -->
-        <!-- =========================== -->
+        <!-- =========================== */
+        
         #nav-bar {
-            position: fixed; top: 2rem; left: 50%; transform: translateX(-50%);
-            background: rgba(25, 25, 25, 0.85); backdrop-filter: blur(10px);
-            border: 1px solid var(--box-color); border-radius: 0.75rem;
-            padding: 0.75rem 1.5rem; display: flex; align-items: center;
-            max-width: 1100px; width: 90%; z-index: 1000;
+            position: fixed; 
+            top: 2rem; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: rgba(25, 25, 25, 0.85); 
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--box-color); 
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem; 
+            display: flex; 
+            align-items: center;
+            max-width: 1100px; 
+            width: 90%; 
+            z-index: 1000;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
         }
         #nav-logo img { height: 35px; }
@@ -138,15 +148,16 @@
             padding: 0.75rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
             opacity: 0; 
-            pointer-events: none; 
-            transition: opacity 0.3s, top 0.3s; 
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, top 0.3s; 
             width: 250px;
+            z-index: 1001;
         }
         
         /* Submenu Active State (Shown via JavaScript click - Desktop) */
         .submenu-courses.active { 
             opacity: 1; 
-            pointer-events: auto; 
+            visibility: visible;
             top: calc(100% + 10px);
         }
         .submenu-link { 
@@ -179,7 +190,7 @@
 
         /* =========================== -->
         <!-- SECTION 5: BACK TO TOP BUTTON -->
-        <!-- =========================== -->
+        <!-- =========================== */
         #back-to-top {
             position: fixed; 
             bottom: 20px; 
@@ -206,7 +217,7 @@
 
         /* =========================== -->
         <!-- SECTION 6: FOOTER STYLES -->
-        <!-- =========================== -->
+        <!-- =========================== */
         .footer { 
             padding-top: 2rem; 
             margin-top: 3rem;
@@ -300,10 +311,11 @@
 
         /* =========================== -->
         <!-- SECTION 7: MOBILE RESPONSIVENESS -->
-        <!-- =========================== -->
+        <!-- =========================== */
         @media screen and (max-width: 767px) {
             body { 
                 padding-top: 6rem; 
+                overflow-x: hidden;
             }
             
             /* Mobile Navigation */
@@ -312,6 +324,7 @@
                 justify-content: space-between;
                 box-shadow: none; 
                 width: 100%;
+                max-width: 100%;
                 top: 0;
                 left: 0;
                 transform: none;
@@ -338,9 +351,11 @@
                 background: var(--body-color); 
                 z-index: 1001; 
                 flex-direction: column;
-                justify-content: center; 
+                justify-content: flex-start; 
                 align-items: center; 
-                gap: 2rem;
+                gap: 1.5rem;
+                padding-top: 6rem;
+                margin: 0;
             }
 
             #nav-menu.mobile-open {
@@ -351,8 +366,8 @@
             
             #nav-menu .nav-link,
             #nav-menu .nav-item {
-                font-size: 1.8rem;
-                font-weight: 700;
+                font-size: 1.5rem;
+                font-weight: 600;
                 color: var(--title-color);
                 padding: 0.5rem 0;
                 margin: 0;
@@ -380,45 +395,49 @@
             
             .submenu-courses {
                 position: static; 
-                width: auto; 
-                background: none;
+                width: 100%; 
+                background: rgba(0, 0, 0, 0.3);
                 box-shadow: none;
-                padding: 0; 
-                margin: 0; 
+                padding: 0.5rem 0; 
+                margin: 0.5rem 0 0 0; 
                 opacity: 0; 
+                visibility: hidden;
                 display: none;
-                transition: none;
+                max-height: 0;
+                overflow: hidden;
+                transition: opacity 0.3s, max-height 0.3s;
                 flex-direction: column; 
                 align-items: center; 
-                text-align: left;
+                text-align: center;
+                border-radius: 0.5rem;
             }
             
             .submenu-courses.active { 
                 display: flex;
                 opacity: 1;
-                pointer-events: auto;
-                padding: 0.5rem 0 0 0; 
+                visibility: visible;
+                max-height: 400px;
+                padding: 0.5rem; 
                 margin-top: 0.5rem; 
             }
             
             .submenu-courses .submenu-link {
                 font-size: 1.1rem;
-                padding: 0.5rem 0;
-                justify-content: flex-start; 
-                width: 300px;
-                text-align: left;
-                margin-left: 50px;
-                background-color: transparent !important;
+                padding: 0.5rem 1rem;
+                justify-content: center; 
+                width: 100%;
+                text-align: center;
+                margin: 0;
             }
             
             /* Mobile CTA button */
             .nav-cta.mobile-cta-only {
-                padding: 1rem 60px; 
-                width: 90%; 
-                max-width: 400px; 
-                font-size: 1.4rem; 
-                font-weight: 900;
-                margin-top: 2rem; 
+                padding: 0.8rem 2rem; 
+                width: auto; 
+                max-width: 200px; 
+                font-size: 1.2rem; 
+                font-weight: 700;
+                margin-top: 1rem; 
                 display: block !important; 
                 align-self: center; 
                 text-align: center;
@@ -433,7 +452,7 @@
             /* Mobile Footer */
             .footer-container {
                 grid-template-columns: 1fr;
-                row-gap: 3rem;
+                row-gap: 2.5rem;
                 text-align: center;
             }
             
@@ -453,16 +472,29 @@
             
             .footer-links {
                 flex-direction: column;
-                row-gap: 1.5rem;
+                row-gap: 1.2rem;
                 justify-self: center;
             }
             
             .footer-bg {
-                padding: 2rem 0 3rem;
+                padding: 2rem 0 2.5rem;
             }
             
             .footer-copy {
                 margin-top: var(--mb3);
+                padding: 0 1rem;
+            }
+        }
+
+        /* Tablet responsiveness */
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+            #nav-bar {
+                width: 95%;
+                padding: 0.5rem 1rem;
+            }
+            
+            #nav-menu {
+                gap: 1rem;
             }
         }
 
@@ -478,7 +510,7 @@
 
         /* =========================== -->
         <!-- SECTION 8: PAGE LOADER STYLES -->
-        <!-- =========================== -->
+        <!-- =========================== */
         .page-loader {
             position: fixed;
             top: 0;
@@ -535,8 +567,10 @@
         
         /* =========================== -->
         <!-- SECTION 9: PAGE-SPECIFIC STYLES -->
-        <!-- (Add your page-specific CSS here) -->
         <!-- =========================== */
+        
+        /* Add your page-specific CSS below */
+        
     </style>
 
 <!-- =========================== -->
@@ -600,25 +634,29 @@
             </div>
             
             <a href="/pricing-page" class="nav-link">Pricing</a>
-            <a href="/resources" class="nav-link">Resources</a>
             <a href="/contact" class="nav-link">Contact</a>
             
             <!-- DESKTOP CTA (VISIBLE ON DESKTOP NAV BAR) -->
-            <a href="/login" class="nav-cta desktop-cta-only">LOGIN</a>
+            <a href="/login" class="nav-cta desktop-cta-only">MEMBER LOGIN</a>
             
             <!-- MOBILE CTA (VISIBLE ONLY IN MOBILE OVERLAY) -->
-            <a href="/login" class="nav-cta mobile-cta-only">LOGIN</a>
+            <a href="/login" class="nav-cta mobile-cta-only">MEMBER LOGIN</a>
         </div>
     </nav>
 
     <!-- =========================== -->
     <!-- SECTION 12: MAIN CONTENT AREA -->
-    <!-- (Add your page-specific content here) -->
     <!-- =========================== -->
     <main>
         <!-- Your page content goes here -->
-        <h1>Your Page Title</h1>
-        <p>Your page content...</p>
+        <h1 style="color: var(--title-color); margin-bottom: 1rem;">Your Page Title</h1>
+        <p style="margin-bottom: 1.5rem;">Your page content...</p>
+        
+        <!-- Sample content to test responsiveness -->
+        <div style="background: var(--box-color); padding: 2rem; border-radius: 0.5rem; margin: 2rem 0;">
+            <h2 style="color: var(--title-color); margin-bottom: 1rem;">Test Responsive Section</h2>
+            <p>This section should adjust properly on mobile and desktop.</p>
+        </div>
     </main>
 
     <!-- =========================== -->
@@ -682,23 +720,30 @@
             const navBar = document.getElementById('nav-bar');
 
             if (coursesLink && submenu && navBar) {
-                // 1. Toggle visibility on click
+                // Toggle visibility on click
                 coursesLink.addEventListener('click', (e) => {
                     e.preventDefault(); 
-                    submenu.classList.toggle('active');
+                    const isMobile = window.innerWidth < 768;
+                    
+                    if (isMobile) {
+                        // For mobile, just toggle the submenu
+                        submenu.classList.toggle('active');
+                    } else {
+                        // For desktop, toggle and manage hover-like behavior
+                        submenu.classList.toggle('active');
+                    }
+                    
                     e.stopPropagation(); 
                 });
 
-                // 2. Close menu when clicking outside the entire navigation bar (Desktop behavior)
+                // Close menu when clicking outside
                 document.addEventListener('click', (e) => {
-                    if (!navBar.contains(e.target) && submenu.classList.contains('active')) {
-                        if (window.innerWidth >= 768) {
-                             submenu.classList.remove('active');
-                        }
+                    if (!navBar.contains(e.target)) {
+                        submenu.classList.remove('active');
                     }
                 });
 
-                // 3. Prevent clicks inside the submenu from propagating and closing it (Desktop)
+                // Prevent clicks inside submenu from closing it
                 submenu.addEventListener('click', (e) => {
                     e.stopPropagation();
                 });
@@ -710,7 +755,8 @@
             const toggleIcon = document.getElementById('toggle-icon');
 
             if (mobileToggle && navMenu && toggleIcon) {
-                mobileToggle.addEventListener('click', () => {
+                mobileToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     navMenu.classList.toggle('mobile-open');
                     
                     if (navMenu.classList.contains('mobile-open')) {
@@ -725,45 +771,84 @@
                     }
                 });
                 
+                // Close mobile menu when clicking links
                 navMenu.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
                     link.addEventListener('click', () => {
-                        if (window.innerWidth < 768 && !link.parentElement.classList.contains('has-submenu')) {
-                            navMenu.classList.remove('mobile-open');
-                            toggleIcon.classList.remove('fa-xmark');
-                            toggleIcon.classList.add('fa-bars');
-                            document.body.style.overflow = 'auto';
-                            if (submenu) submenu.classList.remove('active');
+                        if (window.innerWidth < 768) {
+                            // For submenu links, don't close the entire menu
+                            if (!link.classList.contains('submenu-link')) {
+                                navMenu.classList.remove('mobile-open');
+                                toggleIcon.classList.remove('fa-xmark');
+                                toggleIcon.classList.add('fa-bars');
+                                document.body.style.overflow = 'auto';
+                            }
                         }
                     });
+                });
+                
+                // Close menu when clicking outside on mobile
+                document.addEventListener('click', (e) => {
+                    if (window.innerWidth < 768 && 
+                        navMenu.classList.contains('mobile-open') &&
+                        !navMenu.contains(e.target) && 
+                        e.target !== mobileToggle) {
+                        navMenu.classList.remove('mobile-open');
+                        toggleIcon.classList.remove('fa-xmark');
+                        toggleIcon.classList.add('fa-bars');
+                        document.body.style.overflow = 'auto';
+                        if (submenu) submenu.classList.remove('active');
+                    }
                 });
             }
 
             // --- Back to Top Button Logic ---
             const toTopButton = document.getElementById('back-to-top');
             
-            window.onscroll = function() {
-                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                    toTopButton.classList.add('show');
-                } else {
-                    toTopButton.classList.remove('show');
-                }
-            };
+            if (toTopButton) {
+                window.addEventListener('scroll', function() {
+                    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                        toTopButton.classList.add('show');
+                    } else {
+                        toTopButton.classList.remove('show');
+                    }
+                });
 
-            toTopButton.onclick = function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
+                toTopButton.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                const isMobile = window.innerWidth < 768;
+                
+                if (!isMobile && navMenu && navMenu.classList.contains('mobile-open')) {
+                    // If resizing to desktop and mobile menu is open, close it
+                    navMenu.classList.remove('mobile-open');
+                    if (toggleIcon) {
+                        toggleIcon.classList.remove('fa-xmark');
+                        toggleIcon.classList.add('fa-bars');
+                    }
+                    document.body.style.overflow = 'auto';
+                }
+                
+                // Always close submenu on resize
+                if (submenu) {
+                    submenu.classList.remove('active');
+                }
+            });
             
             // =========================== -->
             <!-- SECTION 16: PAGE-SPECIFIC JAVASCRIPT -->
-            <!-- (Add your page-specific JavaScript here) -->
             <!-- =========================== */
+            
+            // Add your page-specific JavaScript here
             
         });
     </script>
     
     <!-- =========================== -->
     <!-- SECTION 17: PAGE-SPECIFIC SCRIPTS -->
-    <!-- (Add any page-specific script tags here) -->
     <!-- =========================== -->
 </body>
 </html>
