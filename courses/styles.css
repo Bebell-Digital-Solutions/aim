@@ -825,7 +825,7 @@
             }
 
             .tab-visual-wrap {
-                height: 300px; /* Smaller height on mobile */
+                height: 500px; /* Smaller height on mobile */
                 margin-top: 2rem;
             }
         }
@@ -852,7 +852,7 @@
             }
 
             .tab-visual-wrap {
-                height: 400px;
+                height: 500px;
                 margin-top: 2rem;
             }
         }
