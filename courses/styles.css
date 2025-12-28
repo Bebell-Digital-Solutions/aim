@@ -95,6 +95,18 @@
             color: var(--skin-color); 
             transform: translateY(-1px); 
         }
+
+
+        /* ADD THIS: Highlight current page in navigation */
+        .nav-link[href="/courses"],
+        .nav-link[href^="/courses"] {
+            color: var(--skin-color) !important;
+        }
+
+
+
+
+
         .nav-cta {
             background: linear-gradient(90deg, var(--skin-color), #d43a00);
             color: var(--title-color); 
@@ -109,6 +121,13 @@
             box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); 
         }
         .has-submenu { position: relative; }
+
+
+
+
+
+
+
         
         /* Submenu Default State (Hidden - Desktop) */
         .submenu-courses {
@@ -126,6 +145,12 @@
             width: 250px;
             z-index: 1001;
         }
+
+
+
+
+
+
         
         /* Submenu Active State (Shown via JavaScript click - Desktop) */
         .submenu-courses.active { 
@@ -147,6 +172,12 @@
             color: var(--skin-color); 
         }
         .submenu-link i { width: 15px; text-align: center; }
+
+
+
+
+
+
 
         /* Mobile visibility controls (Default/Desktop state) */
         #mobile-menu-toggle { 
