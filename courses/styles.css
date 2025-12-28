@@ -589,7 +589,7 @@
     padding-bottom: 3rem;    
     border: 1px solid var(--mirage-color);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    animation: fadeInUp 1.8s ease-out forwards;
+    animation: fadeInUp 0.8s ease-out forwards;
     opacity: 0;
     transform: none !important; /* Remove any transform animations */
 }
