@@ -806,7 +806,7 @@
                 font-size: 1.8rem; /* Adjusted slightly smaller for mobile fit */
                 margin-bottom: 1rem;
                 text-align: center; /* Centered as per instruction */
-                padding-top: 1rem;    
+                padding-top: 3rem;    
             }
 
             .filter-bar {
@@ -826,7 +826,7 @@
 
             .tab-visual-wrap {
                 height: 500px; /* Smaller height on mobile */
-                margin-top: 2rem;
+                margin-top: 1rem;
             }
         }
 
@@ -840,7 +840,7 @@
             .tab-layout-heading {
                 font-size: 2.2rem;
                 text-align: center;
-                padding-top: 2rem;
+                padding-top: 3rem;
             }
 
             .filter-bar {
@@ -853,7 +853,7 @@
 
             .tab-visual-wrap {
                 height: 500px;
-                margin-top: 2rem;
+                margin-top: 1rem;
             }
         }
 
