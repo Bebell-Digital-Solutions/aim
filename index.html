@@ -262,7 +262,9 @@
         
         
         
-        .has-submenu { position: relative; }
+        .has-submenu { 
+            position: relative; 
+        }
 
 
 
@@ -277,6 +279,7 @@
             top: 100%; 
             left: 50%; 
             padding-left: 2rem;
+            margin-left: 2rem;
             transform: translateX(-50%);
             background: var(--box-color); 
             border-radius: 0.5rem; 
@@ -290,22 +293,17 @@
         }
 
 
-
-
-
-
-        
+ 
         /* Submenu Active State (Shown via JavaScript click - Desktop) */
         .submenu-courses.active { 
             opacity: 1; 
             visibility: visible;
             top: calc(100% + 10px);
             padding-left: 2rem;
+            margin-left: 2rem;
         }
         
-        
-        
-        
+           
         .submenu-link { 
             display: flex; 
             align-items: center; 
@@ -316,11 +314,19 @@
             border-radius: 0.25rem; 
             transition: background-color 0.3s, color 0.3s; 
         }
+
+        
         .submenu-link:hover { 
             background-color: rgba(255, 80, 17, 0.1); 
             color: var(--skin-color); 
         }
-        .submenu-link i { width: 15px; text-align: center; }
+
+
+        
+        .submenu-link i { 
+            width: 15px; 
+            text-align: center; 
+        }
 
 
 
