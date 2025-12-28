@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - AIM™</title>
+    <meta name="description" content="Explore our AI mastery courses.">
+    
+    <!-- Import Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
+
+    <style>
+        /* --- AIM Brand Styles --- */
+        :root {
+            --skin-color: #ff5011;
+            --mirage-color: hsl(210, 10%, 23%);
+            --title-color: hsl(242, 8%, 98%);
+            --text-color: hsl(242, 8%, 80%);
+            --body-color: #0d0d0d;
+            --box-color: hsl(242, 14%, 12%);
+            --body-font: 'Inter', sans-serif;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            --small-font-size: 0.95rem;
+            --h3-font-size: 1.25rem;
+            --smaller-font-size: 0.75rem;
+            --mb15: 0.75rem;
+            --mb3: 1.5rem;
+        }
+
+        /* --- Base & Scrollbar --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: var(--body-font);
+            background-color: var(--body-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 8rem; /* Space for fixed nav */
+            overflow-x: hidden;
+        }
+        
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; cursor: pointer; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #333; }
+        ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
+        
+        /* Utility container class */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* --- Loader Styles --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =========================== */
+        /* SECTION 4: NAVIGATION BAR */
+        /* =========================== */
+        
+        #nav-bar {
+            position: fixed; 
+            top: 2rem; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: rgba(25, 25, 25, 0.85); 
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--box-color); 
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem; 
+            display: flex; 
+            align-items: center;
+            max-width: 1100px; 
+            width: 90%; 
+            z-index: 1000;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+        #nav-logo img { height: 35px; }
+        
+        /* Desktop: nav-menu contains all links and is flexed */
+        #nav-menu { 
+            display: flex; 
+            gap: 1.5rem; 
+            margin-left: auto; 
+            align-items: center; 
+        }
+
+        /* Nav links and CTA */
+        .nav-link { 
+            color: var(--text-color); 
+            transition: color 0.3s, transform 0.2s; 
+            font-weight: 500; 
+        }
+        .nav-link:hover { 
+            color: var(--skin-color); 
+            transform: translateY(-1px); 
+        }
+
+        /* Highlight current page in navigation */
+        .nav-link[href="/courses"],
+        .nav-link[href^="/courses"] {
+            color: var(--skin-color) !important;
+        }
+
+        .nav-cta {
+            background: linear-gradient(90deg, var(--skin-color), #d43a00);
+            color: var(--title-color); 
+            padding: 0.5rem 1rem; 
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); 
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+        }
+        .nav-cta:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); 
+        }
+        .has-submenu { position: relative; }
+
+        /* Submenu Default State (Hidden - Desktop) */
+        .submenu-courses {
+            position: absolute; 
+            top: 100%; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: var(--box-color); 
+            border-radius: 0.5rem; 
+            padding: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
+            opacity: 0; 
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, top 0.3s; 
+            width: 250px;
+            z-index: 1001;
+        }
+
+        /* Submenu Active State (Shown via JavaScript click - Desktop) */
+        .submenu-courses.active { 
+            opacity: 1; 
+            visibility: visible;
+            top: calc(100% + 10px);
+        }
+        .submenu-link { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.75rem; 
+            color: var(--text-color); 
+            padding: 0.5rem; 
+            border-radius: 0.25rem; 
+            transition: background-color 0.3s, color 0.3s; 
+        }
+        .submenu-link:hover { 
+            background-color: rgba(255, 80, 17, 0.1); 
+            color: var(--skin-color); 
+        }
+        .submenu-link i { width: 15px; text-align: center; }
+
+        /* Mobile visibility controls (Default/Desktop state) */
+        #mobile-menu-toggle { 
+            display: none; 
+            border: none;
+            background: transparent;
+            color: var(--skin-color);
+            font-size: 1.8rem;
+            cursor: pointer;
+            margin-left: auto;
+        }
+        .nav-cta.mobile-cta-only { display: none; }
+        .nav-cta.desktop-cta-only { display: block; }
+
+        /* =========================== */
+        /* SECTION 5: BACK TO TOP BUTTON */
+        /* =========================== */
+        #back-to-top {
+            position: fixed; 
+            bottom: 20px; 
+            right: 20px;
+            width: 50px; 
+            height: 50px;
+            background: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597') no-repeat center center;
+            background-size: cover;
+            border: none; 
+            border-radius: 50%;
+            cursor: pointer; 
+            opacity: 0; 
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 999;
+        }
+        #back-to-top.show { 
+            opacity: 1; 
+            visibility: visible; 
+        }
+        #back-to-top:hover { 
+            transform: scale(1.1); 
+        }
+
+        /* =========================== */
+        /* SECTION 6: FOOTER STYLES */
+        /* =========================== */
+        .footer { 
+            padding-top: 2rem; 
+            margin-top: 3rem;
+        }
+        .footer-bg { 
+            background-color: var(--box-color); 
+            padding: 3rem 0 3.5rem; 
+        }
+        .footer-container { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            column-gap: 1.6rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .footer-title { 
+            font-size: var(--h3-font-size); 
+            margin-bottom: 0.25rem; 
+            color: var(--title-color); 
+        }
+        .footer-subtitle { 
+            font-size: var(--small-font-size); 
+            color: var(--title-color); 
+        }
+        .footer-links { 
+            list-style: none; 
+            display: flex; 
+            justify-self: center; 
+            column-gap: 2rem; 
+            padding: 0;
+            margin: 0;
+        }
+        .footer-links a { 
+            color: var(--title-color); 
+            transition: color 0.3s; 
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        .footer-links a:hover { 
+            color: var(--skin-color); 
+        }
+        .footer-socials { 
+            justify-self: flex-end; 
+            display: flex; 
+            align-items: center; 
+            gap: var(--mb15); 
+        }
+        .footer-social { 
+            font-size: 1.25rem; 
+            color: var(--title-color); 
+            transition: color 0.3s; 
+            text-decoration: none;
+        }
+        .footer-social:hover { 
+            color: var(--skin-color); 
+            cursor: pointer; 
+        }
+        .footer-copy { 
+            font-size: var(--smaller-font-size); 
+            text-align: center; 
+            margin-top: 4.5rem; 
+            color: var(--title-color);
+        }
+        .footer-copy a { 
+            color: var(--title-color); 
+            text-decoration: none;
+        }
+        .footer-copy a:hover { 
+            color: var(--skin-color); 
+        }
+        .footer-brand { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start; 
+            text-align: left; 
+            gap: 0.5rem; 
+        }
+        .footer-brand-text { 
+            text-align: left; 
+        }
+        .footer-logo { 
+            width: 30px; 
+            height: auto; 
+            display: block; 
+        }
+        .footer-logo:hover {
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        /* =========================== */
+        /* SECTION 7: MOBILE RESPONSIVENESS */
+        /* =========================== */
+        /* UPDATED: Changed max-width to 980px to include tablets in mobile view */
+        @media screen and (max-width: 980px) {
+            body { 
+                padding-top: 6rem; 
+                overflow-x: hidden;
+            }
+            
+            /* Mobile Navigation */
+            #nav-bar {
+                padding: 0.5rem 1rem;
+                justify-content: space-between;
+                box-shadow: none; 
+                width: 100%;
+                max-width: 100%;
+                top: 0;
+                left: 0;
+                transform: none;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+            }
+            
+            #mobile-menu-toggle {
+                display: block;
+                position: static;
+                transform: none;
+                z-index: 1002;
+                margin-left: auto;
+            }
+            
+            #nav-menu {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: var(--body-color); 
+                z-index: 1001; 
+                flex-direction: column;
+                justify-content: flex-start; 
+                align-items: center; 
+                gap: 1.5rem;
+                /* FIXED: Padding for spacing */
+                padding: 6rem 1.5rem 2rem;
+                margin: 0;
+            }
+
+            #nav-menu.mobile-open {
+                display: flex;
+                padding: 6rem 1.5rem 2rem;
+                overflow-y: auto;
+            }
+            
+            #nav-menu .nav-link,
+            #nav-menu .nav-item {
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: var(--title-color);
+                padding: 0.5rem 0;
+                margin: 0;
+                width: auto; 
+                text-align: center;
+            }
+            
+            #nav-menu .nav-item { 
+                margin: 0; 
+                padding: 0; 
+            }
+
+            #nav-menu .nav-link:hover {
+                color: var(--skin-color);
+                transform: none;
+            }
+            
+            /* Courses Dropdown (Mobile alignment) */
+            .has-submenu {
+                display: flex;
+                flex-direction: column;
+                align-items: center; 
+                width: 100%; 
+            }
+            
+            .submenu-courses {
+                position: static; 
+                width: 100%; 
+                /* FIXED: Removed container background and styling */
+                background: transparent;
+                box-shadow: none;
+                padding: 0; 
+                margin: 0.5rem 0 0 0; 
+                opacity: 0; 
+                visibility: hidden;
+                display: none;
+                max-height: 0;
+                overflow: hidden;
+                transition: opacity 0.3s, max-height 0.3s;
+                /* FIXED: Align items to left for mobile */
+                flex-direction: column; 
+                align-items: flex-start; 
+                text-align: left;
+                border-radius: 0;
+            }
+            
+            .submenu-courses.active { 
+                display: flex;
+                opacity: 1;
+                visibility: visible;
+                max-height: 400px;
+                padding: 0; 
+                margin-top: 0.5rem; 
+            }
+            
+            .submenu-courses .submenu-link {
+                font-size: 1.1rem;
+                /* FIXED: Increased left padding for indentation */
+                padding: 0.8rem 1rem 0.8rem 2.5rem;
+                justify-content: flex-start; 
+                width: 100%;
+                text-align: left;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            
+            /* Mobile CTA button */
+            .nav-cta.mobile-cta-only {
+                padding: 0.8rem 2rem; 
+                /* FIXED: Full width */
+                width: 100%;
+                max-width: none; 
+                white-space: nowrap;
+                font-size: 1.2rem; 
+                font-weight: 700;
+                margin-top: 1rem; 
+                display: block !important; 
+                align-self: center; 
+                text-align: center;
+            }
+            
+            /* Hide desktop items on mobile */
+            .nav-cta.desktop-cta-only,
+            .nav-cta:not(.mobile-cta-only) { 
+                display: none !important; 
+            }
+
+            /* Mobile Footer */
+            .footer-container {
+                grid-template-columns: 1fr;
+                row-gap: 2.5rem;
+                text-align: center;
+            }
+            
+            .footer-brand {
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+            }
+            .footer-brand-text {
+                text-align: center;
+            }
+            
+            .footer-socials {
+                justify-content: center;
+                justify-self: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                row-gap: 1.2rem;
+                justify-self: center;
+            }
+            
+            .footer-bg {
+                padding: 2rem 0 2.5rem;
+            }
+            
+            .footer-copy {
+                margin-top: var(--mb3);
+                padding: 0 1rem;
+            }
+        }
+
+        /* Tablet responsiveness (Small Desktop / Large Tablet now starts at 981px) */
+        @media screen and (min-width: 981px) and (max-width: 1024px) {
+            #nav-bar {
+                width: 95%;
+                padding: 0.5rem 1rem;
+            }
+            
+            #nav-menu {
+                gap: 1rem;
+            }
+        }
+
+        /* Desktop: Ensure correct visibility when not mobile (Starts at 981px) */
+        @media screen and (min-width: 981px) {
+            #nav-menu {
+                display: flex !important;
+            }
+            .nav-cta.desktop-cta-only { 
+                display: block !important; 
+            }
+        }
+
+        /* =========================== */
+        /* SECTION 8: PAGE LOADER STYLES */
+        /* =========================== */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+
+        .loader-header {
+            color: white;
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .progress {
+            width: 272.8px;
+            height: 41.7px;
+            border-radius: 28.8px;
+            color: #ff5011;
+            background-color: #000;
+            border: 2.9px solid;
+            position: relative;
+        }
+
+        .progress::before {
+            content: "";
+            position: absolute;
+            margin: 2.9px;
+            inset: 0 100% 0 0;
+            border-radius: inherit;
+            background: currentColor;
+            animation: progress-pf82op 1.5s forwards;
+        }
+
+        @keyframes progress-pf82op {
+            100% {
+                inset: 0;
+            }
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* =========================== */
+        /* SECTION 9: PAGE-SPECIFIC STYLES */
+        /* =========================== */
+
+        /* Styles for the tab layout */
+        .tab-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 3rem;
+            margin-bottom: 2rem;    
+            background-color: var(--box-color);
+            border-radius: 12px;
+            padding: 2.5rem;
+            padding-bottom: 3rem;    
+            border: 1px solid var(--mirage-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: none !important; /* Remove any transform animations */
+        }
+
+        /* NEW: Simple fade-in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .tab-layout:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 80, 17, 0.2), 0 4px 12px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease-out;
+        }
+
+        .tab-layout-col {
+            flex: 1;
+            min-width: 300px; /* Ensure columns don't get too small before wrapping */
+        }
+
+        .tab-layout-col--text {
+            flex: 2.5; /* Text column takes more space */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tab-layout-col--visual {
+            flex: 2; /* Visual column takes less space */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;    
+        }
+
+        .tab-layout-container {
+            width: 100%;
+        }
+
+        .tab-layout-heading {
+            color: var(--skin-color); /* H1 color */
+            font-size: 2.5rem; /* Adjusted for H1 style */
+            margin-bottom: 1.5rem;
+            text-align: left; 
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: left;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+        }
+
+        .filter-button {
+            background-color: var(--body-color);
+            color: var(--text-color);
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--mirage-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--body-font);
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .filter-button:hover {
+            border-color: var(--skin-color);
+            color: var(--skin-color);
+            transform: translateY(-2px);
+        }
+
+        .filter-button.active {
+            background: linear-gradient(90deg, var(--skin-color), #d43a00);
+            color: var(--title-color);
+            border-color: transparent;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .tab-content-wrap {
+            position: relative;
+            min-height: 200px; /* Ensure content area has a minimum height */
+        }
+
+        /* FIXED: Changed from absolute position to display:none/block 
+           This ensures content flows naturally on mobile without overlapping or disappearing.
+        */
+        .tab-content-item {
+            display: none;      
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .tab-content-item.active {
+            display: block;
+            opacity: 1;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content__heading {
+            color: var(--title-color);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.5rem; /* Space for the border accent */
+        }
+
+        .tab-content__heading::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 80%;
+            background-color: var(--skin-color); /* Orange-red left border accent */
+            border-radius: 2px;
+        }
+
+        .content-p {
+            font-size: 1rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .opacity--80 {
+            opacity: 0.8;
+        }
+
+        .tab-content__button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, var(--skin-color), #d43a00);
+            color: var(--title-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .tab-content__button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5);
+        }
+
+        .tab-content__button .content-p {
+            margin: 0;
+            color: var(--title-color);
+            font-weight: 600;
+            z-index: 2;
+            position: relative;
+        }
+
+        .content-button__bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1); /* Subtle overlay for hover effect */
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease-out;
+            border-radius: inherit;
+            z-index: 1;
+        }
+
+        .tab-content__button:hover .content-button__bg {
+            transform: scaleX(1);
+        }
+
+        .tab-visual-wrap {
+            position: relative;
+            width: 100%;
+            height: 500px; /* Fixed height for visual consistency */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .tab-visual-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease;
+        }
+
+        .tab-visual-item.active {
+            opacity: 1;
+            visibility: visible;
+            position: relative; /* Take up space when active */
+        }
+
+        .tab-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* Page Specific Mobile responsiveness overrides (UPDATED to 980px) */
+        @media screen and (max-width: 980px) {
+            .tab-layout {
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1.5rem;
+                animation: fadeIn 0.6s ease-out forwards;
+            }
+
+            .tab-layout-heading {
+                font-size: 1.8rem; /* Adjusted slightly smaller for mobile fit */
+                margin-bottom: 1rem;
+                text-align: center; /* Centered as per instruction */
+                padding-top: 1rem;    
+            }
+
+            .filter-bar {
+                flex-direction: column;
+                gap: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .filter-button {
+                width: 100%;
+            }
+
+            .tab-content__heading {
+                font-size: 1.5rem;
+                padding-left: 1.2rem;
+            }
+
+            .tab-visual-wrap {
+                height: 300px; /* Smaller height on mobile */
+                margin-top: 2rem;
+            }
+        }
+
+        /* Tablet responsiveness (continued - for widths 981px to 1024px) */
+        @media screen and (min-width: 981px) and (max-width: 1024px) {
+            .tab-layout {
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+
+            .tab-layout-heading {
+                font-size: 2.2rem;
+                text-align: center;
+                padding-top: 2rem;
+            }
+
+            .filter-bar {
+                gap: 0.8rem;
+            }
+
+            .tab-content__heading {
+                font-size: 1.6rem;
+            }
+
+            .tab-visual-wrap {
+                height: 400px;
+                margin-top: 2rem;
+            }
+        }
+
+        /* =========================== */
+        /* WINTER SNOW THEME */
+        /* =========================== */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: 
+                radial-gradient(8px 8px at 10% 20%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.3) 70%, transparent 100%),
+                radial-gradient(12px 12px at 20% 30%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.2) 60%, transparent 100%),
+                radial-gradient(6px 6px at 30% 10%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.25) 80%, transparent 100%),
+                radial-gradient(10px 10px at 40% 40%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.15) 75%, transparent 100%),
+                radial-gradient(14px 14px at 50% 60%, rgba(255, 255, 255, 0.55) 30%, rgba(255, 255, 255, 0.2) 65%, transparent 100%),
+                radial-gradient(7px 7px at 60% 80%, rgba(255, 255, 255, 0.65) 45%, rgba(255, 255, 255, 0.3) 85%, transparent 100%),
+                radial-gradient(9px 9px at 70% 50%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.18) 70%, transparent 100%),
+                radial-gradient(11px 11px at 80% 20%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.22) 75%, transparent 100%),
+                radial-gradient(5px 5px at 90% 70%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.35) 90%, transparent 100%),
+                radial-gradient(15px 15px at 15% 90%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.12) 55%, transparent 100%),
+                radial-gradient(4px 4px at 25% 45%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
+                radial-gradient(6px 6px at 75% 35%, rgba(255, 255, 255, 0.7) 15%, rgba(255, 255, 255, 0.05) 85%, transparent 100%),
+                radial-gradient(3px 3px at 45% 75%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
+                radial-gradient(8px 8px at 85% 65%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.08) 80%, transparent 100%);
+            background-repeat: no-repeat;
+            animation: snowfall 15s linear infinite;
+            filter: blur(0.5px);
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            background-image: 
+                radial-gradient(4px 4px at 5% 15%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
+                radial-gradient(7px 7px at 25% 35%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.08) 80%, transparent 100%),
+                radial-gradient(3px 3px at 35% 5%, rgba(255, 255, 255, 0.6) 45%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
+                radial-gradient(5px 5px at 45% 45%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.05) 70%, transparent 100%),
+                radial-gradient(6px 6px at 55% 65%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.1) 75%, transparent 100%),
+                radial-gradient(3.5px 3.5px at 65% 85%, rgba(255, 255, 255, 0.55) 40%, rgba(255, 255, 255, 0.12) 85%, transparent 100%),
+                radial-gradient(4.5px 4.5px at 85% 25%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.06) 65%, transparent 100%),
+                radial-gradient(2.5px 2.5px at 95% 55%, rgba(255, 255, 255, 0.65) 50%, rgba(255, 255, 255, 0.2) 95%, transparent 100%),
+                radial-gradient(8px 8px at 15% 75%, rgba(255, 255, 255, 0.25) 20%, rgba(255, 255, 255, 0.04) 60%, transparent 100%);
+            background-repeat: no-repeat;
+            animation: snowfall 20s linear infinite;
+            filter: blur(0.8px);
+            opacity: 0.8;
+        }
+
+        .snowflakes-blurry {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9997;
+            background-image: 
+                radial-gradient(2px 2px at 12% 28%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0.05) 100%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 32% 18%, rgba(255, 255, 255, 0.5) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%),
+                radial-gradient(2.5px 2.5px at 48% 52%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.03) 100%, transparent 100%),
+                radial-gradient(1px 1px at 68% 72%, rgba(255, 255, 255, 0.6) 80%, rgba(255, 255, 255, 0.15) 100%, transparent 100%),
+                radial-gradient(3px 3px at 82% 38%, rgba(255, 255, 255, 0.35) 40%, rgba(255, 255, 255, 0.07) 100%, transparent 100%),
+                radial-gradient(1.8px 1.8px at 22% 88%, rgba(255, 255, 255, 0.45) 65%, rgba(255, 255, 255, 0.09) 100%, transparent 100%),
+                radial-gradient(2.2px 2.2px at 58% 12%, rgba(255, 255, 255, 0.4) 55%, rgba(255, 255, 255, 0.06) 100%, transparent 100%),
+                radial-gradient(0.8px 0.8px at 88% 68%, rgba(255, 255, 255, 0.7) 85%, rgba(255, 255, 255, 0.2) 100%, transparent 100%);
+            background-repeat: no-repeat;
+            animation: snowfall 25s linear infinite;
+            filter: blur(1.2px);
+            opacity: 0.6;
+        }
+
+        @keyframes snowfall {
+            0% { transform: translateY(-100%) translateX(0); }
+            25% { transform: translateY(-50%) translateX(5px); }
+            50% { transform: translateY(0%) translateX(0); }
+            75% { transform: translateY(50%) translateX(-5px); }
+            100% { transform: translateY(100vh) translateX(0); }
+        }
+    </style>
+
+    <!-- Loader Script -->
+    <script>
+        function showLoader() {
+            const loader = document.createElement('div');
+            loader.className = 'page-loader';
+            loader.innerHTML = `
+                <div class="loader-header">Loading Courses...</div>
+                <div class="progress"></div>
+            `;
+            document.body.appendChild(loader);
+            return loader;
+        }
+
+        function initLoader() {
+            const loader = showLoader();
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                setTimeout(() => loader.remove(), 300);
+            }, 1500);
+        }
+
+        document.addEventListener('DOMContentLoaded', initLoader);
+    </script>
+</head>
+<body>
+
+    <!-- Winter Snow Layer 3 -->
+    <div class="snowflakes-blurry"></div>
+
+    <!-- Navigation Bar -->
+    <nav id="nav-bar">
+        <a href="/" id="nav-logo">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
+        </a>
+        
+        <!-- Mobile Toggle -->
+        <button id="mobile-menu-toggle" aria-label="Open Menu">
+            <i class="fa-solid fa-bars" id="toggle-icon"></i>
+        </button>
+        
+        <div id="nav-menu">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/about" class="nav-link">About</a>
+            
+            <!-- Courses Dropdown -->
+            <div class="nav-item has-submenu">
+                <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
+                <div class="submenu-courses" id="courses-submenu">
+                    <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
+                    <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
+                    <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+                    <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
+                    <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+                </div>
+            </div>
+            
+            <a href="/pricing-page" class="nav-link">Pricing</a>
+            <a href="/contact" class="nav-link">Contact</a>
+            
+            <a href="/login" class="nav-cta desktop-cta-only">MEMBER LOGIN</a>
+            <a href="/login" class="nav-cta mobile-cta-only">MEMBER LOGIN</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        
+        <!-- Tab Layout Section -->
+        <section class="tab-layout">
+            <div class="tab-layout-col tab-layout-col--text">
+                <h1 class="tab-layout-heading">Explore Our AI Mastery Program Courses</h1>
+                
+                <!-- Filter Bar -->
+                <div class="filter-bar">
+                    <button class="filter-button active" data-filter="stage1">Stage 1</button>
+                    <button class="filter-button" data-filter="stage2">Stage 2</button>
+                    <button class="filter-button" data-filter="stage3">Stage 3</button>
+                    <button class="filter-button" data-filter="stage4">Stage 4</button>
+                </div>
+
+                <!-- Text Content Wrapper -->
+                <div class="tab-content-wrap">
+                    
+                    <!-- Stage 1 -->
+                    <div class="tab-content-item active" data-category="stage1">
+                        <h2 class="tab-content__heading">Stage 1: AI Foundation</h2>
+                        <p class="content-p">
+                            Begin your journey into the world of AI with our foundational course designed to equip you with essential knowledge and skills, covering core concepts and applications.
+                        </p>
+                        <a href="#" class="tab-content__button">
+                            <div class="content-button__bg"></div>
+                            <span class="content-p">View Course Overview</span>
+                        </a>
+                    </div>
+
+                    <!-- Stage 2 -->
+                    <div class="tab-content-item" data-category="stage2">
+                        <h2 class="tab-content__heading">Stage 2: Prompt Craftsmanship</h2>
+                        <p class="content-p">
+                            Master the art of crafting effective prompts to maximize the potential of AI tools and applications, learning advanced techniques for optimal results.
+                        </p>
+                        <a href="#" class="tab-content__button">
+                            <div class="content-button__bg"></div>
+                            <span class="content-p">View Course Overview</span>
+                        </a>
+                    </div>
+
+                    <!-- Stage 3 -->
+                    <div class="tab-content-item" data-category="stage3">
+                        <h2 class="tab-content__heading">Stage 3: Building Your AI Brain</h2>
+                        <p class="content-p">
+                            Learn how to create and customize your own AI models tailored to your specific needs and projects, from data preparation to deployment.
+                        </p>
+                        <a href="#" class="tab-content__button">
+                            <div class="content-button__bg"></div>
+                            <span class="content-p">View Course Overview</span>
+                        </a>
+                    </div>
+
+                    <!-- Stage 4 -->
+                    <div class="tab-content-item" data-category="stage4">
+                        <h2 class="tab-content__heading">Stage 4: Autonomous AI Agents</h2>
+                        <p class="content-p">
+                            Dive into the world of autonomous agents and learn how to develop systems that operate independently, capable of complex decision-making and task execution.
+                        </p>
+                        <a href="#" class="tab-content__button">
+                            <div class="content-button__bg"></div>
+                            <span class="content-p">View Course Overview</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tab-layout-col tab-layout-col--visual">
+                <!-- Visual Wrapper -->
+                <div class="tab-visual-wrap">
+                    <!-- Image 1 -->
+                    <div class="tab-visual-item active" data-category="stage1">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800" alt="AI Foundation" class="tab-image">
+                    </div>
+                    <!-- Image 2 -->
+                    <div class="tab-visual-item" data-category="stage2">
+                        <img src="https://images.unsplash.com/photo-1664575198308-395d9c61b7da?auto=format&fit=crop&q=80&w=800" alt="Prompting" class="tab-image">
+                    </div>
+                    <!-- Image 3 -->
+                    <div class="tab-visual-item" data-category="stage3">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" alt="AI Brain" class="tab-image">
+                    </div>
+                    <!-- Image 4 -->
+                    <div class="tab-visual-item" data-category="stage4">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800" alt="AI Agents" class="tab-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to Top"></button>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bg">
+            <div class="footer-container container"> 
+                <div class="footer-brand">
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="AIM Logo" class="footer-logo">
+                    <div class="footer-brand-text">
+                        <h3 class="footer-title">AIM™</h3>
+                        <span class="footer-subtitle">AI Mastery Program</span>
+                    </div>
+                </div>
+                <ul class="footer-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/courses">Courses</a></li>
+                    <li><a href="/pricing-page">Pricing</a></li>
+                    <li><a href="/resources">Resources</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+                <div class="footer-socials">
+                    <a href="https://www.youtube.com/" target="_blank" class="footer-social"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/" target="_blank" class="footer-social"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" class="footer-social"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/" target="_blank" class="footer-social"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <p class="footer-copy">Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Navigation Dropdown Logic ---
+            const coursesLink = document.getElementById('courses-link');
+            const submenu = document.getElementById('courses-submenu');
+            const navBar = document.getElementById('nav-bar');
+
+            if (coursesLink && submenu && navBar) {
+                coursesLink.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    submenu.classList.toggle('active');
+                    e.stopPropagation(); 
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!navBar.contains(e.target)) {
+                        submenu.classList.remove('active');
+                    }
+                });
+
+                submenu.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            }
+
+            // --- Mobile Menu Logic (With Fix) ---
+            const mobileToggle = document.getElementById('mobile-menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const toggleIcon = document.getElementById('toggle-icon');
+
+            if (mobileToggle && navMenu && toggleIcon) {
+                mobileToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    navMenu.classList.toggle('mobile-open');
+                    
+                    if (navMenu.classList.contains('mobile-open')) {
+                        toggleIcon.classList.remove('fa-bars');
+                        toggleIcon.classList.add('fa-xmark');
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        toggleIcon.classList.remove('fa-xmark');
+                        toggleIcon.classList.add('fa-bars');
+                        document.body.style.overflow = 'auto';
+                        if (submenu) submenu.classList.remove('active');
+                    }
+                });
+                
+                navMenu.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 980) { // UPDATED: Changed from 768 to 980
+                            // FIX: Do not close menu if clicking the "Courses" toggle (courses-link)
+                            // or if clicking a link inside the submenu
+                            if (!link.classList.contains('submenu-link') && link.id !== 'courses-link') {
+                                navMenu.classList.remove('mobile-open');
+                                toggleIcon.classList.remove('fa-xmark');
+                                toggleIcon.classList.add('fa-bars');
+                                document.body.style.overflow = 'auto';
+                            }
+                        }
+                    });
+                });
+                
+                document.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 980 && // UPDATED: Changed from 768 to 980
+                        navMenu.classList.contains('mobile-open') &&
+                        !navMenu.contains(e.target) && 
+                        e.target !== mobileToggle) {
+                        navMenu.classList.remove('mobile-open');
+                        toggleIcon.classList.remove('fa-xmark');
+                        toggleIcon.classList.add('fa-bars');
+                        document.body.style.overflow = 'auto';
+                        if (submenu) submenu.classList.remove('active');
+                    }
+                });
+            }
+
+            // --- Back to Top ---
+            const toTopButton = document.getElementById('back-to-top');
+            if (toTopButton) {
+                window.addEventListener('scroll', function() {
+                    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                        toTopButton.classList.add('show');
+                    } else {
+                        toTopButton.classList.remove('show');
+                    }
+                });
+                toTopButton.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+            
+            window.addEventListener('resize', function() {
+                const isMobile = window.innerWidth <= 980; // UPDATED: Changed from 768 to 980
+                if (!isMobile && navMenu && navMenu.classList.contains('mobile-open')) {
+                    navMenu.classList.remove('mobile-open');
+                    if (toggleIcon) {
+                        toggleIcon.classList.remove('fa-xmark');
+                        toggleIcon.classList.add('fa-bars');
+                    }
+                    document.body.style.overflow = 'auto';
+                }
+                if (submenu) submenu.classList.remove('active');
+            });
+
+            // --- Tab Layout / Filter Logic ---
+            const filterButtons = document.querySelectorAll('.filter-button');
+            const contentItems = document.querySelectorAll('.tab-content-item');
+            const visualItems = document.querySelectorAll('.tab-visual-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active to clicked
+                    button.classList.add('active');
+
+                    const filterValue = button.getAttribute('data-filter');
+
+                    // Filter Content Items
+                    contentItems.forEach(item => {
+                        const itemCategory = item.getAttribute('data-category');
+                        if (itemCategory === filterValue) {
+                            item.classList.add('active');
+                        } else {
+                            item.classList.remove('active');
+                        }
+                    });
+
+                    // Filter Visual Items
+                    visualItems.forEach(item => {
+                        const itemCategory = item.getAttribute('data-category');
+                        if (itemCategory === filterValue) {
+                            item.classList.add('active');
+                        } else {
+                            item.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
