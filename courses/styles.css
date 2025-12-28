@@ -1,4 +1,4 @@
-        /* --- AIM Brand Styles --- */
+    /* --- AIM Brand Styles --- */
         :root {
             --skin-color: #ff5011;
             --mirage-color: hsl(210, 10%, 23%);
@@ -96,13 +96,11 @@
             transform: translateY(-1px); 
         }
 
-
-        /* ADD THIS: Highlight current page in navigation */
+        /* Highlight current page in navigation */
         .nav-link[href="/courses"],
         .nav-link[href^="/courses"] {
             color: var(--skin-color) !important;
         }
-
 
         .nav-cta {
             background: linear-gradient(90deg, var(--skin-color), #d43a00);
@@ -119,13 +117,6 @@
         }
         .has-submenu { position: relative; }
 
-
-
-
-
-
-
-        
         /* Submenu Default State (Hidden - Desktop) */
         .submenu-courses {
             position: absolute; 
@@ -143,12 +134,6 @@
             z-index: 1001;
         }
 
-
-
-
-
-
-        
         /* Submenu Active State (Shown via JavaScript click - Desktop) */
         .submenu-courses.active { 
             opacity: 1; 
@@ -169,12 +154,6 @@
             color: var(--skin-color); 
         }
         .submenu-link i { width: 15px; text-align: center; }
-
-
-
-
-
-
 
         /* Mobile visibility controls (Default/Desktop state) */
         #mobile-menu-toggle { 
@@ -313,7 +292,8 @@
         /* =========================== */
         /* SECTION 7: MOBILE RESPONSIVENESS */
         /* =========================== */
-        @media screen and (max-width: 767px) {
+        /* UPDATED: Changed max-width to 980px to include tablets in mobile view */
+        @media screen and (max-width: 980px) {
             body { 
                 padding-top: 6rem; 
                 overflow-x: hidden;
@@ -355,13 +335,14 @@
                 justify-content: flex-start; 
                 align-items: center; 
                 gap: 1.5rem;
-                padding-top: 6rem;
+                /* FIXED: Padding for spacing */
+                padding: 6rem 1.5rem 2rem;
                 margin: 0;
             }
 
             #nav-menu.mobile-open {
                 display: flex;
-                padding: 0; 
+                padding: 6rem 1.5rem 2rem;
                 overflow-y: auto;
             }
             
@@ -397,9 +378,10 @@
             .submenu-courses {
                 position: static; 
                 width: 100%; 
-                background: rgba(0, 0, 0, 0.3);
+                /* FIXED: Removed container background and styling */
+                background: transparent;
                 box-shadow: none;
-                padding: 0.5rem 0; 
+                padding: 0; 
                 margin: 0.5rem 0 0 0; 
                 opacity: 0; 
                 visibility: hidden;
@@ -407,10 +389,11 @@
                 max-height: 0;
                 overflow: hidden;
                 transition: opacity 0.3s, max-height 0.3s;
+                /* FIXED: Align items to left for mobile */
                 flex-direction: column; 
-                align-items: center; 
-                text-align: center;
-                border-radius: 0.5rem;
+                align-items: flex-start; 
+                text-align: left;
+                border-radius: 0;
             }
             
             .submenu-courses.active { 
@@ -418,24 +401,28 @@
                 opacity: 1;
                 visibility: visible;
                 max-height: 400px;
-                padding: 0.5rem; 
+                padding: 0; 
                 margin-top: 0.5rem; 
             }
             
             .submenu-courses .submenu-link {
                 font-size: 1.1rem;
-                padding: 0.5rem 1rem;
-                justify-content: center; 
+                /* FIXED: Increased left padding for indentation */
+                padding: 0.8rem 1rem 0.8rem 2.5rem;
+                justify-content: flex-start; 
                 width: 100%;
-                text-align: center;
+                text-align: left;
                 margin: 0;
+                box-sizing: border-box;
             }
             
             /* Mobile CTA button */
             .nav-cta.mobile-cta-only {
                 padding: 0.8rem 2rem; 
-                width: auto; 
-                max-width: 200px; 
+                /* FIXED: Full width */
+                width: 100%;
+                max-width: none; 
+                white-space: nowrap;
                 font-size: 1.2rem; 
                 font-weight: 700;
                 margin-top: 1rem; 
@@ -487,8 +474,8 @@
             }
         }
 
-        /* Tablet responsiveness */
-        @media screen and (min-width: 768px) and (max-width: 1024px) {
+        /* Tablet responsiveness (Small Desktop / Large Tablet now starts at 981px) */
+        @media screen and (min-width: 981px) and (max-width: 1024px) {
             #nav-bar {
                 width: 95%;
                 padding: 0.5rem 1rem;
@@ -499,8 +486,8 @@
             }
         }
 
-        /* Desktop: Ensure correct visibility when not mobile */
-        @media screen and (min-width: 768px) {
+        /* Desktop: Ensure correct visibility when not mobile (Starts at 981px) */
+        @media screen and (min-width: 981px) {
             #nav-menu {
                 display: flex !important;
             }
@@ -566,461 +553,394 @@
             pointer-events: none;
         }
 
-
-
-
-/* =========================== */
-/* SECTION 9: PAGE-SPECIFIC STYLES */
-/* =========================== */
-
-/* Styles for the tab layout */
-.tab-layout {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 3rem;
-    margin-bottom: 2rem;    
-    background-color: var(--box-color);
-    border-radius: 12px;
-    padding: 2.5rem;
-    padding-bottom: 3rem;    
-    border: 1px solid var(--mirage-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    animation: fadeInUp 0.8s ease-out forwards;
-    opacity: 0;
-    transform: none !important; /* Remove any transform animations */
-}
-
-
-
-
-/* NEW: Simple fade-in animation */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-
-
-.tab-layout:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(255, 80, 17, 0.2), 0 4px 12px rgba(0, 0, 0, 0.5);
-    transition: all 0.4s ease-out;
-}
-
-.tab-layout-col {
-    flex: 1;
-    min-width: 300px; /* Ensure columns don't get too small before wrapping */
-}
-
-.tab-layout-col--text {
-    flex: 2.5; /* Text column takes more space */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.tab-layout-col--visual {
-    flex: 2; /* Visual column takes less space */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2rem;    
-}
-
-.tab-layout-container {
-    width: 100%;
-}
-
-.tab-layout-heading {
-    color: var(--title-color);
-    font-size: 2.5rem; /* Adjusted for H1 style */
-    margin-bottom: 1.5rem;
-    text-align: left; /* Centered as per H1 guideline */
-    color: var(--skin-color); /* H1 color */
-}
-
-.filter-bar {
-    display: flex;
-    justify-content: left;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
-}
-
-.filter-button {
-    background-color: var(--body-color);
-    color: var(--text-color);
-    padding: 0.75rem 1.25rem;
-    border-radius: 0.5rem;
-    border: 1px solid var(--mirage-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: var(--body-font);
-    font-weight: 500;
-    font-size: 1rem;
-}
-
-.filter-button:hover {
-    border-color: var(--skin-color);
-    color: var(--skin-color);
-    transform: translateY(-2px);
-}
-
-.filter-button.active {
-    background: linear-gradient(90deg, var(--skin-color), #d43a00);
-    color: var(--title-color);
-    border-color: transparent;
-    box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4);
-    transform: translateY(-2px);
-}
-
-.tab-content-wrap {
-    position: relative;
-    min-height: 200px; /* Ensure content area has a minimum height */
-}
-
-.tab-content-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; /* ADD THIS: Fixed height */        
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease;
-    /* Removed transform property for simpler fade */
-    pointer-events: none; /* ADD THIS: Prevent interaction when hidden */
-
-}
-
-.tab-content-item.active {
-    opacity: 1;
-    visibility: visible;
-    position: absolute; /* CHANGE FROM relative TO absolute */
-    pointer-events: auto; /* ADD THIS: Allow interaction when active */
-    /* Removed transform property */
-}
-
-.tab-content__heading {
-    color: var(--title-color);
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    position: relative;
-    padding-left: 1.5rem; /* Space for the border accent */
-}
-
-.tab-content__heading::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 5px;
-    height: 80%;
-    background-color: var(--skin-color); /* Orange-red left border accent */
-    border-radius: 2px;
-}
-
-.content-p {
-    font-size: 1rem;
-    color: var(--text-color);
-    margin-bottom: 1.5rem;
-    line-height: 1.7;
-}
-
-.opacity--80 {
-    opacity: 0.8;
-}
-
-.tab-content__button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(90deg, var(--skin-color), #d43a00);
-    color: var(--title-color);
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4);
-    transition: transform 0.3s, box-shadow 0.3s;
-    font-weight: 600;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.tab-content__button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5);
-}
-
-.tab-content__button .content-p {
-    margin: 0;
-    color: var(--title-color);
-    font-weight: 600;
-    z-index: 2;
-    position: relative;
-}
-
-.content-button__bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.1); /* Subtle overlay for hover effect */
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease-out;
-    border-radius: inherit;
-    z-index: 1;
-}
-
-.tab-content__button:hover .content-button__bg {
-    transform: scaleX(1);
-}
-
-.tab-visual-wrap {
-    position: relative;
-    width: 100%;
-    height: 500px; /* Fixed height for visual consistency */
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-}
-
-.tab-visual-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease;
-    /* Removed transform property for simpler fade */
-}
-
-.tab-visual-item.active {
-    opacity: 1;
-    visibility: visible;
-    position: relative; /* Take up space when active */
-    /* Removed transform property */
-}
-
-.tab-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 12px;
-}
-
-/* =========================== */
-/* SECTION 7: MOBILE RESPONSIVENESS (continued) */
-/* =========================== */
-@media screen and (max-width: 767px) {
-    .tab-layout {
-        flex-direction: column;
-        padding: 1.5rem;
-        gap: 1.5rem;
-        animation: fadeIn 0.6s ease-out forwards; /* Slightly faster on mobile */
-    }
-
-    .tab-layout-heading {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        text-align: center; /* Centered as per H1 guideline */
-        padding-top: 2rem;    
-}
-
-            
-    }
-
-    .filter-bar {
-        flex-direction: column;
-        gap: 0.75rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .filter-button {
-        width: 100%;
-    }
-
-    .tab-content__heading {
-        font-size: 1.5rem;
-        padding-left: 1.2rem;
-    }
-
-    .tab-visual-wrap {
-        height: 500px;
-        margin-top: 2rem;
-    }
-}
-
-
-
-/* Tablet responsiveness (continued) */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-    .tab-layout {
-        padding: 2rem;
-        gap: 1.5rem;
-    }
-
-    .tab-layout-heading {
-        font-size: 2.2rem;
-        text-align: center; /* Centered as per H1 guideline */ 
-        padding-top: 2rem;
-    }
-
-    .filter-bar {
-        gap: 0.8rem;
-    }
-
-    .tab-content__heading {
-        font-size: 1.6rem;
-    }
-
-    .tab-visual-wrap {
-        height: 500px;
-        margin-top: 2rem;
-    }
-}
-
-
-
-/* =========================== */
-/* WINTER SNOW THEME */
-/* =========================== */
-
-     /* Base snowflake layer with blurry effects */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-  background-image: 
-    /* Large blurry snowflakes */
-    radial-gradient(8px 8px at 10% 20%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.3) 70%, transparent 100%),
-    radial-gradient(12px 12px at 20% 30%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.2) 60%, transparent 100%),
-    radial-gradient(6px 6px at 30% 10%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.25) 80%, transparent 100%),
-    radial-gradient(10px 10px at 40% 40%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.15) 75%, transparent 100%),
-    radial-gradient(14px 14px at 50% 60%, rgba(255, 255, 255, 0.55) 30%, rgba(255, 255, 255, 0.2) 65%, transparent 100%),
-    radial-gradient(7px 7px at 60% 80%, rgba(255, 255, 255, 0.65) 45%, rgba(255, 255, 255, 0.3) 85%, transparent 100%),
-    radial-gradient(9px 9px at 70% 50%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.18) 70%, transparent 100%),
-    radial-gradient(11px 11px at 80% 20%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.22) 75%, transparent 100%),
-    radial-gradient(5px 5px at 90% 70%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.35) 90%, transparent 100%),
-    radial-gradient(15px 15px at 15% 90%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.12) 55%, transparent 100%),
-    
-    /* Extra blurry medium snowflakes */
-    radial-gradient(4px 4px at 25% 45%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
-    radial-gradient(6px 6px at 75% 35%, rgba(255, 255, 255, 0.7) 15%, rgba(255, 255, 255, 0.05) 85%, transparent 100%),
-    radial-gradient(3px 3px at 45% 75%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
-    radial-gradient(8px 8px at 85% 65%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.08) 80%, transparent 100%);
-  
-  background-repeat: no-repeat;
-  animation: snowfall 15s linear infinite;
-  filter: blur(0.5px); /* Slight overall blur for softness */
-}
-
-/* Medium blurry snowflakes layer */
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9998;
-  background-image: 
-    /* Medium blurry snowflakes */
-    radial-gradient(4px 4px at 5% 15%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
-    radial-gradient(7px 7px at 25% 35%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.08) 80%, transparent 100%),
-    radial-gradient(3px 3px at 35% 5%, rgba(255, 255, 255, 0.6) 45%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
-    radial-gradient(5px 5px at 45% 45%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.05) 70%, transparent 100%),
-    radial-gradient(6px 6px at 55% 65%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.1) 75%, transparent 100%),
-    radial-gradient(3.5px 3.5px at 65% 85%, rgba(255, 255, 255, 0.55) 40%, rgba(255, 255, 255, 0.12) 85%, transparent 100%),
-    radial-gradient(4.5px 4.5px at 85% 25%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.06) 65%, transparent 100%),
-    radial-gradient(2.5px 2.5px at 95% 55%, rgba(255, 255, 255, 0.65) 50%, rgba(255, 255, 255, 0.2) 95%, transparent 100%),
-    radial-gradient(8px 8px at 15% 75%, rgba(255, 255, 255, 0.25) 20%, rgba(255, 255, 255, 0.04) 60%, transparent 100%);
-  
-  background-repeat: no-repeat;
-  animation: snowfall 20s linear infinite;
-  filter: blur(0.8px); /* More blur for background layer */
-  opacity: 0.8;
-}
-
-/* Additional layer for extra blurry small snowflakes */
-.snowflakes-blurry {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9997;
-  background-image: 
-    /* Very blurry small snowflakes */
-    radial-gradient(2px 2px at 12% 28%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0.05) 100%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 32% 18%, rgba(255, 255, 255, 0.5) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%),
-    radial-gradient(2.5px 2.5px at 48% 52%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.03) 100%, transparent 100%),
-    radial-gradient(1px 1px at 68% 72%, rgba(255, 255, 255, 0.6) 80%, rgba(255, 255, 255, 0.15) 100%, transparent 100%),
-    radial-gradient(3px 3px at 82% 38%, rgba(255, 255, 255, 0.35) 40%, rgba(255, 255, 255, 0.07) 100%, transparent 100%),
-    radial-gradient(1.8px 1.8px at 22% 88%, rgba(255, 255, 255, 0.45) 65%, rgba(255, 255, 255, 0.09) 100%, transparent 100%),
-    radial-gradient(2.2px 2.2px at 58% 12%, rgba(255, 255, 255, 0.4) 55%, rgba(255, 255, 255, 0.06) 100%, transparent 100%),
-    radial-gradient(0.8px 0.8px at 88% 68%, rgba(255, 255, 255, 0.7) 85%, rgba(255, 255, 255, 0.2) 100%, transparent 100%);
-  
-  background-repeat: no-repeat;
-  animation: snowfall 25s linear infinite;
-  filter: blur(1.2px); /* Maximum blur for distant effect */
-  opacity: 0.6;
-}
-
-/* Enhanced snowfall animation with slight horizontal movement */
-@keyframes snowfall {
-  0% {
-    transform: translateY(-100%) translateX(0);
-  }
-  25% {
-    transform: translateY(-50%) translateX(5px);
-  }
-  50% {
-    transform: translateY(0%) translateX(0);
-  }
-  75% {
-    transform: translateY(50%) translateX(-5px);
-  }
-  100% {
-    transform: translateY(100vh) translateX(0);
-  }
-}
-
-/* Alternative animation for some randomness */
-@keyframes snowfall-alt {
-  0% {
-    transform: translateY(-100%) translateX(10px);
-  }
-  50% {
-    transform: translateY(0%) translateX(-10px);
-  }
-  100% {
-    transform: translateY(100vh) translateX(10px);
-  }
-}
-
-/* Add this class to an element in your HTML for the third layer */
-/* <div class="snowflakes-blurry"></div> */
-
-
-
-
-
-
+        /* =========================== */
+        /* SECTION 9: PAGE-SPECIFIC STYLES */
+        /* =========================== */
+
+        /* Styles for the tab layout */
+        .tab-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 3rem;
+            margin-bottom: 2rem;    
+            background-color: var(--box-color);
+            border-radius: 12px;
+            padding: 2.5rem;
+            padding-bottom: 3rem;    
+            border: 1px solid var(--mirage-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: none !important; /* Remove any transform animations */
+        }
+
+        /* NEW: Simple fade-in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .tab-layout:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 80, 17, 0.2), 0 4px 12px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease-out;
+        }
+
+        .tab-layout-col {
+            flex: 1;
+            min-width: 300px; /* Ensure columns don't get too small before wrapping */
+        }
+
+        .tab-layout-col--text {
+            flex: 2.5; /* Text column takes more space */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tab-layout-col--visual {
+            flex: 2; /* Visual column takes less space */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;    
+        }
+
+        .tab-layout-container {
+            width: 100%;
+        }
+
+        .tab-layout-heading {
+            color: var(--skin-color); /* H1 color */
+            font-size: 2.5rem; /* Adjusted for H1 style */
+            margin-bottom: 1.5rem;
+            text-align: left; 
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: left;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+        }
+
+        .filter-button {
+            background-color: var(--body-color);
+            color: var(--text-color);
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--mirage-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--body-font);
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .filter-button:hover {
+            border-color: var(--skin-color);
+            color: var(--skin-color);
+            transform: translateY(-2px);
+        }
+
+        .filter-button.active {
+            background: linear-gradient(90deg, var(--skin-color), #d43a00);
+            color: var(--title-color);
+            border-color: transparent;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .tab-content-wrap {
+            position: relative;
+            min-height: 200px; /* Ensure content area has a minimum height */
+        }
+
+        /* FIXED: Changed from absolute position to display:none/block 
+           This ensures content flows naturally on mobile without overlapping or disappearing.
+        */
+        .tab-content-item {
+            display: none;      
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .tab-content-item.active {
+            display: block;
+            opacity: 1;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content__heading {
+            color: var(--title-color);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.5rem; /* Space for the border accent */
+        }
+
+        .tab-content__heading::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 80%;
+            background-color: var(--skin-color); /* Orange-red left border accent */
+            border-radius: 2px;
+        }
+
+        .content-p {
+            font-size: 1rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .opacity--80 {
+            opacity: 0.8;
+        }
+
+        .tab-content__button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, var(--skin-color), #d43a00);
+            color: var(--title-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .tab-content__button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5);
+        }
+
+        .tab-content__button .content-p {
+            margin: 0;
+            color: var(--title-color);
+            font-weight: 600;
+            z-index: 2;
+            position: relative;
+        }
+
+        .content-button__bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1); /* Subtle overlay for hover effect */
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease-out;
+            border-radius: inherit;
+            z-index: 1;
+        }
+
+        .tab-content__button:hover .content-button__bg {
+            transform: scaleX(1);
+        }
+
+        .tab-visual-wrap {
+            position: relative;
+            width: 100%;
+            height: 500px; /* Fixed height for visual consistency */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .tab-visual-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease;
+        }
+
+        .tab-visual-item.active {
+            opacity: 1;
+            visibility: visible;
+            position: relative; /* Take up space when active */
+        }
+
+        .tab-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* Page Specific Mobile responsiveness overrides (UPDATED to 980px) */
+        @media screen and (max-width: 980px) {
+            .tab-layout {
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1.5rem;
+                animation: fadeIn 0.6s ease-out forwards;
+            }
+
+            .tab-layout-heading {
+                font-size: 1.8rem; /* Adjusted slightly smaller for mobile fit */
+                margin-bottom: 1rem;
+                text-align: center; /* Centered as per instruction */
+                padding-top: 1rem;    
+            }
+
+            .filter-bar {
+                flex-direction: column;
+                gap: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .filter-button {
+                width: 100%;
+            }
+
+            .tab-content__heading {
+                font-size: 1.5rem;
+                padding-left: 1.2rem;
+            }
+
+            .tab-visual-wrap {
+                height: 300px; /* Smaller height on mobile */
+                margin-top: 2rem;
+            }
+        }
+
+        /* Tablet responsiveness (continued - for widths 981px to 1024px) */
+        @media screen and (min-width: 981px) and (max-width: 1024px) {
+            .tab-layout {
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+
+            .tab-layout-heading {
+                font-size: 2.2rem;
+                text-align: center;
+                padding-top: 2rem;
+            }
+
+            .filter-bar {
+                gap: 0.8rem;
+            }
+
+            .tab-content__heading {
+                font-size: 1.6rem;
+            }
+
+            .tab-visual-wrap {
+                height: 400px;
+                margin-top: 2rem;
+            }
+        }
+
+        /* =========================== */
+        /* WINTER SNOW THEME */
+        /* =========================== */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: 
+                radial-gradient(8px 8px at 10% 20%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.3) 70%, transparent 100%),
+                radial-gradient(12px 12px at 20% 30%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.2) 60%, transparent 100%),
+                radial-gradient(6px 6px at 30% 10%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.25) 80%, transparent 100%),
+                radial-gradient(10px 10px at 40% 40%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.15) 75%, transparent 100%),
+                radial-gradient(14px 14px at 50% 60%, rgba(255, 255, 255, 0.55) 30%, rgba(255, 255, 255, 0.2) 65%, transparent 100%),
+                radial-gradient(7px 7px at 60% 80%, rgba(255, 255, 255, 0.65) 45%, rgba(255, 255, 255, 0.3) 85%, transparent 100%),
+                radial-gradient(9px 9px at 70% 50%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.18) 70%, transparent 100%),
+                radial-gradient(11px 11px at 80% 20%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.22) 75%, transparent 100%),
+                radial-gradient(5px 5px at 90% 70%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.35) 90%, transparent 100%),
+                radial-gradient(15px 15px at 15% 90%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.12) 55%, transparent 100%),
+                radial-gradient(4px 4px at 25% 45%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
+                radial-gradient(6px 6px at 75% 35%, rgba(255, 255, 255, 0.7) 15%, rgba(255, 255, 255, 0.05) 85%, transparent 100%),
+                radial-gradient(3px 3px at 45% 75%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
+                radial-gradient(8px 8px at 85% 65%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.08) 80%, transparent 100%);
+            background-repeat: no-repeat;
+            animation: snowfall 15s linear infinite;
+            filter: blur(0.5px);
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            background-image: 
+                radial-gradient(4px 4px at 5% 15%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
+                radial-gradient(7px 7px at 25% 35%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.08) 80%, transparent 100%),
+                radial-gradient(3px 3px at 35% 5%, rgba(255, 255, 255, 0.6) 45%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
+                radial-gradient(5px 5px at 45% 45%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.05) 70%, transparent 100%),
+                radial-gradient(6px 6px at 55% 65%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.1) 75%, transparent 100%),
+                radial-gradient(3.5px 3.5px at 65% 85%, rgba(255, 255, 255, 0.55) 40%, rgba(255, 255, 255, 0.12) 85%, transparent 100%),
+                radial-gradient(4.5px 4.5px at 85% 25%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.06) 65%, transparent 100%),
+                radial-gradient(2.5px 2.5px at 95% 55%, rgba(255, 255, 255, 0.65) 50%, rgba(255, 255, 255, 0.2) 95%, transparent 100%),
+                radial-gradient(8px 8px at 15% 75%, rgba(255, 255, 255, 0.25) 20%, rgba(255, 255, 255, 0.04) 60%, transparent 100%);
+            background-repeat: no-repeat;
+            animation: snowfall 20s linear infinite;
+            filter: blur(0.8px);
+            opacity: 0.8;
+        }
+
+        .snowflakes-blurry {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9997;
+            background-image: 
+                radial-gradient(2px 2px at 12% 28%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0.05) 100%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 32% 18%, rgba(255, 255, 255, 0.5) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%),
+                radial-gradient(2.5px 2.5px at 48% 52%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.03) 100%, transparent 100%),
+                radial-gradient(1px 1px at 68% 72%, rgba(255, 255, 255, 0.6) 80%, rgba(255, 255, 255, 0.15) 100%, transparent 100%),
+                radial-gradient(3px 3px at 82% 38%, rgba(255, 255, 255, 0.35) 40%, rgba(255, 255, 255, 0.07) 100%, transparent 100%),
+                radial-gradient(1.8px 1.8px at 22% 88%, rgba(255, 255, 255, 0.45) 65%, rgba(255, 255, 255, 0.09) 100%, transparent 100%),
+                radial-gradient(2.2px 2.2px at 58% 12%, rgba(255, 255, 255, 0.4) 55%, rgba(255, 255, 255, 0.06) 100%, transparent 100%),
+                radial-gradient(0.8px 0.8px at 88% 68%, rgba(255, 255, 255, 0.7) 85%, rgba(255, 255, 255, 0.2) 100%, transparent 100%);
+            background-repeat: no-repeat;
+            animation: snowfall 25s linear infinite;
+            filter: blur(1.2px);
+            opacity: 0.6;
+        }
+
+        @keyframes snowfall {
+            0% { transform: translateY(-100%) translateX(0); }
+            25% { transform: translateY(-50%) translateX(5px); }
+            50% { transform: translateY(0%) translateX(0); }
+            75% { transform: translateY(50%) translateX(-5px); }
+            100% { transform: translateY(100vh) translateX(0); }
+        }
