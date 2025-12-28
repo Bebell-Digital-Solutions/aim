@@ -1,29 +1,94 @@
 
 
+        // 1. Back to top functionality
+        const backToTop = document.getElementById('back-to-top');
+        
+        if (backToTop) {
+            backToTop.addEventListener('click', scrollToTop);
+            
+            function scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
 
-
-    <!-- ANIMATIONS -->
-
-        // Back to top functionality
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
             });
         }
 
-        window.addEventListener('scroll', function() {
-            const backToTop = document.getElementById('back-to-top');
-            if (window.scrollY > 300) {
-                backToTop.style.display = 'block';
-            } else {
-                backToTop.style.display = 'none';
-            }
-        });
-      
+        // 2. Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const toggleIcon = document.getElementById('toggle-icon');
 
-        // Fixed tab system with working navigation
-        function initTabSystem(){
+        if (mobileMenuToggle && navMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('mobile-open');
+                if (navMenu.classList.contains('mobile-open')) {
+                    toggleIcon.classList.remove('fa-bars');
+                    toggleIcon.classList.add('fa-xmark');
+                } else {
+                    toggleIcon.classList.remove('fa-xmark');
+                    toggleIcon.classList.add('fa-bars');
+                }
+            });
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('#nav-menu .nav-link, #nav-menu .submenu-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('mobile-open');
+                    toggleIcon.classList.remove('fa-xmark');
+                    toggleIcon.classList.add('fa-bars');
+                });
+            });
+        }
+
+        // 3. Dropdown functionality for Courses
+        const coursesLink = document.querySelector('[data-dropdown-toggle]');
+        const coursesSubmenu = document.getElementById('courses-submenu');
+        
+        if (coursesLink && coursesSubmenu) {
+            // Desktop: Toggle on click
+            coursesLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (window.innerWidth >= 768) { // Desktop only
+                    coursesSubmenu.classList.toggle('active');
+                }
+            });
+            
+            // Mobile: Toggle on click
+            coursesLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (window.innerWidth < 768) { // Mobile only
+                    coursesSubmenu.classList.toggle('active');
+                }
+            });
+            
+            // Close dropdown when clicking outside (desktop only)
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth >= 768 && 
+                    !coursesLink.contains(e.target) && 
+                    !coursesSubmenu.contains(e.target)) {
+                    coursesSubmenu.classList.remove('active');
+                }
+            });
+            
+            // Close dropdown on window resize to desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 768) {
+                    coursesSubmenu.classList.remove('active');
+                }
+            });
+        }
+
+        // 4. Fixed tab system with SIMPLE FADE animation (no fade-up)
+        function initTabSystem() {
             let wrappers = document.querySelectorAll('[data-tabs="wrapper"]');
             
             wrappers.forEach((wrapper) => {
@@ -48,12 +113,11 @@
                     const outgoingVisual = activeVisual;
                     const incomingVisual = visualItems[index];
 
-                    let outgoingLines = outgoingContent.querySelectorAll("[data-tabs-fade]") || [];
-                    let incomingLines = incomingContent.querySelectorAll("[data-tabs-fade]");
-
+                    // SIMPLE FADE ANIMATION (no fade-up)
                     const timeline = gsap.timeline({
                         defaults: {
-                            ease: "power3.inOut"
+                            ease: "power2.inOut",
+                            duration: 0.4
                         },
                         onComplete: () => {
                             if(!initial){
@@ -69,11 +133,12 @@
                     incomingContent.classList.add("active");
                     incomingVisual.classList.add("active");
 
+                    // Simple fade out current, fade in new
                     timeline
-                        .to(outgoingLines, { y: "-2em", autoAlpha:0 }, 0)
-                        .to(outgoingVisual, { autoAlpha: 0, xPercent: 3 }, 0)
-                        .fromTo(incomingLines, { y: "2em", autoAlpha:0 }, { y: "0em", autoAlpha:1, stagger: 0.075 }, 0.4)
-                        .fromTo(incomingVisual, { autoAlpha: 0, xPercent: 3 }, { autoAlpha: 1, xPercent: 0 }, "<");
+                        .to(outgoingContent, { opacity: 0 }, 0)
+                        .to(outgoingVisual, { opacity: 0 }, 0)
+                        .fromTo(incomingContent, { opacity: 0 }, { opacity: 1 }, 0.2)
+                        .fromTo(incomingVisual, { opacity: 0 }, { opacity: 1 }, 0.2);
 
                     activeButton.classList.remove("active");
                     buttons[index].classList.add("active");
@@ -90,7 +155,13 @@
             });
         }
 
-        // Initialize everything when DOM is loaded
+        // 5. Initialize everything when DOM is loaded
         document.addEventListener("DOMContentLoaded", () => {
             initTabSystem();
+            
+            // Initialize loader if you have one
+            if (typeof initLoader === 'function') {
+                initLoader();
+            }
         });
+    
