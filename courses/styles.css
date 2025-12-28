@@ -546,7 +546,7 @@
         .tab-layout {
             display: flex;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 1rem;
             margin-top: 3rem;
             background-color: var(--box-color);
             border-radius: 12px;
@@ -578,7 +578,7 @@
         .tab-layout-col--visual {
             flex: 2; /* Visual column takes less space */
             display: flex;
-            align-items: center;
+            align-items: left;
             justify-content: center;
         }
 
@@ -590,14 +590,14 @@
             color: var(--title-color);
             font-size: 2.5rem; /* Adjusted for H1 style */
             margin-bottom: 1.5rem;
-            text-align: center; /* Centered as per H1 guideline */
+            text-align: left; /* Centered as per H1 guideline */
             color: var(--skin-color); /* H1 color */
         }
 
         .filter-bar {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
+            justify-content: left;
+            gap: 0.8rem;
             margin-bottom: 2rem;
             flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
         }
