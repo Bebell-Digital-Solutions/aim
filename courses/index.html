@@ -188,94 +188,101 @@
     <!-- =========================== -->
     <!-- SECTION 12: MAIN CONTENT AREA -->
     <!-- =========================== -->
+ <!-- Main Content -->
     <main>
-        <section class="section cloneable">
-            <div data-tabs="wrapper" class="tab-layout">
-                <div class="tab-layout-col tab-layout-col--text">
-                    <div class="tab-layout-container">
-                        <div class="tab-container">
-                            <div class="tab-container-top">
-                                <h1 class="tab-layout-heading">Explore Our AI Mastery Program Courses</h1>
-                                <div data-tabs="nav" class="filter-bar">
-                                    <button data-tabs="button" class="filter-button active">
-                                        <div class="filter-button__p">Stage 1</div>
-                                    </button>
-                                    <button data-tabs="button" class="filter-button">
-                                        <div class="filter-button__p">Stage 2</div>
-                                    </button>
-                                    <button data-tabs="button" class="filter-button">
-                                        <div class="filter-button__p">Stage 3</div>
-                                    </button>
-                                    <button data-tabs="button" class="filter-button">
-                                        <div class="filter-button__p">Stage 4</div>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="tab-container-bottom">
-                                <div data-tabs="content-wrap" class="tab-content-wrap">
-                                    <!-- AI Foundation Tab -->
-                                    <div data-tabs="content-item" class="tab-content-item active">
-                                        <h2 data-tabs-fade="" class="tab-content__heading">Stage 1: AI Foundation</h2>
-                                        <p data-tabs-fade="" class="content-p opacity--80">Begin your journey into the world of AI with our foundational course designed to equip you with essential knowledge and skills, covering core concepts and applications.</p>
-                                        <a href="/courses#foundation" class="tab-content__button" data-tabs-fade="">
-                                            <p class="content-p"><strong>View AI Foundation Course</strong></p>
-                                            <div class="content-button__bg"></div>
-                                        </a>
-                                    </div>
-                                    
-                                    <!-- Prompt Craftsmanship Tab -->
-                                    <div data-tabs="content-item" class="tab-content-item">
-                                        <h2 data-tabs-fade="" class="tab-content__heading">Stage 2: Prompt Craftsmanship</h2>
-                                        <p data-tabs-fade="" class="content-p opacity--80">Master the art of crafting effective prompts to maximize the potential of AI tools and applications, learning advanced techniques for optimal results.</p>
-                                        <a href="/courses#prompting" class="tab-content__button" data-tabs-fade="">
-                                            <p class="content-p"><strong>Explore Prompt Craftsmanship Course</strong></p>
-                                            <div class="content-button__bg"></div>
-                                        </a>
-                                    </div>
-                                    
-                                    <!-- Your Own AI Brain Tab -->
-                                    <div data-tabs="content-item" class="tab-content-item">
-                                        <h2 data-tabs-fade="" class="tab-content__heading">Stage 3: Building Your AI Brain</h2>
-                                        <p data-tabs-fade="" class="content-p opacity--80">Learn how to create and customize your own AI models tailored to your specific needs and projects, from data preparation to deployment.</p>
-                                        <a href="/courses#building-ai-brain" class="tab-content__button" data-tabs-fade="">
-                                            <p class="content-p"><strong>View Your Own AI Brain Course</strong></p>
-                                            <div class="content-button__bg"></div>
-                                        </a>
-                                    </div>
-                                    
-                                    <!-- Autonomous Agents Tab -->
-                                    <div data-tabs="content-item" class="tab-content-item">
-                                        <h2 data-tabs-fade="" class="tab-content__heading">Stage 4: Autonomous AI Agents</h2>
-                                        <p data-tabs-fade="" class="content-p opacity--80">Dive into the world of autonomous agents and learn how to develop systems that operate independently, capable of complex decision-making and task execution.</p>
-                                        <a href="/courses#autonomous-ai-agents" class="tab-content__button" data-tabs-fade="">
-                                            <p class="content-p"><strong>Explore Autonomous Agents Course</strong></p>
-                                            <div class="content-button__bg"></div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        
+        <!-- Tab Layout Section -->
+        <section class="tab-layout">
+            <div class="tab-layout-col tab-layout-col--text">
+                <h1 class="tab-layout-heading">Explore Our AI Mastery Program Courses</h1>
+                
+                <!-- Filter Bar -->
+                <div class="filter-bar">
+                    <button class="filter-button active" data-filter="stage1">Stage 1</button>
+                    <button class="filter-button" data-filter="stage2">Stage 2</button>
+                    <button class="filter-button" data-filter="stage3">Stage 3</button>
+                    <button class="filter-button" data-filter="stage4">Stage 4</button>
                 </div>
-                <div class="tab-layout-col tab-layout-col--visual">
-                    <div data-tabs="visual-wrap" class="tab-visual-wrap">
-                        <div data-tabs="visual-item" class="tab-visual-item active">
-                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/AI_Foundation_Course.jpg?updatedAt=1701383456789" loading="lazy" class="tab-image" alt="AI Foundation Course">
-                        </div>
-                        <div data-tabs="visual-item" class="tab-visual-item">
-                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Prompt_Craftsmanship_Course.jpg?updatedAt=1701383456789" loading="lazy" class="tab-image" alt="Prompt Craftsmanship Course">
-                        </div>
-                        <div data-tabs="visual-item" class="tab-visual-item">
-                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Building_Your_AI_Brain_Course.jpg?updatedAt=1701383456789" loading="lazy" class="tab-image" alt="Building Your AI Brain Course">
-                        </div>
-                        <div data-tabs="visual-item" class="tab-visual-item">
-                            <img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Autonomous_AI_Agents_Course.jpg?updatedAt=1701383456789" loading="lazy" class="tab-image" alt="Autonomous AI Agents Course">
-                        </div>
+
+                <!-- Text Content Wrapper -->
+                <div class="tab-content-wrap">
+                    
+                    <!-- Stage 1 -->
+                    <div class="tab-content-item active" data-category="stage1">
+                        <h2 class="tab-content__heading">Stage 1: AI Foundation</h2>
+                        <p class="content-p">
+                            Begin your journey into the world of AI with our foundational course designed to equip you with essential knowledge and skills, covering core concepts and applications.
+                        </p>
+                        <a href="#" class="tab-content__button">
+                            <div class="content-button__bg"></div>
+                            <span class="content-p">View Course Overview</span>
+                        </a>
+                    </div>
+
+                    <!-- Stage 2 -->
+                    <div class="tab-content-item" data-category="stage2">
+                        <h2 class="tab-content__heading">Stage 2: Prompt Craftsmanship</h2>
+                        <p class="content-p">
+                            Master the art of crafting effective prompts to maximize the potential of AI tools and applications, learning advanced techniques for optimal results.
+                        </p>
+                        <a href="#" class="tab-content__button">
+                            <div class="content-button__bg"></div>
+                            <span class="content-p">View Course Overview</span>
+                        </a>
+                    </div>
+
+                    <!-- Stage 3 -->
+                    <div class="tab-content-item" data-category="stage3">
+                        <h2 class="tab-content__heading">Stage 3: Building Your AI Brain</h2>
+                        <p class="content-p">
+                            Learn how to create and customize your own AI models tailored to your specific needs and projects, from data preparation to deployment.
+                        </p>
+                        <a href="#" class="tab-content__button">
+                            <div class="content-button__bg"></div>
+                            <span class="content-p">View Course Overview</span>
+                        </a>
+                    </div>
+
+                    <!-- Stage 4 -->
+                    <div class="tab-content-item" data-category="stage4">
+                        <h2 class="tab-content__heading">Stage 4: Autonomous AI Agents</h2>
+                        <p class="content-p">
+                            Dive into the world of autonomous agents and learn how to develop systems that operate independently, capable of complex decision-making and task execution.
+                        </p>
+                        <a href="#" class="tab-content__button">
+                            <div class="content-button__bg"></div>
+                            <span class="content-p">View Course Overview</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tab-layout-col tab-layout-col--visual">
+                <!-- Visual Wrapper -->
+                <div class="tab-visual-wrap">
+                    <!-- Image 1 -->
+                    <div class="tab-visual-item active" data-category="stage1">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800" alt="AI Foundation" class="tab-image">
+                    </div>
+                    <!-- Image 2 -->
+                    <div class="tab-visual-item" data-category="stage2">
+                        <img src="https://images.unsplash.com/photo-1664575198308-395d9c61b7da?auto=format&fit=crop&q=80&w=800" alt="Prompting" class="tab-image">
+                    </div>
+                    <!-- Image 3 -->
+                    <div class="tab-visual-item" data-category="stage3">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" alt="AI Brain" class="tab-image">
+                    </div>
+                    <!-- Image 4 -->
+                    <div class="tab-visual-item" data-category="stage4">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800" alt="AI Agents" class="tab-image">
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
+
 
     <!-- =========================== -->
     <!-- SECTION 13: BACK TO TOP BUTTON -->
