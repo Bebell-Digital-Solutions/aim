@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- =========================== -->
+    <!-- SECTION 1: PAGE TITLE & META -->
+    <!-- =========================== -->
+    <title>Dashboard - AIM™</title>
+    <meta name="description" content="AIM AI Mastery Program Dashboard">
+    
+    <!-- =========================== -->
+    <!-- SECTION 2: FONTS & ICONS -->
+    <!-- =========================== -->
+    <!-- Import Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
+
+    <!-- =========================== -->
+    <!-- SECTION 3: BASE CSS STYLES -->
+    <!-- =========================== -->
+<link rel="stylesheet" href="style.css">
+
+  
+</head>
+<body>
+
+    <!-- Page Loader -->
+    <div class="page-loader" id="loader">
+        <div class="loader-header">Wait for it...</div>
+        <div class="progress"></div>
+    </div>
+
+    <!-- =========================== -->
+    <!-- SECTION 10: SETTINGS MODAL -->
+    <!-- =========================== -->
+    <div id="settings-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title">Profile Settings</h2>
+                <button class="modal-close" id="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-section">
+                <h3 class="modal-section-title" id="language-title">Language</h3>
+                <div class="form-group">
+                    <label class="form-label" for="language-select">Dashboard Language</label>
+                    <select class="form-select" id="language-select">
+                        <option value="en">English</option>
+                        <option value="es">Español (Spanish)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="modal-section">
+                <h3 class="modal-section-title" id="profile-title">Profile</h3>
+                <div class="form-group">
+                    <label class="form-label" for="user-name">Your Name</label>
+                    <input type="text" class="form-input" id="user-name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Profile Picture</label>
+                    <div class="file-input-container">
+                        <img src="https://ui-avatars.com/api/?name=User&background=ff5011&color=fff" alt="Profile" class="image-preview" id="profile-preview">
+                        <input type="file" class="file-input" id="profile-image-input" accept="image/*">
+                        <label for="profile-image-input" class="file-input-label" id="upload-profile-btn">Upload</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-section">
+                <h3 class="modal-section-title" id="logo-title">Logo</h3>
+                <div class="form-group">
+                    <label class="form-label">Sidebar Logo</label>
+                    <div class="file-input-container">
+                        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/4258edc9566675e609085514462830fbe2e1b905.png" alt="Logo" class="image-preview" id="logo-preview">
+                        <input type="file" class="file-input" id="logo-image-input" accept="image/*">
+                        <label for="logo-image-input" class="file-input-label" id="upload-logo-btn">Upload</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-section">
+                <h3 class="modal-section-title" id="colors-title">Colors</h3>
+                <div class="form-group">
+                    <label class="form-label">Primary Color</label>
+                    <div class="color-picker-group">
+                        <input type="color" class="color-picker" id="primary-color" value="#ff5011">
+                        <span class="color-value" id="primary-color-value">#ff5011</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Sidebar Background</label>
+                    <div class="color-picker-group">
+                        <input type="color" class="color-picker" id="sidebar-color" value="#1a1a1a">
+                        <span class="color-value" id="sidebar-color-value">#1a1a1a</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Container Background</label>
+                    <div class="color-picker-group">
+                        <input type="color" class="color-picker" id="container-color" value="#0d0d0d">
+                        <span class="color-value" id="container-color-value">#0d0d0d</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="modal-button modal-button-secondary" id="reset-settings-btn">Reset to Default</button>
+                <button class="modal-button modal-button-primary" id="save-settings-btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================== -->
+    <!-- SECTION 11: AGENT PROFILE MODALS -->
+    <!-- =========================== -->
+    <!-- Agent 1 Modal -->
+    <div id="agent1-modal" class="modal-overlay">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title">Agent Profile</h2>
+                <button class="modal-close agent-modal-close" data-agent="agent1">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="agent-image-container">
+                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/7f3b479aa718a65433e2c5758957de0628b32f9e.png" alt="Agent 1" class="agent-profile-image" id="agent1-image">
+            </div>
+            
+            <h2 class="agent-title" id="agent1-title">ARIA</h2>
+            <p class="agent-subtitle" id="agent1-subtitle">Customer Service & Support Department</p>
+            javascript:;
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-tasks"></i> Tasks & Responsibilities</h3>
+                <ul class="agent-tasks" id="agent1-tasks">
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Handle customer inquiries and support tickets</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Process refunds and returns</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Provide product information and troubleshooting</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Manage customer accounts and profiles</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Escalate complex issues to human agents</li>
+                </ul>
+            </div>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-cogs"></i> Capabilities</h3>
+                <ul class="agent-tasks">
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>24/7 availability</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Multilingual support</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Sentiment analysis</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Knowledge base integration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent 2 Modal -->
+    <div id="agent2-modal" class="modal-overlay">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title">Agent Profile</h2>
+                <button class="modal-close agent-modal-close" data-agent="agent2">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="agent-image-container">
+                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/948ccdbb3a8c59f20a7dc0cd48645d257474bd77.png" alt="Agent 2" class="agent-profile-image" id="agent2-image">
+            </div>
+            
+            <h2 class="agent-title" id="agent2-title">NOVA</h2>
+            <p class="agent-subtitle" id="agent2-subtitle">Sales & Business Development</p>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-tasks"></i> Tasks & Responsibilities</h3>
+                <ul class="agent-tasks" id="agent2-tasks">
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Lead qualification and nurturing</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Product demonstrations and presentations</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Sales pipeline management</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Customer relationship management</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Sales reporting and analytics</li>
+                </ul>
+            </div>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-cogs"></i> Capabilities</h3>
+                <ul class="agent-tasks">
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Lead scoring algorithms</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Sales forecasting</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>CRM integration</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Personalized outreach</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent 3 Modal -->
+    <div id="agent3-modal" class="modal-overlay">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title">Agent Profile</h2>
+                <button class="modal-close agent-modal-close" data-agent="agent3">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="agent-image-container">
+                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/0f7664bc131c623e1e87f0785bb7e49ce8c35dca.png" alt="Agent 3" class="agent-profile-image" id="agent3-image">
+            </div>
+            
+            <h2 class="agent-title" id="agent3-title">ORION</h2>
+            <p class="agent-subtitle" id="agent3-subtitle">IT & Technical Assistance</p>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-tasks"></i> Tasks & Responsibilities</h3>
+                <ul class="agent-tasks" id="agent3-tasks">
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Technical troubleshooting and diagnostics</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Software installation guidance</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Network connectivity support</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Hardware configuration assistance</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>System maintenance monitoring</li>
+                </ul>
+            </div>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-cogs"></i> Capabilities</h3>
+                <ul class="agent-tasks">
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Remote diagnostics</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Script execution</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>System monitoring</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Knowledge base management</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent 4 Modal -->
+    <div id="agent4-modal" class="modal-overlay">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title">Agent Profile</h2>
+                <button class="modal-close agent-modal-close" data-agent="agent4">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="agent-image-container">
+                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/5daf85ad28765c8a5dab85d64ff225a64f5ef3c7.png" alt="Agent 4" class="agent-profile-image" id="agent4-image">
+            </div>
+            
+            <h2 class="agent-title" id="agent4-title">LYRA</h2>
+            <p class="agent-subtitle" id="agent4-subtitle">Marketing & Content Creation</p>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-tasks"></i> Tasks & Responsibilities</h3>
+                <ul class="agent-tasks" id="agent4-tasks">
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Content creation and optimization</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Social media management</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Email marketing campaigns</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>SEO analysis and recommendations</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Marketing analytics reporting</li>
+                </ul>
+            </div>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-cogs"></i> Capabilities</h3>
+                <ul class="agent-tasks">
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Content generation</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>SEO optimization</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Social media scheduling</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Analytics integration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent 5 Modal -->
+    <div id="agent5-modal" class="modal-overlay">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title">Agent Profile</h2>
+                <button class="modal-close agent-modal-close" data-agent="agent5">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="agent-image-container">
+                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/5201781598ff994fd6f809b66581ffbecbbfd093.png" alt="Agent 5" class="agent-profile-image" id="agent5-image">
+            </div>
+            
+            <h2 class="agent-title" id="agent5-title">ATLAS</h2>
+            <p class="agent-subtitle" id="agent5-subtitle">Human Resources & Recruitment</p>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-tasks"></i> Tasks & Responsibilities</h3>
+                <ul class="agent-tasks" id="agent5-tasks">
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Resume screening and filtering</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Candidate pre-screening interviews</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Employee onboarding assistance</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>HR policy information dissemination</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Leave and attendance tracking</li>
+                </ul>
+            </div>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-cogs"></i> Capabilities</h3>
+                <ul class="agent-tasks">
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Resume parsing</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Candidate matching</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Compliance checking</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Document management</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent 6 Modal -->
+    <div id="agent6-modal" class="modal-overlay">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title">Agent Profile</h2>
+                <button class="modal-close agent-modal-close" data-agent="agent6">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="agent-image-container">
+                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/ffcbc092f9a08b0f8d9f8eb1dd166e21612ddddf.png" alt="Agent 6" class="agent-profile-image" id="agent6-image">
+            </div>
+            
+            <h2 class="agent-title" id="agent6-title">HELIOS</h2>
+            <p class="agent-subtitle" id="agent6-subtitle">Data Analysis & Reporting</p>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-tasks"></i> Tasks & Responsibilities</h3>
+                <ul class="agent-tasks" id="agent6-tasks">
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Data collection and processing</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Statistical analysis and modeling</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Report generation and visualization</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Trend identification and forecasting</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Business intelligence insights</li>
+                </ul>
+            </div>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-cogs"></i> Capabilities</h3>
+                <ul class="agent-tasks">
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Data visualization</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Predictive modeling</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Real-time analytics</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>API integration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+
+    <!-- Mobile Menu Toggle (Replaces Burger) -->
+    <button id="mobile-menu-toggle" aria-label="Toggle Sidebar">
+        <i class="fa-solid fa-angles-right"></i>
+    </button>
+
+    <div id="dashboard-wrapper">
+        <!-- =========================== -->
+        <!-- SECTION 12: SIDEBAR NAVIGATION -->
+        <!-- =========================== -->
+        <aside id="sidebar">
+            <div id="sidebar-header">
+                <div class="logo-container">
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/4258edc9566675e609085514462830fbe2e1b905.png" alt="AIM Logo" id="sidebar-logo" />
+                    <div class="sidebar-subtitle">Meet your Intelligent Workforce.</div>
+                </div>
+                <button id="sidebar-toggle" aria-label="Toggle Sidebar">
+                    <i class="fa-solid fa-angles-left"></i>
+                </button>
+            </div>
+            
+            <nav id="sidebar-nav">
+                <!-- Navigation buttons with "AGENT" prefix and hidden-by-default info icons -->
+                <button class="sidebar-nav-button active" data-url="https://asistente.chatterbot.support/share/771302ab9f0f471da32e7fb73372dbe6" data-agent="agent1">
+                    <div class="sidebar-nav-icon"></div>
+                    <span>AGENT ARIA</span>
+                    <span class="agent-info-btn" data-agent="agent1">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </button>
+                <button class="sidebar-nav-button" data-url="https://asistente.chatterbot.support/share/771302ab9f0f471da32e7fb73372dbe6" data-agent="agent2">
+                    <div class="sidebar-nav-icon"></div>
+                    <span>AGENT NOVA</span>
+                    <span class="agent-info-btn" data-agent="agent2">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </button>
+                <button class="sidebar-nav-button" data-url="https://asistente.chatterbot.support/share/771302ab9f0f471da32e7fb73372dbe6" data-agent="agent3">
+                    <div class="sidebar-nav-icon"></div>
+                    <span>AGENT ORION</span>
+                    <span class="agent-info-btn" data-agent="agent3">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </button>
+                <button class="sidebar-nav-button" data-url="https://asistente.chatterbot.support/share/771302ab9f0f471da32e7fb73372dbe6" data-agent="agent4">
+                    <div class="sidebar-nav-icon"></div>
+                    <span>AGENT LYRA</span>
+                    <span class="agent-info-btn" data-agent="agent4">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </button>
+                <button class="sidebar-nav-button" data-url="https://asistente.chatterbot.support/share/771302ab9f0f471da32e7fb73372dbe6" data-agent="agent5">
+                    <div class="sidebar-nav-icon"></div>
+                    <span>AGENT ATLAS</span>
+                    <span class="agent-info-btn" data-agent="agent5">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </button>
+                <button class="sidebar-nav-button" data-url="https://asistente.chatterbot.support/share/771302ab9f0f471da32e7fb73372dbe6" data-agent="agent6">
+                    <div class="sidebar-nav-icon"></div>
+                    <span>AGENT HELIOS</span>
+                    <span class="agent-info-btn" data-agent="agent6">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </button>
+            </nav>
+            
+            <!-- Profile Section -->
+            <div id="sidebar-profile">
+                <button id="profile-button">
+                    <img src="https://ui-avatars.com/api/?name=User&background=ff5011&color=fff" alt="Profile" id="profile-image">
+                    <span id="profile-name">User Profile</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- =========================== -->
+        <!-- SECTION 13: MAIN CONTENT AREA -->
+        <!-- =========================== -->
+        <main id="dashboard-main-content">
+            <!-- Greeting Section -->
+            <div class="greeting-section">
+                <h1 id="greeting-message">Hello User,</h1>
+                <p id="greeting-subtitle">Welcome to your AI assistant dashboard. All systems are operational.</p>
+            </div>
+            
+            <iframe id="content-iframe" src="https://asistente.chatterbot.support/share/771302ab9f0f471da32e7fb73372dbe6" title="Dashboard Content"></iframe>
+            
+            <!-- Footer Signature -->
+            <div class="site-signature">
+                Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a>
+            </div>        
+        </main>
+    </div>
+
+    <!-- =========================== -->
+    <!-- SECTION 14: BACK TO TOP BUTTON -->
+    <!-- =========================== -->
+    <button id="back-to-top" aria-label="Back to Top"></button>
+    
+    <!-- =========================== -->
+    <!-- SECTION 15: BASE JAVASCRIPT -->
+    <!-- =========================== -->
+<script src="script.js"></script>
+</body>
+</html>
