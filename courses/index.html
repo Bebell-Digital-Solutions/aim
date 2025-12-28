@@ -148,7 +148,7 @@
    <!-- =========================== -->
     <!-- SECTION 11: NAVIGATION BAR HTML -->
     <!-- =========================== -->
-    <nav id="nav-bar">
+   <nav id="nav-bar">
         <a href="/" id="nav-logo">
             <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
         </a>
@@ -162,15 +162,15 @@
             <a href="/" class="nav-link">Home</a>
             <a href="/about" class="nav-link">About</a>
             
-            <!-- Courses Dropdown -->
+            <!-- Courses Dropdown - ADDED data-dropdown-toggle ATTRIBUTE -->
             <div class="nav-item has-submenu">
-                <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
+                <a href="#" class="nav-link" id="courses-link" data-dropdown-toggle>Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
                 <div class="submenu-courses" id="courses-submenu">
                     <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
                     <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
                     <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
-                    <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
-                    <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+                    <a href="/courses#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
+                    <a href="/courses#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
                 </div>
             </div>
             
@@ -332,7 +332,7 @@
     <!-- =========================== -->
 
     <!-- External JavaScript Files -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js"></script>
     <script src="script.js"></script>
 </body>
