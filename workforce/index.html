@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- =========================== -->
+    <!-- SECTION 1: PAGE TITLE & META -->
+    <!-- =========================== -->
+    <title>Dashboard - AIM™</title>
+    <meta name="description" content="AIM AI Mastery Program Dashboard">
+    
+    <!-- =========================== -->
+    <!-- SECTION 2: FONTS & ICONS -->
+    <!-- =========================== -->
+    <!-- Import Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
+
+    <!-- =========================== -->
+    <!-- SECTION 3: BASE CSS STYLES -->
+    <!-- =========================== -->
+    <style>
+        /* --- AIM Brand Styles --- */
+        :root {
+            --skin-color: #ff5011;
+            --mirage-color: hsl(210, 10%, 23%);
+            --title-color: hsl(242, 8%, 98%);
+            --text-color: hsl(242, 8%, 80%);
+            --body-color: #0d0d0d;
+            --box-color: hsl(242, 14%, 12%);
+            --body-font: 'Inter', sans-serif;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            --small-font-size: 0.95rem;
+            --h3-font-size: 1.25rem;
+            --smaller-font-size: 0.75rem;
+            --mb15: 0.75rem;
+            --mb3: 1.5rem;
+            --sidebar-width: 260px;
+            --sidebar-width-collapsed: 70px;
+        }
+
+        /* --- Base & Scrollbar --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: var(--body-font);
+            background-color: var(--body-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; cursor: pointer; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #333; }
+        ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
+        
+        /* Utility container class */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* --- Loader Styles (Restored) --- */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+
+        .loader-header {
+            color: white;
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .progress {
+            width: 272.8px;
+            height: 41.7px;
+            border-radius: 28.8px;
+            color: #ff5011;
+            background-color: #000;
+            border: 2.9px solid;
+            position: relative;
+        }
+
+        .progress::before {
+            content: "";
+            position: absolute;
+            margin: 2.9px;
+            inset: 0 100% 0 0;
+            border-radius: inherit;
+            background: currentColor;
+            animation: progress-pf82op 1.5s forwards;
+        }
+
+        @keyframes progress-pf82op {
+            100% {
+                inset: 0;
+            }
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* =========================== */
+        /* SECTION 4: DASHBOARD LAYOUT & SIDEBAR */
+        /* =========================== */
+        #dashboard-wrapper {
+            display: flex;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        #sidebar {
+            width: var(--sidebar-width);
+            min-width: var(--sidebar-width);
+            background-color: var(--box-color);
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-right: 1px solid var(--mirage-color);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s ease, min-width 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 1000;
+            overflow-y: auto; /* Enables scrolling inside sidebar */
+            transform: translateX(0);
+        }
+
+        #sidebar.collapsed {
+            width: var(--sidebar-width-collapsed);
+            min-width: var(--sidebar-width-collapsed);
+            padding: 1.5rem 0.5rem;
+            align-items: center;
+        }
+
+        #sidebar.hidden {
+            transform: translateX(-100%);
+        }
+
+        /* Mobile Menu Toggle - Transparent Arrow Style */
+        #mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: transparent; /* No background */
+            border: none;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            color: var(--skin-color); /* Orange color */
+            font-size: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease, left 0.3s ease;
+        }
+
+        /* Rotate and move toggle when active */
+        #mobile-menu-toggle.active {
+            transform: rotate(180deg);
+            left: 230px; /* Positions button near right edge of opened sidebar */
+        }
+
+        #sidebar-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 2rem;
+            padding: 0 0.5rem;
+            margin-top: 1rem;
+            position: relative;
+        }
+
+        #sidebar.collapsed #sidebar-header {
+            justify-content: center;
+            padding: 0;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+
+        #sidebar-logo {
+            height: 75px;
+            width: auto;
+            transition: opacity 0.3s ease;
+        }
+        #sidebar-logo:hover {
+            opacity: 0.8;
+        }
+
+        .sidebar-subtitle {
+            color: var(--skin-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center;
+            opacity: 0.9;
+            margin-top: 0.25rem;
+            transition: opacity 0.3s ease;
+            font-style: italic;
+        }
+
+        /* Hide logo and subtitle when sidebar is collapsed */
+        #sidebar.collapsed .logo-container {
+            display: none !important;
+        }
+
+        #sidebar-toggle {
+            background: transparent;
+            border: none;
+            color: var(--skin-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        
+        #sidebar-toggle:hover {
+            color: var(--title-color);
+            transform: scale(1.1);
+        }
+
+        #sidebar.collapsed #sidebar-toggle {
+            transform: rotate(180deg);
+            position: static;
+            margin: 0 auto;
+        }
+
+        #sidebar-nav {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            flex-grow: 1;
+        }
+
+        .sidebar-nav-button {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0.50rem;
+            background-color: transparent;
+            border: none;
+            border-radius: 0.5rem;
+            color: var(--text-color);
+            font-family: var(--body-font);
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            position: relative;
+        }
+
+        .sidebar-nav-button:hover {
+            background-color: rgba(255, 80, 17, 0.1);
+            color: var(--skin-color);
+            transform: translateY(-2px);
+        }
+
+        .sidebar-nav-button.active {
+            background-color: rgba(255, 80, 17, 0.2);
+            color: var(--skin-color);
+        }
+
+        .sidebar-nav-icon {
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+            background-image: url('https://ik.imagekit.io/bebell/Bebell%20Digital%20Solutions/ARIA/Icon%20Aria.webp');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-nav-button:hover .sidebar-nav-icon {
+            transform: rotate(45deg) scale(1.4);
+        }
+
+        .sidebar-nav-button.active .sidebar-nav-icon {
+            transform: rotate(90deg) scale(1.4);
+            animation: spinOnce 0.5s ease;
+        }
+
+        @keyframes spinOnce {
+            from { transform: rotate(-330deg) scale(1.2); }
+            to { transform: rotate(0deg) scale(1.3); }
+        }
+
+        .sidebar-nav-button span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            flex-grow: 1;
+        }
+
+        /* Info button styling */
+        .agent-info-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            width: 30px; 
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            flex-shrink: 0;
+            font-size: 1rem;
+            opacity: 0; /* Hidden */
+            visibility: hidden;
+            margin-left: auto;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* Show when parent button is hovered or active */
+        .sidebar-nav-button:hover .agent-info-btn,
+        .sidebar-nav-button.active .agent-info-btn {
+            opacity: 0.6;
+            visibility: visible;
+        }
+
+        .agent-info-btn:hover {
+            background-color: transparent;
+            color: var(--skin-color);
+            opacity: 1 !important;
+            transform: scale(1.1);
+        }
+
+        #sidebar.collapsed .sidebar-nav-button span {
+            opacity: 0;
+            width: 0;
+            padding: 0;
+            margin: 0;
+        }
+        
+        #sidebar.collapsed .sidebar-nav-button {
+            justify-content: center;
+            padding: 0.75rem;
+            gap: 0;
+        }
+        
+        #sidebar.collapsed .sidebar-nav-icon {
+            margin: 0;
+        }
+
+        #sidebar.collapsed .agent-info-btn {
+            display: none !important; 
+        }
+
+        /* Profile Section */
+        #sidebar-profile {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+
+        #profile-button {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem;
+            background-color: transparent;
+            border: none;
+            border-radius: 0.5rem;
+            color: var(--text-color);
+            font-family: var(--body-font);
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            width: 100%;
+            min-height: 56px;
+        }
+
+        #profile-button:hover {
+            background-color: rgba(255, 80, 17, 0.1);
+            color: var(--skin-color);
+        }
+
+        #profile-image {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            min-height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--skin-color);
+            background-color: var(--mirage-color);
+            flex-shrink: 0;
+        }
+
+        #sidebar.collapsed #profile-button {
+            justify-content: center;
+            padding: 0.75rem;
+            gap: 0;
+        }
+
+        #sidebar.collapsed #profile-image {
+            width: 40px !important;
+            height: 40px !important;
+            margin: 0 !important;
+        }
+
+        #profile-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            flex-grow: 1;
+        }
+
+        #sidebar.collapsed #profile-name {
+            opacity: 0;
+            width: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        #dashboard-main-content {
+            flex-grow: 1;
+            padding: 2rem;
+            background-color: var(--body-color);
+            transition: margin-left 0.3s ease, padding-left 0.3s ease;
+            margin-left: var(--sidebar-width);
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+            min-height: 100vh;
+        }
+
+        #dashboard-main-content.sidebar-collapsed {
+            margin-left: var(--sidebar-width-collapsed);
+        }
+
+        #dashboard-main-content.sidebar-hidden {
+            margin-left: 0;
+            padding-left: 2rem;
+        }
+
+        /* Greeting Section */
+        .greeting-section {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--mirage-color);
+        }
+
+        #greeting-message {
+            color: var(--title-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        #greeting-subtitle {
+            color: var(--text-color);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+
+        #content-iframe {
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--mirage-color);
+            border-radius: 0.75rem;
+            background-color: var(--box-color);
+            box-shadow: var(--shadow);
+            flex-grow: 1;
+        }
+
+        /* =========================== */
+        /* SECTION 5: MODAL STYLES */
+        /* =========================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background-color: var(--box-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--mirage-color);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-large {
+            max-width: 700px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--mirage-color);
+        }
+
+        .modal-title {
+            color: var(--title-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            padding: 0.25rem;
+            border-radius: 0.25rem;
+        }
+
+        .modal-close:hover {
+            color: var(--skin-color);
+        }
+
+        /* Agent Profile Modal */
+        .agent-image-container {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            background-color: var(--body-color);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .agent-profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .agent-title {
+            color: var(--title-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .agent-subtitle {
+            color: var(--skin-color);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .agent-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .agent-section-title {
+            color: var(--title-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .agent-section-title i {
+            color: var(--skin-color);
+        }
+
+        .agent-tasks {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .agent-task-item {
+            padding: 0.5rem 0;
+            color: var(--text-color);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .agent-task-item i {
+            color: var(--skin-color);
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+
+        .modal-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-section-title {
+            color: var(--title-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--body-color);
+            border: 1px solid var(--mirage-color);
+            border-radius: 0.5rem;
+            color: var(--text-color);
+            font-family: var(--body-font);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--skin-color);
+        }
+
+        .color-picker-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .color-picker {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            background: transparent;
+            padding: 0;
+        }
+
+        .color-picker::-webkit-color-swatch {
+            border-radius: 0.25rem;
+            border: 2px solid var(--mirage-color);
+        }
+
+        .color-picker::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        .color-value {
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .file-input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .file-input {
+            position: absolute;
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .file-input-label {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--skin-color);
+            color: white;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .file-input-label:hover {
+            background-color: #e0480f;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--mirage-color);
+        }
+
+        .modal-button {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-family: var(--body-font);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-button-primary {
+            background-color: var(--skin-color);
+            color: white;
+        }
+
+        .modal-button-primary:hover {
+            background-color: #e0480f;
+            transform: translateY(-2px);
+        }
+
+        .modal-button-secondary {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--mirage-color);
+        }
+
+        .modal-button-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--skin-color);
+            color: var(--skin-color);
+        }
+
+        .image-preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--mirage-color);
+            background-color: var(--body-color);
+        }
+
+        /* =========================== */
+        /* SECTION 6: BACK TO TOP BUTTON */
+        /* =========================== */
+        #back-to-top {
+            position: fixed; 
+            bottom: 20px; 
+            right: 20px;
+            width: 50px; 
+            height: 50px;
+            background: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597') no-repeat center center;
+            background-size: cover;
+            border: none; 
+            border-radius: 50%;
+            cursor: pointer; 
+            opacity: 0; 
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 999;
+        }
+        #back-to-top.show { 
+            opacity: 1; 
+            visibility: visible; 
+        }
+        #back-to-top:hover { 
+            transform: scale(1.1); 
+        }
+
+        /* =========================== */
+        /* SECTION 7: FOOTER SIGNATURE STYLES */
+        /* =========================== */
+        .site-signature {
+            font-size: var(--smaller-font-size); 
+            text-align: center; 
+            padding: 1.5rem 1rem;
+            color: var(--text-color);
+            background-color: var(--body-color);
+            width: 100%;
+        }
+        .site-signature a { 
+            color: var(--text-color); 
+            text-decoration: none;
+        }
+        .site-signature a:hover { 
+            color: var(--skin-color); 
+        }
+
+        /* =========================== */
+        /* SECTION 8: MOBILE RESPONSIVENESS */
+        /* =========================== */
+        @media screen and (max-width: 767px) {
+            #mobile-menu-toggle {
+                display: flex;
+            }
+
+            #sidebar {
+                width: 280px; /* Fixed robust width for mobile */
+                min-width: 280px;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+            }
+
+            #sidebar.mobile-open {
+                transform: translateX(0);
+            }
+
+            #sidebar.collapsed {
+                width: 280px;
+                max-width: 85%;
+            }
+
+            #dashboard-main-content {
+                margin-left: 0;
+                padding: 1rem;
+                padding-top: 80px;
+                width: 100%;
+            }
+
+            #dashboard-main-content.sidebar-collapsed {
+                margin-left: 0;
+            }
+
+            .logo-container {
+                flex-direction: column;
+            }
+
+            #sidebar-logo {
+                height: 50px;
+            }
+
+            .sidebar-subtitle {
+                display: block;
+                font-size: 0.8rem;
+            }
+
+            /* Rules for info icons on mobile: Only show when sidebar is open */
+            .agent-info-btn { 
+                opacity: 0; 
+                visibility: hidden; 
+            }
+            
+            #sidebar.mobile-open .agent-info-btn { 
+                opacity: 0.6; 
+                visibility: visible; 
+            }
+            
+            #sidebar.mobile-open .sidebar-nav-button:hover .agent-info-btn {
+                opacity: 1;
+            }
+
+            .modal {
+                padding: 1.5rem;
+                width: 95%;
+            }
+
+            .modal-large {
+                width: 95%;
+            }
+
+            .agent-title {
+                font-size: 1.5rem;
+            }
+
+            .greeting-section {
+                margin-bottom: 1rem;
+            }
+
+            #greeting-message {
+                font-size: 1.5rem;
+            }
+            
+            #sidebar-toggle {
+                display: none;
+            }
+        }
+
+        /* Tablet responsiveness */
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+            #sidebar {
+                width: var(--sidebar-width-collapsed);
+                min-width: var(--sidebar-width-collapsed);
+                padding: 1.5rem 0.5rem;
+                align-items: center;
+            }
+            #sidebar-header {
+                justify-content: center;
+                padding: 0;
+            }
+            #sidebar-logo {
+                height: 30px;
+            }
+            .sidebar-subtitle {
+                display: none;
+            }
+            #sidebar-toggle {
+                transform: rotate(180deg);
+            }
+            #sidebar-nav .sidebar-nav-button span {
+                opacity: 0;
+                width: 0;
+                padding: 0;
+                margin: 0;
+            }
+            #sidebar-nav .sidebar-nav-button {
+                justify-content: center;
+                padding: 0.75rem;
+                gap: 0;
+            }
+            
+            #sidebar.collapsed .logo-container {
+                display: none !important;
+            }
+            
+            #sidebar.collapsed .sidebar-nav-icon {
+                margin: 0;
+            }
+
+            #dashboard-main-content {
+                margin-left: var(--sidebar-width-collapsed);
+            }
+            
+            #sidebar.collapsed .agent-info-btn {
+                display: none;
+            }
+        }
+        
+        /* Landscape Support */
+        @media screen and (max-height: 500px) {
+            #sidebar-header { margin-bottom: 1rem; }
+            #sidebar-logo { height: 40px; }
+            #dashboard-main-content { padding-top: 70px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page Loader -->
+    <div class="page-loader" id="loader">
+        <div class="loader-header">Wait for it...</div>
+        <div class="progress"></div>
+    </div>
+
+    <!-- =========================== -->
+    <!-- SECTION 10: SETTINGS MODAL -->
+    <!-- =========================== -->
+    <div id="settings-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title">Profile Settings</h2>
+                <button class="modal-close" id="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-section">
+                <h3 class="modal-section-title" id="language-title">Language</h3>
+                <div class="form-group">
+                    <label class="form-label" for="language-select">Dashboard Language</label>
+                    <select class="form-select" id="language-select">
+                        <option value="en">English</option>
+                        <option value="es">Español (Spanish)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="modal-section">
+                <h3 class="modal-section-title" id="profile-title">Profile</h3>
+                <div class="form-group">
+                    <label class="form-label" for="user-name">Your Name</label>
+                    <input type="text" class="form-input" id="user-name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Profile Picture</label>
+                    <div class="file-input-container">
+                        <img src="https://ui-avatars.com/api/?name=User&background=ff5011&color=fff" alt="Profile" class="image-preview" id="profile-preview">
+                        <input type="file" class="file-input" id="profile-image-input" accept="image/*">
+                        <label for="profile-image-input" class="file-input-label" id="upload-profile-btn">Upload</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-section">
+                <h3 class="modal-section-title" id="logo-title">Logo</h3>
+                <div class="form-group">
+                    <label class="form-label">Sidebar Logo</label>
+                    <div class="file-input-container">
+                        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/4258edc9566675e609085514462830fbe2e1b905.png" alt="Logo" class="image-preview" id="logo-preview">
+                        <input type="file" class="file-input" id="logo-image-input" accept="image/*">
+                        <label for="logo-image-input" class="file-input-label" id="upload-logo-btn">Upload</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-section">
+                <h3 class="modal-section-title" id="colors-title">Colors</h3>
+                <div class="form-group">
+                    <label class="form-label">Primary Color</label>
+                    <div class="color-picker-group">
+                        <input type="color" class="color-picker" id="primary-color" value="#ff5011">
+                        <span class="color-value" id="primary-color-value">#ff5011</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Sidebar Background</label>
+                    <div class="color-picker-group">
+                        <input type="color" class="color-picker" id="sidebar-color" value="#1a1a1a">
+                        <span class="color-value" id="sidebar-color-value">#1a1a1a</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Container Background</label>
+                    <div class="color-picker-group">
+                        <input type="color" class="color-picker" id="container-color" value="#0d0d0d">
+                        <span class="color-value" id="container-color-value">#0d0d0d</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="modal-button modal-button-secondary" id="reset-settings-btn">Reset to Default</button>
+                <button class="modal-button modal-button-primary" id="save-settings-btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================== -->
+    <!-- SECTION 11: AGENT PROFILE MODALS -->
+    <!-- =========================== -->
+    <!-- Agent 1 Modal -->
+    <div id="agent1-modal" class="modal-overlay">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title">Agent Profile</h2>
+                <button class="modal-close agent-modal-close" data-agent="agent1">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="agent-image-container">
+                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/7f3b479aa718a65433e2c5758957de0628b32f9e.png" alt="Agent 1" class="agent-profile-image" id="agent1-image">
+            </div>
+            
+            <h2 class="agent-title" id="agent1-title">ARIA</h2>
+            <p class="agent-subtitle" id="agent1-subtitle">Customer Service & Support Department</p>
+            javascript:;
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-tasks"></i> Tasks & Responsibilities</h3>
+                <ul class="agent-tasks" id="agent1-tasks">
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Handle customer inquiries and support tickets</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Process refunds and returns</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Provide product information and troubleshooting</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Manage customer accounts and profiles</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Escalate complex issues to human agents</li>
+                </ul>
+            </div>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-cogs"></i> Capabilities</h3>
+                <ul class="agent-tasks">
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>24/7 availability</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Multilingual support</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Sentiment analysis</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Knowledge base integration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent 2 Modal -->
+    <div id="agent2-modal" class="modal-overlay">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title">Agent Profile</h2>
+                <button class="modal-close agent-modal-close" data-agent="agent2">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="agent-image-container">
+                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/948ccdbb3a8c59f20a7dc0cd48645d257474bd77.png" alt="Agent 2" class="agent-profile-image" id="agent2-image">
+            </div>
+            
+            <h2 class="agent-title" id="agent2-title">NOVA</h2>
+            <p class="agent-subtitle" id="agent2-subtitle">Sales & Business Development</p>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-tasks"></i> Tasks & Responsibilities</h3>
+                <ul class="agent-tasks" id="agent2-tasks">
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Lead qualification and nurturing</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Product demonstrations and presentations</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Sales pipeline management</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Customer relationship management</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Sales reporting and analytics</li>
+                </ul>
+            </div>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-cogs"></i> Capabilities</h3>
+                <ul class="agent-tasks">
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Lead scoring algorithms</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Sales forecasting</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>CRM integration</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Personalized outreach</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent 3 Modal -->
+    <div id="agent3-modal" class="modal-overlay">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title">Agent Profile</h2>
+                <button class="modal-close agent-modal-close" data-agent="agent3">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="agent-image-container">
+                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/0f7664bc131c623e1e87f0785bb7e49ce8c35dca.png" alt="Agent 3" class="agent-profile-image" id="agent3-image">
+            </div>
+            
+            <h2 class="agent-title" id="agent3-title">ORION</h2>
+            <p class="agent-subtitle" id="agent3-subtitle">IT & Technical Assistance</p>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-tasks"></i> Tasks & Responsibilities</h3>
+                <ul class="agent-tasks" id="agent3-tasks">
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Technical troubleshooting and diagnostics</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Software installation guidance</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Network connectivity support</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Hardware configuration assistance</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>System maintenance monitoring</li>
+                </ul>
+            </div>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-cogs"></i> Capabilities</h3>
+                <ul class="agent-tasks">
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Remote diagnostics</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Script execution</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>System monitoring</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Knowledge base management</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent 4 Modal -->
+    <div id="agent4-modal" class="modal-overlay">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title">Agent Profile</h2>
+                <button class="modal-close agent-modal-close" data-agent="agent4">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="agent-image-container">
+                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/5daf85ad28765c8a5dab85d64ff225a64f5ef3c7.png" alt="Agent 4" class="agent-profile-image" id="agent4-image">
+            </div>
+            
+            <h2 class="agent-title" id="agent4-title">LYRA</h2>
+            <p class="agent-subtitle" id="agent4-subtitle">Marketing & Content Creation</p>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-tasks"></i> Tasks & Responsibilities</h3>
+                <ul class="agent-tasks" id="agent4-tasks">
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Content creation and optimization</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Social media management</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Email marketing campaigns</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>SEO analysis and recommendations</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Marketing analytics reporting</li>
+                </ul>
+            </div>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-cogs"></i> Capabilities</h3>
+                <ul class="agent-tasks">
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Content generation</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>SEO optimization</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Social media scheduling</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Analytics integration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent 5 Modal -->
+    <div id="agent5-modal" class="modal-overlay">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title">Agent Profile</h2>
+                <button class="modal-close agent-modal-close" data-agent="agent5">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="agent-image-container">
+                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/5201781598ff994fd6f809b66581ffbecbbfd093.png" alt="Agent 5" class="agent-profile-image" id="agent5-image">
+            </div>
+            
+            <h2 class="agent-title" id="agent5-title">ATLAS</h2>
+            <p class="agent-subtitle" id="agent5-subtitle">Human Resources & Recruitment</p>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-tasks"></i> Tasks & Responsibilities</h3>
+                <ul class="agent-tasks" id="agent5-tasks">
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Resume screening and filtering</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Candidate pre-screening interviews</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Employee onboarding assistance</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>HR policy information dissemination</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Leave and attendance tracking</li>
+                </ul>
+            </div>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-cogs"></i> Capabilities</h3>
+                <ul class="agent-tasks">
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Resume parsing</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Candidate matching</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Compliance checking</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Document management</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent 6 Modal -->
+    <div id="agent6-modal" class="modal-overlay">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title">Agent Profile</h2>
+                <button class="modal-close agent-modal-close" data-agent="agent6">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="agent-image-container">
+                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/ffcbc092f9a08b0f8d9f8eb1dd166e21612ddddf.png" alt="Agent 6" class="agent-profile-image" id="agent6-image">
+            </div>
+            
+            <h2 class="agent-title" id="agent6-title">HELIOS</h2>
+            <p class="agent-subtitle" id="agent6-subtitle">Data Analysis & Reporting</p>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-tasks"></i> Tasks & Responsibilities</h3>
+                <ul class="agent-tasks" id="agent6-tasks">
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Data collection and processing</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Statistical analysis and modeling</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Report generation and visualization</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Trend identification and forecasting</li>
+                    <li class="agent-task-item"><i class="fas fa-check-circle"></i>Business intelligence insights</li>
+                </ul>
+            </div>
+            
+            <div class="agent-section">
+                <h3 class="agent-section-title"><i class="fas fa-cogs"></i> Capabilities</h3>
+                <ul class="agent-tasks">
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Data visualization</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Predictive modeling</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>Real-time analytics</li>
+                    <li class="agent-task-item"><i class="fas fa-bolt"></i>API integration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+
+    <!-- Mobile Menu Toggle (Replaces Burger) -->
+    <button id="mobile-menu-toggle" aria-label="Toggle Sidebar">
+        <i class="fa-solid fa-angles-right"></i>
+    </button>
+
+    <div id="dashboard-wrapper">
+        <!-- =========================== -->
+        <!-- SECTION 12: SIDEBAR NAVIGATION -->
+        <!-- =========================== -->
+        <aside id="sidebar">
+            <div id="sidebar-header">
+                <div class="logo-container">
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/4258edc9566675e609085514462830fbe2e1b905.png" alt="AIM Logo" id="sidebar-logo" />
+                    <div class="sidebar-subtitle">Meet your Intelligent Workforce.</div>
+                </div>
+                <button id="sidebar-toggle" aria-label="Toggle Sidebar">
+                    <i class="fa-solid fa-angles-left"></i>
+                </button>
+            </div>
+            
+            <nav id="sidebar-nav">
+                <!-- Navigation buttons with "AGENT" prefix and hidden-by-default info icons -->
+                <button class="sidebar-nav-button active" data-url="https://asistente.chatterbot.support/share/771302ab9f0f471da32e7fb73372dbe6" data-agent="agent1">
+                    <div class="sidebar-nav-icon"></div>
+                    <span>AGENT ARIA</span>
+                    <span class="agent-info-btn" data-agent="agent1">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </button>
+                <button class="sidebar-nav-button" data-url="https://asistente.chatterbot.support/share/771302ab9f0f471da32e7fb73372dbe6" data-agent="agent2">
+                    <div class="sidebar-nav-icon"></div>
+                    <span>AGENT NOVA</span>
+                    <span class="agent-info-btn" data-agent="agent2">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </button>
+                <button class="sidebar-nav-button" data-url="https://asistente.chatterbot.support/share/771302ab9f0f471da32e7fb73372dbe6" data-agent="agent3">
+                    <div class="sidebar-nav-icon"></div>
+                    <span>AGENT ORION</span>
+                    <span class="agent-info-btn" data-agent="agent3">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </button>
+                <button class="sidebar-nav-button" data-url="https://asistente.chatterbot.support/share/771302ab9f0f471da32e7fb73372dbe6" data-agent="agent4">
+                    <div class="sidebar-nav-icon"></div>
+                    <span>AGENT LYRA</span>
+                    <span class="agent-info-btn" data-agent="agent4">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </button>
+                <button class="sidebar-nav-button" data-url="https://asistente.chatterbot.support/share/771302ab9f0f471da32e7fb73372dbe6" data-agent="agent5">
+                    <div class="sidebar-nav-icon"></div>
+                    <span>AGENT ATLAS</span>
+                    <span class="agent-info-btn" data-agent="agent5">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </button>
+                <button class="sidebar-nav-button" data-url="https://asistente.chatterbot.support/share/771302ab9f0f471da32e7fb73372dbe6" data-agent="agent6">
+                    <div class="sidebar-nav-icon"></div>
+                    <span>AGENT HELIOS</span>
+                    <span class="agent-info-btn" data-agent="agent6">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </button>
+            </nav>
+            
+            <!-- Profile Section -->
+            <div id="sidebar-profile">
+                <button id="profile-button">
+                    <img src="https://ui-avatars.com/api/?name=User&background=ff5011&color=fff" alt="Profile" id="profile-image">
+                    <span id="profile-name">User Profile</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- =========================== -->
+        <!-- SECTION 13: MAIN CONTENT AREA -->
+        <!-- =========================== -->
+        <main id="dashboard-main-content">
+            <!-- Greeting Section -->
+            <div class="greeting-section">
+                <h1 id="greeting-message">Hello User,</h1>
+                <p id="greeting-subtitle">Welcome to your AI assistant dashboard. All systems are operational.</p>
+            </div>
+            
+            <iframe id="content-iframe" src="https://asistente.chatterbot.support/share/771302ab9f0f471da32e7fb73372dbe6" title="Dashboard Content"></iframe>
+            
+            <!-- Footer Signature -->
+            <div class="site-signature">
+                Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a>
+            </div>        
+        </main>
+    </div>
+
+    <!-- =========================== -->
+    <!-- SECTION 14: BACK TO TOP BUTTON -->
+    <!-- =========================== -->
+    <button id="back-to-top" aria-label="Back to Top"></button>
+    
+    <!-- =========================== -->
+    <!-- SECTION 15: BASE JAVASCRIPT -->
+    <!-- =========================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Page Loader Logic ---
+            function showLoader() {
+                const loader = document.getElementById('loader');
+                return loader;
+            }
+
+            function initLoader() {
+                const loader = showLoader();
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                }, 1500);
+            }
+
+            initLoader();
+
+            // --- DOM Elements ---
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const iframe = document.getElementById('content-iframe');
+            const sidebarNavButtons = document.querySelectorAll('.sidebar-nav-button');
+            const agentInfoButtons = document.querySelectorAll('.agent-info-btn');
+            const profileButton = document.getElementById('profile-button');
+            const settingsModal = document.getElementById('settings-modal');
+            const modalClose = document.getElementById('modal-close');
+            const agentModalCloses = document.querySelectorAll('.agent-modal-close');
+            const saveSettingsBtn = document.getElementById('save-settings-btn');
+            const resetSettingsBtn = document.getElementById('reset-settings-btn');
+            const greetingMessage = document.getElementById('greeting-message');
+            const greetingSubtitle = document.getElementById('greeting-subtitle');
+            const profileImage = document.getElementById('profile-image');
+            const profilePreview = document.getElementById('profile-preview');
+            const profileImageInput = document.getElementById('profile-image-input');
+            const sidebarLogo = document.getElementById('sidebar-logo');
+            const logoPreview = document.getElementById('logo-preview');
+            const logoImageInput = document.getElementById('logo-image-input');
+            const userNameInput = document.getElementById('user-name');
+            const languageSelect = document.getElementById('language-select');
+            const profileName = document.getElementById('profile-name');
+            const primaryColorPicker = document.getElementById('primary-color');
+            const sidebarColorPicker = document.getElementById('sidebar-color');
+            const containerColorPicker = document.getElementById('container-color');
+            const primaryColorValue = document.getElementById('primary-color-value');
+            const sidebarColorValue = document.getElementById('sidebar-color-value');
+            const containerColorValue = document.getElementById('container-color-value');
+            const mainContent = document.getElementById('dashboard-main-content');
+            
+            // Agent modals
+            const agentModals = {
+                agent1: document.getElementById('agent1-modal'),
+                agent2: document.getElementById('agent2-modal'),
+                agent3: document.getElementById('agent3-modal'),
+                agent4: document.getElementById('agent4-modal'),
+                agent5: document.getElementById('agent5-modal'),
+                agent6: document.getElementById('agent6-modal')
+            };
+
+            // Translation dictionary
+            const translations = {
+                en: {
+                    greeting: (name) => `Hello ${name},`,
+                    subtitle: "Welcome to your AI assistant dashboard. All systems are operational.",
+                    profile: "User Profile",
+                    modalTitle: "Profile Settings",
+                    languageTitle: "Language",
+                    profileTitle: "Profile",
+                    logoTitle: "Logo",
+                    colorsTitle: "Colors",
+                    uploadProfile: "Upload",
+                    uploadLogo: "Upload",
+                    resetBtn: "Reset to Default",
+                    saveBtn: "Save Changes",
+                    sidebarSubtitle: "Meet your Intelligent Workforce."
+                },
+                es: {
+                    greeting: (name) => `Hola ${name},`,
+                    subtitle: "Bienvenido a tu panel de asistencia IA. Todos los sistemas están operativos.",
+                    profile: "Perfil de Usuario",
+                    modalTitle: "Configuración del Perfil",
+                    languageTitle: "Idioma",
+                    profileTitle: "Perfil",
+                    logoTitle: "Logo",
+                    colorsTitle: "Colores",
+                    uploadProfile: "Subir",
+                    uploadLogo: "Subir",
+                    resetBtn: "Restablecer Predeterminados",
+                    saveBtn: "Guardar Cambios",
+                    sidebarSubtitle: "Conoce tu Fuerza Laboral Inteligente."
+                }
+            };
+
+            // --- Default Settings ---
+            const defaultSettings = {
+                userName: "User",
+                language: "en",
+                primaryColor: "#ff5011",
+                sidebarColor: "#1a1a1a",
+                containerColor: "#0d0d0d",
+                profileImage: "https://ui-avatars.com/api/?name=User&background=ff5011&color=fff",
+                sidebarLogo: "https://bucket.mlcdn.com/a/3336/3336910/images/4258edc9566675e609085514462830fbe2e1b905.png"
+            };
+
+            // --- Active Agent Tracking ---
+            let activeAgent = null;
+
+            // --- Load Settings from Local Storage ---
+            function loadSettings() {
+                const savedSettings = JSON.parse(localStorage.getItem('dashboardSettings')) || defaultSettings;
+                
+                // Apply settings
+                userNameInput.value = savedSettings.userName;
+                languageSelect.value = savedSettings.language;
+                primaryColorPicker.value = savedSettings.primaryColor;
+                sidebarColorPicker.value = savedSettings.sidebarColor;
+                containerColorPicker.value = savedSettings.containerColor;
+                
+                // Update UI
+                updateUI(savedSettings);
+                
+                return savedSettings;
+            }
+
+            // --- Save Settings to Local Storage ---
+            function saveSettings() {
+                const settings = {
+                    userName: userNameInput.value || defaultSettings.userName,
+                    language: languageSelect.value,
+                    primaryColor: primaryColorPicker.value,
+                    sidebarColor: sidebarColorPicker.value,
+                    containerColor: containerColorPicker.value,
+                    profileImage: profileImage.src,
+                    sidebarLogo: sidebarLogo.src
+                };
+                
+                localStorage.setItem('dashboardSettings', JSON.stringify(settings));
+                updateUI(settings);
+                return settings;
+            }
+
+            // --- Update UI with Settings ---
+            function updateUI(settings) {
+                const lang = settings.language;
+                const t = translations[lang];
+                
+                // Update greeting
+                greetingMessage.textContent = t.greeting(settings.userName);
+                greetingSubtitle.textContent = t.subtitle;
+                
+                // Update profile
+                profileName.textContent = t.profile;
+                profileImage.src = settings.profileImage;
+                profilePreview.src = settings.profileImage;
+                
+                // Update sidebar logo
+                sidebarLogo.src = settings.sidebarLogo;
+                logoPreview.src = settings.sidebarLogo;
+                
+                // Update subtitle
+                document.querySelector('.sidebar-subtitle').textContent = t.sidebarSubtitle;
+                
+                // Update modal text
+                document.getElementById('modal-title').textContent = t.modalTitle;
+                document.getElementById('language-title').textContent = t.languageTitle;
+                document.getElementById('profile-title').textContent = t.profileTitle;
+                document.getElementById('logo-title').textContent = t.logoTitle;
+                document.getElementById('colors-title').textContent = t.colorsTitle;
+                document.getElementById('upload-profile-btn').textContent = t.uploadProfile;
+                document.getElementById('upload-logo-btn').textContent = t.uploadLogo;
+                document.getElementById('reset-settings-btn').textContent = t.resetBtn;
+                document.getElementById('save-settings-btn').textContent = t.saveBtn;
+                
+                // Update colors
+                document.documentElement.style.setProperty('--skin-color', settings.primaryColor);
+                document.documentElement.style.setProperty('--box-color', settings.sidebarColor);
+                document.documentElement.style.setProperty('--body-color', settings.containerColor);
+                
+                // Update color value displays
+                primaryColorValue.textContent = settings.primaryColor;
+                sidebarColorValue.textContent = settings.sidebarColor;
+                containerColorValue.textContent = settings.containerColor;
+            }
+
+            // --- Reset to Default Settings ---
+            function resetSettings() {
+                userNameInput.value = defaultSettings.userName;
+                languageSelect.value = defaultSettings.language;
+                primaryColorPicker.value = defaultSettings.primaryColor;
+                sidebarColorPicker.value = defaultSettings.sidebarColor;
+                containerColorPicker.value = defaultSettings.containerColor;
+                
+                profileImage.src = defaultSettings.profileImage;
+                profilePreview.src = defaultSettings.profileImage;
+                sidebarLogo.src = defaultSettings.sidebarLogo;
+                logoPreview.src = defaultSettings.sidebarLogo;
+                
+                saveSettings();
+            }
+
+            // --- Image Upload Handlers ---
+            function handleImageUpload(inputElement, previewElement, targetElement) {
+                return function(event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            previewElement.src = e.target.result;
+                            if (targetElement) {
+                                targetElement.src = e.target.result;
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                };
+            }
+
+            // --- Sidebar Toggle Logic ---
+            function toggleSidebar() {
+                const isMobile = window.innerWidth < 768;
+                
+                if (isMobile) {
+                    sidebar.classList.toggle('mobile-open');
+                    mobileMenuToggle.classList.toggle('active');
+                    
+                    // Crucial fix: Ensure collapsed is removed on mobile when opening
+                    if (sidebar.classList.contains('mobile-open')) {
+                        sidebar.classList.remove('collapsed');
+                        document.body.style.overflow = 'hidden'; // Lock scroll
+                    } else {
+                        document.body.style.overflow = 'auto'; // Unlock scroll
+                    }
+                } else {
+                    sidebar.classList.toggle('collapsed');
+                    mainContent.classList.toggle('sidebar-collapsed');
+                }
+            }
+
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', toggleSidebar);
+            }
+
+            // --- Mobile Menu Toggle ---
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', toggleSidebar);
+            }
+
+            // --- Swipe Detection for Mobile ---
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            document.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+
+            document.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                if (window.innerWidth < 768) {
+                    // Swipe Right to Open
+                    if (touchEndX - touchStartX > swipeThreshold) {
+                        if (!sidebar.classList.contains('mobile-open')) {
+                            toggleSidebar();
+                        }
+                    }
+                    // Swipe Left to Close
+                    if (touchStartX - touchEndX > swipeThreshold) {
+                        if (sidebar.classList.contains('mobile-open')) {
+                            toggleSidebar();
+                        }
+                    }
+                }
+            }
+
+            // --- Iframe Content Loading Logic ---
+            if (iframe && sidebarNavButtons) {
+                sidebarNavButtons.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        // Check if the click target or its parent is the info button
+                        if (e.target.closest('.agent-info-btn')) return;
+                        
+                        sidebarNavButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        activeAgent = button.dataset.agent;
+                        
+                        const url = button.dataset.url;
+                        if (url) {
+                            iframe.src = url;
+                            if (window.innerWidth < 768 && sidebar.classList.contains('mobile-open')) {
+                                toggleSidebar();
+                            }
+                        }
+                    });
+                });
+            }
+
+            // --- Agent Info Button Logic ---
+            if (agentInfoButtons) {
+                agentInfoButtons.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Stops the parent button click
+                        const agentId = button.dataset.agent;
+                        if (agentId && agentModals[agentId]) {
+                            agentModals[agentId].classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                            
+                            // Close sidebar on mobile if open to show modal better
+                            if (window.innerWidth < 768 && sidebar.classList.contains('mobile-open')) {
+                                toggleSidebar();
+                            }
+                        }
+                    });
+                });
+            }
+
+            // --- Close Agent Modals ---
+            if (agentModalCloses) {
+                agentModalCloses.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const agentId = button.dataset.agent;
+                        if (agentId && agentModals[agentId]) {
+                            agentModals[agentId].classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+                    });
+                });
+            }
+
+            // --- Close Modals when clicking outside ---
+            function setupModalClose(modal) {
+                modal.addEventListener('click', (event) => {
+                    if (event.target === modal) {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+
+            Object.values(agentModals).forEach(setupModalClose);
+            if (settingsModal) setupModalClose(settingsModal);
+
+            // --- Settings Modal Logic ---
+            if (profileButton && settingsModal) {
+                profileButton.addEventListener('click', () => {
+                    settingsModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    if (window.innerWidth < 768 && sidebar.classList.contains('mobile-open')) {
+                        toggleSidebar();
+                    }
+                });
+            }
+
+            if (modalClose) {
+                modalClose.addEventListener('click', () => {
+                    settingsModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+
+            if (saveSettingsBtn) {
+                saveSettingsBtn.addEventListener('click', () => {
+                    saveSettings();
+                    settingsModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+
+            if (resetSettingsBtn) {
+                resetSettingsBtn.addEventListener('click', resetSettings);
+            }
+
+            if (profileImageInput) {
+                profileImageInput.addEventListener('change', handleImageUpload(
+                    profileImageInput, 
+                    profilePreview, 
+                    profileImage
+                ));
+            }
+
+            if (logoImageInput) {
+                logoImageInput.addEventListener('change', handleImageUpload(
+                    logoImageInput, 
+                    logoPreview, 
+                    sidebarLogo
+                ));
+            }
+
+            function setupColorPicker(picker, valueElement) {
+                picker.addEventListener('input', (e) => {
+                    valueElement.textContent = e.target.value;
+                });
+            }
+
+            if (primaryColorPicker) setupColorPicker(primaryColorPicker, primaryColorValue);
+            if (sidebarColorPicker) setupColorPicker(sidebarColorPicker, sidebarColorValue);
+            if (containerColorPicker) setupColorPicker(containerColorPicker, containerColorValue);
+
+            // --- Back to Top Button Logic ---
+            const toTopButton = document.getElementById('back-to-top');
+            if (toTopButton) {
+                // Determine scroll target based on device
+                const scrollTarget = window.innerWidth < 768 ? window : mainContent;
+                
+                const scrollListener = () => {
+                    const scrollPos = window.innerWidth < 768 ? window.scrollY : mainContent.scrollTop;
+                    if (scrollPos > 300) {
+                        toTopButton.classList.add('show');
+                    } else {
+                        toTopButton.classList.remove('show');
+                    }
+                };
+
+                if (window.innerWidth < 768) {
+                    window.addEventListener('scroll', scrollListener);
+                } else {
+                    mainContent.addEventListener('scroll', scrollListener);
+                }
+
+                toTopButton.addEventListener('click', function() {
+                    if (window.innerWidth < 768) {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+            }
+
+            // --- Handle Window Resize ---
+            function handleResize() {
+                const isMobile = window.innerWidth < 768;
+                if (!isMobile) {
+                    sidebar.classList.remove('mobile-open', 'hidden');
+                    mobileMenuToggle.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    mobileMenuToggle.style.display = 'none';
+                    if (sidebar.classList.contains('collapsed')) {
+                        mainContent.classList.add('sidebar-collapsed');
+                        mainContent.classList.remove('sidebar-hidden');
+                    } else {
+                        mainContent.classList.remove('sidebar-collapsed', 'sidebar-hidden');
+                    }
+                } else {
+                    // Forcefully remove collapsed on mobile so text/icons show when opened
+                    sidebar.classList.remove('collapsed');
+                    
+                    sidebar.classList.add('hidden');
+                    mainContent.classList.add('sidebar-hidden');
+                    mainContent.classList.remove('sidebar-collapsed');
+                    mobileMenuToggle.style.display = 'flex';
+                }
+                if (window.innerWidth >= 768 && window.innerWidth <= 1024) {
+                    sidebar.classList.add('collapsed');
+                    mainContent.classList.add('sidebar-collapsed');
+                }
+            }
+
+            window.addEventListener('resize', handleResize);
+            loadSettings();
+            handleResize();
+            
+            if (sidebarNavButtons.length > 0) {
+                sidebarNavButtons[0].classList.add('active');
+                activeAgent = sidebarNavButtons[0].dataset.agent;
+            }
+        });
+    </script>
+</body>
+</html>
