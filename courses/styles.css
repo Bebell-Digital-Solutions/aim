@@ -833,6 +833,7 @@
         font-size: 2rem;
         margin-bottom: 1rem;
         text-align: center; /* Centered as per H1 guideline */
+        padding-top: 2rem;    
 }
 
             
@@ -855,8 +856,11 @@
 
     .tab-visual-wrap {
         height: 500px;
+        margin-top: 2rem;
     }
 }
+
+
 
 /* Tablet responsiveness (continued) */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -867,7 +871,8 @@
 
     .tab-layout-heading {
         font-size: 2.2rem;
-        text-align: center; /* Centered as per H1 guideline */    
+        text-align: center; /* Centered as per H1 guideline */ 
+        padding-top: 2rem;
     }
 
     .filter-bar {
@@ -880,6 +885,7 @@
 
     .tab-visual-wrap {
         height: 500px;
+        margin-top: 2rem;
     }
 }
 
