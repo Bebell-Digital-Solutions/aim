@@ -962,7 +962,7 @@ a { text-decoration: none; cursor: pointer; }
         padding: 0;
     }
     #sidebar-logo {
-        height: 30px;
+        height: 75px;
     }
     .sidebar-subtitle {
         display: none;
@@ -1002,6 +1002,6 @@ a { text-decoration: none; cursor: pointer; }
 /* Landscape Support */
 @media screen and (max-height: 500px) {
     #sidebar-header { margin-bottom: 1rem; }
-    #sidebar-logo { height: 40px; }
+    #sidebar-logo { height: 75px; }
     #dashboard-main-content { padding-top: 70px; }
 }
