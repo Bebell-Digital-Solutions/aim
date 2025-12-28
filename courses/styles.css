@@ -681,16 +681,20 @@
     top: 0;
     left: 0;
     width: 100%;
+    height: 100%; /* ADD THIS: Fixed height */        
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.5s ease;
     /* Removed transform property for simpler fade */
+    pointer-events: none; /* ADD THIS: Prevent interaction when hidden */
+
 }
 
 .tab-content-item.active {
     opacity: 1;
     visibility: visible;
-    position: relative; /* Take up space when active */
+    position: absolute; /* CHANGE FROM relative TO absolute */
+    pointer-events: auto; /* ADD THIS: Allow interaction when active */
     /* Removed transform property */
 }
 
