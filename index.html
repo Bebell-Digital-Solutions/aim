@@ -194,34 +194,84 @@
         
         
         
-
-        /* --- Navigation Bar --- */
+  /* =========================== */
+        /* SECTION 4: NAVIGATION BAR */
+        /* =========================== */
+        
         #nav-bar {
-            position: fixed; top: 2rem; left: 50%; transform: translateX(-50%);
-            background: rgba(25, 25, 25, 0.85); backdrop-filter: blur(10px);
-            border: 1px solid var(--box-color); border-radius: 0.75rem;
-            padding: 0.75rem 1.5rem; display: flex; align-items: center;
-            max-width: 980px; width: 90%; z-index: 1000;
+            position: fixed; 
+            top: 2rem; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: rgba(25, 25, 25, 0.85); 
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--box-color); 
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem; 
+            display: flex; 
+            align-items: center;
+            max-width: 1100px; 
+            width: 90%; 
+            z-index: 1000;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
         }
         #nav-logo img { height: 35px; }
-        #nav-menu { display: flex; gap: 1.5rem; margin-left: auto; align-items: center; }
-        .nav-link { color: var(--text-color); transition: color 0.3s, transform 0.2s; font-weight: 500; }
-        .nav-link:hover { color: var(--skin-color); transform: translateY(-1px); }
+        
+        /* Desktop: nav-menu contains all links and is flexed */
+        #nav-menu { 
+            display: flex; 
+            gap: 1.5rem; 
+            margin-left: auto; 
+            align-items: center; 
+        }
+
+        /* Nav links and CTA */
+        .nav-link { 
+            color: var(--text-color); 
+            transition: color 0.3s, transform 0.2s; 
+            font-weight: 500; 
+        }
+        .nav-link:hover { 
+            color: var(--skin-color); 
+            transform: translateY(-1px); 
+        }
+
+
+
+
+
+
+
         .nav-cta {
             background: linear-gradient(90deg, var(--skin-color), #d43a00);
-            color: var(--title-color); padding: 0.5rem 1rem; border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); transition: transform 0.3s, box-shadow 0.3s;
+            color: var(--title-color); 
+            padding: 0.5rem 1rem; 
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); 
+            transition: transform 0.3s, box-shadow 0.3s;
             font-weight: 600;
         }
-        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); }
+        
+        
+        
+        .nav-cta:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); 
+        }
+        
+        
+        
+        
         .has-submenu { position: relative; }
+
+
+
+
+
+
+
         
-        
-        
-        
-        
-        /* Submenu Default State (Hidden) */
+        /* Submenu Default State (Hidden - Desktop) */
         .submenu-courses {
             position: absolute; 
             top: 100%; 
@@ -232,26 +282,61 @@
             padding: 0.75rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
             opacity: 0; 
-            pointer-events: none; 
-            transition: opacity 0.3s, top 0.3s; 
-            width: 200px;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, top 0.3s; 
+            width: 250px;
+            z-index: 1001;
         }
+
+
+
+
+
+
         
-        
-        
-        
-        
-        /* Submenu Active State (Shown via JavaScript click) */
+        /* Submenu Active State (Shown via JavaScript click - Desktop) */
         .submenu-courses.active { 
             opacity: 1; 
-            pointer-events: auto; 
-            top: 100%; 
+            visibility: visible;
+            top: calc(100% + 10px);
         }
-
-        .submenu-link { display: flex; align-items: center; gap: 0.75rem; color: var(--text-color); padding: 0.5rem; border-radius: 0.25rem; transition: background-color 0.3s, color 0.3s; }
-        .submenu-link:hover { background-color: rgba(255, 80, 17, 0.1); color: var(--skin-color); }
+        
+        
+        
+        
+        .submenu-link { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.75rem; 
+            color: var(--text-color); 
+            padding: 0.5rem; 
+            border-radius: 0.25rem; 
+            transition: background-color 0.3s, color 0.3s; 
+        }
+        .submenu-link:hover { 
+            background-color: rgba(255, 80, 17, 0.1); 
+            color: var(--skin-color); 
+        }
         .submenu-link i { width: 15px; text-align: center; }
 
+
+
+
+
+
+
+        /* Mobile visibility controls (Default/Desktop state) */
+        #mobile-menu-toggle { 
+            display: none; 
+            border: none;
+            background: transparent;
+            color: var(--skin-color);
+            font-size: 1.8rem;
+            cursor: pointer;
+            margin-left: auto;
+        }
+        .nav-cta.mobile-cta-only { display: none; }
+        .nav-cta.desktop-cta-only { display: block; }
         
         
         
@@ -1576,6 +1661,9 @@
                 background-color: transparent !important;
             }
             
+            
+            
+            
             /* Mobile CTA button */
             .nav-cta.mobile-cta-only {
                 padding: 1rem 60px; 
@@ -1597,6 +1685,10 @@
 
             /* Add your existing mobile styles here... */
         }
+
+
+
+
 
         /* Desktop: Ensure correct visibility when not mobile */
         @media screen and (min-width: 768px) {
@@ -1796,17 +1888,29 @@ function init_tracer() {
         
         <div id="nav-menu">
             <a href="/" class="nav-link" style="color: var(--skin-color);">Home</a>
+            
+            
             <a href="/about" class="nav-link">About</a>
             
             <!-- Courses Dropdown -->
             <div class="nav-item has-submenu">
-                <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
+                <a href="/courses" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
                 <div class="submenu-courses" id="courses-submenu">
-                    <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
-                    <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
-                    <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
-                    <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
-                    <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+                    <a href="/courses" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
+                    
+                    
+                    <a href="/1-ai-foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
+                    
+                    
+                    <a href="/2-prompting-craftsmanship" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+                    
+                    
+                    <a href="/3-building-your-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
+                    
+                    
+                    <a href="/4-building-autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+                    
+                    
                 </div>
             </div>
             
@@ -2565,10 +2669,7 @@ function init_tracer() {
                 });
             }
 
-
-
-
-        
+     
     </script>
 </body>
 </html>
