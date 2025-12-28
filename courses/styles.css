@@ -583,6 +583,7 @@
     background-color: var(--box-color);
     border-radius: 12px;
     padding: 2.5rem;
+    padding-bottom: 3rem;    
     border: 1px solid var(--mirage-color);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     animation: fadeIn 0.8s ease-out forwards;
@@ -590,8 +591,11 @@
     transform: none !important; /* Remove any transform animations */
 }
 
+
+
+
 /* NEW: Simple fade-in animation */
-@keyframes fadeIn {
+@keyframes fadeInUp {
     from {
         opacity: 0;
     }
@@ -599,6 +603,8 @@
         opacity: 1;
     }
 }
+
+
 
 .tab-layout:hover {
     transform: translateY(-5px);
@@ -612,7 +618,7 @@
 }
 
 .tab-layout-col--text {
-    flex: 3; /* Text column takes more space */
+    flex: 2.5; /* Text column takes more space */
     display: flex;
     flex-direction: column;
     justify-content: center;
