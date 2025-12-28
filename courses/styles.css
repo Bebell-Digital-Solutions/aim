@@ -104,9 +104,6 @@
         }
 
 
-
-
-
         .nav-cta {
             background: linear-gradient(90deg, var(--skin-color), #d43a00);
             color: var(--title-color); 
@@ -630,7 +627,7 @@
 .tab-layout-col--visual {
     flex: 2; /* Visual column takes less space */
     display: flex;
-    align-items: left;
+    align-items: center;
     justify-content: center;
 }
 
@@ -835,6 +832,10 @@
     .tab-layout-heading {
         font-size: 2rem;
         margin-bottom: 1rem;
+        text-align: center; /* Centered as per H1 guideline */
+}
+
+            
     }
 
     .filter-bar {
@@ -866,6 +867,7 @@
 
     .tab-layout-heading {
         font-size: 2.2rem;
+        text-align: center; /* Centered as per H1 guideline */    
     }
 
     .filter-bar {
