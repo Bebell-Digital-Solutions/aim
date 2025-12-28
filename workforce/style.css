@@ -613,7 +613,7 @@ a { text-decoration: none; cursor: pointer; }
 }
 
 .sidebar-nav-button.active .sidebar-nav-icon {
-    transform: rotate(90deg) scale(1.4);
+    transform: rotate(45deg) scale(1.4);
     animation: spinOnce 0.5s ease;
 }
 
@@ -900,7 +900,7 @@ a { text-decoration: none; cursor: pointer; }
     }
 
     #sidebar-logo {
-        height: 50px;
+        height: 75px;
     }
 
     .sidebar-subtitle {
