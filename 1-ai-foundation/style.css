@@ -14,7 +14,7 @@
 
 
 
-      /* Typography */
+   /* Typography */
       --body-font: 'Inter', sans-serif;
       --signature-font: 'Inter', sans-serif;
       --font-medium: 500;
@@ -32,8 +32,6 @@
       --scroll-box-color: #333;
       --scroll-thumb-color: #555;
     }
-
-
 
 
     /* --- Base & Page Load Animation --- */
