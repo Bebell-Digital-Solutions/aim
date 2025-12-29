@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIM Bootcamp: Stage 2 - Prompt Craftsmanship</title>
+    
+    <!-- =========================== -->
+    <!-- REQUIRED DEPENDENCIES -->
+    <!-- =========================== -->
+    <!-- Import Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- Icons (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+
+
+
+</head>
+<body>
+  
+  <!-- =========================== -->
+    <!-- NAVIGATION BAR HTML -->
+    <!-- =========================== -->
+    <nav id="nav-bar">
+        <a href="/" id="nav-logo">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
+        </a>
+        
+        <!-- Mobile Toggle Button -->
+        <button id="mobile-menu-toggle" aria-label="Open Menu">
+            <i class="fa-solid fa-bars" id="toggle-icon"></i>
+        </button>
+        
+        <div id="nav-menu">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/about" class="nav-link">About</a>
+            
+            <!-- Courses Dropdown -->
+            <div class="nav-item has-submenu">
+                <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
+                <div class="submenu-courses" id="courses-submenu">
+                    <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
+                    <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
+                    <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+                    <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
+                    <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+                </div>
+            </div>
+            
+            <a href="/pricing-page" class="nav-link">Pricing</a>
+            <a href="/contact" class="nav-link">Contact</a>
+            
+            <!-- CTA Buttons -->
+            <a href="/login" class="nav-cta desktop-cta-only">MEMBER LOGIN</a>
+            <a href="/login" class="nav-cta mobile-cta-only">MEMBER LOGIN</a>
+        </div>
+    </nav>
+
+
+  <!-- Page Header -->
+  <header style="text-align: center; margin-bottom: 3rem; padding-top: 1rem;">
+    <h1>AI Foundation Course Overview</h1>
+    <p style="font-size: 1.1rem; color: var(--text-color); margin-top: 0.5rem;">Master AI fundamentals in just a few hours</p>
+  </header>
+  
+  <!-- Main Content -->
+  <main>
+    <!-- Course Overview -->
+    <section class="section" style="animation-delay: 0s;">
+      <div class="course-at-glance-grid">
+        <div>
+          <!-- Title on top of the left column (H3 size, non-flex) -->
+          <h3 class="grid-title">Course Overview</h3>
+          <ul>
+            <li><i class="fa-solid fa-book-open-reader"></i> <div class="li-content">Estimated reading time 3 minutes</div></li>
+            <li><i class="fa-solid fa-file-lines"></i> <div class="li-content">Length 1 page (Overview)</div></li>
+            <li><i class="fa-solid fa-square-poll-horizontal"></i> <div class="li-content">Difficulty Level Easy</div></li>
+          </ul>
+        </div>
+        <div class="video-container">
+          <!-- Placeholder YouTube Embed (16:9 Aspect Ratio) -->
+          <iframe 
+            src="https://www.youtube.com/embed/yBe10HO1wu8?si=fv07vaETaV9G8XPe" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+            title="Course Introduction Video">
+          </iframe>
+        </div>
+      </div>
+    </section>
+    
+    <!-- What You Will Learn -->
+    <section class="section" style="animation-delay: 0.1s;">
+      <h2>Key Learning Outcomes</h2>
+      <div class="two-column">
+        <div>    
+          <ul>
+            <li><i class="fa-solid fa-bullseye"></i> <div class="li-content">Understand how AI works in simple terms so you can speak confidently in work settings.</div></li>
+            <li><i class="fa-solid fa-clock-rotate-left"></i> <div class="li-content">Identify where AI can save you time and reduce manual tasks in your daily workflow.</div></li>
+            <li><i class="fa-solid fa-arrow-right-arrow-left"></i> <div class="li-content">Compare popular AI tools and pick the right ones for marketing, sales, or operations.</div></li>
+            <li><i class="fa-solid fa-brain"></i> <div class="li-content">Plan small AI projects that improve productivity for you or your team.</div></li>
+            <li><i class="fa-solid fa-shield-halved"></i> <div class="li-content">Apply safe and responsible practices when using AI at work.</div></li>
+            <li><i class="fa-solid fa-lightbulb"></i> <div class="li-content">Build a basic AI strategy for a real or hypothetical business.</div></li>
+          </ul>
+        </div>
+      
+        <div class="image-container">
+          <!-- Image with object-fit: cover and hover zoom effect -->
+          <img src="https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Banners/AIM%20-%20AI%20Mastery%20Program%20(1).gif"
+               onerror="this.onerror=null;this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Banners/AIM%20-%20AI%20Mastery%20Program%20(1).gif';"
+               alt="AI Mastery Program - Modern Computer Graphic">
+        </div>    
+      </div>
+    </section>
+
+    <!-- Instructor Section - Card Style -->
+    <section class="instructor-card" style="animation-delay: 0.2s;">
+      <h2>Meet Your Instructor</h2>
+      <div class="instructor-profile">
+        <div class="instructor-photo">
+          <!-- Image with object-fit: cover and hover zoom effect -->
+          <img src="https://bucket.mlcdn.com/a/3336/3336910/images/a66aa860be95a05695a7f45549dc931197c918b6.png"
+               onerror="this.onerror=null;this.src='https://bucket.mlcdn.com/a/3336/3336910/images/a66aa860be95a05695a7f45549dc931197c918b6.png';"
+               alt="Patricia - AIM Program Trainer">
+        </div>
+        <div>
+          <!-- Added class to h3 for icon layout -->
+          <h3 class="h3-with-icon"><i class="fa-solid fa-user-tie"></i> Patricia - AI Specialist</h3>
+          <p>
+            Patricia is an experienced AI educator and consultant with over 8 years of experience in digital transformation. She specializes in making complex AI concepts accessible to professionals from all backgrounds. Her practical approach to AI implementation has helped numerous organizations streamline their workflows and boost productivity.
+          </p>
+          <p style="margin-top: 1rem;">
+            As the lead trainer for the AIM Program, Patricia brings real-world expertise and a passion for empowering teams to leverage AI tools effectively in their daily operations.
+          </p>
+          <a href="#" class="cta-button">Learn More About Patricia</a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Course Structure -->
+    <section class="section" style="animation-delay: 0.3s;">
+      <h2>How the Course is Structured</h2>
+      <ul>
+        <li><i class="fa-solid fa-layer-group"></i> <div class="li-content">Seven modules you can finish at your own pace.</div></li>
+        <li><i class="fa-solid fa-laptop-code"></i> <div class="li-content">Each module includes short lessons, practical examples, and simple exercises.</div></li>
+        <li><i class="fa-solid fa-clipboard-question"></i> <div class="li-content">Quizzes at the end of each module check your understanding before moving on.</div></li>
+        <li><i class="fa-solid fa-trophy"></i> <div class="li-content">A final project helps you apply everything to a real scenario.</div></li>
+        <li><i class="fa-solid fa-hourglass-half"></i> <div class="li-content">Total course length: about 3 to 4 hours.</div></li>
+      </ul>
+    </section>
+    
+    <!-- Time Expectations -->
+    <section class="section" style="animation-delay: 0.4s;">
+      <h2>Time Expectations</h2>
+      <ul>
+        <li><i class="fa-solid fa-person-walking"></i> <div class="li-content">Individual lessons take 3 to 6 minutes to read.</div></li>
+        <li><i class="fa-solid fa-map-location-dot"></i> <div class="li-content">Full modules take 20 to 30 minutes.</div></li>
+        <li><i class="fa-solid fa-rocket"></i> <div class="li-content">The final project takes 30 to 45 minutes to complete.</div></li>
+        <li><i class="fa-solid fa-calendar-week"></i> <div class="li-content">You can finish the full course in one afternoon or spread it across a week.</div></li>
+      </ul>
+    </section>
+    
+    <!-- Tools -->
+    <section class="section" style="animation-delay: 0.5s;">
+      <h2>Tools You Will Use</h2>
+      <p>You will work with simple, accessible tools:</p>
+      <ul>
+        <li><i class="fa-solid fa-comments"></i> <div class="li-content">Chat based AI assistants such as ChatGPT or an equivalent tool.</div></li>
+        <li><i class="fa-solid fa-sheet-plastic"></i> <div class="li-content">Short worksheets to help you plan your AI ideas.</div></li>
+        <li><i class="fa-solid fa-globe"></i> <div class="li-content">Optional browser based tools for writing, transcription, and task automation.</div></li>
+      </ul>
+      <p style="margin-top: 1rem; color: var(--title-color);"><strong><i class="fa-solid fa-check-circle" style="color: var(--skin-color);"></i> No technical setup is required.</strong></p>
+    </section>
+    
+    <!-- Quizzes and Final Project -->
+    <section class="section" style="animation-delay: 0.6s;">
+      <h2>Quizzes and Final Project Details</h2>
+      <ul>
+        <li><i class="fa-solid fa-percent"></i> <div class="li-content">Each quiz has 5 to 8 questions.</div></li>
+        <li><i class="fa-solid fa-unlock"></i> <div class="li-content">You need at least 70 percent score to unlock the next module.</div></li>
+        <li><i class="fa-solid fa-rotate-right"></i> <div class="li-content">You can retry quizzes as many times as you want.</div></li>
+        <li><i class="fa-solid fa-magnifying-glass-chart"></i> 
+            <div class="li-content">
+                The final project asks you to:
+                <ul class="project-bullets">
+                    <li>Choose a real or hypothetical business</li>
+                    <li>Identify AI opportunities</li>
+                    <li>Pick tools that fit those needs</li>
+                    <li>Create a short plan you can present</li>
+                </ul>
+            </div>
+        </li>
+        <li><i class="fa-solid fa-star"></i> <div class="li-content">The project is graded on clarity and practicality, not technical detail.</div></li>
+      </ul>
+    </section>
+    
+    <!-- FAQ Block (Updated: Cardless, Centered Title, 10px Gap) -->
+    <div id="faq" class="faq-section" style="animation-delay: 0.7s;">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-container">
+        
+        <!-- FAQ Item 1 -->
+        <div class="faq-item">
+          <button class="faq-header">
+            <span class="faq-question">Who is this program for?</span>
+            <i class="fa-solid fa-plus faq-icon"></i>
+          </button>
+          <div class="faq-content">
+            <p class="faq-answer">
+              This program is designed for non-technical professionals—managers, marketers, sales teams, and operations staff—who want to leverage AI tools to boost productivity and efficiency in their daily work without needing to learn how to code.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+          <button class="faq-header">
+            <span class="faq-question">What tools do I need to take the course?</span>
+            <i class="fa-solid fa-plus faq-icon"></i>
+          </button>
+          <div class="faq-content">
+            <p class="faq-answer">
+              You only need access to a modern web browser and a free or paid account for a common chat-based AI tool like ChatGPT, Gemini, or Claude. No specialized software or technical setup is required.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+          <button class="faq-header">
+            <span class="faq-question">Is there a time limit to complete the course?</span>
+            <i class="fa-solid fa-plus faq-icon"></i>
+          </button>
+          <div class="faq-content">
+            <p class="faq-answer">
+              No, the AIM program is entirely self-paced. You have lifetime access to the materials and can complete the modules and quizzes according to your own schedule.
+            </p>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 4 -->
+        <div class="faq-item">
+          <button class="faq-header">
+            <span class="faq-question">Will I receive a certificate?</span>
+            <i class="fa-solid fa-plus faq-icon"></i>
+          </button>
+          <div class="faq-content">
+            <p class="faq-answer">
+              Yes, upon successful completion of all modules and the final project, you will receive a digital certificate of completion for the AI Mastery Program (AIM™).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Community Button (New Block) -->
+    <div class="community-button-container">
+        <a href="#community" class="community-button">
+            <i class="fa-solid fa-users"></i> Join the AIM Community
+        </a>
+    </div>
+    
+    <!-- Getting Started (Converted to two-column) -->
+    <section class="section" style="animation-delay: 0.8s;">
+      <div class="two-column">
+        <div>
+          <h2>Getting Started</h2>
+          <p>
+            To begin the course, simply proceed to the first module. You can work through the material at your own pace and return to any section as needed. The quizzes are designed to reinforce your learning, and the final project will help you apply these concepts to your own work context.
+          </p>
+          <p style="margin-top: 1rem;">
+            If you have any questions during the course, don't hesitate to use the discussion forums or reach out to our support team.
+          </p>
+          <a href="#first-module" class="cta-button">Start Your AI Mastery Journey</a>
+        </div>
+        <div class="image-container">
+          <!-- Image for getting started with a checkmark theme -->
+          <img src="https://bucket.mlcdn.com/a/3336/3336910/images/1a6f90e9d77dc969ff7e463de8573a2c4851e23a.png"
+               onerror="this.onerror=null;this.src='https://bucket.mlcdn.com/a/3336/3336910/images/1a6f90e9d77dc969ff7e463de8573a2c4851e23a.png';"
+               alt="Ready to start icon">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Back to Top Button (Updated to use Image) -->
+  <button id="back-to-top" aria-label="Back to Top"></button>
+  
+  <!-- Footer (New Structure with Full Width Background) -->
+  <footer class="footer">
+    <div class="footer-bg">
+      <div class="footer-container">
+        
+        <div>
+          <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="AIM Logo" class="footer-logo">
+          <h1 class="footer-title">AIM™</h1>
+          <span class="footer-subtitle">AI Mastery Program</span>
+        </div>
+        
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#courses">All Courses</a></li>
+          <li><a href="#pricing">Pricing Plans</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#terms">Terms & Privacy</a></li>
+        </ul>
+        
+        <div class="footer-socials">
+          <a href="https://linkedin.com" target="_blank" class="footer-social" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="https://youtube.com" target="_blank" class="footer-social" aria-label="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" class="footer-social" aria-label="Twitter">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+          <a href="https://facebook.com" target="_blank" class="footer-social" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+        </div>
+      </div>
+        
+      <p class="footer-copy">Copyright &copy; 2025 AIM™. All rights reserved.<br>Powered with 🧡 by Bebell Digital Solutions.</p>
+    </div>
+  </footer>
+</body>
+</html>
