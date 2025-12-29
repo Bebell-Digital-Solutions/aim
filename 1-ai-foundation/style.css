@@ -1,0 +1,288 @@
+ /* =========================== */
+        /* BASE VARIABLES & STYLES */
+        /* =========================== */
+        :root {
+            --skin-color: #ff5011;
+            --mirage-color: hsl(210, 10%, 23%);
+            --title-color: hsl(242, 8%, 98%);
+            --text-color: hsl(242, 8%, 80%);
+            --body-color: #0d0d0d;
+            --box-color: hsl(242, 14%, 12%);
+            --body-font: 'Inter', sans-serif;
+        }
+
+        /* Basic Reset for Template Preview */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--body-font);
+            background-color: var(--body-color);
+            color: var(--text-color);
+            padding-top: 8rem; /* Space for fixed nav */
+        }
+        
+        a { text-decoration: none; cursor: pointer; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* =========================== */
+        /* NAVIGATION BAR STYLES */
+        /* =========================== */
+        
+        #nav-bar {
+            position: fixed; 
+            top: 2rem; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: rgba(25, 25, 25, 0.85); 
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--box-color); 
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem; 
+            display: flex; 
+            align-items: center;
+            max-width: 1100px; 
+            width: 90%; 
+            z-index: 1000;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+        #nav-logo img { height: 35px; }
+        
+        /* Desktop: nav-menu contains all links and is flexed */
+        #nav-menu { 
+            display: flex; 
+            gap: 1.5rem; 
+            margin-left: auto; 
+            align-items: center; 
+        }
+
+        /* Nav links and CTA */
+        .nav-link { 
+            color: var(--text-color); 
+            transition: color 0.3s, transform 0.2s; 
+            font-weight: 500; 
+        }
+        .nav-link:hover { 
+            color: var(--skin-color); 
+            transform: translateY(-1px); 
+        }
+
+        /* CTA Button */
+        .nav-cta {
+            background: linear-gradient(90deg, var(--skin-color), #d43a00);
+            color: var(--title-color); 
+            padding: 0.5rem 1rem; 
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); 
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+        }
+        .nav-cta:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); 
+        }
+        
+        .has-submenu { position: relative; }
+
+        /* Submenu Default State (Hidden - Desktop) */
+        .submenu-courses {
+            position: absolute; 
+            top: 100%; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: var(--box-color); 
+            border-radius: 0.5rem; 
+            padding: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
+            opacity: 0; 
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, top 0.3s; 
+            width: 250px;
+            z-index: 1001;
+        }
+
+        /* Submenu Active State */
+        .submenu-courses.active { 
+            opacity: 1; 
+            visibility: visible;
+            top: calc(100% + 10px);
+        }
+        
+        .submenu-link { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.75rem; 
+            color: var(--text-color); 
+            padding: 0.5rem; 
+            border-radius: 0.25rem; 
+            transition: background-color 0.3s, color 0.3s; 
+        }
+        .submenu-link:hover { 
+            background-color: rgba(255, 80, 17, 0.1); 
+            color: var(--skin-color); 
+        }
+        .submenu-link i { width: 15px; text-align: center; }
+
+        /* Mobile visibility controls (Default/Desktop state) */
+        #mobile-menu-toggle { 
+            display: none; 
+            border: none;
+            background: transparent;
+            color: var(--skin-color);
+            font-size: 1.8rem;
+            cursor: pointer;
+            margin-left: auto;
+        }
+        .nav-cta.mobile-cta-only { display: none; }
+        .nav-cta.desktop-cta-only { display: block; }
+
+        /* =========================== */
+        /* RESPONSIVE STYLES (TABLET/MOBILE) */
+        /* =========================== */
+        /* Applies to screens 980px and smaller */
+        @media screen and (max-width: 980px) {
+            body { 
+                padding-top: 6rem; 
+            }
+            
+            /* Mobile Navigation Bar Container */
+            #nav-bar {
+                padding: 0.5rem 1rem;
+                justify-content: space-between;
+                box-shadow: none; 
+                width: 100%;
+                max-width: 100%;
+                top: 0;
+                left: 0;
+                transform: none;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+            }
+            
+            #mobile-menu-toggle {
+                display: block;
+                position: static;
+                transform: none;
+                z-index: 1002;
+                margin-left: auto;
+            }
+            
+            /* Mobile Menu Overlay */
+            #nav-menu {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: var(--body-color); 
+                z-index: 1001; 
+                flex-direction: column;
+                justify-content: flex-start; 
+                align-items: center; 
+                gap: 1.5rem;
+                padding: 6rem 1.5rem 2rem;
+                margin: 0;
+            }
+
+            #nav-menu.mobile-open {
+                display: flex;
+                padding: 6rem 1.5rem 2rem;
+                overflow-y: auto;
+            }
+            
+            #nav-menu .nav-link,
+            #nav-menu .nav-item {
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: var(--title-color);
+                padding: 0.5rem 0;
+                margin: 0;
+                width: auto; 
+                text-align: center;
+            }
+            
+            #nav-menu .nav-item { margin: 0; padding: 0; }
+
+            #nav-menu .nav-link:hover {
+                color: var(--skin-color);
+                transform: none;
+            }
+            
+            /* Mobile Dropdown Styling */
+            .has-submenu {
+                display: flex;
+                flex-direction: column;
+                align-items: center; 
+                width: 100%; 
+            }
+            
+            .submenu-courses {
+                position: static; 
+                width: 100%; 
+                background: transparent;
+                box-shadow: none;
+                padding: 0; 
+                margin: 0.5rem 0 0 0; 
+                opacity: 0; 
+                visibility: hidden;
+                display: none;
+                max-height: 0;
+                overflow: hidden;
+                transition: opacity 0.3s, max-height 0.3s;
+                flex-direction: column; 
+                align-items: flex-start; 
+                text-align: left;
+                border-radius: 0;
+            }
+            
+            .submenu-courses.active { 
+                display: flex;
+                opacity: 1;
+                visibility: visible;
+                max-height: 400px;
+                padding: 0; 
+                margin-top: 0.5rem; 
+            }
+            
+            .submenu-courses .submenu-link {
+                font-size: 1.1rem;
+                padding: 0.8rem 1rem 0.8rem 2.5rem; /* Indented padding */
+                justify-content: flex-start; 
+                width: 100%;
+                text-align: left;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            
+            /* Mobile CTA button */
+            .nav-cta.mobile-cta-only {
+                padding: 0.8rem 2rem; 
+                width: 100%;
+                max-width: none; 
+                white-space: nowrap;
+                font-size: 1.2rem; 
+                font-weight: 700;
+                margin-top: 1rem; 
+                display: block !important; 
+                align-self: center; 
+                text-align: center;
+            }
+            
+            /* Hide desktop items on mobile */
+            .nav-cta.desktop-cta-only,
+            .nav-cta:not(.mobile-cta-only) { 
+                display: none !important; 
+            }
+        }
+
+        /* Desktop/Large Tablet Breakpoint */
+        @media screen and (min-width: 981px) {
+            #nav-menu { display: flex !important; }
+            .nav-cta.desktop-cta-only { display: block !important; }
+        }
+        
+        /* Tablet Spacing Adjustment */
+        @media screen and (min-width: 981px) and (max-width: 1024px) {
+            #nav-bar { width: 95%; padding: 0.5rem 1rem; }
+            #nav-menu { gap: 1rem; }
+        }
