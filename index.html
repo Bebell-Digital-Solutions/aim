@@ -307,7 +307,7 @@
         .footer-links a:hover { color: var(--skin-color); }
 
         .footer-socials {
-            justify-self: flex-end;
+            justify-self: flex-end; /* Pushes to right on desktop */
             display: flex; 
             align-items: center;
             gap: var(--mb15);
@@ -1262,11 +1262,26 @@
                 row-gap: 3rem;
                 text-align: center;
             }
-            .footer-brand, .footer-brand-text, .footer-socials {
+            
+            /* FIX: Centering footer elements on mobile */
+            .footer-brand {
                 align-items: center;
                 text-align: center;
                 justify-content: center;
+                justify-self: center; /* Ensures brand centers in grid */
             }
+            
+            .footer-brand-text {
+                text-align: center;
+            }
+            
+            .footer-socials {
+                justify-content: center;
+                justify-self: center; /* FIX: Overrides desktop 'flex-end' to center icons */
+                display: flex;
+                gap: var(--mb15);
+            }
+            
             .footer-links {
                 flex-direction: column;
                 row-gap: 1.5rem;
