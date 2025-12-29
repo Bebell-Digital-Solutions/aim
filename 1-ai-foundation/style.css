@@ -4,7 +4,8 @@
 
 
 
-    :root {
+        /* --- AIM Brand Styles --- */
+        :root {
             --skin-color: #ff5011;
             --mirage-color: hsl(210, 10%, 23%);
             --title-color: hsl(242, 8%, 98%);
@@ -12,85 +13,63 @@
             --body-color: #0d0d0d;
             --box-color: hsl(242, 14%, 12%);
             --body-font: 'Inter', sans-serif;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
             --small-font-size: 0.95rem;
             --h3-font-size: 1.25rem;
             --smaller-font-size: 0.75rem;
             --mb15: 0.75rem;
             --mb3: 1.5rem;
-            --hue-color: 242; /* Used for transparent shadows/colors */
-
         }
         
         
-
-
-
-
-
-   /* Typography */
-      --body-font: 'Inter', sans-serif;
-      --signature-font: 'Inter', sans-serif;
-      --font-medium: 500;
-      --font-bold: 700;
-      --h3-font-size: 1.7rem;
-      --small-font-size: 0.95rem;
-      --smaller-font-size: 0.85rem;
-
-      /* Margins */
-      --mb025: 0.25rem;
-      --mb15: 1.5rem;
-      --mb25: 2.5rem;
-      
-      /* Scrollbar/Misc */
-      --scroll-box-color: #333;
-      --scroll-thumb-color: #555;
-    }
-
-
-    /* --- Base & Page Load Animation --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-
-   html {
-      scroll-behavior: smooth;
-    }
-    
-
-
-    /* Custom Scrollbar for Vertical Scrolling */
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-        background: var(--scroll-box-color);
-    }
-    ::-webkit-scrollbar-thumb {
-        background: var(--skin-color);
-        border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-        background: #d43a00;
-    }
-
-
-
-    body {
-      margin: 0;
-      font-family: var(--body-font);
-      background-color: var(--body-color);
-      color: var(--text-color);
-      line-height: 1.6;
-      padding: 2rem 1rem; /* Base padding */
-      max-width: none; /* Allow full width for background elements */
-      margin-left: auto;
-      margin-right: auto;
-      padding-top: 8rem; /* Space for fixed nav */
-    }
         
-        a { text-decoration: none; cursor: pointer; }
+        
+        
+
+        /* --- Base & Scrollbar --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        
+        
+        
+        body {
+            margin: 0;
+            font-family: var(--body-font);
+            background-color: var(--body-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 8rem; /* Space for fixed nav */
+            overflow-x: hidden;
+        }
+        
+        
+        
+        
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            min-height: 60vh; /* Ensure footer pushes down */
+        }
+        
+        
+        
         img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; cursor: pointer; }
+        
+        
 
-
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #333; }
+        ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
+        
+        /* Utility container class */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+       
 
 
 
