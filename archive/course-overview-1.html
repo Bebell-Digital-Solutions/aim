@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Overview - AIM™</title>
+  
+  <!-- Import Inter font (as per instructions) --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Icons (Font Awesome is critical) --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+
+    <!-- Favicon -->
+<link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
+
+
+
+  
+  <style>
+    :root {
+      /* Color Palette */
+      --skin-color: #ff5011; /* Orange-Red Accent */
+      --mirage-color: hsl(210, 10%, 23%); /* Dark Gray Background Component */
+      --title-color: hsl(242, 8%, 98%); /* Near White for Titles */
+      --text-color: hsl(242, 8%, 80%); /* Light Gray for Body Text */
+      --body-color: #0d0d0d; /* Deep Black/Very Dark Gray */
+      --box-color: hsl(242, 14%, 12%); /* Slightly lighter than body for cards */
+      --hue-color: 242; /* Used for transparent shadows/colors */
+
+      /* Typography */
+      --body-font: 'Inter', sans-serif;
+      --signature-font: 'Inter', sans-serif;
+      --font-medium: 500;
+      --font-bold: 700;
+      --h3-font-size: 1.7rem;
+      --small-font-size: 0.95rem;
+      --smaller-font-size: 0.85rem;
+
+      /* Margins */
+      --mb025: 0.25rem;
+      --mb15: 1.5rem;
+      --mb25: 2.5rem;
+      
+      /* Scrollbar/Misc */
+      --scroll-box-color: #333;
+      --scroll-thumb-color: #555;
+    }
+
+    /* --- Base & Page Load Animation --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Custom Scrollbar for Vertical Scrolling */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: var(--scroll-box-color);
+    }
+    ::-webkit-scrollbar-thumb {
+        background: var(--skin-color);
+        border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #d43a00;
+    }
+
+
+    body {
+      margin: 0;
+      font-family: var(--body-font);
+      background-color: var(--body-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 2rem 1rem; /* Base padding */
+      max-width: none; /* Allow full width for background elements */
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 8rem; /* Space for fixed nav */
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* --- Page Loader --- */
+    .page-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.3s ease;
+    }
+
+    .loader-header {
+      color: white;
+      font-size: 24px;
+      font-family: Arial, sans-serif;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .progress {
+      width: 272.8px;
+      height: 41.7px;
+      border-radius: 28.8px;
+      color: var(--skin-color);
+      background-color: #000;
+      border: 2.9px solid;
+      position: relative;
+    }
+
+    .progress::before {
+      content: "";
+      position: absolute;
+      margin: 2.9px;
+      inset: 0 100% 0 0;
+      border-radius: inherit;
+      background: currentColor;
+      animation: progress-pf82op 1.5s forwards;
+    }
+
+    @keyframes progress-pf82op {
+      100% {
+        inset: 0;
+      }
+    }
+
+    .page-loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* --- Navigation Bar --- */
+    #nav-bar {
+      position: fixed;
+      top: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(25, 25, 25, 0.85); /* semi-transparent dark */
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--box-color);
+      border-radius: 0.75rem;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      max-width: 980px; /* Constrained width */
+      width: 90%;
+      z-index: 1000;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+    }
+
+    #nav-logo img {
+      height: 35px;
+      width: auto;
+      display: block;
+    }
+
+    #nav-menu {
+      display: flex;
+      gap: 1.5rem;
+      margin-left: auto;
+      align-items: center;
+      position: relative;
+    }
+
+    .nav-link {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: var(--font-medium);
+      font-size: 1rem;
+      transition: color 0.3s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .nav-link:hover, .nav-link:focus {
+      color: var(--skin-color);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .nav-cta {
+      background: linear-gradient(90deg, var(--skin-color), #d43a00);
+      color: var(--title-color);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: var(--font-bold);
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4);
+    }
+
+    .nav-cta:hover, .nav-cta:focus {
+      background: linear-gradient(90deg, #d43a00, var(--skin-color));
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(255, 80, 17, 0.6);
+      outline: none;
+    }
+
+    /* Submenu Styling */
+    .submenu-courses {
+      position: absolute;
+      top: calc(100% + 0px); /* Adjusted to remove gap */
+      left: 0;
+      background: var(--box-color);
+      border-radius: 0.5rem;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+      padding: 0.5rem 0;
+      display: none;
+      min-width: 300px;
+      z-index: 1001;
+      flex-direction: column;
+      border: 1px solid var(--mirage-color);
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-item.has-submenu:hover .submenu-courses,
+    .nav-item.has-submenu:focus-within .submenu-courses {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .submenu-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.75rem 1.25rem;
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .submenu-link:hover, .submenu-link:focus {
+      background: rgba(255, 80, 17, 0.1);
+      color: var(--skin-color);
+      outline: none;
+    }
+
+    /* --- Content Sections --- */
+    main {
+      max-width: 980px; /* Constrained main content */
+      margin: 0 auto;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      color: var(--skin-color);
+      font-weight: var(--font-bold);
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    
+    h2 { /* Main section titles, top of block */
+      font-size: 2.2rem;
+      color: var(--title-color);
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+      border-left: 4px solid var(--skin-color);
+      padding-left: 15px;
+      font-weight: var(--font-bold);
+    }
+    
+    /* Base h3 style, non-flex */
+    h3 { 
+      font-size: var(--h3-font-size);
+      color: var(--title-color);
+      text-align: left;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      font-weight: var(--font-bold);
+    }
+
+    /* Applies flex only to h3s with icons */
+    .h3-with-icon {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Styles the h3 title inside the grid (Course at a Glance) */
+    .grid-title {
+        margin-top: 0;
+        margin-bottom: 1.5rem; 
+        white-space: nowrap; 
+    }
+
+
+    h3 i { /* Style for icons in h3 */
+      color: var(--skin-color);
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    /* --- Layout Adjustments (1/2 columns) --- */
+    .two-column, .instructor-profile {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 50% / 50% split */
+      gap: 3rem;
+      align-items: center; 
+      margin-bottom: 0;
+    }
+
+    /* CUSTOM GRID FOR FIRST SECTION: List (40%) and Video (60%) */
+    .course-at-glance-grid {
+      display: grid;
+      grid-template-columns: 2fr 3fr; /* Custom split for larger video */
+      gap: 3rem;
+      align-items: center;
+    }
+
+
+    /* Card/Section Styles with Hover and Animation */
+    .section, .instructor-card {
+      margin-bottom: 3rem;
+      background-color: var(--box-color);
+      border-radius: 12px;
+      padding: 2.5rem;
+      border: 1px solid var(--mirage-color);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s ease-out;
+      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0; /* Starts opaque for fadeInUp */
+    }
+    
+    /* Staggering the animation delay for sections */
+    .section:nth-child(2) { animation-delay: 0.1s; }
+    .section:nth-child(3) { animation-delay: 0.2s; }
+    .section:nth-child(4) { animation-delay: 0.3s; }
+    .section:nth-child(5) { animation-delay: 0.4s; }
+    .section:nth-child(6) { animation-delay: 0.5s; }
+    .section:nth-child(7) { animation-delay: 0.6s; }
+    .faq-section { animation-delay: 0.7s; } /* Custom delay for FAQ */
+    .section:nth-child(9) { animation-delay: 0.8s; } /* Getting Started */
+
+
+    .section:hover, .instructor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(255, 80, 17, 0.2), 0 4px 12px rgba(0, 0, 0, 0.5); /* Lifted skin-color glow */
+    }
+
+    /* Image Containers with Hover - Adjusted for Square Images */
+    .image-container, .instructor-photo {
+      width: 100%;
+      padding-top: 100%; 
+      position: relative; 
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .image-container img, .instructor-photo img {
+      position: absolute; 
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .image-container:hover img, .instructor-photo:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Video Container for 16:9 Aspect Ratio */
+    .video-container {
+      width: 100%;
+      position: relative;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio (9/16 * 100) */
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+
+    /* Lists with Font Awesome Icons */
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    ul li {
+      margin-bottom: 1rem;
+      position: relative;
+      display: flex; 
+      align-items: flex-start;
+      gap: 1rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+      font-size: 1.05rem;
+    }
+    
+    ul li:hover {
+      transform: translateX(5px);
+      color: var(--title-color);
+    }
+
+    ul li i {
+      color: var(--skin-color);
+      font-size: 1.15rem;
+      margin-top: 5px; 
+      flex-shrink: 0;
+    }
+
+    /* Utility to wrap text/nested content inside a flex LI */
+    .li-content {
+        flex-grow: 1;
+        align-self: flex-start;
+    }
+    
+    /* Specific styling for nested project bullets (requested by user) */
+    .project-bullets {
+      list-style-type: disc; 
+      padding-left: 1.5rem; 
+      margin-bottom: 0;
+      margin-top: 0.5rem;
+    }
+
+    .project-bullets li {
+      list-style-type: disc; 
+      display: list-item; 
+      position: static; 
+      padding-left: 0;
+      gap: 0;
+      transform: none;
+      transition: none;
+      font-size: 1rem;
+      color: var(--text-color);
+      margin-bottom: 0.5rem; 
+    }
+    
+    .project-bullets li:hover {
+      color: var(--text-color); 
+    }
+
+    /* Call to Action Button */
+    .cta-button {
+      background: linear-gradient(90deg, var(--skin-color), #d43a00);
+      color: var(--title-color);
+      padding: 14px 28px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.05rem;
+      font-weight: var(--font-bold);
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(255, 80, 17, 0.4);
+    }
+    
+    .cta-button:hover {
+      background: linear-gradient(90deg, #d43a00, var(--skin-color));
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(255, 80, 17, 0.6);
+    }
+    
+    .cta-button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4);
+    }
+    
+    /* --- FAQ Section Styles (Cardless, Centered Title) --- */
+    .faq-section { /* Custom class for the whole FAQ block */
+      margin-bottom: 3rem;
+      padding: 0 1rem; /* Use body padding for edges */
+    }
+
+    .faq-section h2 {
+      text-align: center; /* Center the title */
+      border-left: none; /* Remove title border */
+      padding-left: 0;
+      margin-bottom: 2rem;
+    }
+
+    .faq-container {
+        max-width: 768px; 
+        margin-left: auto;
+        margin-right: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px; /* Reduced gap as requested */
+        width: 100%;
+        padding: 0; /* Remove inner padding */
+    }
+
+    .faq-item {
+        background-color: var(--box-color);
+        border-radius: .5rem;
+        padding: 1.25rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        width: 100%;
+        margin-bottom: 0; /* Handled by container gap */
+        transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+        border-left: 4px solid var(--skin-color);
+    }
+
+    .faq-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        gap: 1rem;
+        border: none;
+        background: transparent;
+        width: 100%;
+        padding: 0;
+    }
+
+    .faq-question {
+        font-size: var(--small-font-size);
+        color: var(--title-color);
+        text-align: left;
+        width: 100%;
+        font-weight: var(--font-medium);
+    }
+    
+    .faq-icon {
+        font-size: 1.5rem;
+        color: var(--skin-color);
+        transition: transform .3s;
+        flex-shrink: 0;
+    }
+    
+    .faq-content {
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height .4s cubic-bezier(0.5, 0, 0.1, 1); 
+    }
+    
+    .faq-answer {
+        font-size: var(--small-font-size);
+        padding-top: 1rem;
+        border-top: 1px solid var(--scroll-thumb-color);
+        margin-top: 1rem;
+        text-align: left;
+        line-height: 1.7;
+    }
+
+    /* Active state for FAQ item */
+    .faq-open .faq-icon {
+        transform: rotate(45deg);
+    }
+
+    .faq-open .faq-content {
+        max-height: 500px; 
+    }
+    
+    /* --- Community Button Styles --- */
+    .community-button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+        margin-bottom: 3rem;
+        width: 100%;
+    }
+
+    .community-button {
+        background: linear-gradient(90deg, var(--skin-color), #d43a00);
+        color: var(--title-color);
+        border: none;
+        cursor: pointer;
+        font-weight: var(--font-bold);
+        text-decoration: none;
+        display: inline-block;
+        font-size: var(--h3-font-size);
+        padding: 1rem 2rem;
+        border-radius: .5rem;
+        transition: all 0.4s ease;
+        box-shadow: 0 4px 15px rgba(255, 80, 17, 0.3);
+    }
+    
+    .community-button:hover {
+        background: linear-gradient(90deg, #d43a00, var(--skin-color));
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(255, 80, 17, 0.4);
+    }
+    
+    /* --- Back to Top Button --- */
+    #back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex; /* Kept flex for centering logic, even without icon */
+        align-items: center;
+        justify-content: center;
+        width: 45px; /* Sizing for the image */
+        height: 45px; /* Sizing for the image */
+        background-color: transparent; 
+        background-image: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597');
+        background-size: contain; /* Uniform button size based on image */
+        background-repeat: no-repeat;
+        background-position: center;
+        border: none;
+        border-radius: 0; /* Remove rounded corners */
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: none; /* Remove shadows */
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        font-size: 0; /* Hide any potential text/icon */
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    #back-to-top.show {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    #back-to-top:hover {
+        background-color: transparent;
+        transform: scale(1.05); /* Subtle scale effect on hover */
+    }
+    
+    /* --- Footer Styles (Full Width Background, Horizontal Menu) --- */
+    .footer {
+      padding-top: 2rem;
+    }
+
+    .footer-bg {
+        background-color: var(--box-color);
+        padding: 3rem 0 3.5rem;
+        width: 100%; /* Ensures full width background */
+        /* Padding is kept on background to space content vertically */
+    }
+
+    .footer-container {
+        max-width: 980px; /* Constrains content width */
+        margin: 0 auto;
+        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 1.6rem;
+        align-items: start;
+        text-align: left;
+    }
+
+    .footer-title {
+        font-size: var(--h3-font-size);
+        margin-bottom: var(--mb025);
+        color: var(--title-color);
+        font-weight: var(--font-bold);
+    }
+
+    .footer-subtitle {
+        font-size: var(--small-font-size);
+        color: var(--text-color);
+    }
+
+    /* Horizontal Footer Links */
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        display: flex; /* Changed to flex */
+        flex-direction: row; /* Horizontal layout */
+        gap: 1.5rem; /* Space between links */
+        margin: 0;
+    }
+    
+    .footer-links li {
+        margin: 0;
+        padding: 0;
+    }
+
+    .footer-links li a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 1rem;
+        transition: color 0.3s ease;
+        white-space: nowrap; /* Prevent wrapping in horizontal mode */
+    }
+
+    .footer-links li a:hover {
+        color: var(--skin-color);
+    }
+
+    .footer-socials {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .footer-social {
+        font-size: 1.5rem;
+        color: var(--title-color);
+        transition: color 0.3s ease;
+    }
+
+    .footer-social:hover {
+        color: var(--skin-color);
+    }
+
+    .footer-copy {
+        font-size: var(--smaller-font-size);
+        text-align: center;
+        margin-top: 4.5rem;
+        color: var(--text-color);
+        grid-column: 1 / -1; /* Span across all columns */
+    }
+
+    .footer-copy a {
+        font-family: var(--signature-font);
+        color: var(--title-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-copy a:hover {
+        color: var(--skin-color);
+    }
+    
+    .footer-logo {
+      width: 30px; 
+      height: auto;
+      margin-bottom: 0rem;
+      display: block;
+    }
+    
+    .footer-container > div:first-child {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .footer-container {
+            grid-template-columns: 1fr;
+            text-align: center;
+            row-gap: 3rem;
+        }
+
+        .footer-socials {
+            justify-content: center;
+        }
+        
+        .footer-links {
+            flex-direction: column; /* Revert to vertical for mobile */
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-container > div:first-child {
+            align-items: center;
+        }
+        
+        .faq-container {
+            padding: 0 1rem;
+            gap: 1rem;
+        }
+        
+        .footer-copy {
+            margin-top: 3rem;
+        }
+        
+        .community-button {
+            font-size: 1.2rem;
+            padding: 0.875rem 1.75rem;
+        }
+    }
+
+
+    /* Responsive Design for main content */
+    @media (max-width: 1024px) {
+      .nav-link:not(.nav-cta) {
+        display: none;
+      }
+      .submenu-courses {
+        display: none !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+        padding-top: 7rem;
+        max-width: 100%;
+      }
+
+      .two-column, .instructor-profile, .course-at-glance-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .image-container, .instructor-photo {
+        padding-top: 100%; 
+      }
+      
+      .video-container {
+        padding-top: 56.25%; 
+      }
+
+      .section, .instructor-card {
+        padding: 1.5rem;
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+      
+      h3 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<script>
+  // --- Page Loader Logic (provided by user) ---
+  function showLoader() {
+    const loader = document.createElement('div');
+    loader.className = 'page-loader';
+    loader.innerHTML = `
+      <div class="loader-header">Wait for it...</div>
+      <div class="progress"></div>
+    `;
+    document.body.appendChild(loader);
+    return loader;
+  }
+
+  function initLoader() {
+    const loader = showLoader();
+    setTimeout(() => {
+      loader.classList.add('hidden');
+      setTimeout(() => loader.remove(), 300); // Remove after fade out
+    }, 2000); // 2 second duration
+  }
+
+  document.addEventListener('DOMContentLoaded', initLoader);
+
+
+  // --- FAQ Accordion Logic ---
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const header = item.querySelector('.faq-header');
+      header.addEventListener('click', () => {
+        const isOpen = item.classList.contains('faq-open');
+
+        // Close all others
+        faqItems.forEach(i => {
+          i.classList.remove('faq-open');
+          i.querySelector('.faq-content').style.maxHeight = '0';
+        });
+
+        // Toggle current item
+        if (!isOpen) {
+          item.classList.add('faq-open');
+          const content = item.querySelector('.faq-content');
+          // Set max-height dynamically for smooth transition
+          content.style.maxHeight = content.scrollHeight + 'px'; 
+        }
+      });
+    });
+
+    // --- Back to Top Logic ---
+    const backToTopButton = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.add('show');
+      } else {
+        backToTopButton.classList.remove('show');
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
+
+  <!-- Navigation Bar --><nav id="nav-bar">
+    <div id="nav-logo">
+      <!-- FIXED LOGO URL HERE -->
+      <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
+    </div>
+    
+    <div id="nav-menu">
+      <a href="#home" class="nav-link">Home</a>
+      
+      <div class="nav-item has-submenu">
+        <a href="#courses" class="nav-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
+        <div class="submenu-courses">
+          <a href="#courses" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a> 
+          <a href="#ai-foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation: Core Concepts</a>
+          <a href="#prompt-craftsmanship" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+          <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
+          <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+        </div>
+      </div>
+
+      
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#helpcenter" class="nav-link">HelpCenter</a>
+
+      <a href="#login" class="nav-cta">LOGIN</a>
+    </div>
+  </nav>
+
+  <!-- Page Header --><header style="text-align: center; margin-bottom: 3rem; padding-top: 1rem;">
+    <h1>AI Foundation Course Overview</h1>
+    <p style="font-size: 1.1rem; color: var(--text-color); margin-top: 0.5rem;">Master AI fundamentals in just a few hours</p>
+  </header>
+  
+  <!-- Main Content --><main>
+  
+  
+  
+  
+  
+  
+  
+  
+    <!-- Course Overview -->
+    
+    
+    <section class="section" style="animation-delay: 0s;">
+      <div class="course-at-glance-grid">
+        <div>
+          <!-- Title on top of the left column (H3 size, non-flex) -->
+          <h3 class="grid-title">Course Overview</h3>
+          <ul>
+            <li><i class="fa-solid fa-book-open-reader"></i> <div class="li-content">Estimated reading time 3 minutes</div></li>
+            <li><i class="fa-solid fa-file-lines"></i> <div class="li-content">Length 1 page (Overview)</div></li>
+            <li><i class="fa-solid fa-square-poll-horizontal"></i> <div class="li-content">Difficulty Level Easy</div></li>
+          </ul>
+        </div>
+        <div class="video-container">
+          <!-- Placeholder YouTube Embed (16:9 Aspect Ratio) -->
+          <iframe 
+            src="https://www.youtube.com/embed/yBe10HO1wu8?si=fv07vaETaV9G8XPe" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+            title="Course Introduction Video">
+          </iframe>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    <!-- What You Will Learn -->
+    
+    <section class="section" style="animation-delay: 0.1s;">
+           <h2>Key Learning Outcomes</h2>
+      <div class="two-column">
+        <div>    
+          <ul>
+            <li><i class="fa-solid fa-bullseye"></i> <div class="li-content">Understand how AI works in simple terms so you can speak confidently in work settings.</div></li>
+            <li><i class="fa-solid fa-clock-rotate-left"></i> <div class="li-content">Identify where AI can save you time and reduce manual tasks in your daily workflow.</div></li>
+            <li><i class="fa-solid fa-arrow-right-arrow-left"></i> <div class="li-content">Compare popular AI tools and pick the right ones for marketing, sales, or operations.</div></li>
+            <li><i class="fa-solid fa-brain"></i> <div class="li-content">Plan small AI projects that improve productivity for you or your team.</div></li>
+            <li><i class="fa-solid fa-shield-halved"></i> <div class="li-content">Apply safe and responsible practices when using AI at work.</div></li>
+            <li><i class="fa-solid fa-lightbulb"></i> <div class="li-content">Build a basic AI strategy for a real or hypothetical business.</div></li>
+          </ul>
+        </div>
+        
+          <div class="image-container">
+          <!-- Image with object-fit: cover and hover zoom effect --><img src="https://bucket.mlcdn.com/a/3336/3336910/images/b5e91c6b5f80270ea60b22f41a542d4bd53b54c1.jpeg"
+               onerror="this.onerror=null;this.src='https://bucket.mlcdn.com/a/3336/3336910/images/b5e91c6b5f80270ea60b22f41a542d4bd53b54c1.jpeg';"
+               alt="AI Mastery Program - Modern Computer Graphic">
+        </div>    
+          </div>
+    </section>
+
+
+
+
+
+    
+
+    <!-- Instructor Section - Card Style --><section class="instructor-card" style="animation-delay: 0.2s;">
+      <h2>Meet Your Instructor</h2>
+      <div class="instructor-profile">
+        <div class="instructor-photo">
+          <!-- Image with object-fit: cover and hover zoom effect --><img src="https://bucket.mlcdn.com/a/3336/3336910/images/a66aa860be95a05695a7f45549dc931197c918b6.png"
+               onerror="this.onerror=null;this.src='https://bucket.mlcdn.com/a/3336/3336910/images/a66aa860be95a05695a7f45549dc931197c918b6.png';"
+               alt="Patricia - AIM Program Trainer">
+        </div>
+        <div>
+          <!-- Added class to h3 for icon layout -->
+          <h3 class="h3-with-icon"><i class="fa-solid fa-user-tie"></i> Patricia - AI Specialist</h3>
+          <p>
+            Patricia is an experienced AI educator and consultant with over 8 years of experience in digital transformation. She specializes in making complex AI concepts accessible to professionals from all backgrounds. Her practical approach to AI implementation has helped numerous organizations streamline their workflows and boost productivity.
+          </p>
+          <p style="margin-top: 1rem;">
+            As the lead trainer for the AIM Program, Patricia brings real-world expertise and a passion for empowering teams to leverage AI tools effectively in their daily operations.
+          </p>
+          <a href="#" class="cta-button">Learn More About Patricia</a>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+    
+
+    <!-- Course Structure --><section class="section" style="animation-delay: 0.3s;">
+      <h2>How the Course is Structured</h2>
+      <ul>
+        <li><i class="fa-solid fa-layer-group"></i> <div class="li-content">Seven modules you can finish at your own pace.</div></li>
+        <li><i class="fa-solid fa-laptop-code"></i> <div class="li-content">Each module includes short lessons, practical examples, and simple exercises.</div></li>
+        <li><i class="fa-solid fa-clipboard-question"></i> <div class="li-content">Quizzes at the end of each module check your understanding before moving on.</div></li>
+        <li><i class="fa-solid fa-trophy"></i> <div class="li-content">A final project helps you apply everything to a real scenario.</div></li>
+        <li><i class="fa-solid fa-hourglass-half"></i> <div class="li-content">Total course length: about 3 to 4 hours.</div></li>
+      </ul>
+    </section>
+    
+    
+    
+    
+    
+
+    <!-- Time Expectations --><section class="section" style="animation-delay: 0.4s;">
+      <h2>Time Expectations</h2>
+      <ul>
+        <li><i class="fa-solid fa-person-walking"></i> <div class="li-content">Individual lessons take 3 to 6 minutes to read.</div></li>
+        <li><i class="fa-solid fa-map-location-dot"></i> <div class="li-content">Full modules take 20 to 30 minutes.</div></li>
+        <li><i class="fa-solid fa-rocket"></i> <div class="li-content">The final project takes 30 to 45 minutes to complete.</div></li>
+        <li><i class="fa-solid fa-calendar-week"></i> <div class="li-content">You can finish the full course in one afternoon or spread it across a week.</div></li>
+      </ul>
+    </section>
+    
+    
+    
+    
+    
+
+    <!-- Tools --><section class="section" style="animation-delay: 0.5s;">
+      <h2>Tools You Will Use</h2>
+      <p>You will work with simple, accessible tools:</p>
+      <ul>
+        <li><i class="fa-solid fa-comments"></i> <div class="li-content">Chat based AI assistants such as ChatGPT or an equivalent tool.</div></li>
+        <li><i class="fa-solid fa-sheet-plastic"></i> <div class="li-content">Short worksheets to help you plan your AI ideas.</div></li>
+        <li><i class="fa-solid fa-globe"></i> <div class="li-content">Optional browser based tools for writing, transcription, and task automation.</div></li>
+      </ul>
+      <p style="margin-top: 1rem; color: var(--title-color);"><strong><i class="fa-solid fa-check-circle" style="color: var(--skin-color);"></i> No technical setup is required.</strong></p>
+    </section>
+    
+    
+    
+
+    <!-- Quizzes and Final Project --><section class="section" style="animation-delay: 0.6s;">
+      <h2>Quizzes and Final Project Details</h2>
+      <ul>
+        <li><i class="fa-solid fa-percent"></i> <div class="li-content">Each quiz has 5 to 8 questions.</div></li>
+        <li><i class="fa-solid fa-unlock"></i> <div class="li-content">You need at least 70 percent score to unlock the next module.</div></li>
+        <li><i class="fa-solid fa-rotate-right"></i> <div class="li-content">You can retry quizzes as many times as you want.</div></li>
+        <li><i class="fa-solid fa-magnifying-glass-chart"></i> 
+            <div class="li-content">
+                The final project asks you to:
+                <ul class="project-bullets">
+                    <li>Choose a real or hypothetical business</li>
+                    <li>Identify AI opportunities</li>
+                    <li>Pick tools that fit those needs</li>
+                    <li>Create a short plan you can present</li>
+                </ul>
+            </div>
+        </li>
+        <li><i class="fa-solid fa-star"></i> <div class="li-content">The project is graded on clarity and practicality, not technical detail.</div></li>
+      </ul>
+    </section>
+    
+    <!-- FAQ Block (Updated: Cardless, Centered Title, 10px Gap) --><div id="faq" class="faq-section" style="animation-delay: 0.7s;">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-container">
+        
+        <!-- FAQ Item 1 -->
+        <div class="faq-item">
+          <button class="faq-header">
+            <span class="faq-question">Who is this program for?</span>
+            <i class="fa-solid fa-plus faq-icon"></i>
+          </button>
+          <div class="faq-content">
+            <p class="faq-answer">
+              This program is designed for non-technical professionals—managers, marketers, sales teams, and operations staff—who want to leverage AI tools to boost productivity and efficiency in their daily work without needing to learn how to code.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+          <button class="faq-header">
+            <span class="faq-question">What tools do I need to take the course?</span>
+            <i class="fa-solid fa-plus faq-icon"></i>
+          </button>
+          <div class="faq-content">
+            <p class="faq-answer">
+              You only need access to a modern web browser and a free or paid account for a common chat-based AI tool like ChatGPT, Gemini, or Claude. No specialized software or technical setup is required.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+          <button class="faq-header">
+            <span class="faq-question">Is there a time limit to complete the course?</span>
+            <i class="fa-solid fa-plus faq-icon"></i>
+          </button>
+          <div class="faq-content">
+            <p class="faq-answer">
+              No, the AIM program is entirely self-paced. You have lifetime access to the materials and can complete the modules and quizzes according to your own schedule.
+            </p>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 4 -->
+        <div class="faq-item">
+          <button class="faq-header">
+            <span class="faq-question">Will I receive a certificate?</span>
+            <i class="fa-solid fa-plus faq-icon"></i>
+          </button>
+          <div class="faq-content">
+            <p class="faq-answer">
+              Yes, upon successful completion of all modules and the final project, you will receive a digital certificate of completion for the AI Mastery Program (AIM™).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <!-- Community Button (New Block) -->
+    <div class="community-button-container">
+        <a href="#community" class="community-button">
+            <i class="fa-solid fa-users"></i> Join the AIM Community
+        </a>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- Getting Started (Converted to two-column) --><section class="section" style="animation-delay: 0.8s;">
+      
+      <div class="two-column">
+        <div>
+        <h2>Getting Started</h2>
+          <p>
+            To begin the course, simply proceed to the first module. You can work through the material at your own pace and return to any section as needed. The quizzes are designed to reinforce your learning, and the final project will help you apply these concepts to your own work context.
+          </p>
+          <p style="margin-top: 1rem;">
+            If you have any questions during the course, don't hesitate to use the discussion forums or reach out to our support team.
+          </p>
+          <a href="#first-module" class="cta-button">Start Your AI Mastery Journey</a>
+        </div>
+        <div class="image-container">
+          <!-- Image for getting started with a checkmark theme --><img src="https://bucket.mlcdn.com/a/3336/3336910/images/19ff1e8ca44cd0f812f973d1bf6cc12eacdb4c48.png"
+               onerror="this.onerror=null;this.src='https://bucket.mlcdn.com/a/3336/3336910/images/19ff1e8ca44cd0f812f973d1bf6cc12eacdb4c48.png';"
+               alt="Ready to start icon">
+        </div>
+      </div>
+    </section>
+
+  </main>
+  
+  
+  
+  
+  
+  
+
+  <!-- Back to Top Button (Updated to use Image) -->
+  <button id="back-to-top" aria-label="Back to Top"></button>
+  
+  <!-- Footer (New Structure with Full Width Background) -->
+  <footer class="footer">
+    <div class="footer-bg">
+      <div class="footer-container">
+        
+        <div>
+          <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="AIM Logo" class="footer-logo">
+          <h1 class="footer-title">AIM™</h1>
+          <span class="footer-subtitle">AI Mastery Program</span>
+        </div>
+        
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#courses">All Courses</a></li>
+          <li><a href="#pricing">Pricing Plans</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#terms">Terms & Privacy</a></li>
+        </ul>
+        
+     <div class="footer-socials">
+  <a href="https://linkedin.com" target="_blank" class="footer-social" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin-in"></i>
+  </a>
+  <a href="https://youtube.com" target="_blank" class="footer-social" aria-label="YouTube">
+    <i class="fa-brands fa-youtube"></i>
+  </a>
+  <a href="https://twitter.com" target="_blank" class="footer-social" aria-label="Twitter">
+    <i class="fa-brands fa-x-twitter"></i>
+  </a>
+  <a href="https://facebook.com" target="_blank" class="footer-social" aria-label="Facebook">
+    <i class="fa-brands fa-facebook-f"></i>
+  </a>
+
+</div>
+          
+        </div>
+        
+        <p class="footer-copy">Copyright &copy; 2025 AIM™. All rights reserved.<br>Powered with 🧡 by Bebell Digital Solutions.</p>
+      </div>
+    </div>
+    
+    
+    
+  </footer>
+</body>
+</html>
