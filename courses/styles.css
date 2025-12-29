@@ -762,8 +762,7 @@
 
         .tab-visual-wrap {
             position: relative;
-            width: 100%;
-            max-height: 100%;
+            width: auto;
             height: 500px; /* Fixed height for visual consistency */
             border-radius: 12px;
             overflow: hidden;
