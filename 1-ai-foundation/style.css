@@ -185,7 +185,7 @@
 
 
 
-        /* =========================== */
+             /* =========================== */
         /* NAVIGATION BAR STYLES */
         /* =========================== */
         
@@ -391,6 +391,8 @@
                 max-height: 0;
                 overflow: hidden;
                 transition: opacity 0.3s, max-height 0.3s;
+                /* FIXED: Remove desktop transform to prevent off-screen positioning */
+                transform: none; 
                 flex-direction: column; 
                 align-items: flex-start; 
                 text-align: left;
@@ -448,8 +450,6 @@
             #nav-bar { width: 95%; padding: 0.5rem 1rem; }
             #nav-menu { gap: 1rem; }
         }
-
-
 
 
 
