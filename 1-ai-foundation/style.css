@@ -1,16 +1,6 @@
  /* =========================== */
         /* BASE VARIABLES & STYLES */
         /* =========================== */
-        :root {
-            --skin-color: #ff5011;
-            --mirage-color: hsl(210, 10%, 23%);
-            --title-color: hsl(242, 8%, 98%);
-            --text-color: hsl(242, 8%, 80%);
-            --body-color: #0d0d0d;
-            --box-color: hsl(242, 14%, 12%);
-            --body-font: 'Inter', sans-serif;
-            --hue-color: 242; /* Used for transparent shadows/colors */
-        }
 
 
 
@@ -115,7 +105,6 @@
         transform: translateY(0);
       }
     }
-
 
 
 
