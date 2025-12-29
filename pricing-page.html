@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIM Bootcamp: Pricing Plans - AIM™</title>
     
-    <!-- Import Inter font --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- Import Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     
-    <!-- Icons (Font Awesome) --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Icons (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Favicon --><link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
+    <!-- Favicon -->
+    <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
   
     <style>
-        /* --- AIM Brand Styles (from Knowledge Base) --- */
+        /* =========================== */
+        /* --- UNIFORM BRAND STYLES --- */
+        /* =========================== */
         :root {
             --skin-color: #ff5011;
             --mirage-color: hsl(210, 10%, 23%);
@@ -32,6 +37,7 @@
         /* --- Base & Scrollbar --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
+        
         body {
             margin: 0;
             font-family: var(--body-font);
@@ -41,61 +47,112 @@
             padding-top: 8rem; /* Space for fixed nav */
             overflow-x: hidden;
         }
-        main {
-            /* Increased max-width to match the original layout's spaciousness */
+        
+        main { 
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
             display: grid;
             grid-gap: 20px;
         }
+        
         img { max-width: 100%; height: auto; display: block; }
-
         a { text-decoration: none; cursor: pointer; }
 
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #333; }
         ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
         
-        /* Utility container class for maximum content width */
+        /* Utility container */
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 1rem;
         }
 
-        /* --- Global Button Style --- */
-        .btn {
-            background: var(--skin-color);
-            color: var(--title-color);
-            padding: 0.8rem 1.5rem;
-            text-decoration: none;
-            border: 0;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
+        /* =========================== */
+        /* --- UNIFORM COMPONENT STYLES --- */
+        /* =========================== */
+
+        /* 1. Loader */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(255, 80, 17, 0.4);
+        .loader-header {
+            color: white;
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        /* ====================================================== */
-        /* --- NAVIGATION BAR (FIXED & MOBILE-READY STYLES) --- */
-        /* ====================================================== */
+        .progress {
+            width: 272.8px;
+            height: 41.7px;
+            border-radius: 28.8px;
+            color: #ff5011;
+            background-color: #000;
+            border: 2.9px solid;
+            position: relative;
+        }
+
+        .progress::before {
+            content: "";
+            position: absolute;
+            margin: 2.9px;
+            inset: 0 100% 0 0;
+            border-radius: inherit;
+            background: currentColor;
+            animation: progress-pf82op 1.5s forwards;
+        }
+
+        @keyframes progress-pf82op {
+            100% { inset: 0; }
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* 2. Navigation Bar (Uniform) */
         #nav-bar {
-            position: fixed; top: 2rem; left: 50%; transform: translateX(-50%);
-            background: rgba(25, 25, 25, 0.85); backdrop-filter: blur(10px);
-            border: 1px solid var(--box-color); border-radius: 0.75rem;
-            padding: 0.75rem 1.5rem; display: flex; align-items: center;
-            /* Using 980px max-width for the floating effect */
-            max-width: 1100px; width: 90%; z-index: 1000;
+            position: fixed; 
+            top: 2rem; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: rgba(25, 25, 25, 0.85); 
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--box-color); 
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem; 
+            display: flex; 
+            align-items: center;
+            max-width: 1100px; 
+            width: 90%; 
+            z-index: 1000;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
         }
         #nav-logo img { height: 35px; }
         
-        /* Desktop: nav-menu contains all links and is flexed */
         #nav-menu { 
             display: flex; 
             gap: 1.5rem; 
@@ -103,18 +160,34 @@
             align-items: center; 
         }
 
-        /* Nav links and CTA */
-        .nav-link { color: var(--text-color); transition: color 0.3s, transform 0.2s; font-weight: 500; }
-        .nav-link:hover { color: var(--skin-color); transform: translateY(-1px); }
+        .nav-link { 
+            color: var(--text-color); 
+            transition: color 0.3s, transform 0.2s; 
+            font-weight: 500; 
+            position: relative;
+        }
+        .nav-link:hover { 
+            color: var(--skin-color); 
+            transform: translateY(-1px); 
+        }
+
         .nav-cta {
             background: linear-gradient(90deg, var(--skin-color), #d43a00);
-            color: var(--title-color); padding: 0.5rem 1rem; border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); transition: transform 0.3s, box-shadow 0.3s;
+            color: var(--title-color); 
+            padding: 0.5rem 1rem; 
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); 
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+            white-space: nowrap;
         }
-        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); }
+        .nav-cta:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); 
+        }
+        
         .has-submenu { position: relative; }
         
-        /* Submenu Default State (Hidden - Desktop) */
         .submenu-courses {
             position: absolute; 
             top: 100%; 
@@ -125,22 +198,35 @@
             padding: 0.75rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
             opacity: 0; 
-            pointer-events: none; 
-            transition: opacity 0.3s, top 0.3s; 
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, top 0.3s; 
             width: 250px;
+            z-index: 1001;
+            margin-left: 0;
+            padding-left: 0.75rem;
         }
-        
-        /* Submenu Active State (Shown via JavaScript click - Desktop) */
+
         .submenu-courses.active { 
             opacity: 1; 
-            pointer-events: auto; 
-            top: calc(100% + 10px); /* Move down slightly when active */
+            visibility: visible;
+            top: calc(100% + 15px);
         }
-        .submenu-link { display: flex; align-items: center; gap: 0.75rem; color: var(--text-color); padding: 0.5rem; border-radius: 0.25rem; transition: background-color 0.3s, color 0.3s; }
-        .submenu-link:hover { background-color: rgba(255, 80, 17, 0.1); color: var(--skin-color); }
+        
+        .submenu-link { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.75rem; 
+            color: var(--text-color); 
+            padding: 0.5rem; 
+            border-radius: 0.25rem; 
+            transition: background-color 0.3s, color 0.3s; 
+        }
+        .submenu-link:hover { 
+            background-color: rgba(255, 80, 17, 0.1); 
+            color: var(--skin-color); 
+        }
         .submenu-link i { width: 15px; text-align: center; }
 
-        /* Mobile visibility controls (Default/Desktop state) */
         #mobile-menu-toggle { 
             display: none; 
             border: none;
@@ -148,14 +234,12 @@
             color: var(--skin-color);
             font-size: 1.8rem;
             cursor: pointer;
-            margin-left: auto; /* Push to the right on mobile */
+            margin-left: auto;
         }
         .nav-cta.mobile-cta-only { display: none; }
-        .nav-cta.desktop-cta-only { display: block; } /* Default desktop CTA */
+        .nav-cta.desktop-cta-only { display: block; }
 
-        /* ================================= */
-        /* --- BACK TO TOP BUTTON STYLES --- */
-        /* ================================= */
+        /* 3. Back to Top (Uniform) */
         #back-to-top {
             position: fixed; bottom: 20px; right: 20px;
             width: 50px; height: 50px;
@@ -171,33 +255,51 @@
         #back-to-top.show { opacity: 1; visibility: visible; }
         #back-to-top:hover { transform: scale(1.1); }
 
-        /* ================================================= */
-        /* --- FOOTER STYLES (DESKTOP & MOBILE CONSOLIDATED) --- */
-        /* ================================================= */
+        /* 4. Footer (Uniform) */
         .footer { padding-top: 2rem; }
         .footer-bg { background-color: var(--box-color); padding: 3rem 0 3.5rem; }
         .footer-container { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 1.6rem; }
+        
         .footer-title { font-size: var(--h3-font-size); margin-bottom: 0.25rem; color: var(--title-color); }
         .footer-subtitle { font-size: var(--small-font-size); color: var(--title-color); }
-        .footer-links { list-style: none; display: flex; justify-self: center; column-gap: 2rem; padding: 0;}
+        
+        .footer-links { list-style: none; display: flex; justify-self: center; column-gap: 2rem; padding: 0; margin: 0; }
         .footer-links a { color: var(--title-color); transition: color 0.3s; }
         .footer-links a:hover { color: var(--skin-color); }
+        
         .footer-socials { justify-self: flex-end; display: flex; align-items: center; gap: var(--mb15); }
         .footer-social { font-size: 1.25rem; color: var(--title-color); transition: color 0.3s; }
         .footer-social:hover { color: var(--skin-color); cursor: pointer; }
+        
         .footer-copy { font-size: var(--smaller-font-size); text-align: center; margin-top: 4.5rem; }
-        .footer-copy a { color: var(--title-color); text-decoration: none;}
+        .footer-copy a { color: var(--title-color); }
         .footer-copy a:hover { color: var(--skin-color); }
+        
         .footer-brand { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 0.5rem; }
         .footer-brand-text { text-align: left; }
         .footer-logo { width: 30px; height: auto; display: block; }
-        
-        /* Ensure all core text elements use the title color (consolidation) */
-        .footer-title, .footer-subtitle, .footer-copy a, .footer-links a { color: var(--title-color); }
+        .footer-logo:hover { opacity: 0.8; transition: opacity 0.3s ease; }
 
-        /* ==================================== */
-        /* --- CONTENT & GRID RESPONSIVENESS --- */
-        /* ==================================== */
+        /* =========================== */
+        /* --- PAGE SPECIFIC STYLES --- */
+        /* =========================== */
+        
+        /* Global Button Style */
+        .btn {
+            background: var(--skin-color);
+            color: var(--title-color);
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border: 0;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 80, 17, 0.4);
+        }
+
         /* Top Container Layout */
         .top-container {
             display: grid;
@@ -239,9 +341,7 @@
             border-radius: 12px;
             border: 1px solid var(--mirage-color);
         }
-
         .top-box h4 { font-size: 1.3rem; color: var(--title-color); }
-
         .top-box .price {
             font-size: 2.5rem;
             color: var(--skin-color);
@@ -250,8 +350,6 @@
             display: inline-block; 
             padding-bottom: 5px; 
         }
-        
-        /* Hand-drawn line effect */
         .top-box .price::after {
             content: '';
             position: absolute;
@@ -263,7 +361,6 @@
             border-radius: 5px; 
             transform: rotate(-1deg); 
         }
-
         .top-box p { color: var(--text-color); margin: 0.5rem 0; }
         .top-box-a { grid-area: top-box-a; }
         .top-box-b { grid-area: top-box-b; }
@@ -274,7 +371,6 @@
             grid-gap: 20px;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         }
-
         .box {
             background: var(--box-color);
             text-align: center;
@@ -284,13 +380,10 @@
             border: 1px solid var(--mirage-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        /* Hover effect for feature cards */
         .box:hover {
             transform: translateY(-5px); 
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 80, 17, 0.5);
         }
-
         .box h3 { color: var(--title-color); margin-top: 1rem; margin-bottom: 0.5rem; }
         .box i { color: var(--skin-color); }
 
@@ -306,11 +399,9 @@
             border: 1px solid var(--mirage-color);
             align-items: center;
         }
-
         .info h2 { color: var(--title-color); font-size: 2rem; margin-bottom: 1rem; }
         .info > div > p { margin-bottom: 2rem; }
         
-        /* Responsive video container styles */
         .video-wrapper {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 aspect ratio */
@@ -357,69 +448,66 @@
         .prev-button { left: 10px; }
         .next-button { right: 10px; }
 
-
         /* ====================================================== */
-        /* --- MOBILE LAYOUT (max-width: 767px) --- */
+        /* --- MOBILE LAYOUT (UPDATED TO 980px BREAKPOINT) --- */
         /* ====================================================== */
-        @media screen and (max-width: 767px) {
-            body { padding-top: 6rem; }
-            /* 1. Fixed Header (Only Logo and Toggle visible in the main bar) */
+        @media screen and (max-width: 980px) {
+            body { 
+                padding-top: 6rem; /* Reduced spacing for mobile */
+            }
+            
+            /* 1. Mobile Navigation Bar (Fixed Top) */
             #nav-bar {
                 padding: 0.5rem 1rem;
                 justify-content: space-between;
-                box-shadow: none; 
-                width: 100%; /* Full width bar on mobile */
-                top: 0; /* Align to the top edge on mobile */
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+                width: 100%;
+                max-width: 100%;
+                top: 0;
                 left: 0;
-                transform: none;
-                border-radius: 0;
-                border-left: none;
-                border-right: none;
+                transform: none; /* Reset transform */
+                border-radius: 0; /* Reset border radius */
+                border: none;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
             }
             
-            /* Show toggle button on mobile */
             #mobile-menu-toggle {
                 display: block;
-                /* Reset positioning inherited from desktop rules */
-                position: static;
-                transform: none;
+                position: relative;
                 z-index: 1002;
-                margin-left: auto;
             }
             
-            /* The main menu container is the overlay */
+            /* Mobile Menu Overlay */
             #nav-menu {
-                display: none; /* Hidden by default */
+                display: none;
                 position: fixed;
                 top: 0;
                 left: 0;
-                width: 100vw;
+                width: 100%;
                 height: 100vh;
                 background: var(--body-color); 
                 z-index: 1001; 
-                
                 flex-direction: column;
-                justify-content: center; 
+                justify-content: flex-start; 
                 align-items: center; 
-                gap: 2rem;
+                gap: 1.5rem;
+                padding: 6rem 1.5rem 2rem; 
+                margin: 0;
+                overflow-y: auto;
             }
 
             #nav-menu.mobile-open {
-                display: flex; /* Show overlay */
-                padding: 0; 
-                overflow-y: auto; /* Allow scrolling if content is too tall */
+                display: flex;
             }
             
-            /* Content Inside Overlay: Centered and Spacious */
-            /* Mobile links styling */
             #nav-menu .nav-link,
             #nav-menu .nav-item {
-                font-size: 1.8rem;
-                font-weight: 700;
+                font-size: 1.5rem;
+                font-weight: 600;
                 color: var(--title-color);
                 padding: 0.5rem 0;
                 margin: 0;
-                width: auto; 
+                width: 100%; 
                 text-align: center;
             }
             
@@ -430,7 +518,7 @@
                 transform: none;
             }
             
-            /* Courses Dropdown (Mobile alignment) */
+            /* Mobile Dropdown (Accordion Style) */
             .has-submenu {
                 display: flex;
                 flex-direction: column;
@@ -438,112 +526,61 @@
                 width: 100%; 
             }
             
-            /* FIX: Submenu is static/full-width when opened on mobile */
             .submenu-courses {
                 position: static; 
-                width: auto; 
-                background: none;
+                width: 100%; 
+                background: transparent; 
                 box-shadow: none;
                 padding: 0; 
                 margin: 0; 
                 opacity: 0; 
-                display: none; /* Default state: hidden and occupies NO space */
-                transition: none; /* Disable transition for display change */
-                
+                visibility: hidden;
+                display: none;
+                max-height: 0;
+                overflow: hidden;
+                transition: opacity 0.3s, max-height 0.3s;
+                transform: none; 
                 flex-direction: column; 
-                align-items: center; 
-                text-align: left; /* Text alignment fix */
+                align-items: flex-start; 
+                border-radius: 0;
             }
             
             .submenu-courses.active { 
-                display: flex; /* Active state: show and allow it to occupy space */
+                display: flex;
                 opacity: 1;
-                pointer-events: auto;
-                
-                padding: 0.5rem 0 0 0; 
+                visibility: visible;
+                max-height: 500px;
                 margin-top: 0.5rem; 
+                background: rgba(255, 255, 255, 0.03);
+                border-radius: 8px;
             }
             
             .submenu-courses .submenu-link {
                 font-size: 1.1rem;
-                padding: 0.5rem 0;
-                
-                /* Alignment and Width */
+                padding: 0.8rem 1rem 0.8rem 2rem;
                 justify-content: flex-start; 
-                width: 300px; /* Fixed width for submenu items */
+                width: 100%;
                 text-align: left;
-                margin-left: 50px;
-                background-color: transparent !important;
+                margin: 0;
             }
             
-            /* FIX: Mobile CTA button (Styled for full prominence) */
+            /* Mobile CTA button */
             .nav-cta.mobile-cta-only {
-                padding: 1rem 60px; 
-                width: 90%; 
-                max-width: 400px; 
-                font-size: 1.4rem; 
-                font-weight: 900;
-                margin-top: 2rem; 
-                
+                padding: 0.8rem 2rem; 
+                width: 100%;
+                max-width: none;
+                white-space: nowrap;
+                font-size: 1.2rem; 
+                font-weight: 700;
+                margin-top: 1rem; 
                 display: block !important; 
-                align-self: center; 
                 text-align: center;
             }
             
-            /* Hide desktop items on mobile */
-            .nav-cta.desktop-cta-only,
-            .nav-cta:not(.mobile-cta-only) { display: none !important; }
-
-            /* --- Footer Mobile Styles --- */
-            .footer-container {
-                grid-template-columns: 1fr;
-                row-gap: 3rem;
-                text-align: center;
-            }
+            /* Hide desktop items */
+            .nav-cta.desktop-cta-only { display: none !important; }
             
-            .footer-brand {
-                align-items: center; /* Center align on mobile */
-                text-align: center;
-                justify-content: center;
-            }
-            .footer-brand-text {
-                text-align: center; /* Center align text on mobile */
-            }
-            
-            .footer-socials {
-                justify-content: center;
-                justify-self: center;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                row-gap: 1.5rem;
-                justify-self: center;
-            }
-            
-            .footer-bg {
-                padding: 2rem 0 3rem;
-            }
-            
-            .footer-copy {
-                margin-top: var(--mb3);
-            }
-        }
-        
-        /* Tablet Layout (Content Grid Adjustment) */
-        @media screen and (max-width: 900px) {
-             .top-container {
-                grid-template-areas:
-                    'showcase showcase'
-                    'top-box-a top-box-b';
-            }
-            .showcase h1 { font-size: 2.5rem; }
-            .info { grid-template-columns: 1fr; }
-            .info .btn { display: block; text-align: center; margin: 0 auto; }
-        }
-
-        /* Small Mobile Layout (Content Grid Adjustment) */
-        @media (max-width: 500px) {
+            /* Page Specific Layout Adjustments */
             .top-container {
                 grid-template-areas:
                     'showcase'
@@ -551,236 +588,318 @@
                     'top-box-b';
             }
             .showcase { padding: 2rem 1.5rem; }
+            .showcase h1 { font-size: 2.5rem; }
+            .info { grid-template-columns: 1fr; }
+            .info .btn { display: block; text-align: center; margin: 0 auto; }
+            
+            /* Footer Mobile Styles */
+            .footer-container {
+                grid-template-columns: 1fr;
+                row-gap: 3rem;
+                text-align: center;
+            }
+            
+            /* FIX: Centering footer elements on mobile */
+            .footer-brand {
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                justify-self: center;
+            }
+            .footer-brand-text { text-align: center; }
+            
+            .footer-socials {
+                justify-content: center;
+                justify-self: center; /* FIX: Centers icons on mobile */
+                display: flex;
+                gap: var(--mb15);
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                row-gap: 1.5rem;
+                justify-self: center;
+            }
+            .footer-bg { padding: 2rem 0 3rem; }
+            .footer-copy { margin-top: var(--mb3); }
+        }
+        
+        /* Tablet intermediate state */
+        @media screen and (min-width: 768px) and (max-width: 980px) {
+             .top-container {
+                grid-template-areas:
+                    'showcase showcase'
+                    'top-box-a top-box-b';
+            }
         }
 
         /* Desktop: Ensure correct visibility when not mobile */
-        @media screen and (min-width: 768px) {
-            #nav-menu {
-                display: flex !important; /* Show desktop menu/links */
-            }
-            /* Show the CTA used on desktop in the fixed bar */
-            .nav-cta.desktop-cta-only { 
-                display: block !important; 
-            }
+        @media screen and (min-width: 981px) {
+            #nav-menu { display: flex !important; }
+            .nav-cta.desktop-cta-only { display: block !important; }
         }
-
-        /* Page loader */
-        .page-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.3s ease;
-        }
-
-        .loader-header {
-            color: white;
-            font-size: 24px;
-            font-family: Arial, sans-serif;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .progress {
-            width: 272.8px;
-            height: 41.7px;
-            border-radius: 28.8px;
-            color: #ff5011;
-            background-color: #000;
-            border: 2.9px solid;
-            position: relative;
-        }
-
-        .progress::before {
-            content: "";
-            position: absolute;
-            margin: 2.9px;
-            inset: 0 100% 0 0;
-            border-radius: inherit;
-            background: currentColor;
-            animation: progress-pf82op 1.5s forwards;
-        }
-
-        @keyframes progress-pf82op {
-            100% {
-                inset: 0;
-            }
-        }
-
-        .page-loader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-
-
-
+        
+        /* --- Snow Effects --- */
 
  /* Base snowflake layer with blurry effects */
+
 body::before {
+
   content: "";
+
   position: fixed;
+
   top: 0;
+
   left: 0;
+
   width: 100%;
+
   height: 100%;
+
   pointer-events: none;
+
   z-index: 9999;
+
   background-image: 
+
     /* Large blurry snowflakes */
+
     radial-gradient(8px 8px at 10% 20%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.3) 70%, transparent 100%),
+
     radial-gradient(12px 12px at 20% 30%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.2) 60%, transparent 100%),
+
     radial-gradient(6px 6px at 30% 10%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.25) 80%, transparent 100%),
+
     radial-gradient(10px 10px at 40% 40%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.15) 75%, transparent 100%),
+
     radial-gradient(14px 14px at 50% 60%, rgba(255, 255, 255, 0.55) 30%, rgba(255, 255, 255, 0.2) 65%, transparent 100%),
+
     radial-gradient(7px 7px at 60% 80%, rgba(255, 255, 255, 0.65) 45%, rgba(255, 255, 255, 0.3) 85%, transparent 100%),
+
     radial-gradient(9px 9px at 70% 50%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.18) 70%, transparent 100%),
+
     radial-gradient(11px 11px at 80% 20%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.22) 75%, transparent 100%),
+
     radial-gradient(5px 5px at 90% 70%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.35) 90%, transparent 100%),
+
     radial-gradient(15px 15px at 15% 90%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.12) 55%, transparent 100%),
+
     
+
     /* Extra blurry medium snowflakes */
+
     radial-gradient(4px 4px at 25% 45%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
+
     radial-gradient(6px 6px at 75% 35%, rgba(255, 255, 255, 0.7) 15%, rgba(255, 255, 255, 0.05) 85%, transparent 100%),
+
     radial-gradient(3px 3px at 45% 75%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
+
     radial-gradient(8px 8px at 85% 65%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.08) 80%, transparent 100%);
+
   
+
   background-repeat: no-repeat;
+
   animation: snowfall 15s linear infinite;
+
   filter: blur(0.5px); /* Slight overall blur for softness */
+
 }
+
+
 
 /* Medium blurry snowflakes layer */
+
 body::after {
+
   content: "";
+
   position: fixed;
+
   top: 0;
+
   left: 0;
+
   width: 100%;
+
   height: 100%;
+
   pointer-events: none;
+
   z-index: 9998;
+
   background-image: 
+
     /* Medium blurry snowflakes */
+
     radial-gradient(4px 4px at 5% 15%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
+
     radial-gradient(7px 7px at 25% 35%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.08) 80%, transparent 100%),
+
     radial-gradient(3px 3px at 35% 5%, rgba(255, 255, 255, 0.6) 45%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
+
     radial-gradient(5px 5px at 45% 45%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.05) 70%, transparent 100%),
+
     radial-gradient(6px 6px at 55% 65%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.1) 75%, transparent 100%),
+
     radial-gradient(3.5px 3.5px at 65% 85%, rgba(255, 255, 255, 0.55) 40%, rgba(255, 255, 255, 0.12) 85%, transparent 100%),
+
     radial-gradient(4.5px 4.5px at 85% 25%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.06) 65%, transparent 100%),
+
     radial-gradient(2.5px 2.5px at 95% 55%, rgba(255, 255, 255, 0.65) 50%, rgba(255, 255, 255, 0.2) 95%, transparent 100%),
+
     radial-gradient(8px 8px at 15% 75%, rgba(255, 255, 255, 0.25) 20%, rgba(255, 255, 255, 0.04) 60%, transparent 100%);
+
   
+
   background-repeat: no-repeat;
+
   animation: snowfall 20s linear infinite;
+
   filter: blur(0.8px); /* More blur for background layer */
+
   opacity: 0.8;
+
 }
+
+
 
 /* Additional layer for extra blurry small snowflakes */
+
 .snowflakes-blurry {
+
   position: fixed;
+
   top: 0;
+
   left: 0;
+
   width: 100%;
+
   height: 100%;
+
   pointer-events: none;
+
   z-index: 9997;
+
   background-image: 
+
     /* Very blurry small snowflakes */
+
     radial-gradient(2px 2px at 12% 28%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0.05) 100%, transparent 100%),
+
     radial-gradient(1.5px 1.5px at 32% 18%, rgba(255, 255, 255, 0.5) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%),
+
     radial-gradient(2.5px 2.5px at 48% 52%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.03) 100%, transparent 100%),
+
     radial-gradient(1px 1px at 68% 72%, rgba(255, 255, 255, 0.6) 80%, rgba(255, 255, 255, 0.15) 100%, transparent 100%),
+
     radial-gradient(3px 3px at 82% 38%, rgba(255, 255, 255, 0.35) 40%, rgba(255, 255, 255, 0.07) 100%, transparent 100%),
+
     radial-gradient(1.8px 1.8px at 22% 88%, rgba(255, 255, 255, 0.45) 65%, rgba(255, 255, 255, 0.09) 100%, transparent 100%),
+
     radial-gradient(2.2px 2.2px at 58% 12%, rgba(255, 255, 255, 0.4) 55%, rgba(255, 255, 255, 0.06) 100%, transparent 100%),
+
     radial-gradient(0.8px 0.8px at 88% 68%, rgba(255, 255, 255, 0.7) 85%, rgba(255, 255, 255, 0.2) 100%, transparent 100%);
+
   
+
   background-repeat: no-repeat;
+
   animation: snowfall 25s linear infinite;
+
   filter: blur(1.2px); /* Maximum blur for distant effect */
+
   opacity: 0.6;
+
 }
+
+
 
 /* Enhanced snowfall animation with slight horizontal movement */
+
 @keyframes snowfall {
+
   0% {
+
     transform: translateY(-100%) translateX(0);
+
   }
+
   25% {
+
     transform: translateY(-50%) translateX(5px);
+
   }
+
   50% {
+
     transform: translateY(0%) translateX(0);
+
   }
+
   75% {
+
     transform: translateY(50%) translateX(-5px);
+
   }
+
   100% {
+
     transform: translateY(100vh) translateX(0);
+
   }
+
 }
 
+
+
 /* Alternative animation for some randomness */
+
 @keyframes snowfall-alt {
+
   0% {
+
     transform: translateY(-100%) translateX(10px);
+
   }
+
   50% {
+
     transform: translateY(0%) translateX(-10px);
+
   }
+
   100% {
+
     transform: translateY(100vh) translateX(10px);
+
   }
+
 }
+
        
 
 
 
-        
+
+
+
+
         
     </style>
-
-<!-- Page Loader HTML -->
-<script>
-    // --- Page Loader Logic ---
-    function showLoader() {
-        const loader = document.createElement('div');
-        loader.className = 'page-loader';
-        loader.innerHTML = `
-            <div class="loader-header">Wait for it...</div>
-            <div class="progress"></div>
-        `;
-        document.body.appendChild(loader);
-        return loader;
-    }
-
-    function initLoader() {
-        const loader = showLoader();
-        setTimeout(() => {
-            loader.classList.add('hidden');
-            setTimeout(() => loader.remove(), 300); // Remove after fade out
-        }, 1500); // Adjust duration as needed
-    }
-
-    document.addEventListener('DOMContentLoaded', initLoader);
-</script>
-<!-- Loader Div is injected by the script above -->
-
-  
 </head>
 <body>
 
-    <!-- Navigation Bar (Header) --><nav id="nav-bar">
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="loader-header">Loading AIM™</div>
+        <div class="progress"></div>
+    </div>
+    
+    <!-- Navigation Bar (Header) -->
+    <nav id="nav-bar">
         <a href="/" id="nav-logo">
             <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
         </a>
@@ -791,12 +910,11 @@ body::after {
         </button>
         
         <div id="nav-menu">
-            <a href="" class="nav-link">Home</a>
-             <a href="/about" class="nav-link">About</a>
-
-
+            <a href="/" class="nav-link">Home</a>
+            <a href="/about" class="nav-link">About</a>
             
-            <!-- Courses Dropdown --><div class="nav-item has-submenu">
+            <!-- Courses Dropdown -->
+            <div class="nav-item has-submenu">
                 <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
                 <div class="submenu-courses" id="courses-submenu">
                     <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
@@ -807,57 +925,47 @@ body::after {
                 </div>
             </div>
             
+            <!-- Highlighted Pricing Link -->
             <a href="/pricing-page" class="nav-link" style="color: var(--skin-color);">Pricing</a>
-             <a href="/contact" class="nav-link">Contact</a>
+            <a href="/contact" class="nav-link">Contact</a>
             
-            <!-- DESKTOP CTA (VISIBLE ON DESKTOP NAV BAR) -->
+            <!-- DESKTOP CTA -->
             <a href="/portal" class="nav-cta desktop-cta-only">MEMBER LOGIN</a>
             
-            <!-- MOBILE CTA (VISIBLE ONLY IN MOBILE OVERLAY) -->
+            <!-- MOBILE CTA -->
             <a href="/portal" class="nav-cta mobile-cta-only">MEMBER LOGIN</a>
         </div>
     </nav>
 
     <main>
-        
-        <!-- Top Container --><section class="top-container">
+        <!-- Top Container -->
+        <section class="top-container">
             <header class="showcase">
-            
-            
-            <!-- Banner added here -->
                 <div class="showcase-banner">
                     <img src="https://bucket.mlcdn.com/a/3336/3336910/images/5818cbf2f70f6afba79744c518d8f3fcea7c0adf.png" alt="5 Star Rating Banner">
                 </div>
-                    
-            
                 <h1>AI Mastery Program</h1>
                 <p>Unlock your full potential with our comprehensive AI courses. Choose the plan that best fits your learning journey.</p>
                 <a href="/aim-syllabus.pdf" target="_blank" class="btn">Download Syllabus</a>
             </header>
 
-            
             <div class="top-box top-box-a">
                 <h4>Annual Access</h4>
                 <p class="price">$150/yr</p>
                 <p>Unlimited access to all courses.</p>
-                <!-- UPDATED: Added href="#" placeholder -->
                 <a href="https://app.aimbootcamp.com/pay/Z1MDQLBQ" target="_blank" class="btn">Get Unlimited Access</a>
             </div>
 
-            
             <div class="top-box top-box-b">
                 <h4>Lifetime Pro</h4>
                 <p class="price">$499/ltd</p>
                 <p>One-time fee for lifetime access.</p>
-                <!-- UPDATED: Added href="#" placeholder -->
                 <a href="https://app.aimbootcamp.com/pay/HEOUVWTH" target="_blank" class="btn">Get Lifetime Access</a>
             </div>
         </section>
 
-
-        
-
-        <!-- Boxes Section --><section class="boxes">
+        <!-- Boxes Section -->
+        <section class="boxes">
             <div class="box">
                 <i class="fas fa-brain fa-3x"></i>
                 <h3>Expert-Led Courses</h3>
@@ -882,7 +990,6 @@ body::after {
 
         <!-- Info Section -->
         <section class="info">
-            <!-- REPLACED: Image with responsive YouTube embed -->
             <div class="video-wrapper">
                 <iframe 
                     src="https://www.youtube.com/embed/yBe10HO1wu8?si=fv07vaETaV9G8XPe" 
@@ -898,90 +1005,54 @@ body::after {
             </div>
         </section>
         
-        
-        <!-- Portfolio Carousel --><section class="portfolio-carousel">
+        <!-- Portfolio Carousel -->
+        <section class="portfolio-carousel">
             <h2>Your All-In-One Hub for AI Mastery</h2>
             <div class="carousel-container">
                 <div class="carousel-track">
-                    
-                    
                     <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/9da9c8aa6e6abe589d55b7f43e8a91294c454faa.png" alt="Tech Image 1"></div>
-                        
-                    
-                    
-                    
                     <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/b91095c038cbca9303d094a8b99f2ac6127a129d.png" onerror="this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/7.png'" alt="Tech Image 2"></div>
-                        
-                    
-                    
-                    
                     <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/264e6db73707084fc003ec1cab9c85599b398fe1.png" alt="Tech Image 3"></div>
-                        
-                
-    
-    
-    
                     <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/632a20ea54344e9bf901bca1ca60f0f02d1dd561.png" alt="Tech Image 4"></div>
-    
-    
-    
-    
-    <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/668b3689baf958b3cd263db066ef07be06cb7962.png" onerror="this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/8.png'" alt="Tech Image 6"></div>
-
-
-    
-    
-    
-    
-    <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/41021ef161a0b2d986a6630e0843e7d64403ae8d.png" alt="Certificate"></div>
-        
-    <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/fbb31a73e43b097db8f98dec050264118a7fb98e.png" alt="Book"></div>
-
-    <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/2f061b8ae04322a5e617c0c65f959577a8824836.gif" alt="AIM Program Cover"></div>
-
-                    
-    
-      
-        
-                    
-
-</div>
-
-
+                    <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/668b3689baf958b3cd263db066ef07be06cb7962.png" onerror="this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/8.png'" alt="Tech Image 6"></div>
+                    <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/41021ef161a0b2d986a6630e0843e7d64403ae8d.png" alt="Certificate"></div>
+                    <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/fbb31a73e43b097db8f98dec050264118a7fb98e.png" alt="Book"></div>
+                    <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/2f061b8ae04322a5e617c0c65f959577a8824836.gif" alt="AIM Program Cover"></div>
+                </div>
                 <button class="carousel-button prev-button" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
                 <button class="carousel-button next-button" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
             </div>
-            
-            
         </section>
-        
     </main>
     
-    <!-- Back to Top Button --><button id="back-to-top" aria-label="Back to Top"></button>
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to Top"></button>
     
-    <!-- Standard AIM Footer --><footer class="footer">
+    <!-- Standard AIM Footer -->
+    <footer class="footer">
         <div class="footer-bg">
             <div class="footer-container container"> 
-                <!-- Logo/Brand Block --><div class="footer-brand">
+                <!-- Logo/Brand Block -->
+                <div class="footer-brand">
                     <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="AIM Logo" class="footer-logo">
                     <div class="footer-brand-text">
                         <h3 class="footer-title">AIM™</h3>
                         <span class="footer-subtitle">AI Mastery Program</span>
                     </div>
                 </div>
-
-            
                     
-                <!-- Footer Links --><ul class="footer-links">
-                    <li><a href="/home">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="/courses">Courses</a></li>
-                     <li><a href="/pricing-page">Pricing</a></li>
-                     <li><a href="/resources">Resources</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                <!-- Footer Links -->
+                <ul class="footer-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/about" class="nav-link">About</a></li>
+                    <li><a href="/courses" class="nav-link">Courses</a></li>
+                    <li><a href="/pricing-page" class="nav-link">Pricing</a></li>
+                    <li><a href="/resources" class="nav-link">Resources</a></li>
+                    <li><a href="/contact" class="nav-link">Contact</a></li>
                 </ul>
 
-                <!-- Social Icons --><div class="footer-socials">
+                <!-- Social Icons -->
+                <div class="footer-socials">
                     <a href="https://www.youtube.com/@" target="_blank" class="footer-social" aria-label="Youtube">
                         <i class="fa-brands fa-youtube"></i>
                     </a>
@@ -1000,79 +1071,14 @@ body::after {
         </div>
     </footer>
 
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Navigation Dropdown Logic (Desktop/Mobile Submenu) ---
-            const coursesLink = document.getElementById('courses-link');
-            const submenu = document.getElementById('courses-submenu');
-            const navBar = document.getElementById('nav-bar');
-
-            if (coursesLink && submenu && navBar) {
-                // 1. Toggle visibility on click
-                coursesLink.addEventListener('click', (e) => {
-                    e.preventDefault(); 
-                    // For mobile, this toggles the submenu open/closed within the overlay
-                    submenu.classList.toggle('active');
-                    e.stopPropagation(); 
-                });
-
-                // 2. Close menu when clicking outside the entire navigation bar (Desktop behavior)
-                document.addEventListener('click', (e) => {
-                    // Check if it's NOT the navigation bar itself AND the submenu is open
-                    if (!navBar.contains(e.target) && submenu.classList.contains('active')) {
-                        // We only close the submenu here, not the whole mobile overlay
-                        // The mobile overlay closes via the toggle button or link clicks.
-                        if (window.innerWidth >= 768) {
-                             submenu.classList.remove('active');
-                        }
-                    }
-                });
-
-                // 3. Prevent clicks inside the submenu from propagating and closing it (Desktop)
-                submenu.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                });
-            }
-
-            // --- Mobile Menu Toggle Logic (Hamburger Icon) ---
-            const mobileToggle = document.getElementById('mobile-menu-toggle');
-            const navMenu = document.getElementById('nav-menu');
-            const toggleIcon = document.getElementById('toggle-icon');
-
-            if (mobileToggle && navMenu && toggleIcon) {
-                mobileToggle.addEventListener('click', () => {
-                    navMenu.classList.toggle('mobile-open');
-                    
-                    // Toggle the icon (fa-bars <-> fa-xmark)
-                    if (navMenu.classList.contains('mobile-open')) {
-                        toggleIcon.classList.remove('fa-bars');
-                        toggleIcon.classList.add('fa-xmark');
-                        document.body.style.overflow = 'hidden'; // Prevent body scroll
-                    } else {
-                        toggleIcon.classList.remove('fa-xmark');
-                        toggleIcon.classList.add('fa-bars');
-                        document.body.style.overflow = 'auto'; // Allow body scroll
-                        // Also close submenu if it's open
-                        if (submenu) submenu.classList.remove('active');
-                    }
-                });
-                
-                // Close mobile menu when a main link is clicked (inside the overlay)
-                navMenu.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
-                    link.addEventListener('click', () => {
-                        // Only close if we are actually in mobile view
-                        if (window.innerWidth < 768 && !link.parentElement.classList.contains('has-submenu')) {
-                            navMenu.classList.remove('mobile-open');
-                            toggleIcon.classList.remove('fa-xmark');
-                            toggleIcon.classList.add('fa-bars');
-                            document.body.style.overflow = 'auto';
-                            if (submenu) submenu.classList.remove('active');
-                        }
-                    });
-                });
-            }
-
+            // --- Page Loader Logic ---
+            const pageLoader = document.querySelector('.page-loader');
+            window.addEventListener('load', () => {
+                pageLoader.classList.add('hidden');
+                setTimeout(() => pageLoader.remove(), 300);
+            });
 
             // --- Back to Top Button Logic ---
             const toTopButton = document.getElementById('back-to-top');
@@ -1089,41 +1095,132 @@ body::after {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
+            // --- Dropdown Menu Click Logic ---
+            const coursesLink = document.getElementById('courses-link');
+            const submenu = document.getElementById('courses-submenu');
+            const navBar = document.getElementById('nav-bar');
+
+            if (coursesLink && submenu) {
+                coursesLink.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    const isMobile = window.innerWidth <= 980; // UPDATED Breakpoint
+                    if (isMobile) {
+                        submenu.classList.toggle('active');
+                    } else {
+                        submenu.classList.toggle('active');
+                    }
+                    e.stopPropagation(); 
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (navBar && !navBar.contains(e.target) && submenu.classList.contains('active')) {
+                        submenu.classList.remove('active');
+                    }
+                });
+
+                submenu.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            }
+
+            // --- Mobile Menu Toggle Logic (Hamburger Icon) ---
+            const mobileToggle = document.getElementById('mobile-menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const toggleIcon = document.getElementById('toggle-icon');
+
+            if (mobileToggle && navMenu && toggleIcon) {
+                mobileToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    navMenu.classList.toggle('mobile-open');
+                    
+                    if (navMenu.classList.contains('mobile-open')) {
+                        toggleIcon.classList.remove('fa-bars');
+                        toggleIcon.classList.add('fa-xmark');
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        toggleIcon.classList.remove('fa-xmark');
+                        toggleIcon.classList.add('fa-bars');
+                        document.body.style.overflow = 'auto';
+                        if (submenu) submenu.classList.remove('active');
+                    }
+                });
+                
+                navMenu.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 980 && !link.parentElement.classList.contains('has-submenu')) {
+                            navMenu.classList.remove('mobile-open');
+                            toggleIcon.classList.remove('fa-xmark');
+                            toggleIcon.classList.add('fa-bars');
+                            document.body.style.overflow = 'auto';
+                            if (submenu) submenu.classList.remove('active');
+                        }
+                    });
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 980 && 
+                        navMenu.classList.contains('mobile-open') &&
+                        !navMenu.contains(e.target) && 
+                        e.target !== mobileToggle) {
+                        navMenu.classList.remove('mobile-open');
+                        toggleIcon.classList.remove('fa-xmark');
+                        toggleIcon.classList.add('fa-bars');
+                        document.body.style.overflow = 'auto';
+                        if (submenu) submenu.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                const isMobile = window.innerWidth <= 980; // UPDATED Breakpoint
+                if (!isMobile && navMenu && navMenu.classList.contains('mobile-open')) {
+                    navMenu.classList.remove('mobile-open');
+                    if (toggleIcon) {
+                        toggleIcon.classList.remove('fa-xmark');
+                        toggleIcon.classList.add('fa-bars');
+                    }
+                    document.body.style.overflow = 'auto';
+                }
+                if (submenu) {
+                    submenu.classList.remove('active');
+                }
+            });
+
             // --- Portfolio Carousel Logic ---
             const track = document.querySelector('.carousel-track');
-            const slides = Array.from(track.children);
+            const slides = track ? Array.from(track.children) : [];
             const nextButton = document.querySelector('.next-button');
             const prevButton = document.querySelector('.prev-button');
             
             if (track && slides.length > 0) {
                 const getSlideWidth = () => slides[0].getBoundingClientRect().width;
-
                 let currentIndex = 0;
 
                 const moveToSlide = (newIndex) => {
-                    if (newIndex < 0) newIndex = slides.length - 1; // Loop back to end
-                    if (newIndex >= slides.length) newIndex = 0; // Loop back to start
+                    if (newIndex < 0) newIndex = slides.length - 1;
+                    if (newIndex >= slides.length) newIndex = 0;
                     
                     const slideWidth = getSlideWidth();
                     track.style.transform = 'translateX(-' + slideWidth * newIndex + 'px)';
                     currentIndex = newIndex;
                 };
 
-                // When I click left, move slides to the left
-                prevButton.addEventListener('click', e => {
-                    moveToSlide(currentIndex - 1);
-                });
+                if (prevButton) {
+                    prevButton.addEventListener('click', e => {
+                        moveToSlide(currentIndex - 1);
+                    });
+                }
 
-                // When I click right, move slides to the right
-                nextButton.addEventListener('click', e => {
-                    moveToSlide(currentIndex + 1);
-                });
+                if (nextButton) {
+                    nextButton.addEventListener('click', e => {
+                        moveToSlide(currentIndex + 1);
+                    });
+                }
 
-                // Auto-update slide width on window resize
                 window.addEventListener('resize', () => {
                     const newSlideWidth = getSlideWidth();
-                    track.style.transition = 'none'; // Disable transition during resize
-                    // Recalculate position based on new width
+                    track.style.transition = 'none';
                     track.style.transform = 'translateX(-' + newSlideWidth * currentIndex + 'px)';
                     setTimeout(() => {
                         track.style.transition = 'transform 0.5s ease-in-out';
