@@ -14,6 +14,29 @@
 
 
 
+    :root {
+            --skin-color: #ff5011;
+            --mirage-color: hsl(210, 10%, 23%);
+            --title-color: hsl(242, 8%, 98%);
+            --text-color: hsl(242, 8%, 80%);
+            --body-color: #0d0d0d;
+            --box-color: hsl(242, 14%, 12%);
+            --body-font: 'Inter', sans-serif;
+            --small-font-size: 0.95rem;
+            --h3-font-size: 1.25rem;
+            --smaller-font-size: 0.75rem;
+            --mb15: 0.75rem;
+            --mb3: 1.5rem;
+            --hue-color: 242; /* Used for transparent shadows/colors */
+
+        }
+        
+        
+
+
+
+
+
    /* Typography */
       --body-font: 'Inter', sans-serif;
       --signature-font: 'Inter', sans-serif;
