@@ -454,10 +454,96 @@ body::after {
 
 
 
+
+
+/* Loader CSS */
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+}
+
+.loader-header {
+    color: white;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.progress {
+    width: 272.8px;
+    height: 41.7px;
+    border-radius: 28.8px;
+    color: #ff5011; /* Uses AIM skin-color */
+    background-color: #000;
+    border: 2.9px solid;
+    position: relative;
+}
+
+.progress::before {
+    content: "";
+    position: absolute;
+    margin: 2.9px;
+    inset: 0 100% 0 0;
+    border-radius: inherit;
+    background: currentColor;
+    animation: progress-pf82op 1.5s forwards;
+}
+
+@keyframes progress-pf82op {
+    100% {
+        inset: 0;
+    }
+}
+
+.page-loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+        
         
     </style>
+
+
+    <script>
+// Loader JavaScript
+function showLoader() {
+    const loader = document.createElement('div');
+    loader.className = 'page-loader';
+    loader.innerHTML = `
+        <div class="loader-header">Wait for it...</div>
+        <div class="progress"></div>
+    `;
+    document.body.appendChild(loader);
+    return loader;
+}
+
+function initLoader() {
+    const loader = showLoader();
+    setTimeout(() => {
+        loader.classList.add('hidden');
+        setTimeout(() => loader.remove(), 300);
+    }, 1500); // Loader visible for 1.5 seconds
+}
+
+// Initialize the loader when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', initLoader);
+</scrip>
+    
 </head>
 <body>
+
+    
     <!-- Spline Interactive Background -->
     <spline-viewer url="https://prod.spline.design/w5vaKcpN4KUx8TDq/scene.splinecode"></spline-viewer>
     
