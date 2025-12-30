@@ -15,7 +15,9 @@
     <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
     
     <style>
-        /* --- AIM Brand Styles (from Knowledge Base) --- */
+        /* =========================== */
+        /* --- UNIFORM BRAND STYLES --- */
+        /* =========================== */
         :root {
             --skin-color: #ff5011;
             --mirage-color: hsl(210, 10%, 23%);
@@ -35,6 +37,7 @@
         /* --- Base & Scrollbar --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
+        
         body {
             margin: 0;
             font-family: var(--body-font);
@@ -44,11 +47,13 @@
             padding-top: 8rem; /* Space for fixed nav */
             overflow-x: hidden;
         }
+        
         main {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
         }
+        
         img { max-width: 100%; height: auto; display: block; }
         a { text-decoration: none; cursor: pointer; }
 
@@ -56,20 +61,23 @@
         ::-webkit-scrollbar-track { background: #333; }
         ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
         
-        /* Utility container class for maximum content width */
+        /* Utility container */
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 1rem;
         }
 
-        /* --- Loader and Animations --- */
+        /* =========================== */
+        /* --- UNIFORM COMPONENT STYLES --- */
+        /* =========================== */
+
+        /* 1. Loader */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* Page loader container with black background */
+        
         .page-loader {
             position: fixed;
             top: 0;
@@ -85,7 +93,6 @@
             transition: opacity 0.3s ease;
         }
 
-        /* Added text header */
         .loader-header {
             color: white;
             font-size: 24px;
@@ -94,7 +101,6 @@
             text-align: center;
         }
 
-        /* Your progress bar - unchanged */
         .progress {
             width: 272.8px;
             height: 41.7px;
@@ -116,31 +122,35 @@
         }
 
         @keyframes progress-pf82op {
-            100% {
-                inset: 0;
-            }
+            100% { inset: 0; }
         }
 
-        /* Hide transition */
         .page-loader.hidden {
             opacity: 0;
             pointer-events: none;
         }
 
-        /* ====================================================== */
-        /* --- NAVIGATION BAR (FIXED & MOBILE-READY STYLES) --- */
-        /* ====================================================== */
+        /* 2. Navigation Bar (Uniform) */
         #nav-bar {
-            position: fixed; top: 2rem; left: 50%; transform: translateX(-50%);
-            background: rgba(25, 25, 25, 0.85); backdrop-filter: blur(10px);
-            border: 1px solid var(--box-color); border-radius: 0.75rem;
-            padding: 0.75rem 1.5rem; display: flex; align-items: center;
-            max-width: 1100px; width: 90%; z-index: 1000;
+            position: fixed; 
+            top: 2rem; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: rgba(25, 25, 25, 0.85); 
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--box-color); 
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem; 
+            display: flex; 
+            align-items: center;
+            max-width: 1100px; 
+            width: 90%; 
+            z-index: 1000;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
         }
         #nav-logo img { height: 35px; }
         
-        /* Desktop: nav-menu contains all links and is flexed */
         #nav-menu { 
             display: flex; 
             gap: 1.5rem; 
@@ -148,18 +158,34 @@
             align-items: center; 
         }
 
-        /* Nav links and CTA */
-        .nav-link { color: var(--text-color); transition: color 0.3s, transform 0.2s; font-weight: 500; }
-        .nav-link:hover { color: var(--skin-color); transform: translateY(-1px); }
+        .nav-link { 
+            color: var(--text-color); 
+            transition: color 0.3s, transform 0.2s; 
+            font-weight: 500; 
+            position: relative;
+        }
+        .nav-link:hover { 
+            color: var(--skin-color); 
+            transform: translateY(-1px); 
+        }
+
         .nav-cta {
             background: linear-gradient(90deg, var(--skin-color), #d43a00);
-            color: var(--title-color); padding: 0.5rem 1rem; border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); transition: transform 0.3s, box-shadow 0.3s;
+            color: var(--title-color); 
+            padding: 0.5rem 1rem; 
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); 
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+            white-space: nowrap;
         }
-        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); }
+        .nav-cta:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); 
+        }
+        
         .has-submenu { position: relative; }
         
-        /* Submenu Default State (Hidden - Desktop) */
         .submenu-courses {
             position: absolute; 
             top: 100%; 
@@ -170,22 +196,35 @@
             padding: 0.75rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
             opacity: 0; 
-            pointer-events: none; 
-            transition: opacity 0.3s, top 0.3s; 
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, top 0.3s; 
             width: 250px;
+            z-index: 1001;
+            margin-left: 0;
+            padding-left: 0.75rem;
         }
-        
-        /* Submenu Active State (Shown via JavaScript click - Desktop) */
+
         .submenu-courses.active { 
             opacity: 1; 
-            pointer-events: auto; 
-            top: calc(100% + 10px);
+            visibility: visible;
+            top: calc(100% + 15px);
         }
-        .submenu-link { display: flex; align-items: center; gap: 0.75rem; color: var(--text-color); padding: 0.5rem; border-radius: 0.25rem; transition: background-color 0.3s, color 0.3s; }
-        .submenu-link:hover { background-color: rgba(255, 80, 17, 0.1); color: var(--skin-color); }
+        
+        .submenu-link { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.75rem; 
+            color: var(--text-color); 
+            padding: 0.5rem; 
+            border-radius: 0.25rem; 
+            transition: background-color 0.3s, color 0.3s; 
+        }
+        .submenu-link:hover { 
+            background-color: rgba(255, 80, 17, 0.1); 
+            color: var(--skin-color); 
+        }
         .submenu-link i { width: 15px; text-align: center; }
 
-        /* Mobile visibility controls (Default/Desktop state) */
         #mobile-menu-toggle { 
             display: none; 
             border: none;
@@ -198,9 +237,7 @@
         .nav-cta.mobile-cta-only { display: none; }
         .nav-cta.desktop-cta-only { display: block; }
 
-        /* ================================= */
-        /* --- BACK TO TOP BUTTON STYLES --- */
-        /* ================================= */
+        /* 3. Back to Top (Uniform) */
         #back-to-top {
             position: fixed; bottom: 20px; right: 20px;
             width: 50px; height: 50px;
@@ -216,81 +253,34 @@
         #back-to-top.show { opacity: 1; visibility: visible; }
         #back-to-top:hover { transform: scale(1.1); }
 
-        /* ================================================= */
-        /* --- FOOTER STYLES (DESKTOP & MOBILE CONSOLIDATED) --- */
-        /* ================================================= */
+        /* 4. Footer (Uniform) */
         .footer { padding-top: 2rem; }
         .footer-bg { background-color: var(--box-color); padding: 3rem 0 3.5rem; }
-        .footer-container { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            column-gap: 1.6rem;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
+        .footer-container { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 1.6rem; }
+        
         .footer-title { font-size: var(--h3-font-size); margin-bottom: 0.25rem; color: var(--title-color); }
         .footer-subtitle { font-size: var(--small-font-size); color: var(--title-color); }
-        .footer-links { 
-            list-style: none; 
-            display: flex; 
-            justify-self: center; 
-            column-gap: 2rem; 
-            padding: 0;
-            margin: 0;
-        }
-        .footer-links a { 
-            color: var(--title-color); 
-            transition: color 0.3s; 
-            text-decoration: none;
-            font-size: 1rem;
-        }
+        
+        .footer-links { list-style: none; display: flex; justify-self: center; column-gap: 2rem; padding: 0; margin: 0; }
+        .footer-links a { color: var(--title-color); transition: color 0.3s; }
         .footer-links a:hover { color: var(--skin-color); }
-        .footer-socials { 
-            justify-self: flex-end; 
-            display: flex; 
-            align-items: center; 
-            gap: var(--mb15); 
-        }
-        .footer-social { 
-            font-size: 1.25rem; 
-            color: var(--title-color); 
-            transition: color 0.3s; 
-            text-decoration: none;
-        }
+        
+        .footer-socials { justify-self: flex-end; display: flex; align-items: center; gap: var(--mb15); }
+        .footer-social { font-size: 1.25rem; color: var(--title-color); transition: color 0.3s; }
         .footer-social:hover { color: var(--skin-color); cursor: pointer; }
-        .footer-copy { 
-            font-size: var(--smaller-font-size); 
-            text-align: center; 
-            margin-top: 4.5rem; 
-            color: var(--title-color);
-        }
-        .footer-copy a { 
-            color: var(--title-color); 
-            text-decoration: none;
-        }
+        
+        .footer-copy { font-size: var(--smaller-font-size); text-align: center; margin-top: 4.5rem; }
+        .footer-copy a { color: var(--title-color); }
         .footer-copy a:hover { color: var(--skin-color); }
-        .footer-brand { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: flex-start; 
-            text-align: left; 
-            gap: 0.5rem; 
-        }
+        
+        .footer-brand { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 0.5rem; }
         .footer-brand-text { text-align: left; }
-        .footer-logo { 
-            width: 30px; 
-            height: auto; 
-            display: block; 
-        }
-        .footer-logo:hover {
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
+        .footer-logo { width: 30px; height: auto; display: block; }
+        .footer-logo:hover { opacity: 0.8; transition: opacity 0.3s ease; }
 
-        /* ====================================================== */
-        /* --- CONTACT PAGE SPECIFIC STYLES --- */
-        /* ====================================================== */
+        /* =========================== */
+        /* --- PAGE SPECIFIC STYLES --- */
+        /* =========================== */
         .contact-header {
             text-align: center;
             margin-bottom: 2.5rem;
@@ -387,64 +377,65 @@
         }
 
         /* ====================================================== */
-        /* --- MOBILE LAYOUT (max-width: 767px) --- */
+        /* --- MOBILE LAYOUT (UPDATED TO 980px BREAKPOINT) --- */
         /* ====================================================== */
-        @media screen and (max-width: 767px) {
-            body { padding-top: 6rem; }
-            /* 1. Fixed Header (Only Logo and Toggle visible in the main bar) */
+        @media screen and (max-width: 980px) {
+            body { 
+                padding-top: 6rem; /* Reduced spacing for mobile */
+            }
+            
+            /* 1. Mobile Navigation Bar (Fixed Top) */
             #nav-bar {
                 padding: 0.5rem 1rem;
                 justify-content: space-between;
-                box-shadow: none; 
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
                 width: 100%;
+                max-width: 100%;
                 top: 0;
                 left: 0;
-                transform: none;
-                border-radius: 0;
-                border-left: none;
-                border-right: none;
+                transform: none; /* Reset transform */
+                border-radius: 0; /* Reset border radius */
+                border: none;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
             }
             
-            /* Show toggle button on mobile */
             #mobile-menu-toggle {
                 display: block;
-                position: static;
-                transform: none;
+                position: relative;
                 z-index: 1002;
-                margin-left: auto;
             }
             
-            /* The main menu container is the overlay */
+            /* Mobile Menu Overlay */
             #nav-menu {
                 display: none;
                 position: fixed;
                 top: 0;
                 left: 0;
-                width: 100vw;
+                width: 100%;
                 height: 100vh;
                 background: var(--body-color); 
                 z-index: 1001; 
                 flex-direction: column;
-                justify-content: center; 
+                justify-content: flex-start; 
                 align-items: center; 
-                gap: 2rem;
+                gap: 1.5rem;
+                padding: 6rem 1.5rem 2rem; 
+                margin: 0;
+                overflow-y: auto;
             }
 
             #nav-menu.mobile-open {
                 display: flex;
-                padding: 0; 
-                overflow-y: auto;
             }
             
-            /* Content Inside Overlay: Centered and Spacious */
             #nav-menu .nav-link,
             #nav-menu .nav-item {
-                font-size: 1.8rem;
-                font-weight: 700;
+                font-size: 1.5rem;
+                font-weight: 600;
                 color: var(--title-color);
                 padding: 0.5rem 0;
                 margin: 0;
-                width: auto; 
+                width: 100%; 
                 text-align: center;
             }
             
@@ -455,7 +446,7 @@
                 transform: none;
             }
             
-            /* Courses Dropdown (Mobile alignment) */
+            /* Mobile Dropdown (Accordion Style) */
             .has-submenu {
                 display: flex;
                 flex-direction: column;
@@ -463,76 +454,81 @@
                 width: 100%; 
             }
             
-            /* FIX: Submenu is static/full-width when opened on mobile */
             .submenu-courses {
                 position: static; 
-                width: auto; 
-                background: none;
+                width: 100%; 
+                background: transparent; 
                 box-shadow: none;
                 padding: 0; 
                 margin: 0; 
                 opacity: 0; 
+                visibility: hidden;
                 display: none;
-                transition: none;
+                max-height: 0;
+                overflow: hidden;
+                transition: opacity 0.3s, max-height 0.3s;
+                transform: none; 
                 flex-direction: column; 
-                align-items: center; 
-                text-align: left;
+                align-items: flex-start; 
+                border-radius: 0;
             }
             
             .submenu-courses.active { 
                 display: flex;
                 opacity: 1;
-                pointer-events: auto;
-                padding: 0.5rem 0 0 0; 
+                visibility: visible;
+                max-height: 500px;
                 margin-top: 0.5rem; 
+                background: rgba(255, 255, 255, 0.03);
+                border-radius: 8px;
             }
             
             .submenu-courses .submenu-link {
                 font-size: 1.1rem;
-                padding: 0.5rem 0;
+                padding: 0.8rem 1rem 0.8rem 2rem;
                 justify-content: flex-start; 
-                width: 300px;
+                width: 100%;
                 text-align: left;
-                margin-left: 50px;
-                background-color: transparent !important;
+                margin: 0;
             }
             
-            /* FIX: Mobile CTA button (Styled for full prominence) */
+            /* Mobile CTA button */
             .nav-cta.mobile-cta-only {
-                padding: 1rem 60px; 
-                width: 90%; 
-                max-width: 400px; 
-                font-size: 1.4rem; 
-                font-weight: 900;
-                margin-top: 2rem; 
+                padding: 0.8rem 2rem; 
+                width: 100%;
+                max-width: none;
+                white-space: nowrap;
+                font-size: 1.2rem; 
+                font-weight: 700;
+                margin-top: 1rem; 
                 display: block !important; 
-                align-self: center; 
                 text-align: center;
             }
             
-            /* Hide desktop items on mobile */
-            .nav-cta.desktop-cta-only,
-            .nav-cta:not(.mobile-cta-only) { display: none !important; }
-
-            /* --- Footer Mobile Styles --- */
+            /* Hide desktop items */
+            .nav-cta.desktop-cta-only { display: none !important; }
+            
+            /* Footer Mobile Styles */
             .footer-container {
                 grid-template-columns: 1fr;
                 row-gap: 3rem;
                 text-align: center;
             }
             
+            /* FIX: Centering footer elements on mobile */
             .footer-brand {
                 align-items: center;
                 text-align: center;
                 justify-content: center;
+                justify-self: center;
             }
-            .footer-brand-text {
-                text-align: center;
-            }
+            .footer-brand-text { text-align: center; }
             
             .footer-socials {
                 justify-content: center;
-                justify-self: center;
+                justify-self: center; /* FIX: Centers icons on mobile */
+                display: flex;
+                gap: var(--mb15);
             }
             
             .footer-links {
@@ -540,16 +536,10 @@
                 row-gap: 1.5rem;
                 justify-self: center;
             }
+            .footer-bg { padding: 2rem 0 3rem; }
+            .footer-copy { margin-top: var(--mb3); }
             
-            .footer-bg {
-                padding: 2rem 0 3rem;
-            }
-            
-            .footer-copy {
-                margin-top: var(--mb3);
-            }
-
-            /* --- Contact Page Mobile Styles --- */
+            /* --- Contact Page Specific Mobile Styles --- */
             .two-column {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -588,7 +578,8 @@
                 height: 500px;
             }
         }
-
+        
+        /* Smaller Mobile Adjustments */
         @media (max-width: 480px) {
             .contact-column {
                 padding: 1.25rem;
@@ -600,181 +591,277 @@
         }
 
         /* Desktop: Ensure correct visibility when not mobile */
-        @media screen and (min-width: 768px) {
-            #nav-menu {
-                display: flex !important;
-            }
-            .nav-cta.desktop-cta-only { 
-                display: block !important; 
-            }
+        @media screen and (min-width: 981px) {
+            #nav-menu { display: flex !important; }
+            .nav-cta.desktop-cta-only { display: block !important; }
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /* --- Snow Effects --- */
 
+ /* Base snowflake layer with blurry effects */
 
-
-
-
-
-        /* Base snowflake layer with blurry effects */
 body::before {
+
   content: "";
+
   position: fixed;
+
   top: 0;
+
   left: 0;
+
   width: 100%;
+
   height: 100%;
+
   pointer-events: none;
+
   z-index: 9999;
+
   background-image: 
+
     /* Large blurry snowflakes */
+
     radial-gradient(8px 8px at 10% 20%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.3) 70%, transparent 100%),
+
     radial-gradient(12px 12px at 20% 30%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.2) 60%, transparent 100%),
+
     radial-gradient(6px 6px at 30% 10%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.25) 80%, transparent 100%),
+
     radial-gradient(10px 10px at 40% 40%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.15) 75%, transparent 100%),
+
     radial-gradient(14px 14px at 50% 60%, rgba(255, 255, 255, 0.55) 30%, rgba(255, 255, 255, 0.2) 65%, transparent 100%),
+
     radial-gradient(7px 7px at 60% 80%, rgba(255, 255, 255, 0.65) 45%, rgba(255, 255, 255, 0.3) 85%, transparent 100%),
+
     radial-gradient(9px 9px at 70% 50%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.18) 70%, transparent 100%),
+
     radial-gradient(11px 11px at 80% 20%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.22) 75%, transparent 100%),
+
     radial-gradient(5px 5px at 90% 70%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.35) 90%, transparent 100%),
+
     radial-gradient(15px 15px at 15% 90%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.12) 55%, transparent 100%),
+
     
+
     /* Extra blurry medium snowflakes */
+
     radial-gradient(4px 4px at 25% 45%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
+
     radial-gradient(6px 6px at 75% 35%, rgba(255, 255, 255, 0.7) 15%, rgba(255, 255, 255, 0.05) 85%, transparent 100%),
+
     radial-gradient(3px 3px at 45% 75%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
+
     radial-gradient(8px 8px at 85% 65%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.08) 80%, transparent 100%);
+
   
+
   background-repeat: no-repeat;
+
   animation: snowfall 15s linear infinite;
+
   filter: blur(0.5px); /* Slight overall blur for softness */
+
 }
+
+
 
 /* Medium blurry snowflakes layer */
+
 body::after {
+
   content: "";
+
   position: fixed;
+
   top: 0;
+
   left: 0;
+
   width: 100%;
+
   height: 100%;
+
   pointer-events: none;
+
   z-index: 9998;
+
   background-image: 
+
     /* Medium blurry snowflakes */
+
     radial-gradient(4px 4px at 5% 15%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
+
     radial-gradient(7px 7px at 25% 35%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.08) 80%, transparent 100%),
+
     radial-gradient(3px 3px at 35% 5%, rgba(255, 255, 255, 0.6) 45%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
+
     radial-gradient(5px 5px at 45% 45%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.05) 70%, transparent 100%),
+
     radial-gradient(6px 6px at 55% 65%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.1) 75%, transparent 100%),
+
     radial-gradient(3.5px 3.5px at 65% 85%, rgba(255, 255, 255, 0.55) 40%, rgba(255, 255, 255, 0.12) 85%, transparent 100%),
+
     radial-gradient(4.5px 4.5px at 85% 25%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.06) 65%, transparent 100%),
+
     radial-gradient(2.5px 2.5px at 95% 55%, rgba(255, 255, 255, 0.65) 50%, rgba(255, 255, 255, 0.2) 95%, transparent 100%),
+
     radial-gradient(8px 8px at 15% 75%, rgba(255, 255, 255, 0.25) 20%, rgba(255, 255, 255, 0.04) 60%, transparent 100%);
+
   
+
   background-repeat: no-repeat;
+
   animation: snowfall 20s linear infinite;
+
   filter: blur(0.8px); /* More blur for background layer */
+
   opacity: 0.8;
+
 }
+
+
 
 /* Additional layer for extra blurry small snowflakes */
+
 .snowflakes-blurry {
+
   position: fixed;
+
   top: 0;
+
   left: 0;
+
   width: 100%;
+
   height: 100%;
+
   pointer-events: none;
+
   z-index: 9997;
+
   background-image: 
+
     /* Very blurry small snowflakes */
+
     radial-gradient(2px 2px at 12% 28%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0.05) 100%, transparent 100%),
+
     radial-gradient(1.5px 1.5px at 32% 18%, rgba(255, 255, 255, 0.5) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%),
+
     radial-gradient(2.5px 2.5px at 48% 52%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.03) 100%, transparent 100%),
+
     radial-gradient(1px 1px at 68% 72%, rgba(255, 255, 255, 0.6) 80%, rgba(255, 255, 255, 0.15) 100%, transparent 100%),
+
     radial-gradient(3px 3px at 82% 38%, rgba(255, 255, 255, 0.35) 40%, rgba(255, 255, 255, 0.07) 100%, transparent 100%),
+
     radial-gradient(1.8px 1.8px at 22% 88%, rgba(255, 255, 255, 0.45) 65%, rgba(255, 255, 255, 0.09) 100%, transparent 100%),
+
     radial-gradient(2.2px 2.2px at 58% 12%, rgba(255, 255, 255, 0.4) 55%, rgba(255, 255, 255, 0.06) 100%, transparent 100%),
+
     radial-gradient(0.8px 0.8px at 88% 68%, rgba(255, 255, 255, 0.7) 85%, rgba(255, 255, 255, 0.2) 100%, transparent 100%);
+
   
+
   background-repeat: no-repeat;
+
   animation: snowfall 25s linear infinite;
+
   filter: blur(1.2px); /* Maximum blur for distant effect */
+
   opacity: 0.6;
+
 }
+
+
 
 /* Enhanced snowfall animation with slight horizontal movement */
+
 @keyframes snowfall {
+
   0% {
+
     transform: translateY(-100%) translateX(0);
+
   }
+
   25% {
+
     transform: translateY(-50%) translateX(5px);
+
   }
+
   50% {
+
     transform: translateY(0%) translateX(0);
+
   }
+
   75% {
+
     transform: translateY(50%) translateX(-5px);
+
   }
+
   100% {
+
     transform: translateY(100vh) translateX(0);
+
   }
+
 }
+
+
 
 /* Alternative animation for some randomness */
+
 @keyframes snowfall-alt {
+
   0% {
+
     transform: translateY(-100%) translateX(10px);
+
   }
+
   50% {
+
     transform: translateY(0%) translateX(-10px);
+
   }
+
   100% {
+
     transform: translateY(100vh) translateX(10px);
+
   }
+
 }
-
-/* Add this class to an element in your HTML for the third layer */
-/* <div class="snowflakes-blurry"></div> */
-
-
-        
-
-
-        
+    
+    
+    
+    
+    
+    
+    
     </style>
 </head>
 
 <body>
-
-<div class="snowflakes-blurry"></div>
-
-
-    
-    <!-- Page Loader HTML -->
-    <script>
-        // --- Page Loader Logic ---
-        function showLoader() {
-            const loader = document.createElement('div');
-            loader.className = 'page-loader';
-            loader.innerHTML = `
-                <div class="loader-header">Wait for it...</div>
-                <div class="progress"></div>
-            `;
-            document.body.appendChild(loader);
-            return loader;
-        }
-
-        function initLoader() {
-            const loader = showLoader();
-            setTimeout(() => {
-                loader.classList.add('hidden');
-                setTimeout(() => loader.remove(), 300);
-            }, 1500);
-        }
-
-        document.addEventListener('DOMContentLoaded', initLoader);
-    </script>
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="loader-header">Loading AIM™</div>
+        <div class="progress"></div>
+    </div>
 
     <!-- Navigation Bar (Fixed Header) -->
     <nav id="nav-bar">
@@ -804,14 +891,14 @@ body::after {
             </div>
             
             <a href="/pricing-page" class="nav-link">Pricing</a>
-
+            <!-- Highlighted Contact Link -->
             <a href="/contact" class="nav-link" style="color: var(--skin-color);">Contact</a>
             
-            <!-- DESKTOP CTA (VISIBLE ON DESKTOP NAV BAR) -->
-            <a href="/login" class="nav-cta desktop-cta-only">MEMBER LOGIN</a>
+            <!-- DESKTOP CTA -->
+            <a href="/portal" class="nav-cta desktop-cta-only">MEMBER LOGIN</a>
             
-            <!-- MOBILE CTA (VISIBLE ONLY IN MOBILE OVERLAY) -->
-            <a href="/login" class="nav-cta mobile-cta-only">MEMBER LOGIN</a>
+            <!-- MOBILE CTA -->
+            <a href="/portal" class="nav-cta mobile-cta-only">MEMBER LOGIN</a>
         </div>
     </nav>
 
@@ -936,32 +1023,57 @@ body::after {
         Cal.ns["booking-project-freedom"]("ui", {"theme":"dark","cssVarsPerTheme":{"light":{"cal-brand":"#ff5011"},"dark":{"cal-brand":"#ff5011"}},"hideEventTypeDetails":true,"layout":"month_view"});
     </script>
 
-    <!-- YOUR JAVASCRIPT FILE -->
+    <!-- UNIFORM JS LOGIC -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Navigation Dropdown Logic (Desktop/Mobile Submenu) ---
+            // --- Page Loader Logic ---
+            const pageLoader = document.querySelector('.page-loader');
+            window.addEventListener('load', () => {
+                pageLoader.classList.add('hidden');
+                setTimeout(() => pageLoader.remove(), 300);
+            });
+
+            // --- Back to Top Button Logic ---
+            const toTopButton = document.getElementById('back-to-top');
+            
+            window.onscroll = function() {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    toTopButton.classList.add('show');
+                } else {
+                    toTopButton.classList.remove('show');
+                }
+            };
+
+            toTopButton.onclick = function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            // --- Dropdown Menu Click Logic ---
             const coursesLink = document.getElementById('courses-link');
             const submenu = document.getElementById('courses-submenu');
             const navBar = document.getElementById('nav-bar');
 
-            if (coursesLink && submenu && navBar) {
+            if (coursesLink && submenu) {
                 // 1. Toggle visibility on click
                 coursesLink.addEventListener('click', (e) => {
                     e.preventDefault(); 
-                    submenu.classList.toggle('active');
+                    const isMobile = window.innerWidth <= 980; // UPDATED Breakpoint
+                    if (isMobile) {
+                        submenu.classList.toggle('active');
+                    } else {
+                        submenu.classList.toggle('active');
+                    }
                     e.stopPropagation(); 
                 });
 
-                // 2. Close menu when clicking outside the entire navigation bar (Desktop behavior)
+                // 2. Close menu when clicking outside
                 document.addEventListener('click', (e) => {
-                    if (!navBar.contains(e.target) && submenu.classList.contains('active')) {
-                        if (window.innerWidth >= 768) {
-                             submenu.classList.remove('active');
-                        }
+                    if (navBar && !navBar.contains(e.target) && submenu.classList.contains('active')) {
+                        submenu.classList.remove('active');
                     }
                 });
 
-                // 3. Prevent clicks inside the submenu from propagating and closing it (Desktop)
+                // 3. Prevent clicks inside submenu from closing it
                 submenu.addEventListener('click', (e) => {
                     e.stopPropagation();
                 });
@@ -973,7 +1085,8 @@ body::after {
             const toggleIcon = document.getElementById('toggle-icon');
 
             if (mobileToggle && navMenu && toggleIcon) {
-                mobileToggle.addEventListener('click', () => {
+                mobileToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     navMenu.classList.toggle('mobile-open');
                     
                     if (navMenu.classList.contains('mobile-open')) {
@@ -990,7 +1103,7 @@ body::after {
                 
                 navMenu.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
                     link.addEventListener('click', () => {
-                        if (window.innerWidth < 768 && !link.parentElement.classList.contains('has-submenu')) {
+                        if (window.innerWidth <= 980 && !link.parentElement.classList.contains('has-submenu')) {
                             navMenu.classList.remove('mobile-open');
                             toggleIcon.classList.remove('fa-xmark');
                             toggleIcon.classList.add('fa-bars');
@@ -999,22 +1112,37 @@ body::after {
                         }
                     });
                 });
+
+                // Close menu when clicking outside on mobile
+                document.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 980 && 
+                        navMenu.classList.contains('mobile-open') &&
+                        !navMenu.contains(e.target) && 
+                        e.target !== mobileToggle) {
+                        navMenu.classList.remove('mobile-open');
+                        toggleIcon.classList.remove('fa-xmark');
+                        toggleIcon.classList.add('fa-bars');
+                        document.body.style.overflow = 'auto';
+                        if (submenu) submenu.classList.remove('active');
+                    }
+                });
             }
-
-            // --- Back to Top Button Logic ---
-            const toTopButton = document.getElementById('back-to-top');
             
-            window.onscroll = function() {
-                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                    toTopButton.classList.add('show');
-                } else {
-                    toTopButton.classList.remove('show');
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                const isMobile = window.innerWidth <= 980; // UPDATED Breakpoint
+                if (!isMobile && navMenu && navMenu.classList.contains('mobile-open')) {
+                    navMenu.classList.remove('mobile-open');
+                    if (toggleIcon) {
+                        toggleIcon.classList.remove('fa-xmark');
+                        toggleIcon.classList.add('fa-bars');
+                    }
+                    document.body.style.overflow = 'auto';
                 }
-            };
-
-            toTopButton.onclick = function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
+                if (submenu) {
+                    submenu.classList.remove('active');
+                }
+            });
         });
     </script>
 </body>
