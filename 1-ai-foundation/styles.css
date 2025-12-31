@@ -1,569 +1,65 @@
-    /* --- AIM Brand Styles --- */
-        :root {
-            --skin-color: #ff5011;
-            --mirage-color: hsl(210, 10%, 23%);
-            --title-color: hsl(242, 8%, 98%);
-            --text-color: hsl(242, 8%, 80%);
-            --body-color: #0d0d0d;
-            --box-color: hsl(242, 14%, 12%);
-            --body-font: 'Inter', sans-serif;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-            --small-font-size: 0.95rem;
-            --h3-font-size: 1.25rem;
-            --smaller-font-size: 0.75rem;
-            --mb15: 0.75rem;
-            --mb3: 1.5rem;
-        }
+/* =========================== */
+/* --- UNIFORM BRAND STYLES --- */
+/* =========================== */
+:root {
+    /* Color Palette */
+    --skin-color: #ff5011; /* Orange-Red Accent */
+    --mirage-color: hsl(210, 10%, 23%); /* Dark Gray Background Component */
+    --title-color: hsl(242, 8%, 98%); /* Near White for Titles */
+    --text-color: hsl(242, 8%, 80%); /* Light Gray for Body Text */
+    --body-color: #0d0d0d; /* Deep Black/Very Dark Gray */
+    --box-color: hsl(242, 14%, 12%); /* Slightly lighter than body for cards */
+    --hue-color: 242; 
 
-        /* --- Base & Scrollbar --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body {
-            margin: 0;
-            font-family: var(--body-font);
-            background-color: var(--body-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding-top: 8rem; /* Space for fixed nav */
-            overflow-x: hidden;
-        }
-        
-        main {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        img { max-width: 100%; height: auto; display: block; }
-        a { text-decoration: none; cursor: pointer; }
+    /* Typography */
+    --body-font: 'Inter', sans-serif;
+    --signature-font: 'Inter', sans-serif;
+    --font-medium: 500;
+    --font-bold: 700;
+    --h3-font-size: 1.25rem; /* Adjusted to standard */
+    --small-font-size: 0.95rem;
+    --smaller-font-size: 0.75rem;
+    
+    /* Margins */
+    --mb025: 0.25rem;
+    --mb15: 0.75rem;
+    --mb3: 1.5rem;
+    
+    /* Scrollbar/Misc */
+    --scroll-box-color: #333;
+    --scroll-thumb-color: #555;
+}
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #333; }
-        ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
-        
-        /* Utility container class */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
+/* --- Base & Scrollbar --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-        /* --- Loader Styles --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+body {
+    margin: 0;
+    font-family: var(--body-font);
+    background-color: var(--body-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding-top: 8rem; /* Space for fixed nav */
+    overflow-x: hidden;
+}
 
-        /* =========================== */
-        /* SECTION 4: NAVIGATION BAR */
-        /* =========================== */
-        
-        #nav-bar {
-            position: fixed; 
-            top: 2rem; 
-            left: 50%; 
-            transform: translateX(-50%);
-            background: rgba(25, 25, 25, 0.85); 
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--box-color); 
-            border-radius: 0.75rem;
-            padding: 0.75rem 1.5rem; 
-            display: flex; 
-            align-items: center;
-            max-width: 1100px; 
-            width: 90%; 
-            z-index: 1000;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-        }
-        #nav-logo img { height: 35px; }
-        
-        /* Desktop: nav-menu contains all links and is flexed */
-        #nav-menu { 
-            display: flex; 
-            gap: 1.5rem; 
-            margin-left: auto; 
-            align-items: center; 
-        }
-
-        /* Nav links and CTA */
-        .nav-link { 
-            color: var(--text-color); 
-            transition: color 0.3s, transform 0.2s; 
-            font-weight: 500; 
-        }
-        .nav-link:hover { 
-            color: var(--skin-color); 
-            transform: translateY(-1px); 
-        }
-
-        /* Highlight current page in navigation */
-        .nav-link[href="/courses"],
-        .nav-link[href^="/courses"] {
-            color: var(--skin-color) !important;
-        }
-
-        .nav-cta {
-            background: linear-gradient(90deg, var(--skin-color), #d43a00);
-            color: var(--title-color); 
-            padding: 0.5rem 1rem; 
-            border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); 
-            transition: transform 0.3s, box-shadow 0.3s;
-            font-weight: 600;
-        }
-        .nav-cta:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); 
-        }
-        .has-submenu { position: relative; }
-
-        /* Submenu Default State (Hidden - Desktop) */
-        .submenu-courses {
-            position: absolute; 
-            top: 100%; 
-            left: 50%; 
-            transform: translateX(-50%);
-            background: var(--box-color); 
-            border-radius: 0.5rem; 
-            padding: 0.75rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
-            opacity: 0; 
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s, top 0.3s; 
-            width: 250px;
-            z-index: 1001;
-        }
-
-        /* Submenu Active State (Shown via JavaScript click - Desktop) */
-        .submenu-courses.active { 
-            opacity: 1; 
-            visibility: visible;
-            top: calc(100% + 10px);
-        }
-        .submenu-link { 
-            display: flex; 
-            align-items: center; 
-            gap: 0.75rem; 
-            color: var(--text-color); 
-            padding: 0.5rem; 
-            border-radius: 0.25rem; 
-            transition: background-color 0.3s, color 0.3s; 
-        }
-        .submenu-link:hover { 
-            background-color: rgba(255, 80, 17, 0.1); 
-            color: var(--skin-color); 
-        }
-        .submenu-link i { width: 15px; text-align: center; }
-
-        /* Mobile visibility controls (Default/Desktop state) */
-        #mobile-menu-toggle { 
-            display: none; 
-            border: none;
-            background: transparent;
-            color: var(--skin-color);
-            font-size: 1.8rem;
-            cursor: pointer;
-            margin-left: auto;
-        }
-        .nav-cta.mobile-cta-only { display: none; }
-        .nav-cta.desktop-cta-only { display: block; }
-
-        /* =========================== */
-        /* SECTION 5: BACK TO TOP BUTTON */
-        /* =========================== */
-        #back-to-top {
-            position: fixed; 
-            bottom: 20px; 
-            right: 20px;
-            width: 50px; 
-            height: 50px;
-            background: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597') no-repeat center center;
-            background-size: cover;
-            border: none; 
-            border-radius: 50%;
-            cursor: pointer; 
-            opacity: 0; 
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-            z-index: 999;
-        }
-        #back-to-top.show { 
-            opacity: 1; 
-            visibility: visible; 
-        }
-        #back-to-top:hover { 
-            transform: scale(1.1); 
-        }
-
-        /* =========================== */
-        /* SECTION 6: FOOTER STYLES */
-        /* =========================== */
-        .footer { 
-            padding-top: 2rem; 
-            margin-top: 3rem;
-        }
-        .footer-bg { 
-            background-color: var(--box-color); 
-            padding: 3rem 0 3.5rem; 
-        }
-        .footer-container { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            column-gap: 1.6rem;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        .footer-title { 
-            font-size: var(--h3-font-size); 
-            margin-bottom: 0.25rem; 
-            color: var(--title-color); 
-        }
-        .footer-subtitle { 
-            font-size: var(--small-font-size); 
-            color: var(--title-color); 
-        }
-        .footer-links { 
-            list-style: none; 
-            display: flex; 
-            justify-self: center; 
-            column-gap: 2rem; 
-            padding: 0;
-            margin: 0;
-        }
-        .footer-links a { 
-            color: var(--title-color); 
-            transition: color 0.3s; 
-            text-decoration: none;
-            font-size: 1rem;
-        }
-        .footer-links a:hover { 
-            color: var(--skin-color); 
-        }
-        .footer-socials { 
-            justify-self: flex-end; 
-            display: flex; 
-            align-items: center; 
-            gap: var(--mb15); 
-        }
-        .footer-social { 
-            font-size: 1.25rem; 
-            color: var(--title-color); 
-            transition: color 0.3s; 
-            text-decoration: none;
-        }
-        .footer-social:hover { 
-            color: var(--skin-color); 
-            cursor: pointer; 
-        }
-        .footer-copy { 
-            font-size: var(--smaller-font-size); 
-            text-align: center; 
-            margin-top: 4.5rem; 
-            color: var(--title-color);
-        }
-        .footer-copy a { 
-            color: var(--title-color); 
-            text-decoration: none;
-        }
-        .footer-copy a:hover { 
-            color: var(--skin-color); 
-        }
-        .footer-brand { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: flex-start; 
-            text-align: left; 
-            gap: 0.5rem; 
-        }
-        .footer-brand-text { 
-            text-align: left; 
-        }
-        .footer-logo { 
-            width: 30px; 
-            height: auto; 
-            display: block; 
-        }
-        .footer-logo:hover {
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        /* =========================== */
-        /* SECTION 7: MOBILE RESPONSIVENESS */
-        /* =========================== */
-        /* UPDATED: Changed max-width to 980px to include tablets in mobile view */
-        @media screen and (max-width: 980px) {
-            body { 
-                padding-top: 6rem; 
-                overflow-x: hidden;
-            }
-            
-            /* Mobile Navigation */
-            #nav-bar {
-                padding: 0.5rem 1rem;
-                justify-content: space-between;
-                box-shadow: none; 
-                width: 100%;
-                max-width: 100%;
-                top: 0;
-                left: 0;
-                transform: none;
-                border-radius: 0;
-                border-left: none;
-                border-right: none;
-            }
-            
-            #mobile-menu-toggle {
-                display: block;
-                position: static;
-                transform: none;
-                z-index: 1002;
-                margin-left: auto;
-            }
-            
-            #nav-menu {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                background: var(--body-color); 
-                z-index: 1001; 
-                flex-direction: column;
-                justify-content: flex-start; 
-                align-items: center; 
-                gap: 1.5rem;
-                /* FIXED: Padding for spacing */
-                padding: 6rem 1.5rem 2rem;
-                margin: 0;
-            }
-
-            #nav-menu.mobile-open {
-                display: flex;
-                padding: 6rem 1.5rem 2rem;
-                overflow-y: auto;
-            }
-            
-            #nav-menu .nav-link,
-            #nav-menu .nav-item {
-                font-size: 1.5rem;
-                font-weight: 600;
-                color: var(--title-color);
-                padding: 0.5rem 0;
-                margin: 0;
-                width: auto; 
-                text-align: center;
-            }
-            
-            #nav-menu .nav-item { 
-                margin: 0; 
-                padding: 0; 
-            }
-
-            #nav-menu .nav-link:hover {
-                color: var(--skin-color);
-                transform: none;
-            }
-            
-            /* Courses Dropdown (Mobile alignment) */
-            .has-submenu {
-                display: flex;
-                flex-direction: column;
-                align-items: center; 
-                width: 100%; 
-            }
-            
-            .submenu-courses {
-                position: static; 
-                width: 100%; 
-                /* FIXED: Removed container background and styling */
-                background: transparent;
-                box-shadow: none;
-                padding: 0; 
-                margin: 0.5rem 0 0 0; 
-                opacity: 0; 
-                visibility: hidden;
-                display: none;
-                max-height: 0;
-                overflow: hidden;
-                transition: opacity 0.3s, max-height 0.3s;
-                /* FIXED: Align items to left for mobile */
-                flex-direction: column; 
-                align-items: flex-start; 
-                text-align: left;
-                border-radius: 0;
-            }
-            
-            .submenu-courses.active { 
-                display: flex;
-                opacity: 1;
-                visibility: visible;
-                max-height: 400px;
-                padding: 0; 
-                margin-top: 0.5rem; 
-            }
-            
-            .submenu-courses .submenu-link {
-                font-size: 1.1rem;
-                /* FIXED: Increased left padding for indentation */
-                padding: 0.8rem 1rem 0.8rem 2.5rem;
-                justify-content: flex-start; 
-                width: 100%;
-                text-align: left;
-                margin: 0;
-                box-sizing: border-box;
-            }
-            
-            /* Mobile CTA button */
-            .nav-cta.mobile-cta-only {
-                padding: 0.8rem 2rem; 
-                /* FIXED: Full width */
-                width: 100%;
-                max-width: none; 
-                white-space: nowrap;
-                font-size: 1.2rem; 
-                font-weight: 700;
-                margin-top: 1rem; 
-                display: block !important; 
-                align-self: center; 
-                text-align: center;
-            }
-            
-            /* Hide desktop items on mobile */
-            .nav-cta.desktop-cta-only,
-            .nav-cta:not(.mobile-cta-only) { 
-                display: none !important; 
-            }
-
-            /* Mobile Footer */
-            .footer-container {
-                grid-template-columns: 1fr;
-                row-gap: 2.5rem;
-                text-align: center;
-            }
-            
-            .footer-brand {
-                align-items: center;
-                text-align: center;
-                justify-content: center;
-            }
-            .footer-brand-text {
-                text-align: center;
-            }
-            
-            .footer-socials {
-                justify-content: center;
-                justify-self: center;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                row-gap: 1.2rem;
-                justify-self: center;
-            }
-            
-            .footer-bg {
-                padding: 2rem 0 2.5rem;
-            }
-            
-            .footer-copy {
-                margin-top: var(--mb3);
-                padding: 0 1rem;
-            }
-        }
-
-        /* Tablet responsiveness (Small Desktop / Large Tablet now starts at 981px) */
-        @media screen and (min-width: 981px) and (max-width: 1024px) {
-            #nav-bar {
-                width: 95%;
-                padding: 0.5rem 1rem;
-            }
-            
-            #nav-menu {
-                gap: 1rem;
-            }
-        }
-
-        /* Desktop: Ensure correct visibility when not mobile (Starts at 981px) */
-        @media screen and (min-width: 981px) {
-            #nav-menu {
-                display: flex !important;
-            }
-            .nav-cta.desktop-cta-only { 
-                display: block !important; 
-            }
-        }
-
-        /* =========================== */
-        /* SECTION 8: PAGE LOADER STYLES */
-        /* =========================== */
-        .page-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.3s ease;
-        }
-
-        .loader-header {
-            color: white;
-            font-size: 24px;
-            font-family: Arial, sans-serif;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .progress {
-            width: 272.8px;
-            height: 41.7px;
-            border-radius: 28.8px;
-            color: #ff5011;
-            background-color: #000;
-            border: 2.9px solid;
-            position: relative;
-        }
-
-        .progress::before {
-            content: "";
-            position: absolute;
-            margin: 2.9px;
-            inset: 0 100% 0 0;
-            border-radius: inherit;
-            background: currentColor;
-            animation: progress-pf82op 1.5s forwards;
-        }
-
-        @keyframes progress-pf82op {
-            100% {
-                inset: 0;
-            }
-        }
-
-        .page-loader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-
-
-
-
-
-
-
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--scroll-box-color); }
+::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #d43a00; }
 
 /* =========================== */
-/* PAGE LOADER STYLES */
+/* --- UNIFORM COMPONENT STYLES --- */
 /* =========================== */
+
+/* 1. Loader */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .page-loader {
     position: fixed;
     top: 0;
@@ -591,7 +87,7 @@
     width: 272.8px;
     height: 41.7px;
     border-radius: 28.8px;
-    color: var(--skin-color);
+    color: #ff5011;
     background-color: #000;
     border: 2.9px solid;
     position: relative;
@@ -608,9 +104,7 @@
 }
 
 @keyframes progress-pf82op {
-    100% {
-        inset: 0;
-    }
+    100% { inset: 0; }
 }
 
 .page-loader.hidden {
@@ -618,15 +112,173 @@
     pointer-events: none;
 }
 
+/* 2. Navigation Bar (Uniform) */
+#nav-bar {
+    position: fixed; 
+    top: 2rem; 
+    left: 50%; 
+    transform: translateX(-50%);
+    background: rgba(25, 25, 25, 0.85); 
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--box-color); 
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem; 
+    display: flex; 
+    align-items: center;
+    max-width: 1100px; 
+    width: 90%; 
+    z-index: 1000;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease;
+}
+#nav-logo img { height: 35px; }
 
+#nav-menu { 
+    display: flex; 
+    gap: 1.5rem; 
+    margin-left: auto; 
+    align-items: center; 
+}
 
+.nav-link { 
+    color: var(--text-color); 
+    transition: color 0.3s, transform 0.2s; 
+    font-weight: 500; 
+    position: relative;
+    text-decoration: none;
+}
+.nav-link:hover { 
+    color: var(--skin-color); 
+    transform: translateY(-1px); 
+}
 
+.nav-cta {
+    background: linear-gradient(90deg, var(--skin-color), #d43a00);
+    color: var(--title-color); 
+    padding: 0.5rem 1rem; 
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); 
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+}
+.nav-cta:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); 
+}
 
+.has-submenu { position: relative; }
 
+.submenu-courses {
+    position: absolute; 
+    top: 100%; 
+    left: 50%; 
+    transform: translateX(-50%);
+    background: var(--box-color); 
+    border-radius: 0.5rem; 
+    padding: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
+    opacity: 0; 
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s, top 0.3s; 
+    width: 250px;
+    z-index: 1001;
+    margin-left: 0;
+    padding-left: 0.75rem;
+    flex-direction: column;
+}
+
+.submenu-courses.active { 
+    opacity: 1; 
+    visibility: visible;
+    top: calc(100% + 15px);
+}
+
+.submenu-link { 
+    display: flex; 
+    align-items: center; 
+    gap: 0.75rem; 
+    color: var(--text-color); 
+    padding: 0.5rem; 
+    border-radius: 0.25rem; 
+    transition: background-color 0.3s, color 0.3s; 
+    text-decoration: none;
+}
+.submenu-link:hover { 
+    background-color: rgba(255, 80, 17, 0.1); 
+    color: var(--skin-color); 
+}
+.submenu-link i { width: 15px; text-align: center; }
+
+#mobile-menu-toggle { 
+    display: none; 
+    border: none;
+    background: transparent;
+    color: var(--skin-color);
+    font-size: 1.8rem;
+    cursor: pointer;
+    margin-left: auto;
+}
+.nav-cta.mobile-cta-only { display: none; }
+.nav-cta.desktop-cta-only { display: block; }
+
+/* 3. Back to Top (Uniform) */
+#back-to-top {
+    position: fixed; bottom: 20px; right: 20px;
+    width: 50px; height: 50px;
+    background: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597') no-repeat center center;
+    background-size: cover;
+    border: none; border-radius: 50%;
+    cursor: pointer; 
+    opacity: 0; 
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    z-index: 999;
+}
+#back-to-top.show { opacity: 1; visibility: visible; }
+#back-to-top:hover { transform: scale(1.1); }
+
+/* 4. Footer (Uniform) */
+.footer { padding-top: 2rem; }
+.footer-bg { background-color: var(--box-color); padding: 3rem 0 3.5rem; width: 100%; }
+.footer-container { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    column-gap: 1.6rem; 
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.footer-title { font-size: 1.25rem; margin-bottom: 0.25rem; color: var(--title-color); font-weight: 700; }
+.footer-subtitle { font-size: var(--small-font-size); color: var(--title-color); }
+
+.footer-links { list-style: none; display: flex; justify-self: center; column-gap: 2rem; padding: 0; margin: 0; }
+.footer-links a { color: var(--title-color); transition: color 0.3s; text-decoration: none; }
+.footer-links a:hover { color: var(--skin-color); }
+
+.footer-socials { justify-self: flex-end; display: flex; align-items: center; gap: var(--mb15); }
+.footer-social { font-size: 1.25rem; color: var(--title-color); transition: color 0.3s; }
+.footer-social:hover { color: var(--skin-color); cursor: pointer; }
+
+.footer-copy { font-size: var(--smaller-font-size); text-align: center; margin-top: 4.5rem; color: var(--text-color); grid-column: 1 / -1; }
+.footer-copy a { color: var(--title-color); text-decoration: none; }
+.footer-copy a:hover { color: var(--skin-color); }
+
+.footer-brand { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 0.5rem; }
+.footer-brand-text { text-align: left; }
+.footer-logo { width: 30px; height: auto; display: block; }
+.footer-logo:hover { opacity: 0.8; transition: opacity 0.3s ease; }
 
 /* =========================== */
-/* MAIN CONTENT & TYPOGRAPHY */
+/* --- PAGE SPECIFIC STYLES --- */
 /* =========================== */
+main {
+    max-width: 980px; 
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
 h1 {
     font-size: 3rem;
@@ -636,20 +288,19 @@ h1 {
     text-align: center;
 }
 
-h2 { /* Main section titles, top of block */
+h2 { 
     font-size: 2.2rem;
     color: var(--title-color);
     margin-top: 1rem;
     margin-bottom: 1.5rem;
     text-align: left;
-    border-left: 4px solid var(--skin-color); /* Orange-red left border accent */
+    border-left: 4px solid var(--skin-color);
     padding-left: 15px;
     font-weight: var(--font-bold);
 }
 
-/* Base h3 style, non-flex */
-h3 {
-    font-size: var(--h3-font-size);
+h3 { 
+    font-size: 1.7rem;
     color: var(--title-color);
     text-align: left;
     margin-top: 0.5rem;
@@ -657,44 +308,41 @@ h3 {
     font-weight: var(--font-bold);
 }
 
-/* Applies flex only to h3s with icons */
 .h3-with-icon {
     display: flex;
     align-items: center;
     gap: 0.75rem;
 }
 
-/* Styles the h3 title inside the grid (Course at a Glance) */
 .grid-title {
     margin-top: 0;
-    margin-bottom: 1.5rem;
-    white-space: nowrap;
+    margin-bottom: 1.5rem; 
+    white-space: nowrap; 
 }
 
-h3 i { /* Style for icons in h3 */
+h3 i { 
     color: var(--skin-color);
     font-size: 1.5rem;
     flex-shrink: 0;
 }
 
-/* --- Layout Adjustments (1/2 columns) --- */
+/* Layouts */
 .two-column, .instructor-profile {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 50% / 50% split */
+    grid-template-columns: 1fr 1fr;
     gap: 3rem;
-    align-items: center;
+    align-items: center; 
     margin-bottom: 0;
 }
 
-/* CUSTOM GRID FOR FIRST SECTION: List (40%) and Video (60%) */
 .course-at-glance-grid {
     display: grid;
-    grid-template-columns: 2fr 3fr; /* Custom split for larger video */
+    grid-template-columns: 2fr 3fr;
     gap: 3rem;
     align-items: center;
 }
 
-/* Card/Section Styles with Hover and Animation */
+/* Cards & Sections */
 .section, .instructor-card {
     margin-bottom: 3rem;
     background-color: var(--box-color);
@@ -704,36 +352,36 @@ h3 i { /* Style for icons in h3 */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     transition: all 0.4s ease-out;
     animation: fadeInUp 0.8s ease-out forwards;
-    opacity: 0; /* Starts opaque for fadeInUp */
+    opacity: 0;
 }
 
-/* Staggering the animation delay for sections */
+/* Staggered Animation */
 .section:nth-child(2) { animation-delay: 0.1s; }
 .section:nth-child(3) { animation-delay: 0.2s; }
 .section:nth-child(4) { animation-delay: 0.3s; }
 .section:nth-child(5) { animation-delay: 0.4s; }
 .section:nth-child(6) { animation-delay: 0.5s; }
 .section:nth-child(7) { animation-delay: 0.6s; }
-.faq-section { animation-delay: 0.7s; } /* Custom delay for FAQ */
-.section:nth-child(9) { animation-delay: 0.8s; } /* Getting Started */
+.faq-section { animation-delay: 0.7s; } 
+.section:nth-child(9) { animation-delay: 0.8s; }
 
 .section:hover, .instructor-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(255, 80, 17, 0.2), 0 4px 12px rgba(0, 0, 0, 0.5); /* Lifted skin-color glow */
+    box-shadow: 0 10px 25px rgba(255, 80, 17, 0.2), 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-/* Image Containers with Hover - Adjusted for Square Images */
+/* Images */
 .image-container, .instructor-photo {
     width: 100%;
-    padding-top: 100%;
-    position: relative;
+    padding-top: 100%; 
+    position: relative; 
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .image-container img, .instructor-photo img {
-    position: absolute;
+    position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
@@ -746,11 +394,11 @@ h3 i { /* Style for icons in h3 */
     transform: scale(1.05);
 }
 
-/* Video Container for 16:9 Aspect Ratio */
+/* Video */
 .video-container {
     width: 100%;
     position: relative;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio (9/16 * 100) */
+    padding-top: 56.25%;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -765,7 +413,7 @@ h3 i { /* Style for icons in h3 */
     border: none;
 }
 
-/* Lists with Font Awesome Icons */
+/* Lists */
 ul {
     list-style-type: none;
     padding-left: 0;
@@ -774,7 +422,7 @@ ul {
 ul li {
     margin-bottom: 1rem;
     position: relative;
-    display: flex;
+    display: flex; 
     align-items: flex-start;
     gap: 1rem;
     transition: transform 0.3s ease, color 0.3s ease;
@@ -789,42 +437,40 @@ ul li:hover {
 ul li i {
     color: var(--skin-color);
     font-size: 1.15rem;
-    margin-top: 5px;
+    margin-top: 5px; 
     flex-shrink: 0;
 }
 
-/* Utility to wrap text/nested content inside a flex LI */
 .li-content {
     flex-grow: 1;
     align-self: flex-start;
 }
 
-/* Specific styling for nested project bullets (requested by user) */
 .project-bullets {
-    list-style-type: disc;
-    padding-left: 1.5rem;
+    list-style-type: disc; 
+    padding-left: 1.5rem; 
     margin-bottom: 0;
     margin-top: 0.5rem;
 }
 
 .project-bullets li {
-    list-style-type: disc;
-    display: list-item;
-    position: static;
+    list-style-type: disc; 
+    display: list-item; 
+    position: static; 
     padding-left: 0;
     gap: 0;
     transform: none;
     transition: none;
     font-size: 1rem;
     color: var(--text-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem; 
 }
 
 .project-bullets li:hover {
-    color: var(--text-color);
+    color: var(--text-color); 
 }
 
-/* Call to Action Button */
+/* CTA Button */
 .cta-button {
     background: linear-gradient(90deg, var(--skin-color), #d43a00);
     color: var(--title-color);
@@ -847,40 +493,28 @@ ul li i {
     box-shadow: 0 6px 12px rgba(255, 80, 17, 0.6);
 }
 
-.cta-button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4);
-}
-
-
-
-
-
-
-
-
-/* --- FAQ Section Styles (Cardless, Centered Title) --- */
-.faq-section { /* Custom class for the whole FAQ block */
+/* FAQ Section */
+.faq-section { 
     margin-bottom: 3rem;
-    padding: 0 1rem; /* Use body padding for edges */
+    padding: 0 1rem; 
 }
 
 .faq-section h2 {
-    text-align: center; /* Center the title */
-    border-left: none; /* Remove title border */
+    text-align: center; 
+    border-left: none; 
     padding-left: 0;
     margin-bottom: 2rem;
 }
 
 .faq-container {
-    max-width: 768px;
+    max-width: 768px; 
     margin-left: auto;
     margin-right: auto;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10px; /* Reduced gap as requested */
+    gap: 10px;
     width: 100%;
-    padding: 0; /* Remove inner padding */
+    padding: 0;
 }
 
 .faq-item {
@@ -889,7 +523,7 @@ ul li i {
     padding: 1.25rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     width: 100%;
-    margin-bottom: 0; /* Handled by container gap */
+    margin-bottom: 0;
     transition: all 0.3s ease;
 }
 
@@ -927,7 +561,7 @@ ul li i {
 .faq-content {
     overflow: hidden;
     max-height: 0;
-    transition: max-height .4s cubic-bezier(0.5, 0, 0.1, 1);
+    transition: max-height .4s cubic-bezier(0.5, 0, 0.1, 1); 
 }
 
 .faq-answer {
@@ -939,22 +573,15 @@ ul li i {
     line-height: 1.7;
 }
 
-/* Active state for FAQ item */
 .faq-open .faq-icon {
     transform: rotate(45deg);
 }
 
 .faq-open .faq-content {
-    max-height: 500px;
+    max-height: 500px; 
 }
 
-
-
-
-
-
-
-/* --- Community Button Styles --- */
+/* Community Button */
 .community-button-container {
     display: flex;
     justify-content: center;
@@ -971,7 +598,7 @@ ul li i {
     font-weight: var(--font-bold);
     text-decoration: none;
     display: inline-block;
-    font-size: var(--h3-font-size);
+    font-size: 1.25rem;
     padding: 1rem 2rem;
     border-radius: .5rem;
     transition: all 0.4s ease;
@@ -984,309 +611,60 @@ ul li i {
     box-shadow: 0 6px 20px rgba(255, 80, 17, 0.4);
 }
 
-
-
-
-
-
-
-/* =========================== */
-/* BACK TO TOP BUTTON */
-/* =========================== */
-#back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597') no-repeat center center;
-    background-size: cover;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-    z-index: 999;
-}
-#back-to-top.show {
-    opacity: 1;
-    visibility: visible;
-}
-#back-to-top:hover {
-    transform: scale(1.1);
-}
-
-
-
-
-
-/* --- Footer (Main Page Footer) --- */
-        .footer {
-            padding-top: 2rem;
-        }
-
-        .footer-bg {
-            background-color: var(--box-color);
-            padding: 3rem 0 3.5rem;
-        }
-        
-        .footer-container {
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr);
-            column-gap: 1.6rem;
-        }
-
-        .footer-title {
-            font-size: var(--h3-font-size);
-            margin-bottom: 0.25rem; 
-            color: var(--title-color);
-        }
-
-        .footer-subtitle {
-            font-size: var(--small-font-size);
-            color: var(--title-color);
-        }
-
-        .footer-links {
-            list-style: none;
-            display: flex;
-            justify-self: center;
-            column-gap: 2rem;
-            color: var(--title-color);
-        }
-
-        .footer-links:hover {
-            color: var(--skin-color);
-        }
-
-        .footer-socials {
-            justify-self: flex-end;
-            display: flex; 
-            align-items: center;
-            gap: var(--mb15);
-        }
-
-        .footer-social {
-            font-size: 1.25rem;
-            color: var(--title-color);
-            transition: color 0.3s;
-        }
-
-        .footer-social:hover {
-            color: var(--skin-color);
-            cursor: pointer; 
-        }
-
-        .footer-copy {
-            font-size: var(--smaller-font-size);
-            text-align: center;
-            margin-top: 4.5rem;
-        }
-
-        .footer-copy a {
-            color: var(--title-color);
-        }
-
-        .footer-copy a:hover {
-            color: var(--skin-color);
-        }
-
-        .footer-title,
-        .footer-subtitle,
-        .footer-links,
-        .footer-social,
-        .footer-copy a {
-            color: var(--title-color);
-        }
-
-        /* Footer Logo Styles (Desktop) */
-        .footer-brand {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-            gap: 0.5rem; 
-        }
-        .footer-brand-text { 
-            text-align: left;
-        }
-        .footer-logo {
-            width: 30px;
-            height: auto;
-            display: block;
-        }
-
-        .footer-logo:hover {
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-        
-
-/* --- Footer (Main Page Footer) --- */
-        .footer {
-            padding-top: 2rem;
-        }
-
-        .footer-bg {
-            background-color: var(--box-color);
-            padding: 3rem 0 3.5rem;
-        }
-        
-        .footer-container {
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr);
-            column-gap: 1.6rem;
-        }
-
-        .footer-title {
-            font-size: var(--h3-font-size);
-            margin-bottom: 0.25rem; 
-            color: var(--title-color);
-        }
-
-        .footer-subtitle {
-            font-size: var(--small-font-size);
-            color: var(--title-color);
-        }
-
-        .footer-links {
-            list-style: none;
-            display: flex;
-            justify-self: center;
-            column-gap: 2rem;
-            color: var(--title-color);
-        }
-
-        .footer-links:hover {
-            color: var(--skin-color);
-        }
-
-        .footer-socials {
-            justify-self: flex-end;
-            display: flex; 
-            align-items: center;
-            gap: var(--mb15);
-        }
-
-        .footer-social {
-            font-size: 1.25rem;
-            color: var(--title-color);
-            transition: color 0.3s;
-        }
-
-        .footer-social:hover {
-            color: var(--skin-color);
-            cursor: pointer; 
-        }
-
-        .footer-copy {
-            font-size: var(--smaller-font-size);
-            text-align: center;
-            margin-top: 4.5rem;
-        }
-
-        .footer-copy a {
-            color: var(--title-color);
-        }
-
-        .footer-copy a:hover {
-            color: var(--skin-color);
-        }
-
-        .footer-title,
-        .footer-subtitle,
-        .footer-links,
-        .footer-social,
-        .footer-copy a {
-            color: var(--title-color);
-        }
-
-        /* Footer Logo Styles (Desktop) */
-        .footer-brand {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-            gap: 0.5rem; 
-        }
-        .footer-brand-text { 
-            text-align: left;
-        }
-        .footer-logo {
-            width: 30px;
-            height: auto;
-            display: block;
-        }
-
-        .footer-logo:hover {
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-        
-
-
-
-
-
-
-
-/* =========================== */
-/* MOBILE RESPONSIVENESS */
-/* =========================== */
-/* UPDATED: Changed breakpoint to 980px to include tablets */
+/* ====================================================== */
+/* --- MOBILE LAYOUT (UPDATED TO 980px BREAKPOINT) --- */
+/* ====================================================== */
 @media screen and (max-width: 980px) {
-    body {
-        padding-top: 6rem;
-        overflow-x: hidden;
+    body { 
+        padding-top: 6rem; 
+        padding-left: 0;
+        padding-right: 0;
     }
-
-    /* Mobile Navigation */
+    
+    /* 1. Mobile Navigation Bar (Fixed Top) */
     #nav-bar {
         padding: 0.5rem 1rem;
         justify-content: space-between;
-        box-shadow: none;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
         width: 100%;
         max-width: 100%;
         top: 0;
         left: 0;
-        transform: none;
-        border-radius: 0;
-        border-left: none;
-        border-right: none;
+        transform: none; /* Reset transform */
+        border-radius: 0; /* Reset border radius */
+        border: none;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
     }
-
+    
     #mobile-menu-toggle {
         display: block;
-        position: static;
-        transform: none;
+        position: relative;
         z-index: 1002;
-        margin-left: auto;
     }
-
+    
+    /* Mobile Menu Overlay */
     #nav-menu {
         display: none;
         position: fixed;
         top: 0;
         left: 0;
-        width: 100vw;
+        width: 100%;
         height: 100vh;
-        background: var(--body-color);
-        z-index: 1001;
+        background: var(--body-color); 
+        z-index: 1001; 
         flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
+        justify-content: flex-start; 
+        align-items: center; 
         gap: 1.5rem;
-        padding: 6rem 1.5rem 2rem; /* Updated padding for spacing */
+        padding: 6rem 1.5rem 2rem; 
         margin: 0;
+        overflow-y: auto;
     }
 
     #nav-menu.mobile-open {
         display: flex;
-        padding: 6rem 1.5rem 2rem; /* Ensure consistent padding when open */
-        overflow-y: auto;
     }
-
+    
     #nav-menu .nav-link,
     #nav-menu .nav-item {
         font-size: 1.5rem;
@@ -1294,169 +672,188 @@ ul li i {
         color: var(--title-color);
         padding: 0.5rem 0;
         margin: 0;
-        width: auto;
+        width: 100%; 
         text-align: center;
     }
-
-    #nav-menu .nav-item {
-        margin: 0;
-        padding: 0;
-    }
+    
+    #nav-menu .nav-item { margin: 0; padding: 0; }
 
     #nav-menu .nav-link:hover {
         color: var(--skin-color);
         transform: none;
     }
-
-    /* Courses Dropdown (Mobile alignment) */
+    
+    /* Mobile Dropdown (Accordion Style) */
     .has-submenu {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        width: 100%;
+        align-items: center; 
+        width: 100%; 
     }
-
+    
     .submenu-courses {
-        position: static;
-        width: 100%;
-        background: transparent; /* Removed background container */
+        position: static; 
+        width: 100%; 
+        background: transparent; 
         box-shadow: none;
-        padding: 0;
-        margin: 0.5rem 0 0 0;
-        opacity: 0;
+        padding: 0; 
+        margin: 0; 
+        opacity: 0; 
         visibility: hidden;
         display: none;
         max-height: 0;
         overflow: hidden;
         transition: opacity 0.3s, max-height 0.3s;
-        /* FIXED: Remove desktop transform to prevent off-screen positioning */
-        transform: none;
-        /* MODIFIED: Align items to left for mobile */
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
+        transform: none; 
+        flex-direction: column; 
+        align-items: flex-start; 
         border-radius: 0;
     }
-
-    .submenu-courses.active {
+    
+    .submenu-courses.active { 
         display: flex;
         opacity: 1;
         visibility: visible;
-        max-height: 400px;
-        padding: 0;
-        margin-top: 0.5rem;
+        max-height: 500px;
+        margin-top: 0.5rem; 
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 8px;
     }
-
-    /* MODIFIED: Submenu Links Mobile Styles */
+    
     .submenu-courses .submenu-link {
         font-size: 1.1rem;
-        /* Increased left padding for indentation, right padding for safe zone */
-        padding: 0.8rem 1rem 0.8rem 2.5rem;
-            justify-content: flex-start;
+        padding: 0.8rem 1rem 0.8rem 2rem;
+        justify-content: flex-start; 
         width: 100%;
         text-align: left;
         margin: 0;
-        box-sizing: border-box;
     }
-
+    
     /* Mobile CTA button */
     .nav-cta.mobile-cta-only {
-        padding: 0.8rem 2rem;
-        width: 100%; /* Changed to full width */
-        /* MODIFIED: Removed max-width constraint and forced single line */
+        padding: 0.8rem 2rem; 
+        width: 100%;
         max-width: none;
         white-space: nowrap;
-        font-size: 1.2rem;
+        font-size: 1.2rem; 
         font-weight: 700;
-        margin-top: 1rem;
-        display: block !important;
-        align-self: center;
+        margin-top: 1rem; 
+        display: block !important; 
         text-align: center;
     }
-
-    /* Hide desktop items on mobile */
-    .nav-cta.desktop-cta-only,
-    .nav-cta:not(.mobile-cta-only) {
-        display: none !important;
-    }
-
- 
-
-/* Tablet/Desktop responsiveness (Starts at 981px) */
-@media screen and (min-width: 981px) and (max-width: 1024px) {
-    #nav-bar {
-        width: 95%;
-        padding: 0.5rem 1rem;
-    }
-
-    #nav-menu {
-        gap: 1rem;
-    }
-}
-
-/* Desktop: Ensure correct visibility when not mobile */
-@media screen and (min-width: 981px) {
-    #nav-menu {
-        display: flex !important;
-    }
-    .nav-cta.desktop-cta-only {
-        display: block !important;
-    }
-}
-
-/* Responsive Design for main content */
-@media (max-width: 768px) {
-    body {
-        padding: 1rem;
-        padding-top: 7rem;
-        max-width: 100%;
-    }
-
+    
+    /* Hide desktop items */
+    .nav-cta.desktop-cta-only { display: none !important; }
+    
+    /* Page Specific Mobile Adjustments */
     .two-column, .instructor-profile, .course-at-glance-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
 
     .image-container, .instructor-photo {
-        padding-top: 100%;
+        padding-top: 100%; 
     }
-
+    
     .video-container {
-        padding-top: 56.25%;
+        padding-top: 56.25%; 
     }
 
     .section, .instructor-card {
         padding: 1.5rem;
     }
-
+    
     h1 {
         font-size: 2.5rem;
     }
-
+    
     h2 {
         font-size: 1.8rem;
         margin-bottom: 1rem;
     }
-
+    
     h3 {
         font-size: 1.4rem;
     }
-    .faq-container {
-        padding: 0 1rem;
-        gap: 1rem;
+    
+    /* Footer Mobile Styles */
+    .footer-container {
+        grid-template-columns: 1fr;
+        row-gap: 3rem;
+        text-align: center;
+    }
+    
+    .footer-brand {
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        justify-self: center;
+    }
+    .footer-brand-text { text-align: center; }
+    
+    .footer-title {
+        text-align: center; /* Enforces center alignment on mobile */
     }
 
-    .community-button {
-        font-size: 1.2rem;
-        padding: 0.875rem 1.75rem;
+    .footer-socials {
+        justify-content: center;
+        justify-self: center; /* FIX: Centers icons on mobile */
+        display: flex;
+        gap: var(--mb15);
     }
+    
+    .footer-links {
+        flex-direction: column;
+        row-gap: 1.5rem;
+        justify-self: center;
+    }
+    .footer-bg { padding: 2rem 0 3rem; }
+    .footer-copy { margin-top: var(--mb3); }
 }
 
+/* Desktop: Ensure correct visibility when not mobile */
+@media screen and (min-width: 981px) {
+    #nav-menu { display: flex !important; }
+    .nav-cta.desktop-cta-only { display: block !important; }
+}
 
+/* --- Snow Effects --- */
+body::before {
+  content: "";
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999;
+  background-image: 
+    radial-gradient(8px 8px at 10% 20%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.3) 70%, transparent 100%),
+    radial-gradient(12px 12px at 20% 30%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.2) 60%, transparent 100%),
+    radial-gradient(6px 6px at 30% 10%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.25) 80%, transparent 100%);
+  background-repeat: no-repeat;
+  animation: snowfall 15s linear infinite;
+  filter: blur(0.5px);
+}
 
+body::after {
+  content: "";
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998;
+  background-image: 
+    radial-gradient(4px 4px at 5% 15%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
+    radial-gradient(7px 7px at 25% 35%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.08) 80%, transparent 100%);
+  background-repeat: no-repeat;
+  animation: snowfall 20s linear infinite;
+  filter: blur(0.8px);
+  opacity: 0.8;
+}
 
+.snowflakes-blurry {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9997;
+  background-image: 
+    radial-gradient(2px 2px at 12% 28%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0.05) 100%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 32% 18%, rgba(255, 255, 255, 0.5) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%);
+  background-repeat: no-repeat;
+  animation: snowfall 25s linear infinite;
+  filter: blur(1.2px);
+  opacity: 0.6;
+}
 
- /* Base snowflake layer with blurry effects */
+/* Enhanced Snow Effects */
 body::before {
   content: "";
   position: fixed;
@@ -1478,7 +875,7 @@ body::before {
     radial-gradient(11px 11px at 80% 20%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.22) 75%, transparent 100%),
     radial-gradient(5px 5px at 90% 70%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.35) 90%, transparent 100%),
     radial-gradient(15px 15px at 15% 90%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.12) 55%, transparent 100%),
-    
+
     /* Extra blurry medium snowflakes */
     radial-gradient(4px 4px at 25% 45%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
     radial-gradient(6px 6px at 75% 35%, rgba(255, 255, 255, 0.7) 15%, rgba(255, 255, 255, 0.05) 85%, transparent 100%),
@@ -1487,7 +884,7 @@ body::before {
   
   background-repeat: no-repeat;
   animation: snowfall 15s linear infinite;
-  filter: blur(0.5px); /* Slight overall blur for softness */
+  filter: blur(0.5px);
 }
 
 /* Medium blurry snowflakes layer */
@@ -1514,7 +911,7 @@ body::after {
   
   background-repeat: no-repeat;
   animation: snowfall 20s linear infinite;
-  filter: blur(0.8px); /* More blur for background layer */
+  filter: blur(0.8px);
   opacity: 0.8;
 }
 
@@ -1540,7 +937,7 @@ body::after {
   
   background-repeat: no-repeat;
   animation: snowfall 25s linear infinite;
-  filter: blur(1.2px); /* Maximum blur for distant effect */
+  filter: blur(1.2px);
   opacity: 0.6;
 }
 
@@ -1575,25 +972,3 @@ body::after {
     transform: translateY(100vh) translateX(10px);
   }
 }
-       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
