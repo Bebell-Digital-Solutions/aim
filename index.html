@@ -877,6 +877,12 @@
             color: var(--title-color);
             margin-bottom: 0.5rem;
         }
+
+
+
+
+
+
         
         /* Testimonials */
         .testimonial-grid {
@@ -885,6 +891,18 @@
             gap: 2rem;
             margin-top: 2rem;
         }
+
+
+
+                .timeline-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-left: 0;
+        }
+
+        .timeline-section h2::before { display: none; }
+
+        
         .testimonial-card {
             background-color: var(--body-color);
             border-radius: 0.75rem;
@@ -895,20 +913,25 @@
             font-size: var(--small-font-size);
             position: relative;
         }
+
+        
         .testimonial-card::before {
             content: "\201C";
-            font-size: 3rem;
+            font-size: 0rem;
             color: var(--skin-color);
             position: absolute;
             top: 0.5rem;
             left: 0.5rem;
             opacity: 0.3;
-            line-height: 1;
+            line-height: 0;
         }
+
+        
         .testimonial-card p {
             margin-bottom: 1rem;
             padding-top: 1rem;
         }
+        
         .testimonial-author {
             font-weight: 600;
             color: var(--title-color);
@@ -916,6 +939,8 @@
             margin-top: 0.5rem;
             font-style: normal;
         }
+
+        
         .testimonial-company {
             font-size: var(--smaller-font-size);
             color: var(--text-color);
@@ -1783,7 +1808,9 @@ body::after {
 
         <!-- Social proof and outcomes Section -->
         <section class="section social-proof-section container" style="animation-delay: 1.2s;" id="social-proof-logos-section">
-            <h2 style="text-align: center;>Social Proof & Outcomes</h2>
+            <div style="text-align: center;">
+            <h2>Social Proof & Outcomes</h2>
+            </div>
             <div style="text-align: center; margin-bottom: 2rem;">
                 <p style="font-size: 1.2rem; color: var(--title-color); font-weight: 600;">
                     <span style="color: var(--skin-color);">92%</span> report time savings within 2 weeks; average <span style="color: var(--skin-color);">6.4 hours/week</span> saved by Week 6.
