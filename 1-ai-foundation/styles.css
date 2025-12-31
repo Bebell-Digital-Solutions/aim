@@ -112,6 +112,10 @@ body {
     pointer-events: none;
 }
 
+
+
+
+
 /* 2. Navigation Bar (Uniform) */
 #nav-bar {
     position: fixed; 
@@ -816,6 +820,15 @@ ul li i {
     #nav-menu { display: flex !important; }
     .nav-cta.desktop-cta-only { display: block !important; }
 }
+
+
+
+
+
+
+
+
+
 
 /* --- Snow Effects --- */
 body::before {
