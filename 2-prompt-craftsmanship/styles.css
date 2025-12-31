@@ -1,0 +1,987 @@
+/* =========================== */
+/* --- UNIFORM BRAND STYLES --- */
+/* =========================== */
+:root {
+    /* Color Palette */
+    --skin-color: #ff5011; /* Orange-Red Accent */
+    --mirage-color: hsl(210, 10%, 23%); /* Dark Gray Background Component */
+    --title-color: hsl(242, 8%, 98%); /* Near White for Titles */
+    --text-color: hsl(242, 8%, 80%); /* Light Gray for Body Text */
+    --body-color: #0d0d0d; /* Deep Black/Very Dark Gray */
+    --box-color: hsl(242, 14%, 12%); /* Slightly lighter than body for cards */
+    --hue-color: 242; 
+
+    /* Typography */
+    --body-font: 'Inter', sans-serif;
+    --signature-font: 'Inter', sans-serif;
+    --font-medium: 500;
+    --font-bold: 700;
+    --h3-font-size: 1.25rem; /* Adjusted to standard */
+    --small-font-size: 0.95rem;
+    --smaller-font-size: 0.75rem;
+    
+    /* Margins */
+    --mb025: 0.25rem;
+    --mb15: 0.75rem;
+    --mb3: 1.5rem;
+    
+    /* Scrollbar/Misc */
+    --scroll-box-color: #333;
+    --scroll-thumb-color: #555;
+}
+
+/* --- Base & Scrollbar --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: var(--body-font);
+    background-color: var(--body-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding-top: 8rem; /* Space for fixed nav */
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--scroll-box-color); }
+::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #d43a00; }
+
+/* =========================== */
+/* --- UNIFORM COMPONENT STYLES --- */
+/* =========================== */
+
+/* 1. Loader */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+}
+
+.loader-header {
+    color: white;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.progress {
+    width: 272.8px;
+    height: 41.7px;
+    border-radius: 28.8px;
+    color: #ff5011;
+    background-color: #000;
+    border: 2.9px solid;
+    position: relative;
+}
+
+.progress::before {
+    content: "";
+    position: absolute;
+    margin: 2.9px;
+    inset: 0 100% 0 0;
+    border-radius: inherit;
+    background: currentColor;
+    animation: progress-pf82op 1.5s forwards;
+}
+
+@keyframes progress-pf82op {
+    100% { inset: 0; }
+}
+
+.page-loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+
+
+
+/* 2. Navigation Bar (Uniform) */
+#nav-bar {
+    position: fixed; 
+    top: 2rem; 
+    left: 50%; 
+    transform: translateX(-50%);
+    background: rgba(25, 25, 25, 0.85); 
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--box-color); 
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem; 
+    display: flex; 
+    align-items: center;
+    max-width: 1100px; 
+    width: 90%; 
+    z-index: 1000;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease;
+}
+#nav-logo img { height: 35px; }
+
+#nav-menu { 
+    display: flex; 
+    gap: 1.5rem; 
+    margin-left: auto; 
+    align-items: center; 
+}
+
+.nav-link { 
+    color: var(--text-color); 
+    transition: color 0.3s, transform 0.2s; 
+    font-weight: 500; 
+    position: relative;
+    text-decoration: none;
+}
+.nav-link:hover { 
+    color: var(--skin-color); 
+    transform: translateY(-1px); 
+}
+
+.nav-cta {
+    background: linear-gradient(90deg, var(--skin-color), #d43a00);
+    color: var(--title-color); 
+    padding: 0.5rem 1rem; 
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); 
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+}
+.nav-cta:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); 
+}
+
+.has-submenu { position: relative; }
+
+.submenu-courses {
+    position: absolute; 
+    top: 100%; 
+    left: 50%; 
+    transform: translateX(-50%);
+    background: var(--box-color); 
+    border-radius: 0.5rem; 
+    padding: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
+    opacity: 0; 
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s, top 0.3s; 
+    width: 250px;
+    z-index: 1001;
+    margin-left: 0;
+    padding-left: 0.75rem;
+    flex-direction: column;
+}
+
+.submenu-courses.active { 
+    opacity: 1; 
+    visibility: visible;
+    top: calc(100% + 15px);
+}
+
+.submenu-link { 
+    display: flex; 
+    align-items: center; 
+    gap: 0.75rem; 
+    color: var(--text-color); 
+    padding: 0.5rem; 
+    border-radius: 0.25rem; 
+    transition: background-color 0.3s, color 0.3s; 
+    text-decoration: none;
+}
+.submenu-link:hover { 
+    background-color: rgba(255, 80, 17, 0.1); 
+    color: var(--skin-color); 
+}
+.submenu-link i { width: 15px; text-align: center; }
+
+#mobile-menu-toggle { 
+    display: none; 
+    border: none;
+    background: transparent;
+    color: var(--skin-color);
+    font-size: 1.8rem;
+    cursor: pointer;
+    margin-left: auto;
+}
+.nav-cta.mobile-cta-only { display: none; }
+.nav-cta.desktop-cta-only { display: block; }
+
+/* 3. Back to Top (Uniform) */
+#back-to-top {
+    position: fixed; bottom: 20px; right: 20px;
+    width: 50px; height: 50px;
+    background: url('https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/back%20to%20top%20(3)%202.png?updatedAt=1763457651597') no-repeat center center;
+    background-size: cover;
+    border: none; border-radius: 50%;
+    cursor: pointer; 
+    opacity: 0; 
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    z-index: 999;
+}
+#back-to-top.show { opacity: 1; visibility: visible; }
+#back-to-top:hover { transform: scale(1.1); }
+
+/* 4. Footer (Uniform) */
+.footer { padding-top: 2rem; }
+.footer-bg { background-color: var(--box-color); padding: 3rem 0 3.5rem; width: 100%; }
+.footer-container { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    column-gap: 1.6rem; 
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.footer-title { font-size: 1.25rem; margin-bottom: 0.25rem; color: var(--title-color); font-weight: 700; }
+.footer-subtitle { font-size: var(--small-font-size); color: var(--title-color); }
+
+.footer-links { list-style: none; display: flex; justify-self: center; column-gap: 2rem; padding: 0; margin: 0; }
+.footer-links a { color: var(--title-color); transition: color 0.3s; text-decoration: none; }
+.footer-links a:hover { color: var(--skin-color); }
+
+.footer-socials { justify-self: flex-end; display: flex; align-items: center; gap: var(--mb15); }
+.footer-social { font-size: 1.25rem; color: var(--title-color); transition: color 0.3s; }
+.footer-social:hover { color: var(--skin-color); cursor: pointer; }
+
+.footer-copy { font-size: var(--smaller-font-size); text-align: center; margin-top: 4.5rem; color: var(--text-color); grid-column: 1 / -1; }
+.footer-copy a { color: var(--title-color); text-decoration: none; }
+.footer-copy a:hover { color: var(--skin-color); }
+
+.footer-brand { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 0.5rem; }
+.footer-brand-text { text-align: left; }
+.footer-logo { width: 30px; height: auto; display: block; }
+.footer-logo:hover { opacity: 0.8; transition: opacity 0.3s ease; }
+
+/* =========================== */
+/* --- PAGE SPECIFIC STYLES --- */
+/* =========================== */
+main {
+    max-width: 980px; 
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1 {
+    font-size: 3rem;
+    color: var(--skin-color);
+    font-weight: var(--font-bold);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+h2 { 
+    font-size: 2.2rem;
+    color: var(--title-color);
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    border-left: 4px solid var(--skin-color);
+    padding-left: 15px;
+    font-weight: var(--font-bold);
+}
+
+h3 { 
+    font-size: 1.7rem;
+    color: var(--title-color);
+    text-align: left;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: var(--font-bold);
+}
+
+.h3-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.grid-title {
+    margin-top: 0;
+    margin-bottom: 1.5rem; 
+    white-space: nowrap; 
+}
+
+h3 i { 
+    color: var(--skin-color);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+/* Layouts */
+.two-column, .instructor-profile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center; 
+    margin-bottom: 0;
+}
+
+.course-at-glance-grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+/* Cards & Sections */
+.section, .instructor-card {
+    margin-bottom: 3rem;
+    background-color: var(--box-color);
+    border-radius: 12px;
+    padding: 2.5rem;
+    border: 1px solid var(--mirage-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease-out;
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+/* Staggered Animation */
+.section:nth-child(2) { animation-delay: 0.1s; }
+.section:nth-child(3) { animation-delay: 0.2s; }
+.section:nth-child(4) { animation-delay: 0.3s; }
+.section:nth-child(5) { animation-delay: 0.4s; }
+.section:nth-child(6) { animation-delay: 0.5s; }
+.section:nth-child(7) { animation-delay: 0.6s; }
+.faq-section { animation-delay: 0.7s; } 
+.section:nth-child(9) { animation-delay: 0.8s; }
+
+.section:hover, .instructor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 80, 17, 0.2), 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Images */
+.image-container, .instructor-photo {
+    width: 100%;
+    padding-top: 100%; 
+    position: relative; 
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.image-container img, .instructor-photo img {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+}
+
+.image-container:hover img, .instructor-photo:hover img {
+    transform: scale(1.05);
+}
+
+/* Video */
+.video-container {
+    width: 100%;
+    position: relative;
+    padding-top: 56.25%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Lists */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    margin-bottom: 1rem;
+    position: relative;
+    display: flex; 
+    align-items: flex-start;
+    gap: 1rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+    font-size: 1.05rem;
+}
+
+ul li:hover {
+    transform: translateX(5px);
+    color: var(--title-color);
+}
+
+ul li i {
+    color: var(--skin-color);
+    font-size: 1.15rem;
+    margin-top: 5px; 
+    flex-shrink: 0;
+}
+
+.li-content {
+    flex-grow: 1;
+    align-self: flex-start;
+}
+
+.project-bullets {
+    list-style-type: disc; 
+    padding-left: 1.5rem; 
+    margin-bottom: 0;
+    margin-top: 0.5rem;
+}
+
+.project-bullets li {
+    list-style-type: disc; 
+    display: list-item; 
+    position: static; 
+    padding-left: 0;
+    gap: 0;
+    transform: none;
+    transition: none;
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem; 
+}
+
+.project-bullets li:hover {
+    color: var(--text-color); 
+}
+
+/* CTA Button */
+.cta-button {
+    background: linear-gradient(90deg, var(--skin-color), #d43a00);
+    color: var(--title-color);
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: var(--font-bold);
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 80, 17, 0.4);
+}
+
+.cta-button:hover {
+    background: linear-gradient(90deg, #d43a00, var(--skin-color));
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(255, 80, 17, 0.6);
+}
+
+/* FAQ Section */
+.faq-section { 
+    margin-bottom: 3rem;
+    padding: 0 1rem; 
+}
+
+.faq-section h2 {
+    text-align: center; 
+    border-left: none; 
+    padding-left: 0;
+    margin-bottom: 2rem;
+}
+
+.faq-container {
+    max-width: 768px; 
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    width: 100%;
+    padding: 0;
+}
+
+.faq-item {
+    background-color: var(--box-color);
+    border-radius: .5rem;
+    padding: 1.25rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    margin-bottom: 0;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-left: 4px solid var(--skin-color);
+}
+
+.faq-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    gap: 1rem;
+    border: none;
+    background: transparent;
+    width: 100%;
+    padding: 0;
+}
+
+.faq-question {
+    font-size: var(--small-font-size);
+    color: var(--title-color);
+    text-align: left;
+    width: 100%;
+    font-weight: var(--font-medium);
+}
+
+.faq-icon {
+    font-size: 1.5rem;
+    color: var(--skin-color);
+    transition: transform .3s;
+    flex-shrink: 0;
+}
+
+.faq-content {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .4s cubic-bezier(0.5, 0, 0.1, 1); 
+}
+
+.faq-answer {
+    font-size: var(--small-font-size);
+    padding-top: 1rem;
+    border-top: 1px solid var(--scroll-thumb-color);
+    margin-top: 1rem;
+    text-align: left;
+    line-height: 1.7;
+}
+
+.faq-open .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-open .faq-content {
+    max-height: 500px; 
+}
+
+/* Community Button */
+.community-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    width: 100%;
+}
+
+.community-button {
+    background: linear-gradient(90deg, var(--skin-color), #d43a00);
+    color: var(--title-color);
+    border: none;
+    cursor: pointer;
+    font-weight: var(--font-bold);
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.25rem;
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(255, 80, 17, 0.3);
+}
+
+.community-button:hover {
+    background: linear-gradient(90deg, #d43a00, var(--skin-color));
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 80, 17, 0.4);
+}
+
+/* ====================================================== */
+/* --- MOBILE LAYOUT (UPDATED TO 980px BREAKPOINT) --- */
+/* ====================================================== */
+@media screen and (max-width: 980px) {
+    body { 
+        padding-top: 6rem; 
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    /* 1. Mobile Navigation Bar (Fixed Top) */
+    #nav-bar {
+        padding: 0.5rem 1rem;
+        justify-content: space-between;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+        width: 100%;
+        max-width: 100%;
+        top: 0;
+        left: 0;
+        transform: none; /* Reset transform */
+        border-radius: 0; /* Reset border radius */
+        border: none;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    #mobile-menu-toggle {
+        display: block;
+        position: relative;
+        z-index: 1002;
+    }
+    
+    /* Mobile Menu Overlay */
+    #nav-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--body-color); 
+        z-index: 1001; 
+        flex-direction: column;
+        justify-content: flex-start; 
+        align-items: center; 
+        gap: 1.5rem;
+        padding: 6rem 1.5rem 2rem; 
+        margin: 0;
+        overflow-y: auto;
+    }
+
+    #nav-menu.mobile-open {
+        display: flex;
+    }
+    
+    #nav-menu .nav-link,
+    #nav-menu .nav-item {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--title-color);
+        padding: 0.5rem 0;
+        margin: 0;
+        width: 100%; 
+        text-align: center;
+    }
+    
+    #nav-menu .nav-item { margin: 0; padding: 0; }
+
+    #nav-menu .nav-link:hover {
+        color: var(--skin-color);
+        transform: none;
+    }
+    
+    /* Mobile Dropdown (Accordion Style) */
+    .has-submenu {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        width: 100%; 
+    }
+    
+    .submenu-courses {
+        position: static; 
+        width: 100%; 
+        background: transparent; 
+        box-shadow: none;
+        padding: 0; 
+        margin: 0; 
+        opacity: 0; 
+        visibility: hidden;
+        display: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 0.3s, max-height 0.3s;
+        transform: none; 
+        flex-direction: column; 
+        align-items: flex-start; 
+        border-radius: 0;
+    }
+    
+    .submenu-courses.active { 
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+        max-height: 500px;
+        margin-top: 0.5rem; 
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 8px;
+    }
+    
+    .submenu-courses .submenu-link {
+        font-size: 1.1rem;
+        padding: 0.8rem 1rem 0.8rem 2rem;
+        justify-content: flex-start; 
+        width: 100%;
+        text-align: left;
+        margin: 0;
+    }
+    
+    /* Mobile CTA button */
+    .nav-cta.mobile-cta-only {
+        padding: 0.8rem 2rem; 
+        width: 100%;
+        max-width: none;
+        white-space: nowrap;
+        font-size: 1.2rem; 
+        font-weight: 700;
+        margin-top: 1rem; 
+        display: block !important; 
+        text-align: center;
+    }
+    
+    /* Hide desktop items */
+    .nav-cta.desktop-cta-only { display: none !important; }
+    
+    /* Page Specific Mobile Adjustments */
+    .two-column, .instructor-profile, .course-at-glance-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .image-container, .instructor-photo {
+        padding-top: 100%; 
+    }
+    
+    .video-container {
+        padding-top: 56.25%; 
+    }
+
+    .section, .instructor-card {
+        padding: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    h3 {
+        font-size: 1.4rem;
+    }
+    
+    /* Footer Mobile Styles */
+    .footer-container {
+        grid-template-columns: 1fr;
+        row-gap: 3rem;
+        text-align: center;
+    }
+    
+    .footer-brand {
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        justify-self: center;
+    }
+    .footer-brand-text { text-align: center; }
+    
+    .footer-title {
+        text-align: center; /* Enforces center alignment on mobile */
+    }
+
+    .footer-socials {
+        justify-content: center;
+        justify-self: center; /* FIX: Centers icons on mobile */
+        display: flex;
+        gap: var(--mb15);
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        row-gap: 1.5rem;
+        justify-self: center;
+    }
+    .footer-bg { padding: 2rem 0 3rem; }
+    .footer-copy { margin-top: var(--mb3); }
+}
+
+/* Desktop: Ensure correct visibility when not mobile */
+@media screen and (min-width: 981px) {
+    #nav-menu { display: flex !important; }
+    .nav-cta.desktop-cta-only { display: block !important; }
+}
+
+
+
+
+
+
+
+
+
+
+/* --- Snow Effects --- */
+body::before {
+  content: "";
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999;
+  background-image: 
+    radial-gradient(8px 8px at 10% 20%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.3) 70%, transparent 100%),
+    radial-gradient(12px 12px at 20% 30%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.2) 60%, transparent 100%),
+    radial-gradient(6px 6px at 30% 10%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.25) 80%, transparent 100%);
+  background-repeat: no-repeat;
+  animation: snowfall 15s linear infinite;
+  filter: blur(0.5px);
+}
+
+body::after {
+  content: "";
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998;
+  background-image: 
+    radial-gradient(4px 4px at 5% 15%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
+    radial-gradient(7px 7px at 25% 35%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.08) 80%, transparent 100%);
+  background-repeat: no-repeat;
+  animation: snowfall 20s linear infinite;
+  filter: blur(0.8px);
+  opacity: 0.8;
+}
+
+.snowflakes-blurry {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9997;
+  background-image: 
+    radial-gradient(2px 2px at 12% 28%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0.05) 100%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 32% 18%, rgba(255, 255, 255, 0.5) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%);
+  background-repeat: no-repeat;
+  animation: snowfall 25s linear infinite;
+  filter: blur(1.2px);
+  opacity: 0.6;
+}
+
+/* Enhanced Snow Effects */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: 
+    /* Large blurry snowflakes */
+    radial-gradient(8px 8px at 10% 20%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.3) 70%, transparent 100%),
+    radial-gradient(12px 12px at 20% 30%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.2) 60%, transparent 100%),
+    radial-gradient(6px 6px at 30% 10%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.25) 80%, transparent 100%),
+    radial-gradient(10px 10px at 40% 40%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.15) 75%, transparent 100%),
+    radial-gradient(14px 14px at 50% 60%, rgba(255, 255, 255, 0.55) 30%, rgba(255, 255, 255, 0.2) 65%, transparent 100%),
+    radial-gradient(7px 7px at 60% 80%, rgba(255, 255, 255, 0.65) 45%, rgba(255, 255, 255, 0.3) 85%, transparent 100%),
+    radial-gradient(9px 9px at 70% 50%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.18) 70%, transparent 100%),
+    radial-gradient(11px 11px at 80% 20%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.22) 75%, transparent 100%),
+    radial-gradient(5px 5px at 90% 70%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.35) 90%, transparent 100%),
+    radial-gradient(15px 15px at 15% 90%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.12) 55%, transparent 100%),
+
+    /* Extra blurry medium snowflakes */
+    radial-gradient(4px 4px at 25% 45%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
+    radial-gradient(6px 6px at 75% 35%, rgba(255, 255, 255, 0.7) 15%, rgba(255, 255, 255, 0.05) 85%, transparent 100%),
+    radial-gradient(3px 3px at 45% 75%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
+    radial-gradient(8px 8px at 85% 65%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.08) 80%, transparent 100%);
+  
+  background-repeat: no-repeat;
+  animation: snowfall 15s linear infinite;
+  filter: blur(0.5px);
+}
+
+/* Medium blurry snowflakes layer */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  background-image: 
+    /* Medium blurry snowflakes */
+    radial-gradient(4px 4px at 5% 15%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
+    radial-gradient(7px 7px at 25% 35%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.08) 80%, transparent 100%),
+    radial-gradient(3px 3px at 35% 5%, rgba(255, 255, 255, 0.6) 45%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
+    radial-gradient(5px 5px at 45% 45%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.05) 70%, transparent 100%),
+    radial-gradient(6px 6px at 55% 65%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.1) 75%, transparent 100%),
+    radial-gradient(3.5px 3.5px at 65% 85%, rgba(255, 255, 255, 0.55) 40%, rgba(255, 255, 255, 0.12) 85%, transparent 100%),
+    radial-gradient(4.5px 4.5px at 85% 25%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.06) 65%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 95% 55%, rgba(255, 255, 255, 0.65) 50%, rgba(255, 255, 255, 0.2) 95%, transparent 100%),
+    radial-gradient(8px 8px at 15% 75%, rgba(255, 255, 255, 0.25) 20%, rgba(255, 255, 255, 0.04) 60%, transparent 100%);
+  
+  background-repeat: no-repeat;
+  animation: snowfall 20s linear infinite;
+  filter: blur(0.8px);
+  opacity: 0.8;
+}
+
+/* Additional layer for extra blurry small snowflakes */
+.snowflakes-blurry {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9997;
+  background-image: 
+    /* Very blurry small snowflakes */
+    radial-gradient(2px 2px at 12% 28%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0.05) 100%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 32% 18%, rgba(255, 255, 255, 0.5) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 48% 52%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.03) 100%, transparent 100%),
+    radial-gradient(1px 1px at 68% 72%, rgba(255, 255, 255, 0.6) 80%, rgba(255, 255, 255, 0.15) 100%, transparent 100%),
+    radial-gradient(3px 3px at 82% 38%, rgba(255, 255, 255, 0.35) 40%, rgba(255, 255, 255, 0.07) 100%, transparent 100%),
+    radial-gradient(1.8px 1.8px at 22% 88%, rgba(255, 255, 255, 0.45) 65%, rgba(255, 255, 255, 0.09) 100%, transparent 100%),
+    radial-gradient(2.2px 2.2px at 58% 12%, rgba(255, 255, 255, 0.4) 55%, rgba(255, 255, 255, 0.06) 100%, transparent 100%),
+    radial-gradient(0.8px 0.8px at 88% 68%, rgba(255, 255, 255, 0.7) 85%, rgba(255, 255, 255, 0.2) 100%, transparent 100%);
+  
+  background-repeat: no-repeat;
+  animation: snowfall 25s linear infinite;
+  filter: blur(1.2px);
+  opacity: 0.6;
+}
+
+/* Enhanced snowfall animation with slight horizontal movement */
+@keyframes snowfall {
+  0% {
+    transform: translateY(-100%) translateX(0);
+  }
+  25% {
+    transform: translateY(-50%) translateX(5px);
+  }
+  50% {
+    transform: translateY(0%) translateX(0);
+  }
+  75% {
+    transform: translateY(50%) translateX(-5px);
+  }
+  100% {
+    transform: translateY(100vh) translateX(0);
+  }
+}
+
+/* Alternative animation for some randomness */
+@keyframes snowfall-alt {
+  0% {
+    transform: translateY(-100%) translateX(10px);
+  }
+  50% {
+    transform: translateY(0%) translateX(-10px);
+  }
+  100% {
+    transform: translateY(100vh) translateX(10px);
+  }
+}
