@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink Toolbox Page</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/b81ca864affb6311afa662ccb36a290aa2a0c9e3.png">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #df1783;
+            --secondary: #8c318f;
+            --border-radius-sm: 0.5rem;
+            --border-radius-md: 0.75rem;
+        }
+
+        /* Light Theme (default) */
+        body {
+            --bg-color: #f4f5f7;
+            --card-color: #ffffff;
+            --card-color-transparent: rgba(255, 255, 255, 0.7);
+            --text-color: #1a202c;
+            --subtext-color: #4a5568;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.7) 0%, #df1783 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            cursor: auto;
+        }
+
+        /* Top Menu Bar - UPDATED */
+        .top-menu-bar {
+            position: fixed; /* Kept as fixed */
+            top: 2rem;       /* Added space from the top to make it "float" */
+            left: 50%;         /* Used to help center the element */
+            transform: translateX(-50%); /* Final centering adjustment */
+            width: 95%;        /* Responsive width */
+            max-width: 980px;  /* Max-width on larger screens */
+            z-index: 50;
+            background-color: var(--card-color-transparent);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color); /* Full border */
+            border-radius: var(--border-radius-md); /* Rounded corners for floating look */
+            box-shadow: var(--shadow);
+            padding: 0.75rem 1.5rem; /* Padding inside the menu bar */
+        }
+        
+        /* Centered content within the menu bar - UPDATED */
+        .top-menu-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px; /* Adjusted height */
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        #appLogo {
+            height: 42px;
+            width: auto;
+        }
+        
+        #appBrandNameDisplay {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2d3748;
+            transition: color 0.3s ease;
+        }
+
+        #appBrandNameDisplay span {
+            color: var(--primary);
+        }
+        
+        .top-menu-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .fab {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--card-color);
+            color: var(--subtext-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            font-size: 1.1rem; /* Added to ensure icon size is consistent */
+        }
+        
+        .fab:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 0 12px rgba(223, 23, 131, 0.4);
+        }
+
+        /* 3D Button - NEW */
+        .btn-3d {
+            position: relative;
+            padding: 10px 22px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px #b31267; /* Darker shade of --primary for 3D effect */
+            transition: all 0.1s ease-in-out;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-3d:hover {
+            top: 2px; /* Moves down on hover */
+            box-shadow: 0 2px #b31267; /* Reduces shadow to simulate press */
+        }
+
+        .btn-3d:active {
+            top: 4px; /* Moves further down on click */
+            box-shadow: 0 0 #b31267; /* Flattens shadow on click */
+        }
+        
+        /* Toolbox Container - UPDATED */
+        #toolbox-container {
+            position: absolute; /* Changed from relative to absolute for centering */
+            top: 50%;           /* Center vertically */
+            left: 50%;          /* Center horizontally */
+            transform: translate(-50%, -50%); /* Fine-tune centering */
+            width: 650px;
+            height: 650px;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+        
+        /* Custom cursor is now applied directly to the toolbox when it's closed */
+        #toolbox-container:not(.is-open) {
+            cursor: url('https://bucket.mlcdn.com/a/3336/3336910/images/dc9bc845707b3b9127523f0349b8b87c529f439e.png'), auto;
+        }
+
+        #toolbox-images {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        #toolbox-images:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+        
+        .toolbox-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        #toolbox-img-hover,
+        #toolbox-img-active {
+            opacity: 0;
+        }
+
+        #toolbox-container:hover #toolbox-img-default {
+            opacity: 0;
+        }
+
+        #toolbox-container:hover #toolbox-img-hover {
+            opacity: 1;
+        }
+
+        #toolbox-container.is-open #toolbox-img-default,
+        #toolbox-container.is-open #toolbox-img-hover {
+            opacity: 0;
+        }
+
+        #toolbox-container.is-open #toolbox-img-active {
+            opacity: 1;
+        }
+        
+        .tech-link {
+            display: block;
+            position: absolute;
+            width: 15%;
+            height: 15%;
+            /* Set initial opacity to 0 for fade-in animation */
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            visibility: hidden;
+        }
+
+        .tech-link:hover {
+            transform: translate(-50%, -50%) scale(1.15) !important;
+        }
+
+        .tech-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.3));
+            transition: transform 0.3s ease;
+        }
+
+        /* Arc positions for the icons around the toolbox */
+        #css3-link { top: 67%; left: 0%; }
+        #html5-link { top: 37%; left: 10%; }
+        #sass-link { top: 20%; left: 50%; }
+        #js-link { top: 37%; left: 90%; }
+        #php-link { top: 67%; left: 100%; }
+
+        .tooltip {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.75); 
+            color: black;
+            padding: 4px 15px;
+            border-radius: 50px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .tech-link:hover .tooltip {
+            opacity: 1;
+        }
+        
+        .loading-text {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 18px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        #toolbox-container.loading .loading-text {
+            opacity: 1;
+        }
+        
+        .instructions {
+            position: absolute;
+            bottom: 100px;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .bebell-footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            font-size: 0.6rem;
+            line-height: 1.5;
+        }
+        
+        .bebell-link {
+            color: inherit;
+            text-decoration: none;
+            font-weight: 550;
+            transition: color 0.3s ease;
+        }
+        
+        .bebell-link:hover { 
+            color: #ffe0fa; 
+            transition: color 0.0s ease;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Fixed Top Navigation Bar -->
+<div class="top-menu-bar">
+    <div class="top-menu-content">
+        <div class="logo-container">
+            <img id="appLogo" src="https://bucket.mlcdn.com/a/3336/3336910/images/392ebb0e38471b0ac0b4e53ab2a9a03b3773cb41.png" alt="App Logo">
+            <span id="appBrandNameDisplay">4evertools</span>
+        </div>
+        <div class="top-menu-actions">
+            <div class="fab" id="homeBtn" title="Home" onclick="window.open('https://4evertools.com', '_blank')"><i class="fa fa-home"></i></div>
+            <div class="fab" id="translateBtn" title="Translate" onclick="window.open('https://espanol.4evertools.com', '_blank')"><i class="fa fa-globe"></i></div>
+
+            <div class="fab" id="supportBtn" title="Support" onclick="window.open('https://helpcenter.4evertools.com', '_blank')"><i class="fa fa-info-circle"></i></div>
+            <a href="#" class="btn-3d">Contact Support</a>
+        </div>
+    </div>
+</div>
+
+<div id="toolbox-container">
+    <!-- The toolbox images are now layered for a smooth fade transition -->
+    <div id="toolbox-images">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/ed8f8b6a6666a72475f309d02f7cfaac5d094ef2.png" alt="Toolbox" id="toolbox-img-default" class="toolbox-img">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b559592f75646e526041aaafb39640c5d3536b0a.png" alt="Toolbox Hover" id="toolbox-img-hover" class="toolbox-img">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/dc9bc845707b3b9127523f0349b8b87c529f439e.png" alt="Toolbox Active" id="toolbox-img-active" class="toolbox-img">
+    </div>
+    
+    <div class="loading-text">Loading awesome tools...</div>
+
+    <!-- Technology links with PNG icons -->
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" id="css3-link" class="tech-link" target="_blank">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/6c2fb897f344e1c3bfc1dc40e6307d4dcfdad88f.png" alt="Bookmarks Manager" class="tech-icon">
+        <div class="tooltip">Your Bookmarks Manager</div>
+    </a>
+    
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" id="html5-link" class="tech-link" target="_blank">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/5e3afeb376c13a407d2997482f38fcef24940dce.png" alt="Finance Hub Pro" class="tech-icon">
+        <div class="tooltip">Your Finance Hub Pro</div>
+    </a>
+    
+    <a href="https://sass-lang.com/" id="sass-link" class="tech-link" target="_blank">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/0e95081b5ac2726fa4736489739c104252deeb7a.png" alt="DashLite" class="tech-icon">
+        <div class="tooltip">Your Private Desktop Dashboard</div>
+    </a>
+    
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" id="js-link" class="tech-link" target="_blank">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/ad4c22e5b232bd1ab5a5e62d15be9ad96e354811.png" alt="Productivity Hub" class="tech-icon">
+        <div class="tooltip">Your Productivity Hub</div>
+    </a>
+    
+    <a href="https://www.php.net/" id="php-link" class="tech-link" target="_blank">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/ba5e13390ade478f594af6de57399c3b0b78bc45.png" alt="AI Assistant" class="tech-icon">
+        <div class="tooltip">Your Profesional AI Assistant</div>
+    </a>
+</div>
+    
+<!-- Instructions text -->
+<div class="instructions"></div>
+
+<div class="bebell-footer">
+    <p>
+        <span data-translate-key="copyright">Copyright © 2024 • All rights reserved.</span><br>
+        <span data-translate-key="developedBy">Developed with 💖 by</span>
+        <a href="https://bebelldigitalsolutions.com" class="bebell-link" target="_blank" rel="noopener">
+            Bebell Digital Solutions.
+        </a> 
+    </p>
+</div>
+
+<!-- GSAP for animation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<!-- Confetti for fun! -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script>
+    const toolboxContainer = document.getElementById('toolbox-container');
+    const techLinks = document.querySelectorAll('.tech-link');
+    const loadingText = document.querySelector('.loading-text');
+
+    let isOpen = false;
+    let imagesLoaded = 0;
+    const totalImages = document.querySelectorAll('img').length;
+
+    // Preload images for better performance
+    function preloadImages() {
+        toolboxContainer.classList.add('loading');
+        
+        const allImages = document.querySelectorAll('img');
+        allImages.forEach(img => {
+            if (img.complete) {
+                imageLoaded();
+            } else {
+                img.addEventListener('load', imageLoaded);
+                img.addEventListener('error', imageLoaded); // Even if error, continue
+            }
+        });
+    }
+    
+    function imageLoaded() {
+        imagesLoaded++;
+        if (imagesLoaded === totalImages) {
+            toolboxContainer.classList.remove('loading');
+        }
+    }
+    
+    // Initialize
+    window.addEventListener('DOMContentLoaded', preloadImages);
+
+    // Handle click to open AND close the toolbox
+    toolboxContainer.addEventListener('click', (e) => {
+        // Prevent closing when a link is clicked
+        if (e.target.closest('.tech-link')) {
+            return;
+        }
+
+        if (!isOpen) {
+            // --- OPEN LOGIC ---
+            isOpen = true;
+            toolboxContainer.classList.add('is-open');
+
+            // Trigger confetti effect!
+            confetti({
+                particleCount: 150,
+                spread: 90,
+                origin: { y: 0.6 }
+            });
+
+            // Make links visible before animating
+            techLinks.forEach(link => {
+                link.style.visibility = 'visible';
+            });
+
+            // Animate icons in
+            gsap.to(".tech-link", {
+                duration: 0.8,
+                scale: 1,
+                opacity: 1,
+                ease: "back.out(1.7)",
+                stagger: 0.05 // Add a slight delay between each icon
+            });
+        } else {
+            // --- CLOSE LOGIC ---
+            isOpen = false;
+            
+            // Animate icons out
+            gsap.to(".tech-link", {
+                duration: 0.5,
+                scale: 0,
+                opacity: 0,
+                ease: "back.in(1.7)",
+                onComplete: () => {
+                    // After animation, remove class and hide links
+                    toolboxContainer.classList.remove('is-open');
+                    techLinks.forEach(link => {
+                        link.style.visibility = 'hidden';
+                    });
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>
