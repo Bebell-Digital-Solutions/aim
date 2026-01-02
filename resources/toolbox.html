@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink Toolbox Page</title>
+    
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/b81ca864affb6311afa662ccb36a290aa2a0c9e3.png">
+    
+    
+    
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    
+    
+
+<style>
+    :root {
+        --skin-color: #ff5011; /* AIM Primary accent/orange */
+        --mirage-color: hsl(210, 10%, 23%); /* Dark blue-gray for borders/accents */
+        --title-color: hsl(242, 8%, 98%);   /* Near-white for headings */
+        --text-color: hsl(242, 8%, 80%);    /* Light gray for body text */
+        --body-color: #0d0d0d;              /* Dark background */
+        --box-color: hsl(242, 14%, 12%);    /* Card/dark section background */
+        --shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Consistent shadow for dark theme */
+        --border-radius-sm: 0.5rem;
+        --border-radius-md: 0.75rem;
+    }
+    
+       
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+     
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+
+
+    body {
+        height: 100vh;
+        overflow: hidden;
+        /* Updated radial gradient for a darker, shadow-like effect */
+        background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7) 0%, var(--body-color) 100%);
+        font-family: 'Inter', sans-serif; /* Aligned with AIM main website skeleton */
+        cursor: auto;
+        color: var(--text-color); /* Using dark theme text color */
+    }
+    
+    
+    
+    
+    
+
+    /* Top Menu Bar - UPDATED */
+    .top-menu-bar {
+        position: fixed;
+        top: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 95%;
+        max-width: 980px;
+        z-index: 50;
+        /* Semi-transparent dark background consistent with main nav bar */
+        background: rgba(25, 25, 25, 0.85); 
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid var(--mirage-color); /* Dark theme border color */
+        border-radius: var(--border-radius-md);
+        box-shadow: var(--shadow); /* Dark theme shadow */
+        padding: 0.75rem 1.5rem;
+    }
+    
+    
+    
+    
+    
+    
+    
+    /* Centered content within the menu bar - UPDATED */
+    .top-menu-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+    }
+    
+    
+    
+    
+    
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    
+    
+    
+    
+    #appLogo {
+        height: 42px;
+        width: auto;
+    }
+    
+    
+    
+    
+    #appBrandNameDisplay {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--title-color); /* Using dark theme title color */
+        transition: color 0.3s ease;
+    }
+
+
+
+
+    #appBrandNameDisplay span {
+        color: var(--skin-color); /* Updated to AIM skin color */
+    }
+    
+    
+    
+    
+    .top-menu-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    
+    
+    
+    
+    .fab {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--box-color); /* Dark theme card color */
+        color: var(--text-color); /* Dark theme text color */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid var(--mirage-color); /* Dark theme border color */
+        font-size: 1.1rem;
+    }
+    
+    
+    
+    
+    
+    .fab:hover {
+        color: var(--skin-color); /* Updated to AIM skin color */
+        transform: translateY(-2px);
+        box-shadow: 0 0 12px rgba(255, 80, 17, 0.4); /* Updated shadow to AIM skin color rgba */
+    }
+    
+    
+    
+    
+
+    /* 3D Button - NEW */
+    .btn-3d {
+        position: relative;
+        padding: 10px 22px;
+        background-color: var(--skin-color); /* Updated to AIM skin color */
+        color: white;
+        border: none;
+        border-radius: var(--border-radius-sm);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        box-shadow: 0 4px #d43a00; /* Darker shade of AIM skin color */
+        transition: all 0.1s ease-in-out;
+        cursor: pointer;
+        text-align: center;
+    }
+
+
+
+
+
+    .btn-3d:hover {
+        top: 2px;
+        box-shadow: 0 2px #d43a00; /* Darker shade of AIM skin color */
+    }
+
+
+
+
+
+    .btn-3d:active {
+        top: 4px;
+        box-shadow: 0 0 #d43a00; /* Darker shade of AIM skin color */
+    }
+    
+    
+    
+    
+    
+    /* Toolbox Container - UPDATED */
+    #toolbox-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 650px;
+        height: 650px;
+        max-width: 90vw;
+        max-height: 90vh;
+    }
+    
+    
+    
+    
+    
+    #toolbox-container:not(.is-open) {
+        cursor: url('https://bucket.mlcdn.com/a/3336/3336910/images/cbeaba31ebc0da1f8b4a827623cbde91d876445f.png'), auto;
+    }
+    
+    
+    
+    
+    
+
+    #toolbox-images {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        transition: transform 0.3s ease;
+    }
+
+
+
+
+    #toolbox-images:hover {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+    
+    
+    
+    
+    .toolbox-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: opacity 0.4s ease-in-out;
+    }
+    
+    
+    
+    
+
+    #toolbox-img-hover,
+    #toolbox-img-active {
+        opacity: 0;
+    }
+
+
+
+
+    #toolbox-container:hover #toolbox-img-default {
+        opacity: 0;
+    }
+    
+    
+    
+
+    #toolbox-container:hover #toolbox-img-hover {
+        opacity: 1;
+    }
+
+
+
+
+    #toolbox-container.is-open #toolbox-img-default,
+    #toolbox-container.is-open #toolbox-img-hover {
+        opacity: 0;
+    }
+
+
+
+
+    #toolbox-container.is-open #toolbox-img-active {
+        opacity: 1;
+    }
+    
+    
+    
+    
+    
+    .tech-link {
+        display: block;
+        position: absolute;
+        width: 15%;
+        height: 15%;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+        visibility: hidden;
+    }
+    
+    
+    
+    
+
+    .tech-link:hover {
+        transform: translate(-50%, -50%) scale(1.15) !important;
+    }
+
+
+
+
+
+    .tech-icon {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.3));
+        transition: transform 0.3s ease;
+    }
+    
+    
+    
+
+    /* Arc positions for the icons around the toolbox */
+    #css3-link { top: 67%; left: 0%; }
+    #html5-link { top: 37%; left: 10%; }
+    #sass-link { top: 20%; left: 50%; }
+    #js-link { top: 37%; left: 90%; }
+    #php-link { top: 67%; left: 100%; }
+
+
+
+
+    .tooltip {
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.75); /* Dark background for tooltip */
+        color: white; /* Light text for tooltip */
+        padding: 4px 15px;
+        border-radius: 50px;
+        font-size: 12px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+    }
+    
+    
+    
+    
+    
+
+    .tech-link:hover .tooltip {
+        opacity: 1;
+    }
+    
+    
+    
+    
+    
+    .loading-text {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #fff;
+        font-size: 18px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    
+    #toolbox-container.loading .loading-text {
+        opacity: 1;
+    }
+    
+    .instructions {
+        position: absolute;
+        bottom: 100px;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        font-size: 16px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    .bebell-footer {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        margin-top: 20px;
+        font-size: 0.6rem;
+        line-height: 1.5;
+    }
+    
+    .bebell-link {
+        color: inherit;
+        text-decoration: none;
+        font-weight: 550;
+        transition: color 0.3s ease;
+    }
+    
+    .bebell-link:hover { 
+        color: var(--skin-color); /* Updated to AIM skin color */
+        transition: color 0.0s ease;
+    }
+    
+    
+    
+</style>
+</head>
+<body>
+
+
+
+<!-- Fixed Top Navigation Bar -->
+<div class="top-menu-bar">
+    <div class="top-menu-content">
+        <div class="logo-container">
+            <img id="appLogo" src="https://bucket.mlcdn.com/a/3336/3336910/images/9637335821dc7e26f13b24f4a3a9f7b1cf322739.png" alt="App Logo">
+            <span id="appBrandNameDisplay">AI Toolbox</span>
+        </div>
+        <div class="top-menu-actions">
+            <div class="fab" id="homeBtn" title="Home" onclick="window.open('https://app.aimbootcamp.com', '_blank')"><i class="fa fa-home"></i></div>
+            
+            <!-- Updated Translate Button -->
+            <div class="fab" id="translateBtn" title="Translate to Spanish">
+                <i class="fa fa-globe"></i>
+            </div>
+
+            <div class="fab" id="supportBtn" title="Support" onclick="window.open('https://helpcenter.4evertools.com', '_blank')"><i class="fa fa-info-circle"></i></div>
+            <a href="#" class="btn-3d" id="contactBtn">Contact Support</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="toolbox-container">
+    <!-- The toolbox images are now layered for a smooth fade transition -->
+    
+    
+    <div id="toolbox-images">
+        
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/40eaeac5dbf87d4a879dc053ddd37463f7c8e84f.png" alt="Toolbox" id="toolbox-img-default" class="toolbox-img">
+        
+        
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/440495f7c566753a3898a78cda72a53f73dc685e.png" alt="Toolbox Hover" id="toolbox-img-hover" class="toolbox-img">
+        
+        
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/02d30679675b569981a2292a62422e819429990f.png" alt="Toolbox Active" id="toolbox-img-active" class="toolbox-img">
+    </div>
+    
+    
+    
+    
+    <div class="loading-text" data-translate-key="loading">Loading awesome tools...</div>
+    
+    
+    
+
+    <!-- Technology links with PNG icons -->
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" id="css3-link" class="tech-link" target="_blank">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/6c2fb897f344e1c3bfc1dc40e6307d4dcfdad88f.png" alt="Bookmarks Manager" class="tech-icon">
+        <div class="tooltip" data-translate-key="bookmarksTooltip">AI Foundation</div>
+    </a>
+    
+    
+    
+    
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" id="html5-link" class="tech-link" target="_blank">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/5e3afeb376c13a407d2997482f38fcef24940dce.png" alt="Finance Hub Pro" class="tech-icon">
+        <div class="tooltip" data-translate-key="financeTooltip">Your Finance Hub Pro</div>
+    </a>
+    
+    
+    
+    
+    
+    <a href="https://sass-lang.com/" id="sass-link" class="tech-link" target="_blank">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/0e95081b5ac2726fa4736489739c104252deeb7a.png" alt="DashLite" class="tech-icon">
+        <div class="tooltip" data-translate-key="dashboardTooltip">Your Private Desktop Dashboard</div>
+    </a>
+    
+    
+    
+    
+    
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" id="js-link" class="tech-link" target="_blank">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/ad4c22e5b232bd1ab5a5e62d15be9ad96e354811.png" alt="Productivity Hub" class="tech-icon">
+        <div class="tooltip" data-translate-key="productivityTooltip">Your Productivity Hub</div>
+    </a>
+    
+    
+    
+    
+    
+    <a href="https://www.php.net/" id="php-link" class="tech-link" target="_blank">
+        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/ba5e13390ade478f594af6de57399c3b0b78bc45.png" alt="AI Assistant" class="tech-icon">
+        <div class="tooltip" data-translate-key="aiTooltip">Your Professional AI Assistant</div>
+    </a>
+</div>
+
+
+
+
+
+    
+<!-- Instructions text -->
+<div class="instructions" data-translate-key="instructions">
+    
+</div>
+
+
+
+<div class="bebell-footer">
+    <p>
+        <span data-translate-key="copyright">Copyright © 2024 • All rights reserved.</span><br>
+        <span data-translate-key="developedBy">Developed with 🧡 by</span>
+        <a href="https://bebelldigitalsolutions.com" class="bebell-link" target="_blank" rel="noopener">
+            Bebell Digital Solutions.
+        </a> 
+    </p>
+</div>
+
+
+
+
+
+
+
+<!-- GSAP for animation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
+
+<!-- Confetti for fun! -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+
+
+<script>
+    // Translation dictionary
+    const translations = {
+        en: {
+            loading: "Loading awesome tools...",
+            instructions: "",
+            bookmarksTooltip: "AI Glossary",
+            financeTooltip: "AI Leaderboard & Benchmarks",
+            dashboardTooltip: "Your Private Desktop Dashboard",
+            productivityTooltip: "Your Productivity Hub",
+            aiTooltip: "Your Professional AI Assistant",
+            copyright: "Copyright © 2024 • All rights reserved.",
+            developedBy: "Developed with 🧡 by",
+            contactBtn: "Contact Support",
+            translateBtnTitle: "Translate to Spanish",
+            pageTitle: "Pink Toolbox Page"
+        },
+        es: {
+            loading: "Cargando herramientas increíbles...",
+            instructions: "",
+            bookmarksTooltip: "Tu Gestor de Marcadores",
+            financeTooltip: "Tu Hub Financiero Pro",
+            dashboardTooltip: "Tu Tablero de Escritorio Privado",
+            productivityTooltip: "Tu Centro de Productividad",
+            aiTooltip: "Tu Asistente de IA Profesional",
+            copyright: "Derechos de autor © 2024 • Todos los derechos reservados.",
+            developedBy: "Desarrollado con 🧡 por",
+            contactBtn: "Contactar Soporte",
+            translateBtnTitle: "Traducir al Inglés",
+            pageTitle: "Página de Caja de Herramientas Rosa"
+        }
+    };
+
+    // Current language state
+    let currentLang = localStorage.getItem('language') || 'en';
+
+    // DOM elements
+    const toolboxContainer = document.getElementById('toolbox-container');
+    const techLinks = document.querySelectorAll('.tech-link');
+    const loadingText = document.querySelector('.loading-text');
+    const translateBtn = document.getElementById('translateBtn');
+    const contactBtn = document.getElementById('contactBtn');
+    
+    let isOpen = false;
+    let imagesLoaded = 0;
+    const totalImages = document.querySelectorAll('img').length;
+
+    // Function to translate the page
+    function translatePage(lang) {
+        // Update all elements with data-translate-key attribute
+        document.querySelectorAll('[data-translate-key]').forEach(element => {
+            const key = element.getAttribute('data-translate-key');
+            if (translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
+        });
+
+        // Update button texts
+        contactBtn.textContent = translations[lang].contactBtn;
+        translateBtn.title = translations[lang].translateBtnTitle;
+        
+        // Update page title
+        document.title = translations[lang].pageTitle;
+        
+        // Update HTML lang attribute
+        document.documentElement.lang = lang;
+        
+        // Update current language
+        currentLang = lang;
+        localStorage.setItem('language', lang);
+        
+        // Update translate button icon based on language
+        const icon = translateBtn.querySelector('i');
+        icon.className = lang === 'en' ? 'fa fa-globe' : 'fa fa-globe';
+    }
+
+    // Toggle language function
+    function toggleLanguage() {
+        const newLang = currentLang === 'en' ? 'es' : 'en';
+        translatePage(newLang);
+    }
+
+    // Preload images for better performance
+    function preloadImages() {
+        toolboxContainer.classList.add('loading');
+        
+        const allImages = document.querySelectorAll('img');
+        allImages.forEach(img => {
+            if (img.complete) {
+                imageLoaded();
+            } else {
+                img.addEventListener('load', imageLoaded);
+                img.addEventListener('error', imageLoaded);
+            }
+        });
+    }
+    
+    function imageLoaded() {
+        imagesLoaded++;
+        if (imagesLoaded === totalImages) {
+            toolboxContainer.classList.remove('loading');
+        }
+    }
+    
+    // Initialize
+    window.addEventListener('DOMContentLoaded', function() {
+        preloadImages();
+        
+        // Set initial language
+        translatePage(currentLang);
+        
+        // Add click event to translate button
+        translateBtn.addEventListener('click', toggleLanguage);
+    });
+
+    // Handle click to open AND close the toolbox
+    toolboxContainer.addEventListener('click', (e) => {
+        if (e.target.closest('.tech-link')) {
+            return;
+        }
+
+        if (!isOpen) {
+            isOpen = true;
+            toolboxContainer.classList.add('is-open');
+
+            confetti({
+                particleCount: 150,
+                spread: 90,
+                origin: { y: 0.6 }
+            });
+
+            techLinks.forEach(link => {
+                link.style.visibility = 'visible';
+            });
+
+            gsap.to(".tech-link", {
+                duration: 0.8,
+                scale: 1,
+                opacity: 1,
+                ease: "back.out(1.7)",
+                stagger: 0.05
+            });
+        } else {
+            isOpen = false;
+            
+            gsap.to(".tech-link", {
+                duration: 0.5,
+                scale: 0,
+                opacity: 0,
+                ease: "back.in(1.7)",
+                onComplete: () => {
+                    toolboxContainer.classList.remove('is-open');
+                    techLinks.forEach(link => {
+                        link.style.visibility = 'hidden';
+                    });
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>
