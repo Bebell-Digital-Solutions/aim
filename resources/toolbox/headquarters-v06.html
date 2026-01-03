@@ -2316,7 +2316,91 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+<script>
+(function() {
+    // --- CONFIGURATION ---
+    // Add keywords found in the URLs of pages you WANT to show on mobile
+    const allowedPages = ['invite', 'pay', 'checkout', 'registration']; 
+    const threshold = 1200;
+    // ---------------------
 
+    const currentUrl = window.location.href.toLowerCase();
+    const isAllowedPage = allowedPages.some(page => currentUrl.includes(page));
+
+    // If this is an allowed page, stop the script here and do nothing
+    if (isAllowedPage) {
+        console.log("Mobile Blocker: Page allowed, script disabled.");
+        return;
+    }
+
+    let overlay;
+
+    function createOverlay() {
+        if (document.getElementById('mobile-blocker-overlay')) return;
+
+        overlay = document.createElement('div');
+        overlay.id = 'mobile-blocker-overlay';
+        overlay.style.cssText = `
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            display: none; 
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999999 !important;
+            text-align: center;
+            font-family: sans-serif !important;
+            padding: 40px;
+            box-sizing: border-box;
+        `;
+
+        overlay.innerHTML = `
+            <a href="https://aimbootcamp.com/resources/toolbox/headquarters-v06" target="_blank" style="text-decoration: none; display: inline-block;">
+                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/a96720694b08390a98b66b4f0f5e67376e86fda5.png" 
+                     style="width: 150px; height: 150px; margin-bottom: 30px; object-fit: contain; cursor: pointer;" 
+                     alt="AIM Logo">
+            </a>
+            <h1 style="font-size: 32px; color: #FF5722; margin-bottom: 20px; font-weight: bold;">Mobile Version Under Construction</h1>
+            <p style="font-size: 18px; line-height: 1.6; max-width: 400px; color: #ffffff;">
+                We are currently optimizing the AI Mastery Program for mobile devices. 
+                Please visit us on a <strong>Desktop or Laptop</strong> for the best experience.
+            </p>
+            <div style="margin-top: 30px; font-size: 14px; opacity: 0.7;">
+                Thank you for your patience!
+            </div>
+        `;
+
+        document.body.appendChild(overlay);
+        handleResize();
+    }
+
+    function handleResize() {
+        if (!overlay) return;
+        if (window.innerWidth <= threshold) {
+            overlay.style.display = 'flex';
+            document.body.style.setProperty('overflow', 'hidden', 'important');
+            document.documentElement.style.setProperty('overflow', 'hidden', 'important');
+        } else {
+            overlay.style.display = 'none';
+            document.body.style.setProperty('overflow', 'visible', 'important');
+            document.documentElement.style.setProperty('overflow', 'visible', 'important');
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', createOverlay);
+    } else {
+        createOverlay();
+    }
+
+    window.addEventListener('resize', handleResize);
+})();
+</script>
 
 
 
