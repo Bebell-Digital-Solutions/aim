@@ -766,19 +766,51 @@ html:not(.light-mode) .pomodoro-time {
 
 
 
-        #back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: none;
-            cursor: pointer;
-        }
+  /* Add this to your style section */
+body:has(#mobile-blocker-overlay) {
+    overflow: hidden !important;
+}
+
+        
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: none;
+    cursor: pointer;
+    z-index: 10000; /* Higher than Pomodoro */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+#back-to-top:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+#back-to-top img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1); /* Make arrow white */
+}
+
+
+
+
+
+
+
 
 
 
         
-
-
 
     </style>
 </head>
@@ -2294,116 +2326,78 @@ pomodoroWidget.init();
 
 
 <script>
-    window.onscroll = function() {
-        scrollFunction();
-    };
-
-    function scrollFunction() {
-        var backToTopButton = document.getElementById("back-to-top");
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            backToTopButton.style.display = "block";
-        } else {
-            backToTopButton.style.display = "none";
-        }
-    }
-
-    function scrollToTop() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    }
-</script>
-
-
-
-
-
-<script>
 (function() {
-    // --- CONFIGURATION ---
-    // Add keywords found in the URLs of pages you WANT to show on mobile
     const allowedPages = ['invite', 'pay', 'checkout', 'headquarters', 'productivity', 'registration']; 
     const threshold = 1200;
-    // ---------------------
-
+    
     const currentUrl = window.location.href.toLowerCase();
     const isAllowedPage = allowedPages.some(page => currentUrl.includes(page));
 
-    // If this is an allowed page, stop the script here and do nothing
+    // If this is an allowed page, stop the script here
     if (isAllowedPage) {
-        console.log("Mobile Blocker: Page allowed, script disabled.");
+        console.log("Mobile Blocker: Page allowed.");
         return;
     }
 
-    let overlay;
+    // Create overlay immediately (don't wait for DOMContentLoaded)
+    const overlay = document.createElement('div');
+    overlay.id = 'mobile-blocker-overlay';
+    overlay.style.cssText = `
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        display: flex !important; /* Changed from 'none' to 'flex' */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 999999999 !important;
+        text-align: center;
+        font-family: sans-serif !important;
+        padding: 40px;
+        box-sizing: border-box;
+    `;
 
-    function createOverlay() {
-        if (document.getElementById('mobile-blocker-overlay')) return;
+    overlay.innerHTML = `
+        <a href="https://aimbootcamp.com/resources/toolbox/headquarters-v06" target="_blank" style="text-decoration: none; display: inline-block;">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/159e0c512d14a7480ae0e3550e1718c4ac5c614f.png" 
+                 style="width: 150px; height: 150px; margin-bottom: 30px; object-fit: contain; cursor: pointer;" 
+                 alt="AIM Logo">
+        </a>
+        <h1 style="font-size: 32px; color: #e53600; margin-bottom: 20px; font-weight: bold;">Mobile Version Under Construction</h1>
+        <p style="font-size: 18px; line-height: 1.6; max-width: 400px; color: #ffffff;">
+            We are currently optimizing the AI Mastery Program for mobile devices. 
+            Please visit us on a <strong>Desktop or Laptop</strong> for the best experience.
+        </p>
+        <div style="margin-top: 30px; font-size: 14px; opacity: 0.7;">
+            Thank you for your patience!
+        </div>
+    `;
 
-        overlay = document.createElement('div');
-        overlay.id = 'mobile-blocker-overlay';
-        overlay.style.cssText = `
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
-            background-color: #000000 !important;
-            color: #ffffff !important;
-            display: none; 
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 999999999 !important;
-            text-align: center;
-            font-family: sans-serif !important;
-            padding: 40px;
-            box-sizing: border-box;
-        `;
-
-        overlay.innerHTML = `
-            <a href="https://aimbootcamp.com/resources/toolbox/headquarters-v06" target="_blank" style="text-decoration: none; display: inline-block;">
-                <img src="https://bucket.mlcdn.com/a/3336/3336910/images/159e0c512d14a7480ae0e3550e1718c4ac5c614f.png" 
-                     style="width: 150px; height: 150px; margin-bottom: 30px; object-fit: contain; cursor: pointer;" 
-                     alt="AIM Logo">
-            </a>
-            <h1 style="font-size: 32px; color: #e53600; margin-bottom: 20px; font-weight: bold;">Mobile Version Under Construction</h1>
-            <p style="font-size: 18px; line-height: 1.6; max-width: 400px; color: #ffffff;">
-                We are currently optimizing the AI Mastery Program for mobile devices. 
-                Please visit us on a <strong>Desktop or Laptop</strong> for the best experience.
-            </p>
-            <div style="margin-top: 30px; font-size: 14px; opacity: 0.7;">
-                Thank you for your patience!
-            </div>
-        `;
-
-        document.body.appendChild(overlay);
-        handleResize();
-    }
-
-    function handleResize() {
-        if (!overlay) return;
-        if (window.innerWidth <= threshold) {
-            overlay.style.display = 'flex';
-            document.body.style.setProperty('overflow', 'hidden', 'important');
-            document.documentElement.style.setProperty('overflow', 'hidden', 'important');
-        } else {
+    // Append to body immediately
+    document.body.appendChild(overlay);
+    
+    // Check screen size and hide if desktop
+    function checkScreenSize() {
+        if (window.innerWidth > threshold) {
             overlay.style.display = 'none';
-            document.body.style.setProperty('overflow', 'visible', 'important');
-            document.documentElement.style.setProperty('overflow', 'visible', 'important');
+            document.body.style.overflow = 'auto';
+        } else {
+            overlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
     }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', createOverlay);
-    } else {
-        createOverlay();
-    }
-
-    window.addEventListener('resize', handleResize);
+    
+    // Initial check
+    checkScreenSize();
+    
+    // Listen for resize
+    window.addEventListener('resize', checkScreenSize);
 })();
 </script>
-
-
 
     
 
