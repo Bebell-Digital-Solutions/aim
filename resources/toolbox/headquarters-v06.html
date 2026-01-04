@@ -777,36 +777,7 @@ body:has(#mobile-blocker-overlay) {
 
 
         
-#back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background: var(--primary);
-    border-radius: 50%;
-    display: none; /* This gets changed to 'flex' by JS */
-    cursor: pointer;
-    z-index: 10000; /* Higher than Pomodoro */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
 
-/* Make sure the image is properly centered */
-#back-to-top img {
-    width: 24px;
-    height: 24px;
-    filter: brightness(0) invert(1); /* Make arrow white */
-    display: block; /* Ensure it displays correctly */
-}
-
-
-
-
-
-        
 
     </style>
 </head>
@@ -1170,21 +1141,6 @@ body:has(#mobile-blocker-overlay) {
     <div class="save-notification" id="saveNotification">
         Data saved successfully!
     </div>
-
-
-
-
-
-
-<!-- Widget Volver arriba -->
-<div id="back-to-top" onclick="scrollToTop()">
-    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/29840e122b950f88fdca23072015101b427a9112.png" alt="Volver arriba" style="width: 40px; height: 40px;">
-</div>
-
-
-
-
-
 
 
 
@@ -2314,8 +2270,6 @@ const pomodoroWidget = {
 
 // Start the widget
 pomodoroWidget.init();
-
-
 </script>
 
 
@@ -2395,53 +2349,6 @@ pomodoroWidget.init();
 })();
 </script>
 
-
-
-
-
-
-
-<script>
-    // Back to Top functionality
-    window.onscroll = function() {
-        scrollFunction();
-    };
-
-    function scrollFunction() {
-        var backToTopButton = document.getElementById("back-to-top");
-        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-            backToTopButton.style.display = "flex";
-        } else {
-            backToTopButton.style.display = "none";
-        }
-    }
-
-    function scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        // Make sure the button is properly positioned
-        var backToTopButton = document.getElementById("back-to-top");
-        if (backToTopButton) {
-            backToTopButton.style.position = "fixed";
-            backToTopButton.style.bottom = "20px";
-            backToTopButton.style.right = "20px";
-            backToTopButton.style.display = "none";
-            backToTopButton.style.zIndex = "10000";
-            
-            // Add event listener for click
-            backToTopButton.addEventListener('click', scrollToTop);
-            
-            // Initial check
-            scrollFunction();
-        }
-    });
-</script>
 
 
 
