@@ -913,6 +913,25 @@ body:has(#mobile-blocker-overlay) {
 
 
     </style>
+
+
+<script>
+  (function (w, d, f) {
+    w.Produktly=w.Produktly||new Proxy(()=>{},{get:function(_,n){return(...a)=>{w.ProduktlyQ=(w.ProduktlyQ||[]).concat([[n,a]])}},apply:function(_,__,a){w.ProduktlyQ=(w.ProduktlyQ||[]).concat([["apply",a]])}})
+    var a = d.getElementsByTagName('head')[0];
+    var s = d.createElement('script');
+    s.async = 1;
+    s.src = f;
+    s.setAttribute('id', 'produktlyScript');
+    s.dataset.clientToken = "df43e84cf50731581643d4545e38131cc466834fb91cfff5f50869be4fa8f6128b466e45460913a5d09629d128ae797a3382a89420ad5db57fee1428e31383ac86dc72d957bc07161d4d05722c72d42d45138434dcd11cf59e2f8bd8f3a7bccb96e05fb2";
+    a.appendChild(s);
+  })(window, document, "https://public.produktly.com/js/main.js");
+</script>     
+
+
+
+
+      
 </head>
 <body class="flex h-screen overflow-hidden">
 
@@ -2538,18 +2557,7 @@ pomodoroWidget.init();
 
 
 
-<script>
-  (function (w, d, f) {
-    w.Produktly=w.Produktly||new Proxy(()=>{},{get:function(_,n){return(...a)=>{w.ProduktlyQ=(w.ProduktlyQ||[]).concat([[n,a]])}},apply:function(_,__,a){w.ProduktlyQ=(w.ProduktlyQ||[]).concat([["apply",a]])}})
-    var a = d.getElementsByTagName('head')[0];
-    var s = d.createElement('script');
-    s.async = 1;
-    s.src = f;
-    s.setAttribute('id', 'produktlyScript');
-    s.dataset.clientToken = "df43e84cf50731581643d4545e38131cc466834fb91cfff5f50869be4fa8f6128b466e45460913a5d09629d128ae797a3382a89420ad5db57fee1428e31383ac86dc72d957bc07161d4d05722c72d42d45138434dcd11cf59e2f8bd8f3a7bccb96e05fb2";
-    a.appendChild(s);
-  })(window, document, "https://public.produktly.com/js/main.js");
-</script>      
+ 
 
 </body>
 </html>
