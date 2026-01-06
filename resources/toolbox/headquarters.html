@@ -2561,7 +2561,17 @@ pomodoroWidget.init();
 
 
 
- 
+
+<script>(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://api.anychat.one/widget2/load?id=80f11de1-75a4-3240-b3d4-eb9a48bb7f50&r=' + encodeURIComponent(window.location);
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'anw2-sdk-null'));</script>
+
+
+      
 
 </body>
 </html>
