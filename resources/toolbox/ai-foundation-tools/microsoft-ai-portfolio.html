@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- =========================== -->
+    <!-- SECTION 1: PAGE TITLE & META -->
+    <!-- =========================== -->
+    <title>Microsoft AI Portfolio - Models & Products - AIM™</title>
+    <meta name="description" content="An interactive overview of Microsoft's key AI offerings, adapted for AIM Program Interface.">
+
+    <!-- =========================== -->
+    <!-- SECTION 2: FONTS & ICONS -->
+    <!-- =========================== -->
+    <!-- Import Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- Icons (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
+
+    <!-- =========================== -->
+    <!-- SECTION 3: BASE CSS STYLES -->
+    <!-- =========================== -->
+<style>
+    /* --- AIM Brand Styles for Program Interface (with preserved original colors) --- */
+    :root {
+        --skin-color: #ff5011; /* Primary accent/orange */
+        --mirage-color: hsl(210, 10%, 23%); /* Dark blue-gray, used for borders/shadows on dark elements */
+        --title-color: #323130; /* Original text-primary for titles on light background */
+        --text-color: #605e5c;  /* Original text-secondary for text on light background */
+        --body-color: #f9f9f9;  /* User's requested body background */
+        --box-color: #ffffff;   /* White for cards/sections on light background */
+        --light-gray-bg: #f3f2f1; /* Original ms-gray for subtle backgrounds */
+        --body-font: 'Inter', sans-serif; /* AIM font family */
+        --shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Lighter shadow for light theme content */
+        --small-font-size: 0.95rem;
+        --h3-font-size: 1.25rem;
+        --smaller-font-size: 0.75rem;
+        --mb15: 0.75rem;
+        --mb3: 1.5rem;
+
+        /* Preserved original MS colors for specific elements */
+        --original-ms-blue: #0078d4;
+        --original-ms-blue-dark: #005a9e;
+        --original-ms-blue-light: #50e6ff;
+        --original-ms-purple: #8661c5;
+        --original-ms-green: #107c10;
+        --original-ms-orange: #ff8c00;
+        --original-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        --original-transition: all 0.3s ease;
+    }
+
+    /* --- Base & Scrollbar (AIM Boilerplate) --- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* PRESERVED ORIGINAL FONT */
+        background-color: #f9f9f9; /* PRESERVED ORIGINAL BODY BACKGROUND */
+        color: var(--text-primary); /* PRESERVED ORIGINAL TEXT PRIMARY */
+        line-height: 1.6;
+        padding-top: 0rem; /* Space for fixed nav */
+        overflow-x: hidden;
+    }
+
+    main {
+        margin: 0;
+        padding: 0;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; cursor: pointer; }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #333; }
+    ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
+
+    /* Utility container class */
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    /* --- Loader Styles (AIM Boilerplate) --- */
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =========================== -->
+    <!-- SECTION 4: NAVIGATION BAR (AIM Boilerplate) -->
+    <!-- =========================== */
+
+    #nav-bar {
+        position: fixed;
+        top: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(25, 25, 25, 0.85);
+        backdrop-filter: blur(10px);
+        border: 1px solid #121212;
+        border-radius: 0.75rem;
+        padding: 0.75rem 1.5rem;
+        display: flex;
+        align-items: center;
+        max-width: 1100px;
+        width: 90%;
+        z-index: 1000;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    }
+    #nav-logo img { height: 35px; }
+
+    /* Desktop: nav-menu contains all links and is flexed */
+    #nav-menu {
+        display: flex;
+        gap: 1.5rem;
+        margin-left: auto;
+        align-items: center;
+    }
+
+    /* Nav links and CTA */
+    .nav-link {
+        color: white;
+        transition: color 0.3s, transform 0.2s;
+        font-weight: 500;
+    }
+    .nav-link:hover {
+        color: var(--skin-color);
+        transform: translateY(-1px);
+    }
+    .nav-cta {
+        background: linear-gradient(90deg, var(--skin-color), #d43a00);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4);
+        transition: transform 0.3s, box-shadow 0.3s;
+        font-weight: 600;
+        white-space: nowrap; /* Ensure text stays on one line */
+    }
+    .nav-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5);
+    }
+    .has-submenu { position: relative; }
+
+    /* Submenu Default State (Hidden - Desktop) */
+    .submenu-courses {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--box-color);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s, top 0.3s;
+        width: 330px;
+        z-index: 1001;
+    }
+
+    /* Submenu Active State (Shown via JavaScript click - Desktop) */
+    .submenu-courses.active {
+        opacity: 1;
+        visibility: visible;
+        top: calc(100% + 10px);
+    }
+    .submenu-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--text-color);
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .submenu-link:hover {
+        background-color: rgba(255, 80, 17, 0.1);
+        color: var(--skin-color);
+    }
+    .submenu-link i { width: 15px; text-align: center; }
+
+    /* Mobile visibility controls (Default/Desktop state) */
+    #mobile-menu-toggle {
+        display: none;
+        border: none;
+        background: transparent;
+        color: var(--skin-color);
+        font-size: 1.8rem;
+        cursor: pointer;
+        margin-left: auto;
+    }
+    .nav-cta.mobile-cta-only { display: none; }
+    .nav-cta.desktop-cta-only { display: block; }
+
+    /* =========================== -->
+    <!-- SECTION 5: BACK TO TOP BUTTON (AIM Boilerplate) -->
+    <!-- =========================== */
+    #back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background: url('https://bucket.mlcdn.com/a/3336/3336910/images/972c5065cffe83955d5322557dcdce28eca170e5.png') no-repeat center center;
+        background-size: cover;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+        z-index: 999;
+    }
+    #back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+    }
+    #back-to-top:hover {
+        transform: scale(1.1);
+    }
+
+    /* =========================== -->
+    <!-- SECTION 6: FOOTER STYLES (AIM Boilerplate) -->
+    <!-- =========================== */
+    .footer {
+        padding-top: 2rem;
+        margin-top: 4rem; /* Adjusted margin-top */
+    }
+    .footer-bg {
+        background-color: #171717; /* AIM box color for footer background */
+        padding: 3rem 0 3.5rem;
+    }
+    .footer-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 1.6rem;
+        max-width: 1100px; /* Consistent with main content width */
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+    .footer-title {
+        font-size: var(--h3-font-size);
+        margin-bottom: 0.25rem;
+        color: white; /* AIM title color for light background */
+    }
+    .footer-subtitle {
+        font-size: var(--small-font-size);
+        color: var(--text-color); /* AIM text color for light background */
+    }
+    .footer-links {
+        list-style: none;
+        display: flex;
+        justify-self: center;
+        column-gap: 2rem;
+        padding: 0;
+        margin: 0;
+    }
+    .footer-links a {
+        color: var(--text-color); /* AIM text color for light background */
+        transition: color 0.3s;
+        text-decoration: none;
+        font-size: 1rem;
+    }
+    .footer-links a:hover {
+        color: var(--skin-color);
+    }
+    .footer-socials {
+        justify-self: flex-end;
+        display: flex;
+        align-items: center;
+        gap: var(--mb15);
+    }
+    .footer-social {
+        font-size: 1.25rem;
+        color: white; /* AIM text color for light background */
+        transition: color 0.3s;
+        text-decoration: none;
+    }
+    .footer-social:hover {
+        color: var(--skin-color);
+        cursor: pointer;
+    }
+    .footer-copy {
+        font-size: var(--smaller-font-size);
+        text-align: center;
+        margin-top: 4.5rem;
+        color: var(--text-color); /* AIM text color for light background */
+    }
+    .footer-copy a {
+        color: var(--text-color); /* AIM text color for light background */
+        text-decoration: none;
+    }
+    .footer-copy a:hover {
+        color: var(--skin-color);
+    }
+    .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        gap: 0.5rem;
+    }
+    .footer-brand-text {
+        text-align: left;
+    }
+    .footer-logo {
+        width: 30px;
+        height: auto;
+        display: block;
+    }
+    .footer-logo:hover {
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+    }
+
+    /* =========================== -->
+    <!-- SECTION 7: MOBILE RESPONSIVENESS (AIM Boilerplate) -->
+    <!-- =========================== */
+    /* UPDATED: Changed breakpoint to 980px to include tablets */
+    @media screen and (max-width: 980px) {
+        body {
+            padding-top: 6rem;
+            overflow-x: hidden;
+        }
+
+        /* Mobile Navigation */
+        #nav-bar {
+            padding: 0.5rem 1rem;
+            justify-content: space-between;
+            box-shadow: none;
+            width: 100%;
+            max-width: 100%;
+            top: 0;
+            left: 0;
+            transform: none;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+        }
+
+        #mobile-menu-toggle {
+            display: block;
+            position: static;
+            transform: none;
+            z-index: 1002;
+            margin-left: auto;
+        }
+
+        #nav-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--body-color);
+            z-index: 1001;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 6rem 1.5rem 2rem; /* Updated padding for spacing */
+            margin: 0;
+        }
+
+        #nav-menu.mobile-open {
+            display: flex;
+            padding: 6rem 1.5rem 2rem; /* Ensure consistent padding when open */
+            overflow-y: auto;
+        }
+
+        #nav-menu .nav-link,
+        #nav-menu .nav-item {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--title-color);
+            padding: 0.5rem 0;
+            margin: 0;
+            width: auto;
+            text-align: center;
+        }
+
+        #nav-menu .nav-item {
+            margin: 0;
+            padding: 0;
+        }
+
+        #nav-menu .nav-link:hover {
+            color: var(--skin-color);
+            transform: none;
+        }
+
+        /* Courses Dropdown (Mobile alignment) */
+        .has-submenu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .submenu-courses {
+            position: static;
+            width: 100%;
+            background: transparent; /* Removed background container */
+            box-shadow: none;
+            padding: 0;
+            margin: 0.5rem 0 0 0;
+            opacity: 0;
+            visibility: hidden;
+            display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.3s, max-height 0.3s;
+            /* FIXED: Remove desktop transform to prevent off-screen positioning */
+            transform: none;
+            /* MODIFIED: Align items to left for mobile */
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            border-radius: 0;
+        }
+
+        .submenu-courses.active {
+            display: flex;
+            opacity: 1;
+            visibility: visible;
+            max-height: 400px;
+            padding: 0;
+            margin-top: 0.5rem;
+        }
+
+        /* MODIFIED: Submenu Links Mobile Styles */
+        .submenu-courses .submenu-link {
+            font-size: 1.1rem;
+            /* Increased left padding for indentation, right padding for safe zone */
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            justify-content: flex-start;
+            width: 100%;
+            text-align: left;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        /* Mobile CTA button */
+        .nav-cta.mobile-cta-only {
+            padding: 0.8rem 2rem;
+            width: 100%; /* Changed to full width */
+            /* MODIFIED: Removed max-width constraint and forced single line */
+            max-width: none;
+            white-space: nowrap;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            display: block !important;
+            align-self: center;
+            text-align: center;
+        }
+
+        /* Hide desktop items on mobile */
+        .nav-cta.desktop-cta-only,
+        .nav-cta:not(.mobile-cta-only) {
+            display: none !important;
+        }
+
+        /* Mobile Footer */
+        .footer-container {
+            grid-template-columns: 1fr;
+            row-gap: 2.5rem;
+            text-align: center;
+        }
+
+        .footer-brand {
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+        }
+        .footer-brand-text {
+            text-align: center;
+        }
+
+        .footer-socials {
+            justify-content: center;
+            justify-self: center;
+        }
+
+        .footer-links {
+            flex-direction: column;
+            row-gap: 1.2rem;
+            justify-self: center;
+        }
+
+        .footer-bg {
+            padding: 2rem 0 2.5rem;
+        }
+
+        .footer-copy {
+            margin-top: var(--mb3);
+            padding: 0 1rem;
+        }
+    }
+
+    /* Tablet/Desktop responsiveness (Starts at 981px) */
+    @media screen and (min-width: 981px) and (max-width: 1024px) {
+        #nav-bar {
+            width: 95%;
+            padding: 0.5rem 1rem;
+        }
+
+        #nav-menu {
+            gap: 1rem;
+        }
+    }
+
+    /* Desktop: Ensure correct visibility when not mobile */
+    @media screen and (min-width: 981px) {
+        #nav-menu {
+            display: flex !important;
+        }
+        .nav-cta.desktop-cta-only {
+            display: block !important;
+        }
+    }
+
+    /* =========================== -->
+    <!-- SECTION 8: PAGE LOADER STYLES (AIM Boilerplate) -->
+    <!-- =========================== */
+    .page-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.3s ease;
+    }
+
+    .loader-header {
+        color: white;
+        font-size: 24px;
+        font-family: Arial, sans-serif;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .progress {
+        width: 272.8px;
+        height: 41.7px;
+        border-radius: 28.8px;
+        color: #ff5011;
+        background-color: #000;
+        border: 2.9px solid;
+        position: relative;
+    }
+
+    .progress::before {
+        content: "";
+        position: absolute;
+        margin: 2.9px;
+        inset: 0 100% 0 0;
+        border-radius: inherit;
+        background: currentColor;
+        animation: progress-pf82op 1.5s forwards;
+    }
+
+    @keyframes progress-pf82op {
+        100% {
+            inset: 0;
+        }
+    }
+
+    .page-loader.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    /* =========================== -->
+    <!-- SECTION 9: PAGE-SPECIFIC STYLES (Adapted from original, preserving colors) -->
+    <!-- =========================== */
+
+    /* Hero Section (PRESERVED EXACTLY AS PROVIDED) */
+    .hero {
+        position: relative;
+        color: white;
+        padding: 4rem 2rem;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Background image */
+        background-image: url('https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+        background-size: cover;
+        background-position: center;
+        /* Blur effect for background */
+        filter: blur(2px);
+        /* Dark overlay for better text readability */
+        background-color: rgba(0, 40, 100, 0.7);
+        background-blend-mode: overlay;
+    }
+
+    .hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Gradient overlay for Microsoft branding */
+        background: linear-gradient(135deg,
+            rgba(0, 120, 212, 0.85) 0%,
+            rgba(0, 90, 158, 0.8) 50%,
+            rgba(0, 24, 143, 0.75) 100%);
+        z-index: 1;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        padding-top: 5rem;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        letter-spacing: -0.5px;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+        font-weight: 300;
+        margin-bottom: 2rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        animation: fadeInUp 1s ease-out 0.2s both;
+        opacity: 0.9;
+    }
+
+    .ms-logo {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        animation: fadeIn 1s ease-out;
+    }
+
+    .ai-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border-radius: 50px;
+        padding: 0.5rem 1.5rem;
+        font-size: 12px;
+        font-weight: 500;
+        margin-bottom: 3rem;
+        animation: fadeInUp 1s ease-out 0.4s both;
+    }
+
+    /* Stats Section */
+    .stats {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+        padding: 2rem;
+        background-color: var(--box-color); /* White background for Program Interface */
+        box-shadow: var(--shadow);
+        margin-top: -3rem;
+        border-radius: 12px;
+        max-width: 980px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        z-index: 10;
+        animation: fadeInUp 1s ease-out 0.6s both;
+    }
+
+    .stat-item {
+        text-align: center;
+        padding: 1rem;
+        min-width: 200px;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--original-ms-blue); /* Preserved original color */
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        color: var(--text-color); /* AIM text color for light background */
+        font-size: var(--small-font-size);
+    }
+
+    /* Table Section */
+    .table-section {
+        max-width: 1400px;
+        margin: 4rem auto;
+        padding: 0 2rem;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .section-title h2 {
+        font-size: 2.5rem;
+        color: var(--title-color); /* AIM title color for light background */
+        margin-bottom: 0.5rem;
+        border-left: 4px solid var(--skin-color); /* AIM H2 accent */
+        padding-left: 15px;
+        display: inline-block; /* To make border-left apply correctly */
+    }
+
+    .section-title p {
+        color: var(--text-color); /* AIM text color for light background */
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+/* In the table section CSS */
+.table-container {
+    background: var(--box-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px; /* Reduced from 1000px for better mobile */
+}
+
+    thead {
+        background: linear-gradient(135deg, var(--original-ms-blue) 0%, var(--original-ms-blue-dark) 50%, #00188f 100%); /* Preserved original gradient */
+        color: white;
+    }
+
+    th {
+        padding: 2.5rem 2rem;
+        text-align: left;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        position: relative;
+        cursor: pointer;
+        transition: var(--original-transition); /* Preserved original transition */
+        user-select: none;
+    }
+
+    th:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    th.sortable::after {
+        content: "↕";
+        margin-left: 8px;
+        font-size: 0.8rem;
+        opacity: 0.7;
+    }
+
+    th.sort-asc::after {
+        content: "↑";
+        opacity: 1;
+    }
+
+    th.sort-desc::after {
+        content: "↓";
+        opacity: 1;
+    }
+
+    tbody tr {
+        border-bottom: 1px solid var(--light-gray-bg); /* AIM subtle border */
+        transition: var(--original-transition); /* Preserved original transition */
+    }
+
+    tbody tr:hover {
+        background-color: rgba(0, 120, 212, 0.03); /* Preserved original hover color */
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    td {
+        padding: 1.5rem 1rem;
+        color: var(--text-color); /* AIM text color for light background */
+    }
+
+    .model-name {
+        font-weight: 600;
+        color: var(--title-color); /* AIM title color for light background */
+        font-size: 1.1rem;
+    }
+
+    .model-type {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-top: 0.5rem;
+    }
+
+    .type-slm {
+        background-color: rgba(0, 120, 212, 0.1); /* Preserved original color with transparency */
+        color: var(--original-ms-blue); /* Preserved original color */
+    }
+
+    .type-product {
+        background-color: rgba(134, 97, 197, 0.1); /* Preserved original color with transparency */
+        color: var(--original-ms-purple); /* Preserved original color */
+    }
+
+    .type-service {
+        background-color: rgba(16, 124, 16, 0.1); /* Preserved original color with transparency */
+        color: var(--original-ms-green); /* Preserved original color */
+    }
+
+    .date-cell {
+        font-weight: 500;
+        color: var(--original-ms-blue); /* Preserved original color */
+    }
+
+    .description-cell {
+        color: var(--text-color); /* AIM text color for light background */
+    }
+
+    .benefits-cell {
+        color: var(--text-color); /* AIM text color for light background */
+    }
+
+    .url-link {
+        color: var(--original-ms-blue); /* Preserved original color */
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        transition: var(--original-transition); /* Preserved original transition */
+    }
+
+    .url-link i {
+        margin-left: 5px;
+        font-size: 0.9rem;
+        transition: var(--original-transition); /* Preserved original transition */
+    }
+
+    .url-link:hover {
+        color: var(--original-ms-blue-dark); /* Preserved original hover color */
+        text-decoration: underline;
+    }
+
+    .url-link:hover i {
+        transform: translateX(3px);
+    }
+
+    /* Summary Section */
+    .summary-section {
+        max-width: 1200px;
+        margin: 4rem auto;
+        padding: 0 2rem;
+    }
+
+    .summary-card {
+        background: var(--box-color); /* White background for Program Interface */
+        border-radius: 12px;
+        padding: 3rem;
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .summary-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 8px;
+        height: 100%;
+        background: linear-gradient(to bottom, var(--original-ms-blue), var(--original-ms-purple)); /* Preserved original gradient */
+    }
+
+    .summary-content h3 {
+        font-size: 2rem;
+        color: var(--title-color); /* AIM title color for light background */
+        margin-bottom: 1.5rem;
+    }
+
+    .summary-content p {
+        margin-bottom: 1.5rem;
+        color: var(--text-color); /* AIM text color for light background */
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    .key-points {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .point {
+        flex: 1;
+        min-width: 250px;
+        padding: 1.5rem;
+        background-color: var(--light-gray-bg); /* AIM light gray background */
+        border-radius: 8px;
+        transition: var(--original-transition); /* Preserved original transition */
+    }
+
+    .point:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
+    }
+
+    .point-icon {
+        font-size: 2rem;
+        color: var(--original-ms-blue); /* Preserved original color */
+        margin-bottom: 1rem;
+    }
+
+    .point h4 {
+        color: var(--title-color); /* AIM title color for light background */
+        margin-bottom: 0.5rem;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    .pulse {
+        animation: pulse 2s infinite;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+        .hero h1 {
+            font-size: 2.8rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+        }
+
+        .stats {
+            margin-top: 0;
+            border-radius: 0;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero {
+            padding: 3rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+        }
+
+        .stat-item {
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+        }
+
+        .table-section, .summary-section {
+            padding: 0 1rem;
+        }
+
+        .summary-card {
+            padding: 2rem 1.5rem 2rem 2rem;
+        }
+
+        .point {
+            min-width: 100%;
+        }
+    }
+
+    /* Tooltip for table cells */
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 300px;
+        background-color: var(--box-color); /* AIM box color for tooltip */
+        color: var(--text-color); /* AIM text color for tooltip */
+        text-align: center;
+        border-radius: 6px;
+        padding: 10px;
+        position: absolute;
+        z-index: 100;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 0.9rem;
+        font-weight: normal;
+        box-shadow: var(--shadow); /* AIM shadow */
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    /* Filter controls */
+    .filter-controls {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .filter-btn {
+        padding: 0.7rem 1.5rem;
+        border: 2px solid var(--original-ms-blue); /* Preserved original color */
+        background-color: var(--box-color); /* White background for Program Interface */
+        color: var(--original-ms-blue); /* Preserved original color */
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: var(--original-transition); /* Preserved original transition */
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+        background-color: var(--original-ms-blue); /* Preserved original color */
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 120, 212, 0.4); /* Preserved original shadow color */
+    }
+</style>
+
+<!-- =========================== -->
+<!-- SECTION 10: PAGE LOADER SCRIPT (AIM Boilerplate) -->
+<!-- =========================== -->
+<script>
+    // --- Page Loader Logic ---
+    function showLoader() {
+        const loader = document.createElement('div');
+        loader.className = 'page-loader';
+        loader.innerHTML = `
+            <div class="loader-header">Wait for it...</div>
+            <div class="progress"></div>
+        `;
+        document.body.appendChild(loader);
+        return loader;
+    }
+
+    function initLoader() {
+        const loader = showLoader();
+        setTimeout(() => {
+            loader.classList.add('hidden');
+            setTimeout(() => loader.remove(), 300);
+        }, 1500);
+    }
+
+    document.addEventListener('DOMContentLoaded', initLoader);
+</script>
+<!-- Loader Div is injected by the script above -->
+
+</head>
+<body>
+
+    <!-- =========================== -->
+    <!-- SECTION 11: NAVIGATION BAR HTML (AIM Boilerplate) -->
+    <!-- =========================== -->
+    <nav id="nav-bar">
+        <a href="/" id="nav-logo">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
+        </a>
+
+        <!-- MOBILE TOGGLE BUTTON -->
+        <button id="mobile-menu-toggle" aria-label="Open Menu">
+            <i class="fa-solid fa-bars" id="toggle-icon"></i>
+        </button>
+
+        <div id="nav-menu">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/about" class="nav-link">About</a>
+
+            <!-- Courses Dropdown -->
+            <div class="nav-item has-submenu">
+                <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
+                <div class="submenu-courses" id="courses-submenu">
+                    <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
+                    <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
+                    <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+                    <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
+                    <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+                </div>
+            </div>
+
+            <a href="/pricing-page" class="nav-link">Pricing</a>
+            <a href="/contact" class="nav-link">Contact</a>
+
+            <!-- DESKTOP CTA (VISIBLE ON DESKTOP NAV BAR) -->
+            <a href="/login" class="nav-cta desktop-cta-only">MEMBER LOGIN</a>
+
+            <!-- MOBILE CTA (VISIBLE ONLY IN MOBILE OVERLAY) -->
+            <a href="/login" class="nav-cta mobile-cta-only">MEMBER LOGIN</a>
+        </div>
+    </nav>
+
+    <!-- =========================== -->
+    <!-- SECTION 12: MAIN CONTENT AREA -->
+    <!-- =========================== -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="ms-logo">
+                    <i class="fab fa-microsoft"></i>
+                </div>
+                <h1>Microsoft AI Portfolio</h1>
+                <div class="hero-subtitle">
+                    Beyond the Headlines: A Comprehensive Look at Microsoft's AI Models & Products
+                </div>
+                <div class="ai-badge pulse">
+                    <i class="fas fa-robot"></i> Innovating at the Intersection of AI and Productivity
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <div class="stat-item">
+                <div class="stat-number" id="model-count">8</div>
+                <div class="stat-label">AI Models & Products</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2019</div>
+                <div class="stat-label">First Major AI Investment</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10M+</div>
+                <div class="stat-label">Copilot Users</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">$13B</div>
+                <div class="stat-label">OpenAI Partnership</div>
+            </div>
+        </section>
+
+        <!-- Table Section -->
+        <section class="table-section">
+            <div class="section-title">
+                <h2>Microsoft AI Models & Products</h2>
+                <p>An interactive overview of Microsoft's key AI offerings, from compact language models called Small Language Models (SLM) to enterprise platforms</p>
+            </div>
+
+            <div class="filter-controls">
+                <button class="filter-btn active" data-filter="all">All Models</button>
+                <button class="filter-btn" data-filter="slm">Small Language Models</button>
+                <button class="filter-btn" data-filter="product">AI Products</button>
+                <button class="filter-btn" data-filter="service">AI Services</button>
+            </div>
+
+            <div class="table-container">
+                <table id="ai-models-table">
+                    <thead>
+                        <tr>
+                            <th class="sortable" data-sort="name">Product</th>
+                            <th class="sortable" data-sort="date">Launch</th>
+                            <th>Description</th>
+                            <th>Key Benefits</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <section class="summary-section">
+            <div class="summary-card">
+                <div class="summary-content">
+                    <h3>Microsoft's AI Strategy: Beyond the Partnership</h3>
+                    <p>While Microsoft's partnership with OpenAI captures headlines, the company has been steadily building a diverse portfolio of proprietary AI models and products. These range from highly efficient small language models (SLMs) designed for resource-constrained environments to comprehensive AI platforms for enterprise deployment.</p>
+
+                    <div class="key-points">
+                        <div class="point">
+                            <div class="point-icon">
+                                <i class="fas fa-compress-arrows-alt"></i>
+                            </div>
+                            <h4>Efficiency Focus</h4>
+                            <p>The Phi family demonstrates that smaller, specialized models can often outperform larger ones for specific tasks while being more cost-effective.</p>
+                        </div>
+
+                        <div class="point">
+                            <div class="point-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h4>Enterprise-Ready</h4>
+                            <p>Azure OpenAI Service combines cutting-edge models with Microsoft's enterprise-grade security, compliance, and reliability standards.</p>
+                        </div>
+
+                        <div class="point">
+                            <div class="point-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h4>Integrated Experience</h4>
+                            <p>Microsoft Copilot brings AI assistance directly into the workflows of millions of users across Windows, Office, and the web.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- =========================== -->
+    <!-- SECTION 13: BACK TO TOP BUTTON (AIM Boilerplate) -->
+    <!-- =========================== -->
+    <button id="back-to-top" aria-label="Back to Top"></button>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- =========================== -->
+    <!-- SECTION 14: FOOTER HTML (AIM Boilerplate) -->
+    <!-- =========================== -->
+    <footer class="footer">
+        <div class="footer-bg">
+            <div class="footer-container container">
+                <!-- Logo/Brand Block -->
+                <div class="footer-brand">
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="AIM Logo" class="footer-logo">
+                    <div class="footer-brand-text">
+                        <h3 class="footer-title">AIM™</h3>
+                        <span class="footer-subtitle">AI Mastery Program</span>
+                    </div>
+                </div>
+                
+
+                <!-- Footer Links -->
+                <ul class="footer-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/courses">Courses</a></li>
+                    <li><a href="/pricing-page">Pricing</a></li>
+                    <li><a href="/resources">Resources</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+
+                <!-- Social Icons -->
+                <div class="footer-socials">
+                    <a href="https://www.youtube.com/" target="_blank" class="footer-social" aria-label="Youtube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.facebook.com/" target="_blank" class="footer-social" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank" class="footer-social" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/" target="_blank" class="footer-social" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <p class="footer-copy">Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a></p>
+        </div>
+    </footer>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+  <!-- =========================== -->
+<!-- SECTION 15: BASE JAVASCRIPT (AIM Boilerplate) -->
+<!-- =========================== -->
+<script>
+    // --- Navigation Dropdown Logic (Desktop/Mobile Submenu) ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const coursesLink = document.getElementById('courses-link');
+        const submenu = document.getElementById('courses-submenu');
+        const navBar = document.getElementById('nav-bar');
+
+        if (coursesLink && submenu && navBar) {
+            // Toggle visibility on click
+            coursesLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isMobile = window.innerWidth <= 980;
+
+                if (isMobile) {
+                    submenu.classList.toggle('active');
+                } else {
+                    submenu.classList.toggle('active');
+                }
+
+                e.stopPropagation();
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navBar.contains(e.target)) {
+                    submenu.classList.remove('active');
+                }
+            });
+
+            submenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
+
+        // --- Mobile Menu Toggle Logic (Hamburger Icon) ---
+        const mobileToggle = document.getElementById('mobile-menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const toggleIcon = document.getElementById('toggle-icon');
+
+        if (mobileToggle && navMenu && toggleIcon) {
+            mobileToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navMenu.classList.toggle('mobile-open');
+
+                if (navMenu.classList.contains('mobile-open')) {
+                    toggleIcon.classList.remove('fa-bars');
+                    toggleIcon.classList.add('fa-xmark');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    toggleIcon.classList.remove('fa-xmark');
+                    toggleIcon.classList.add('fa-bars');
+                    document.body.style.overflow = 'auto';
+                    if (submenu) submenu.classList.remove('active');
+                }
+            });
+
+            navMenu.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 980) {
+                        if (!link.classList.contains('submenu-link') && link.id !== 'courses-link') {
+                            navMenu.classList.remove('mobile-open');
+                            toggleIcon.classList.remove('fa-xmark');
+                            toggleIcon.classList.add('fa-bars');
+                            document.body.style.overflow = 'auto';
+                        }
+                    }
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 980 &&
+                    navMenu.classList.contains('mobile-open') &&
+                    !navMenu.contains(e.target) &&
+                    e.target !== mobileToggle) {
+                    navMenu.classList.remove('mobile-open');
+                    toggleIcon.classList.remove('fa-xmark');
+                    toggleIcon.classList.add('fa-bars');
+                    document.body.style.overflow = 'auto';
+                    if (submenu) submenu.classList.remove('active');
+                }
+            });
+        }
+
+        // --- Back to Top Button Logic ---
+        const toTopButton = document.getElementById('back-to-top');
+
+        if (toTopButton) {
+            window.addEventListener('scroll', function() {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    toTopButton.classList.add('show');
+                } else {
+                    toTopButton.classList.remove('show');
+                }
+            });
+
+            toTopButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        window.addEventListener('resize', function() {
+            const isMobile = window.innerWidth <= 980;
+
+            if (!isMobile && navMenu && navMenu.classList.contains('mobile-open')) {
+                navMenu.classList.remove('mobile-open');
+                if (toggleIcon) {
+                    toggleIcon.classList.remove('fa-xmark');
+                    toggleIcon.classList.add('fa-bars');
+                }
+                document.body.style.overflow = 'auto';
+            }
+
+            if (submenu) {
+                submenu.classList.remove('active');
+            }
+        });
+    });
+</script>
+
+<!-- =========================== -->
+<!-- SECTION 16: PAGE-SPECIFIC JAVASCRIPT -->
+<!-- =========================== -->
+<script>
+    // Data for Microsoft AI models and products
+    const aiModels = [
+        {
+            name: "Phi‑2",
+            url: "https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/",
+            date: "December 12, 2023",
+            description: "A 2.7‑billion‑parameter small language model (SLM) that outperforms many larger models on reasoning and language understanding tasks.",
+            benefits: "Compact size; suitable for resource‑constrained environments; open‑source; strong reasoning for its scale.",
+            type: "slm"
+        },
+        {
+            name: "Phi‑3 family",
+            url: "https://www.microsoft.com/en-us/research/blog/phi-3-family/",
+            date: "April 23, 2024",
+            description: "A family of open‑source SLMs (3.8B, 7B, 14B) that deliver performance comparable to models 10× larger.",
+            benefits: "Cost‑effective; optimized for Azure AI; supports long contexts (up to 128K tokens); can run on‑device.",
+            type: "slm"
+        },
+        {
+            name: "Orca",
+            url: "https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/",
+            date: "June 5, 2023",
+            description: "A 13‑billion‑parameter model that learns from GPT‑4 explanation traces to improve reasoning capabilities.",
+            benefits: "Outperforms similar‑size models on complex reasoning tasks; non‑commercial open‑source license.",
+            type: "slm"
+        },
+        {
+            name: "Orca 2",
+            url: "https://www.microsoft.com/en-us/research/publication/orca-2-teaching-small-language-models-how-to-reason/",
+            date: "November 20, 2023",
+            description: "Two SLMs (7B and 13B) fine‑tuned with tailored synthetic data to teach reasoning strategies.",
+            benefits: "Achieves performance comparable to models 5‑10× larger; teaches step‑by‑step reasoning; weights publicly available for research.",
+            type: "slm"
+        },
+        {
+            name: "MAI‑Voice‑1",
+            url: "https://www.microsoft.com/en-us/research/blog/mai-voice-1-highly-expressive-and-efficient-speech-generation-model/",
+            date: "August 28, 2025",
+            description: "A highly expressive speech‑generation model that can produce a minute of audio in under a second on a single GPU.",
+            benefits: "Extremely fast and efficient; powers Copilot Daily and Podcasts; enables interactive voice experiences.",
+            type: "product"
+        },
+        {
+            name: "MAI‑1‑preview",
+            url: "https://www.microsoft.com/en-us/research/blog/introducing-mai-1/",
+            date: "August 28, 2025",
+            description: "A mixture‑of‑experts foundation model trained on ~15,000 H100 GPUs, designed for text‑based tasks in Copilot.",
+            benefits: "Cost‑effective; strong instruction‑following; built for scale; available for trusted tester feedback.",
+            type: "product"
+        },
+        {
+            name: "Microsoft Copilot",
+            url: "https://www.microsoft.com/en-us/microsoft-copilot",
+            date: "September 21, 2023",
+            description: "An everyday AI companion that integrates web context, work data, and on‑PC activity into a single assistant.",
+            benefits: "Unified experience across Windows 11, Microsoft 365, Bing, and Edge; enterprise‑grade privacy and security.",
+            type: "product"
+        },
+        {
+            name: "Azure OpenAI Service",
+            url: "https://azure.microsoft.com/en-us/products/ai-services/openai-service",
+            date: "January 17, 2023",
+            description: "A fully managed service that provides access to OpenAI's models (GPT‑3.5, Codex, DALL·E 2, etc.) on Azure's enterprise‑grade infrastructure.",
+            benefits: "Combines the latest OpenAI models with Azure's security, compliance, and reliability; enables building production AI applications.",
+            type: "service"
+        }
+    ];
+
+    // Initialize table when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        // DOM elements
+        const tableBody = document.querySelector('#ai-models-table tbody');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const sortableHeaders = document.querySelectorAll('th.sortable');
+        const modelCountElement = document.getElementById('model-count');
+        
+        let currentFilter = 'all';
+        let currentSort = { column: 'date', direction: 'asc' };
+
+        // Initialize the table
+        function initializeTable() {
+            if (tableBody) {
+                renderTable(aiModels);
+                setupEventListeners();
+                
+                // Initialize sort indicators
+                sortableHeaders.forEach(h => {
+                    if (h.dataset.sort === currentSort.column) {
+                        h.classList.add(`sort-${currentSort.direction}`);
+                    }
+                });
+            }
+        }
+
+        // Render table rows
+        function renderTable(models) {
+            if (!tableBody) return;
+            
+            tableBody.innerHTML = '';
+
+            models.forEach(model => {
+                const row = document.createElement('tr');
+                row.dataset.type = model.type;
+
+                // Determine type badge
+                let typeClass = '';
+                let typeLabel = '';
+                switch(model.type) {
+                    case 'slm':
+                        typeClass = 'type-slm';
+                        typeLabel = 'SML';
+                        break;
+                    case 'product':
+                        typeClass = 'type-product';
+                        typeLabel = 'AI Product';
+                        break;
+                    case 'service':
+                        typeClass = 'type-service';
+                        typeLabel = 'AI Service';
+                        break;
+                }
+
+                row.innerHTML = `
+                    <td>
+                        <div class="model-name">${model.name}</div>
+                        <div class="model-type ${typeClass}">${typeLabel}</div>
+                        <div style="margin-top: 10px;">
+                            <a href="${model.url}" target="_blank" class="url-link">
+                                Learn More <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </td>
+                    <td class="date-cell">${model.date}</td>
+                    <td class="description-cell">${model.description}</td>
+                    <td class="benefits-cell">${model.benefits}</td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Filter table by model type
+        function filterTable(type) {
+            currentFilter = type;
+
+            // Update active button
+            filterButtons.forEach(btn => {
+                if (btn.dataset.filter === type) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Filter models
+            let filteredModels = aiModels;
+            if (type !== 'all') {
+                filteredModels = aiModels.filter(model => model.type === type);
+            }
+
+            // Update model count
+            if (modelCountElement) {
+                modelCountElement.textContent = filteredModels.length;
+            }
+
+            // Sort and render
+            sortModels(filteredModels, currentSort.column, currentSort.direction);
+        }
+
+        // Sort models
+        function sortModels(models, column, direction) {
+            const sortedModels = [...models].sort((a, b) => {
+                let aValue, bValue;
+
+                switch(column) {
+                    case 'name':
+                        aValue = a.name.toLowerCase();
+                        bValue = b.name.toLowerCase();
+                        break;
+                    case 'date':
+                        aValue = new Date(a.date);
+                        bValue = new Date(b.date);
+                        break;
+                    default:
+                        aValue = a[column];
+                        bValue = b[column];
+                }
+
+                if (direction === 'asc') {
+                    return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
+                } else {
+                    return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
+                }
+            });
+
+            renderTable(sortedModels);
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Filter buttons
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterTable(button.dataset.filter);
+                });
+            });
+
+            // Sortable headers
+            sortableHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const column = header.dataset.sort;
+
+                    // Update sort direction
+                    if (currentSort.column === column) {
+                        currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+                    } else {
+                        currentSort.column = column;
+                        currentSort.direction = 'asc';
+                    }
+
+                    // Update UI
+                    sortableHeaders.forEach(h => {
+                        h.classList.remove('sort-asc', 'sort-desc');
+                        if (h.dataset.sort === currentSort.column) {
+                            h.classList.add(`sort-${currentSort.direction}`);
+                        }
+                    });
+
+                    // Apply filter and sort
+                    let filteredModels = aiModels;
+                    if (currentFilter !== 'all') {
+                        filteredModels = aiModels.filter(model => model.type === currentFilter);
+                    }
+
+                    sortModels(filteredModels, currentSort.column, currentSort.direction);
+                });
+            });
+
+            // Add animation to stats on scroll
+            window.addEventListener('scroll', handleScrollAnimation);
+        }
+
+        // Handle scroll animation for stats
+        function handleScrollAnimation() {
+            const statsSection = document.querySelector('.stats');
+            if (statsSection) {
+                const statsPosition = statsSection.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+
+                if (statsPosition < screenPosition) {
+                    statsSection.style.animation = 'fadeInUp 1s ease-out';
+                }
+            }
+        }
+
+        // Initialize table
+        initializeTable();
+    });
+</script>
+
+    <!-- =========================== -->
+    <!-- SECTION 17: PAGE-SPECIFIC SCRIPTS -->
+    <!-- =========================== -->
+</body>
+</html>
