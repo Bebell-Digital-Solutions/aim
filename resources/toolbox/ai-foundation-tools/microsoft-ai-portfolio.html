@@ -124,7 +124,7 @@
 
     /* Nav links and CTA */
     .nav-link {
-        color: white;
+        color: hsl(242, 8%, 80%);
         transition: color 0.3s, transform 0.2s;
         font-weight: 500;
     }
@@ -160,8 +160,8 @@
         box-shadow: 0 4px 12px rgba(0,0,0,0.5);
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.3s, visibility 0.3s, top 0.3s;
-        width: 330px;
+        transition: opacity 1s, visibility 0.3s, top 0.3s;
+        width: 300px;
         z-index: 1001;
     }
 
@@ -170,12 +170,15 @@
         opacity: 1;
         visibility: visible;
         top: calc(100% + 10px);
-    }
+        background: hsl(242, 14%, 12%);
+        backdrop-filter: blur(10px);    }
+        
+        
     .submenu-link {
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        color: var(--text-color);
+        color: hsl(242, 8%, 80%);
         padding: 0.5rem;
         border-radius: 0.25rem;
         transition: background-color 0.3s, color 0.3s;
@@ -234,7 +237,7 @@
         margin-top: 4rem; /* Adjusted margin-top */
     }
     .footer-bg {
-        background-color: #171717; /* AIM box color for footer background */
+        background-color: hsl(242, 14%, 12%); /* AIM box color for footer background */
         padding: 3rem 0 3.5rem;
     }
     .footer-container {
@@ -252,7 +255,7 @@
     }
     .footer-subtitle {
         font-size: var(--small-font-size);
-        color: var(--text-color); /* AIM text color for light background */
+        color: hsl(242, 8%, 98%); /* AIM text color for light background */
     }
     .footer-links {
         list-style: none;
@@ -263,7 +266,7 @@
         margin: 0;
     }
     .footer-links a {
-        color: var(--text-color); /* AIM text color for light background */
+        color: hsl(242, 8%, 98%); /* AIM text color for light background */
         transition: color 0.3s;
         text-decoration: none;
         font-size: 1rem;
@@ -279,7 +282,7 @@
     }
     .footer-social {
         font-size: 1.25rem;
-        color: white; /* AIM text color for light background */
+        color: hsl(242, 8%, 98%); /* AIM text color for light background */
         transition: color 0.3s;
         text-decoration: none;
     }
@@ -291,10 +294,10 @@
         font-size: var(--smaller-font-size);
         text-align: center;
         margin-top: 4.5rem;
-        color: var(--text-color); /* AIM text color for light background */
+        color: hsl(242, 8%, 98%); /* AIM text color for light background */
     }
     .footer-copy a {
-        color: var(--text-color); /* AIM text color for light background */
+        color: hsl(242, 8%, 98%); /* AIM text color for light background */
         text-decoration: none;
     }
     .footer-copy a:hover {
@@ -326,7 +329,7 @@
     /* UPDATED: Changed breakpoint to 980px to include tablets */
     @media screen and (max-width: 980px) {
         body {
-            padding-top: 6rem;
+            padding-top: 0rem;
             overflow-x: hidden;
         }
 
@@ -709,12 +712,35 @@
         min-width: 200px;
     }
 
-    .stat-number {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: var(--original-ms-blue); /* Preserved original color */
-        margin-bottom: 0.5rem;
-    }
+
+    
+    
+    /* Counter Animation Styles */
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--original-ms-blue);
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+/* Add a small animation for when counter completes */
+@keyframes counterComplete {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.stat-number.animated {
+    animation: counterComplete 0.5s ease-out;
+}
+    
+    
+    
+    
+    
+    
+    
 
     .stat-label {
         color: var(--text-color); /* AIM text color for light background */
@@ -862,7 +888,7 @@ table {
     }
 
     .url-link {
-        color: var(--original-ms-blue); /* Preserved original color */
+        color: var(--skin-color); /* Preserved original color */
         text-decoration: none;
         font-weight: 500;
         display: inline-flex;
@@ -908,7 +934,10 @@ table {
         left: 0;
         width: 8px;
         height: 100%;
-        background: linear-gradient(to bottom, var(--original-ms-blue), var(--original-ms-purple)); /* Preserved original gradient */
+        background: linear-gradient(135deg,
+            rgba(0, 120, 212, 0.85) 0%,
+            rgba(0, 90, 158, 0.8) 50%,
+            rgba(0, 24, 143, 0.75) 100%); /* Preserved original gradient */
     }
 
     .summary-content h3 {
@@ -985,6 +1014,22 @@ table {
 
     /* Responsive Design */
     @media (max-width: 992px) {
+    
+    
+        body {
+        padding-top: 0; /* Changed from 6rem to 0 */
+        overflow-x: hidden;
+    }
+    
+    
+    
+    
+        .hero-content {
+        margin-top: 0;
+        }
+    
+    
+    
         .hero h1 {
             font-size: 2.8rem;
         }
@@ -1006,7 +1051,15 @@ table {
     @media (max-width: 768px) {
         .hero {
             padding: 3rem 1rem;
+            padding-top: 0;
+            margin-top: 0;
         }
+        
+                .hero-content {
+        margin-top: 0;
+        }
+        
+        
 
         .hero h1 {
             font-size: 2.2rem;
@@ -1134,35 +1187,37 @@ table {
         <a href="/" id="nav-logo">
             <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
         </a>
-
+        
         <!-- MOBILE TOGGLE BUTTON -->
         <button id="mobile-menu-toggle" aria-label="Open Menu">
             <i class="fa-solid fa-bars" id="toggle-icon"></i>
         </button>
-
+        
         <div id="nav-menu">
             <a href="/" class="nav-link">Home</a>
-            <a href="/about" class="nav-link">About</a>
-
+            <a href="/about" class="nav-link" style="color: var(--skin-color);">About</a>
+            
             <!-- Courses Dropdown -->
             <div class="nav-item has-submenu">
                 <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
                 <div class="submenu-courses" id="courses-submenu">
                     <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
-                    <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
+                    <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-cubes"></i> AI Foundation</a>
                     <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
-                    <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
+                    <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-brain"></i> Building Your AI Brain</a>
                     <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+                    <a href="/5-security-privacy-compliance" class="submenu-link"><i class="fa-solid fa-shield"></i> Security, Privacy & Compliance</a>
+                
                 </div>
             </div>
-
+            
             <a href="/pricing-page" class="nav-link">Pricing</a>
             <a href="/contact" class="nav-link">Contact</a>
-
-            <!-- DESKTOP CTA (VISIBLE ON DESKTOP NAV BAR) -->
+            
+            <!-- DESKTOP CTA -->
             <a href="/login" class="nav-cta desktop-cta-only">MEMBER LOGIN</a>
-
-            <!-- MOBILE CTA (VISIBLE ONLY IN MOBILE OVERLAY) -->
+            
+            <!-- MOBILE CTA -->
             <a href="/login" class="nav-cta mobile-cta-only">MEMBER LOGIN</a>
         </div>
     </nav>
@@ -1186,26 +1241,35 @@ table {
                 </div>
             </div>
         </section>
+        
+        
+        
+        
 
         <!-- Stats Section -->
-        <section class="stats">
-            <div class="stat-item">
-                <div class="stat-number" id="model-count">8</div>
-                <div class="stat-label">AI Models & Products</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">2019</div>
-                <div class="stat-label">First Major AI Investment</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">10M+</div>
-                <div class="stat-label">Copilot Users</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">$13B</div>
-                <div class="stat-label">OpenAI Partnership</div>
-            </div>
-        </section>
+<!-- Update your existing stats section in SECTION 12 -->
+<section class="stats">
+    <div class="stat-item">
+        <div class="stat-number" id="model-count" data-value="8">8</div>
+        <div class="stat-label">AI Models & Products</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number" data-value="2019">2019</div>
+        <div class="stat-label">First Major AI Investment</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number" data-value="10000000">10M+</div>
+        <div class="stat-label">Copilot Users</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number" data-value="13000000000">$13B</div>
+        <div class="stat-label">OpenAI Partnership</div>
+    </div>
+</section>
+
+
+
+
 
         <!-- Table Section -->
         <section class="table-section">
@@ -1485,269 +1549,409 @@ table {
     });
 </script>
 
+
+
+
+
+
 <!-- =========================== -->
 <!-- SECTION 16: PAGE-SPECIFIC JAVASCRIPT -->
 <!-- =========================== -->
+
 <script>
-    // Data for Microsoft AI models and products
-    const aiModels = [
-        {
-            name: "Phi‑2",
-            url: "https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/",
-            date: "December 12, 2023",
-            description: "A 2.7‑billion‑parameter small language model (SLM) that outperforms many larger models on reasoning and language understanding tasks.",
-            benefits: "Compact size; suitable for resource‑constrained environments; open‑source; strong reasoning for its scale.",
-            type: "slm"
-        },
-        {
-            name: "Phi‑3 family",
-            url: "https://www.microsoft.com/en-us/research/blog/phi-3-family/",
-            date: "April 23, 2024",
-            description: "A family of open‑source SLMs (3.8B, 7B, 14B) that deliver performance comparable to models 10× larger.",
-            benefits: "Cost‑effective; optimized for Azure AI; supports long contexts (up to 128K tokens); can run on‑device.",
-            type: "slm"
-        },
-        {
-            name: "Orca",
-            url: "https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/",
-            date: "June 5, 2023",
-            description: "A 13‑billion‑parameter model that learns from GPT‑4 explanation traces to improve reasoning capabilities.",
-            benefits: "Outperforms similar‑size models on complex reasoning tasks; non‑commercial open‑source license.",
-            type: "slm"
-        },
-        {
-            name: "Orca 2",
-            url: "https://www.microsoft.com/en-us/research/publication/orca-2-teaching-small-language-models-how-to-reason/",
-            date: "November 20, 2023",
-            description: "Two SLMs (7B and 13B) fine‑tuned with tailored synthetic data to teach reasoning strategies.",
-            benefits: "Achieves performance comparable to models 5‑10× larger; teaches step‑by‑step reasoning; weights publicly available for research.",
-            type: "slm"
-        },
-        {
-            name: "MAI‑Voice‑1",
-            url: "https://www.microsoft.com/en-us/research/blog/mai-voice-1-highly-expressive-and-efficient-speech-generation-model/",
-            date: "August 28, 2025",
-            description: "A highly expressive speech‑generation model that can produce a minute of audio in under a second on a single GPU.",
-            benefits: "Extremely fast and efficient; powers Copilot Daily and Podcasts; enables interactive voice experiences.",
-            type: "product"
-        },
-        {
-            name: "MAI‑1‑preview",
-            url: "https://www.microsoft.com/en-us/research/blog/introducing-mai-1/",
-            date: "August 28, 2025",
-            description: "A mixture‑of‑experts foundation model trained on ~15,000 H100 GPUs, designed for text‑based tasks in Copilot.",
-            benefits: "Cost‑effective; strong instruction‑following; built for scale; available for trusted tester feedback.",
-            type: "product"
-        },
-        {
-            name: "Microsoft Copilot",
-            url: "https://www.microsoft.com/en-us/microsoft-copilot",
-            date: "September 21, 2023",
-            description: "An everyday AI companion that integrates web context, work data, and on‑PC activity into a single assistant.",
-            benefits: "Unified experience across Windows 11, Microsoft 365, Bing, and Edge; enterprise‑grade privacy and security.",
-            type: "product"
-        },
-        {
-            name: "Azure OpenAI Service",
-            url: "https://azure.microsoft.com/en-us/products/ai-services/openai-service",
-            date: "January 17, 2023",
-            description: "A fully managed service that provides access to OpenAI's models (GPT‑3.5, Codex, DALL·E 2, etc.) on Azure's enterprise‑grade infrastructure.",
-            benefits: "Combines the latest OpenAI models with Azure's security, compliance, and reliability; enables building production AI applications.",
-            type: "service"
-        }
-    ];
 
-    // Initialize table when DOM is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-        // DOM elements
-        const tableBody = document.querySelector('#ai-models-table tbody');
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const sortableHeaders = document.querySelectorAll('th.sortable');
-        const modelCountElement = document.getElementById('model-count');
+// Data for Microsoft AI models and products
+const aiModels = [
+    {
+        name: "Phi‑2",
+        url: "https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/",
+        date: "December 12, 2023",
+        description: "A 2.7‑billion‑parameter small language model (SLM) that outperforms many larger models on reasoning and language understanding tasks.",
+        benefits: "Compact size; suitable for resource‑constrained environments; open‑source; strong reasoning for its scale.",
+        type: "slm"
+    },
+    {
+        name: "Phi‑3 family",
+        url: "https://www.microsoft.com/en-us/research/blog/phi-3-family/",
+        date: "April 23, 2024",
+        description: "A family of open‑source SLMs (3.8B, 7B, 14B) that deliver performance comparable to models 10× larger.",
+        benefits: "Cost‑effective; optimized for Azure AI; supports long contexts (up to 128K tokens); can run on‑device.",
+        type: "slm"
+    },
+    {
+        name: "Orca",
+        url: "https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/",
+        date: "June 5, 2023",
+        description: "A 13‑billion‑parameter model that learns from GPT‑4 explanation traces to improve reasoning capabilities.",
+        benefits: "Outperforms similar‑size models on complex reasoning tasks; non‑commercial open‑source license.",
+        type: "slm"
+    },
+    {
+        name: "Orca 2",
+        url: "https://www.microsoft.com/en-us/research/publication/orca-2-teaching-small-language-models-how-to-reason/",
+        date: "November 20, 2023",
+        description: "Two SLMs (7B and 13B) fine‑tuned with tailored synthetic data to teach reasoning strategies.",
+        benefits: "Achieves performance comparable to models 5‑10× larger; teaches step‑by‑step reasoning; weights publicly available for research.",
+        type: "slm"
+    },
+    {
+        name: "MAI‑Voice‑1",
+        url: "https://www.microsoft.com/en-us/research/blog/mai-voice-1-highly-expressive-and-efficient-speech-generation-model/",
+        date: "August 28, 2025",
+        description: "A highly expressive speech‑generation model that can produce a minute of audio in under a second on a single GPU.",
+        benefits: "Extremely fast and efficient; powers Copilot Daily and Podcasts; enables interactive voice experiences.",
+        type: "product"
+    },
+    {
+        name: "MAI‑1‑preview",
+        url: "https://www.microsoft.com/en-us/research/blog/introducing-mai-1/",
+        date: "August 28, 2025",
+        description: "A mixture‑of‑experts foundation model trained on ~15,000 H100 GPUs, designed for text‑based tasks in Copilot.",
+        benefits: "Cost‑effective; strong instruction‑following; built for scale; available for trusted tester feedback.",
+        type: "product"
+    },
+    {
+        name: "Microsoft Copilot",
+        url: "https://www.microsoft.com/en-us/microsoft-copilot",
+        date: "September 21, 2023",
+        description: "An everyday AI companion that integrates web context, work data, and on‑PC activity into a single assistant.",
+        benefits: "Unified experience across Windows 11, Microsoft 365, Bing, and Edge; enterprise‑grade privacy and security.",
+        type: "product"
+    },
+    {
+        name: "Azure OpenAI Service",
+        url: "https://azure.microsoft.com/en-us/products/ai-services/openai-service",
+        date: "January 17, 2023",
+        description: "A fully managed service that provides access to OpenAI's models (GPT‑3.5, Codex, DALL·E 2, etc.) on Azure's enterprise‑grade infrastructure.",
+        benefits: "Combines the latest OpenAI models with Azure's security, compliance, and reliability; enables building production AI applications.",
+        type: "service"
+    }
+];
+
+// Counter Animation Function
+function animateCounter(element, targetValue, duration = 2000, prefix = '', suffix = '') {
+    const startValue = 0;
+    const increment = targetValue / (duration / 16); // 60fps
+    let currentValue = startValue;
+    
+    // Clear any existing content
+    element.textContent = '0' + suffix;
+    
+    const timer = setInterval(() => {
+        currentValue += increment;
         
-        let currentFilter = 'all';
-        let currentSort = { column: 'date', direction: 'asc' };
+        if (currentValue >= targetValue) {
+            currentValue = targetValue;
+            clearInterval(timer);
+            element.classList.add('animated');
+            setTimeout(() => element.classList.remove('animated'), 500);
+        }
+        
+        // Format the number based on its type
+        let displayValue;
+        
+        if (targetValue >= 1000000000) {
+            // For billions (like $13B)
+            const billions = currentValue / 1000000000;
+            displayValue = prefix + (billions >= 10 ? Math.floor(billions) : billions.toFixed(1)) + 'B';
+        } else if (targetValue >= 1000000) {
+            // For millions (like 10M+)
+            const millions = currentValue / 1000000;
+            if (targetValue === 10000000) {
+                displayValue = '10M+';
+            } else {
+                displayValue = prefix + Math.floor(millions) + 'M+';
+            }
+        } else if (targetValue >= 1000) {
+            // For thousands
+            displayValue = prefix + Math.floor(currentValue / 1000) + 'K' + suffix;
+        } else if (targetValue === 2019) {
+            // Special case for year - just show the full number when reached
+            if (currentValue >= targetValue) {
+                displayValue = '2019';
+            } else {
+                displayValue = Math.floor(currentValue);
+            }
+        } else {
+            // For regular numbers
+            displayValue = prefix + Math.floor(currentValue) + suffix;
+        }
+        
+        element.textContent = displayValue;
+    }, 16);
+}
 
-        // Initialize the table
-        function initializeTable() {
-            if (tableBody) {
-                renderTable(aiModels);
-                setupEventListeners();
-                
-                // Initialize sort indicators
+// Function to initialize all counters
+function initializeCounters() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const statItems = document.querySelectorAll('.stat-item');
+    
+    // Data for each counter: [targetValue, prefix, suffix]
+    const statData = [
+        [aiModels.length, '', ''],          // Model count
+        [2019, '', ''],                     // Year
+        [10000000, '', ''],                 // 10M+ users
+        [13000000000, '$', '']              // $13B
+    ];
+    
+    // Create Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                const statIndex = Array.from(statItems).indexOf(entry.target.closest('.stat-item'));
+                if (statIndex !== -1) {
+                    const [targetValue, prefix, suffix] = statData[statIndex];
+                    const statNumber = entry.target.querySelector('.stat-number') || entry.target;
+                    
+                    // Add a small delay for staggered animation
+                    setTimeout(() => {
+                        animateCounter(statNumber, targetValue, 1500, prefix, suffix);
+                    }, statIndex * 300);
+                    
+                    // Stop observing after animation starts
+                    observer.unobserve(entry.target);
+                }
+            }
+        });
+    }, { 
+        threshold: 0.3, 
+        rootMargin: '0px 0px -50px 0px' 
+    });
+    
+    // Observe each stat item
+    statItems.forEach(item => {
+        observer.observe(item);
+    });
+}
+
+// Update the model count dynamically when filters change
+function updateModelCounter(count) {
+    const modelCounter = document.getElementById('model-count');
+    if (modelCounter) {
+        // Store the original text content as data attribute
+        if (!modelCounter.dataset.originalValue) {
+            modelCounter.dataset.originalValue = count;
+        }
+        
+        // Animate to the new value
+        animateCounter(modelCounter, count, 800);
+    }
+}
+
+// Initialize table when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // DOM elements
+    const tableBody = document.querySelector('#ai-models-table tbody');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const sortableHeaders = document.querySelectorAll('th.sortable');
+    const modelCountElement = document.getElementById('model-count');
+    
+    let currentFilter = 'all';
+    let currentSort = { column: 'date', direction: 'asc' };
+    let countersInitialized = false;
+
+    // Initialize the table
+    function initializeTable() {
+        if (tableBody) {
+            renderTable(aiModels);
+            setupEventListeners();
+            
+            // Initialize sort indicators
+            sortableHeaders.forEach(h => {
+                if (h.dataset.sort === currentSort.column) {
+                    h.classList.add(`sort-${currentSort.direction}`);
+                }
+            });
+        }
+    }
+
+    // Render table rows
+    function renderTable(models) {
+        if (!tableBody) return;
+        
+        tableBody.innerHTML = '';
+
+        models.forEach(model => {
+            const row = document.createElement('tr');
+            row.dataset.type = model.type;
+
+            // Determine type badge
+            let typeClass = '';
+            let typeLabel = '';
+            switch(model.type) {
+                case 'slm':
+                    typeClass = 'type-slm';
+                    typeLabel = 'SML';
+                    break;
+                case 'product':
+                    typeClass = 'type-product';
+                    typeLabel = 'AI Product';
+                    break;
+                case 'service':
+                    typeClass = 'type-service';
+                    typeLabel = 'AI Service';
+                    break;
+            }
+
+            row.innerHTML = `
+                <td>
+                    <div class="model-name">${model.name}</div>
+                    <div class="model-type ${typeClass}">${typeLabel}</div>
+                    <div style="margin-top: 10px;">
+                        <a href="${model.url}" target="_blank" class="url-link">
+                            Learn More <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </td>
+                <td class="date-cell">${model.date}</td>
+                <td class="description-cell">${model.description}</td>
+                <td class="benefits-cell">${model.benefits}</td>
+            `;
+
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Filter table by model type
+    function filterTable(type) {
+        currentFilter = type;
+
+        // Update active button
+        filterButtons.forEach(btn => {
+            if (btn.dataset.filter === type) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // Filter models
+        let filteredModels = aiModels;
+        if (type !== 'all') {
+            filteredModels = aiModels.filter(model => model.type === type);
+        }
+
+        // Update model count with animation
+        if (modelCountElement) {
+            updateModelCounter(filteredModels.length);
+        }
+
+        // Sort and render
+        sortModels(filteredModels, currentSort.column, currentSort.direction);
+    }
+
+    // Sort models
+    function sortModels(models, column, direction) {
+        const sortedModels = [...models].sort((a, b) => {
+            let aValue, bValue;
+
+            switch(column) {
+                case 'name':
+                    aValue = a.name.toLowerCase();
+                    bValue = b.name.toLowerCase();
+                    break;
+                case 'date':
+                    aValue = new Date(a.date);
+                    bValue = new Date(b.date);
+                    break;
+                default:
+                    aValue = a[column];
+                    bValue = b[column];
+            }
+
+            if (direction === 'asc') {
+                return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
+            } else {
+                return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
+            }
+        });
+
+        renderTable(sortedModels);
+    }
+
+    // Setup event listeners
+    function setupEventListeners() {
+        // Filter buttons
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterTable(button.dataset.filter);
+            });
+        });
+
+        // Sortable headers
+        sortableHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const column = header.dataset.sort;
+
+                // Update sort direction
+                if (currentSort.column === column) {
+                    currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+                } else {
+                    currentSort.column = column;
+                    currentSort.direction = 'asc';
+                }
+
+                // Update UI
                 sortableHeaders.forEach(h => {
+                    h.classList.remove('sort-asc', 'sort-desc');
                     if (h.dataset.sort === currentSort.column) {
                         h.classList.add(`sort-${currentSort.direction}`);
                     }
                 });
+
+                // Apply filter and sort
+                let filteredModels = aiModels;
+                if (currentFilter !== 'all') {
+                    filteredModels = aiModels.filter(model => model.type === currentFilter);
+                }
+
+                sortModels(filteredModels, currentSort.column, currentSort.direction);
+            });
+        });
+
+        // Add animation to stats on scroll
+        window.addEventListener('scroll', handleScrollAnimation);
+    }
+
+    // Handle scroll animation for stats
+    function handleScrollAnimation() {
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            const statsPosition = statsSection.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.3;
+
+            if (statsPosition < screenPosition && !countersInitialized) {
+                // Initialize counters when stats come into view
+                setTimeout(() => {
+                    initializeCounters();
+                    countersInitialized = true;
+                }, 300);
+                
+                statsSection.style.animation = 'fadeInUp 1s ease-out';
             }
         }
+    }
 
-        // Render table rows
-        function renderTable(models) {
-            if (!tableBody) return;
-            
-            tableBody.innerHTML = '';
-
-            models.forEach(model => {
-                const row = document.createElement('tr');
-                row.dataset.type = model.type;
-
-                // Determine type badge
-                let typeClass = '';
-                let typeLabel = '';
-                switch(model.type) {
-                    case 'slm':
-                        typeClass = 'type-slm';
-                        typeLabel = 'SML';
-                        break;
-                    case 'product':
-                        typeClass = 'type-product';
-                        typeLabel = 'AI Product';
-                        break;
-                    case 'service':
-                        typeClass = 'type-service';
-                        typeLabel = 'AI Service';
-                        break;
-                }
-
-                row.innerHTML = `
-                    <td>
-                        <div class="model-name">${model.name}</div>
-                        <div class="model-type ${typeClass}">${typeLabel}</div>
-                        <div style="margin-top: 10px;">
-                            <a href="${model.url}" target="_blank" class="url-link">
-                                Learn More <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </td>
-                    <td class="date-cell">${model.date}</td>
-                    <td class="description-cell">${model.description}</td>
-                    <td class="benefits-cell">${model.benefits}</td>
-                `;
-
-                tableBody.appendChild(row);
-            });
+    // Initialize table
+    initializeTable();
+    
+    // Initialize counters after page load (as backup in case scroll doesn't trigger)
+    setTimeout(() => {
+        if (!countersInitialized) {
+            initializeCounters();
+            countersInitialized = true;
         }
+    }, 2000);
+});
 
-        // Filter table by model type
-        function filterTable(type) {
-            currentFilter = type;
-
-            // Update active button
-            filterButtons.forEach(btn => {
-                if (btn.dataset.filter === type) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-
-            // Filter models
-            let filteredModels = aiModels;
-            if (type !== 'all') {
-                filteredModels = aiModels.filter(model => model.type === type);
-            }
-
-            // Update model count
-            if (modelCountElement) {
-                modelCountElement.textContent = filteredModels.length;
-            }
-
-            // Sort and render
-            sortModels(filteredModels, currentSort.column, currentSort.direction);
-        }
-
-        // Sort models
-        function sortModels(models, column, direction) {
-            const sortedModels = [...models].sort((a, b) => {
-                let aValue, bValue;
-
-                switch(column) {
-                    case 'name':
-                        aValue = a.name.toLowerCase();
-                        bValue = b.name.toLowerCase();
-                        break;
-                    case 'date':
-                        aValue = new Date(a.date);
-                        bValue = new Date(b.date);
-                        break;
-                    default:
-                        aValue = a[column];
-                        bValue = b[column];
-                }
-
-                if (direction === 'asc') {
-                    return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
-                } else {
-                    return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
-                }
-            });
-
-            renderTable(sortedModels);
-        }
-
-        // Setup event listeners
-        function setupEventListeners() {
-            // Filter buttons
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    filterTable(button.dataset.filter);
-                });
-            });
-
-            // Sortable headers
-            sortableHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    const column = header.dataset.sort;
-
-                    // Update sort direction
-                    if (currentSort.column === column) {
-                        currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
-                    } else {
-                        currentSort.column = column;
-                        currentSort.direction = 'asc';
-                    }
-
-                    // Update UI
-                    sortableHeaders.forEach(h => {
-                        h.classList.remove('sort-asc', 'sort-desc');
-                        if (h.dataset.sort === currentSort.column) {
-                            h.classList.add(`sort-${currentSort.direction}`);
-                        }
-                    });
-
-                    // Apply filter and sort
-                    let filteredModels = aiModels;
-                    if (currentFilter !== 'all') {
-                        filteredModels = aiModels.filter(model => model.type === currentFilter);
-                    }
-
-                    sortModels(filteredModels, currentSort.column, currentSort.direction);
-                });
-            });
-
-            // Add animation to stats on scroll
-            window.addEventListener('scroll', handleScrollAnimation);
-        }
-
-        // Handle scroll animation for stats
-        function handleScrollAnimation() {
-            const statsSection = document.querySelector('.stats');
-            if (statsSection) {
-                const statsPosition = statsSection.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-
-                if (statsPosition < screenPosition) {
-                    statsSection.style.animation = 'fadeInUp 1s ease-out';
-                }
-            }
-        }
-
-        // Initialize table
-        initializeTable();
-    });
 </script>
+
+
+
+
+
+
+
 
     <!-- =========================== -->
     <!-- SECTION 17: PAGE-SPECIFIC SCRIPTS -->
