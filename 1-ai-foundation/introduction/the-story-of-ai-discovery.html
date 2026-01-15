@@ -1482,36 +1482,94 @@ body::after {
 
 
 			
-             // --- Dropdown Menu Click Logic ---
+ // --- Navigation Dropdown Logic (Desktop/Mobile Submenu) ---
             const coursesLink = document.getElementById('courses-link');
             const submenu = document.getElementById('courses-submenu');
             const navBar = document.getElementById('nav-bar');
 
+            if (coursesLink && submenu && navBar) {
+                // Toggle visibility on click
+                coursesLink.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    const isMobile = window.innerWidth <= 980;
+                    
+                    if (isMobile) {
+                        submenu.classList.toggle('active');
+                    } else {
+                        submenu.classList.toggle('active');
+                    }
+                    
+                    e.stopPropagation(); 
+                });
 
-    // Set submenu to be open by default
-    submenu.classList.add('active');
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!navBar.contains(e.target)) {
+                        submenu.classList.remove('active');
+                    }
+                });
+
+                // Prevent clicks inside submenu from closing it
+                submenu.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            }
+
+            // --- Mobile Menu Toggle Logic (Hamburger Icon) ---
+            const mobileToggle = document.getElementById('mobile-menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const toggleIcon = document.getElementById('toggle-icon');
+
+            if (mobileToggle && navMenu && toggleIcon) {
+                mobileToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    navMenu.classList.toggle('mobile-open');
+                    
+                    if (navMenu.classList.contains('mobile-open')) {
+                        toggleIcon.classList.remove('fa-bars');
+                        toggleIcon.classList.add('fa-xmark');
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        toggleIcon.classList.remove('fa-xmark');
+                        toggleIcon.classList.add('fa-bars');
+                        document.body.style.overflow = 'auto';
+                        if (submenu) submenu.classList.remove('active');
+                    }
+                });
+                
+                // Close mobile menu when clicking links
+                navMenu.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 980) {
+                            if (!link.classList.contains('submenu-link') && link.id !== 'courses-link') {
+                                navMenu.classList.remove('mobile-open');
+                                toggleIcon.classList.remove('fa-xmark');
+                                toggleIcon.classList.add('fa-bars');
+                                document.body.style.overflow = 'auto';
+                            }
+                        }
+                    });
+                });
+                
+                // Close menu when clicking outside on mobile
+                document.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 980 &&
+                        navMenu.classList.contains('mobile-open') &&
+                        !navMenu.contains(e.target) && 
+                        e.target !== mobileToggle) {
+                        navMenu.classList.remove('mobile-open');
+                        toggleIcon.classList.remove('fa-xmark');
+                        toggleIcon.classList.add('fa-bars');
+                        document.body.style.overflow = 'auto';
+                        if (submenu) submenu.classList.remove('active');
+                    }
+                });
+            }
+
+
 
 
 			
-
-            // 1. Toggle visibility on click
-            coursesLink.addEventListener('click', (e) => {
-                e.preventDefault(); 
-                submenu.classList.toggle('active');
-                e.stopPropagation(); 
-            });
-
-            // 2. Close menu when clicking outside the entire navigation bar
-            document.addEventListener('click', (e) => {
-                if (!navBar.contains(e.target) && submenu.classList.contains('active')) {
-                    submenu.classList.remove('active');
-                }
-            });
-
-            // 3. Prevent clicks inside the submenu from closing it immediately
-            submenu.addEventListener('click', (e) => {
-                e.stopPropagation();
-            });
 
             // --- Back to Top Button Logic ---
             const toTopButton = document.getElementById('back-to-top');
