@@ -1468,7 +1468,13 @@ body::after {
   
     
     
-    
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            cursor: pointer;
+        }    
     
     
     
@@ -1944,8 +1950,7 @@ body::after {
         </section>
     </main>
     
-    <!-- Back to Top Button -->
-    <button id="back-to-top" aria-label="Back to Top"></button>
+
     
     <!-- Standard AIM Footer -->
     <footer class="footer">
@@ -1989,6 +1994,38 @@ body::after {
             <p class="footer-copy">Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a></p>
         </div>
     </footer>
+
+
+
+
+
+<!-- Widget Volver arriba -->
+<div id="back-to-top" onclick="scrollToTop()">
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/972c5065cffe83955d5322557dcdce28eca170e5.png" alt="Volver arriba" style="width: 40px; height: 40px;">
+</div>
+
+<!-- Widget Volver arriba javascript -->
+<script>
+    window.onscroll = function() {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        var backToTopButton = document.getElementById("back-to-top");
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+
+    
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
