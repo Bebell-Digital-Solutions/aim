@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/2107ec1bdb311dfaa449c9d790679b10c363fda4.png" type="image/x-icon">
+   
+  <title>My PDF Viewer</title>
+   
+  
+  
+  <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        .download-btn {
+            background-color: #0366d6;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .download-btn:hover {
+            background-color: #0256b6;
+        }
+        .pdf-container {
+            width: 100%;
+            height: calc(100vh - 100px);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>PDF Viewer</h2>
+        <a href="aim-syllabus.pdf" download class="download-btn">
+            ⬇ Download PDF
+        </a>
+    </div>
+    
+    <div class="pdf-container">
+        <embed src="aim-syllabus.pdf" width="100%" height="100%" type="application/pdf">
+    </div>
+</body>
+</html>
