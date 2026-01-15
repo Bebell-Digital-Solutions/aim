@@ -204,32 +204,7 @@
     .nav-cta.mobile-cta-only { display: none; }
     .nav-cta.desktop-cta-only { display: block; }
 
-    /* =========================== -->
-    <!-- SECTION 5: BACK TO TOP BUTTON (AIM Boilerplate) -->
-    <!-- =========================== */
-    #back-to-top {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        background: url('https://bucket.mlcdn.com/a/3336/3336910/images/972c5065cffe83955d5322557dcdce28eca170e5.png') no-repeat center center;
-        background-size: cover;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-        z-index: 999;
-    }
-    #back-to-top.show {
-        opacity: 1;
-        visibility: visible;
-    }
-    #back-to-top:hover {
-        transform: scale(1.1);
-    }
+
 
     /* =========================== -->
     <!-- SECTION 6: FOOTER STYLES (AIM Boilerplate) -->
@@ -1344,27 +1319,6 @@ table {
 
 
 
-
-
-
-
-
-
-
-    <!-- =========================== -->
-    <!-- SECTION 13: BACK TO TOP BUTTON (AIM Boilerplate) -->
-    <!-- =========================== -->
-    <button id="back-to-top" aria-label="Back to Top"></button>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1515,22 +1469,7 @@ table {
             });
         }
 
-        // --- Back to Top Button Logic ---
-        const toTopButton = document.getElementById('back-to-top');
 
-        if (toTopButton) {
-            window.addEventListener('scroll', function() {
-                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                    toTopButton.classList.add('show');
-                } else {
-                    toTopButton.classList.remove('show');
-                }
-            });
-
-            toTopButton.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
 
         window.addEventListener('resize', function() {
             const isMobile = window.innerWidth <= 980;
@@ -1952,6 +1891,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+<!-- Widget BACK-TO-TOP -->
+<script>
+// Create Back-to-Top Button Dynamically
+document.addEventListener("DOMContentLoaded", function () {
+    // Create the button container
+    const backToTop = document.createElement("div");
+    backToTop.id = "back-to-top";
+    backToTop.style.position = "fixed";
+    backToTop.style.bottom = "20px";
+    backToTop.style.right = "20px";
+    backToTop.style.display = "none";
+    backToTop.style.cursor = "pointer";
+    backToTop.style.zIndex = "9999";
+
+    // Create the image inside the button
+    const backToTopImg = document.createElement("img");
+    backToTopImg.src = "https://bucket.mlcdn.com/a/3336/3336910/images/972c5065cffe83955d5322557dcdce28eca170e5.png";
+    backToTopImg.alt = "Volver arriba";
+    backToTopImg.style.width = "40px";
+    backToTopImg.style.height = "40px";
+
+    // Append image to the button
+    backToTop.appendChild(backToTopImg);
+
+    // Append button to the body
+    document.body.appendChild(backToTop);
+
+    // Scroll Event Listener
+    window.addEventListener("scroll", function () {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTop.style.display = "block";
+        } else {
+            backToTop.style.display = "none";
+        }
+    });
+
+    // Click Event for Scrolling to Top
+    backToTop.addEventListener("click", function () {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+});
+</script>
+<!-- End Widget BACK-TO-TOP -->
 
 
 
