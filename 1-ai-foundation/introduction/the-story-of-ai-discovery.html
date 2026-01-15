@@ -99,78 +99,68 @@
             padding: 0 1rem;
         }
 
-        /* --- Navigation Bar --- */
+    /* =========================== */
+        /* SECTION 4: NAVIGATION BAR */
+        /* =========================== */
+        
         #nav-bar {
-            position: fixed;
-            top: 2rem;
-            left: 50%;
+            position: fixed; 
+            top: 2rem; 
+            left: 50%; 
             transform: translateX(-50%);
-            background: rgba(25, 25, 25, 0.85); /* Semi-transparent dark */
+            background: rgba(25, 25, 25, 0.85); 
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--box-color);
+            border: 1px solid var(--box-color); 
             border-radius: 0.75rem;
-            padding: 0.75rem 1.5rem;
-            display: flex;
+            padding: 0.75rem 1.5rem; 
+            display: flex; 
             align-items: center;
-            max-width: 980px; /* Adjusted to match container */
-            width: 90%;
+            max-width: 1100px; 
+            width: 90%; 
             z-index: 1000;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
+        }
+        #nav-logo img { height: 35px; }
+        
+        /* Desktop: nav-menu contains all links and is flexed */
+        #nav-menu { 
+            display: flex; 
+            gap: 1.5rem; 
+            margin-left: auto; 
+            align-items: center; 
         }
 
-        #nav-logo img {
-            height: 35px; /* Adjusted */
-            width: auto;
-            display: block;
-        }
-
-        #nav-menu {
-            display: flex;
-            gap: 1.5rem;
-            margin-left: auto;
-            align-items: center;
+        /* Nav links and CTA */
+        .nav-link { 
+            color: var(--text-color); 
+            transition: color 0.3s, transform 0.2s; 
+            font-weight: 500; 
             position: relative;
         }
-
-        .nav-link {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: color 0.3s ease, transform 0.2s;
-            cursor: pointer;
+        .nav-link:hover { 
+            color: var(--skin-color); 
+            transform: translateY(-1px); 
         }
-
-        .nav-link:hover, .nav-link:focus {
-            color: var(--skin-color);
-            outline: none;
-            transform: translateY(-1px);
-        }
-
+        
         .nav-cta {
             background: linear-gradient(90deg, var(--skin-color), #d43a00);
-            color: var(--title-color);
-            padding: 0.5rem 1rem;
+            color: var(--title-color); 
+            padding: 0.5rem 1rem; 
             border-radius: 0.5rem;
-            font-weight: 600;
-            text-decoration: none;
             box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); 
-            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s;
-            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+            white-space: nowrap;
         }
-
-        .nav-cta:hover, .nav-cta:focus {
-            background: linear-gradient(90deg, #d43a00, var(--skin-color));
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5);
-            outline: none;
+        .nav-cta:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); 
         }
-
-        .nav-item {
-            position: relative;
-        }
-
+        
+        .has-submenu { position: relative; }
+        
+        /* Submenu Default State (Hidden - Desktop) */
         .submenu-courses {
             position: absolute; 
             top: 100%; 
@@ -181,39 +171,49 @@
             padding: 0.75rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
             opacity: 0; 
-            pointer-events: none; 
-            transition: opacity 0.3s, top 0.3s; 
-            min-width: 300px; /* Wider for full course titles */
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, top 0.3s; 
+            width: 310px;
             z-index: 1001;
+            margin-left: 0;
+            padding-left: 0.75rem;
+            flex-direction: column;
         }
         
+        /* Submenu Active State (Shown via JavaScript click - Desktop) */
         .submenu-courses.active { 
             opacity: 1; 
-            pointer-events: auto; 
-            top: calc(100% + 10px); /* Small offset below link */
+            visibility: visible;
+            top: calc(100% + 15px);
         }
-
-
-        .submenu-link {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.5rem 0.75rem;
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 0.9rem;
-            border-radius: 0.25rem;
-            transition: background 0.3s ease, color 0.3s ease;
+        
+        .submenu-link { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.75rem; 
+            color: var(--text-color); 
+            padding: 0.5rem; 
+            border-radius: 0.25rem; 
+            transition: background-color 0.3s, color 0.3s; 
         }
-
+        .submenu-link:hover { 
+            background-color: rgba(255, 80, 17, 0.1); 
+            color: var(--skin-color); 
+        }
         .submenu-link i { width: 15px; text-align: center; }
 
-        .submenu-link:hover, .submenu-link:focus {
-            background: rgba(255, 80, 17, 0.1);
+        /* Mobile visibility controls (Default/Desktop state) */
+        #mobile-menu-toggle { 
+            display: none; 
+            border: none;
+            background: transparent;
             color: var(--skin-color);
-            outline: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            margin-left: auto;
         }
-
+        .nav-cta.mobile-cta-only { display: none; }
+        .nav-cta.desktop-cta-only { display: block; }
 
 
 
