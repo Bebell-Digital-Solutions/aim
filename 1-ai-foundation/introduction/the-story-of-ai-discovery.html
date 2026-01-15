@@ -980,6 +980,136 @@
             }
         }
 
+
+
+/* Base snowflake layer with blurry effects */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: 
+    /* Large blurry snowflakes */
+    radial-gradient(8px 8px at 10% 20%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.3) 70%, transparent 100%),
+    radial-gradient(12px 12px at 20% 30%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.2) 60%, transparent 100%),
+    radial-gradient(6px 6px at 30% 10%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.25) 80%, transparent 100%),
+    radial-gradient(10px 10px at 40% 40%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.15) 75%, transparent 100%),
+    radial-gradient(14px 14px at 50% 60%, rgba(255, 255, 255, 0.55) 30%, rgba(255, 255, 255, 0.2) 65%, transparent 100%),
+    radial-gradient(7px 7px at 60% 80%, rgba(255, 255, 255, 0.65) 45%, rgba(255, 255, 255, 0.3) 85%, transparent 100%),
+    radial-gradient(9px 9px at 70% 50%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.18) 70%, transparent 100%),
+    radial-gradient(11px 11px at 80% 20%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.22) 75%, transparent 100%),
+    radial-gradient(5px 5px at 90% 70%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.35) 90%, transparent 100%),
+    radial-gradient(15px 15px at 15% 90%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.12) 55%, transparent 100%),
+    
+    /* Extra blurry medium snowflakes */
+    radial-gradient(4px 4px at 25% 45%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
+    radial-gradient(6px 6px at 75% 35%, rgba(255, 255, 255, 0.7) 15%, rgba(255, 255, 255, 0.05) 85%, transparent 100%),
+    radial-gradient(3px 3px at 45% 75%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
+    radial-gradient(8px 8px at 85% 65%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.08) 80%, transparent 100%);
+  
+  background-repeat: no-repeat;
+  animation: snowfall 15s linear infinite;
+  filter: blur(0.5px); /* Slight overall blur for softness */
+}
+
+/* Medium blurry snowflakes layer */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  background-image: 
+    /* Medium blurry snowflakes */
+    radial-gradient(4px 4px at 5% 15%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
+    radial-gradient(7px 7px at 25% 35%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.08) 80%, transparent 100%),
+    radial-gradient(3px 3px at 35% 5%, rgba(255, 255, 255, 0.6) 45%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
+    radial-gradient(5px 5px at 45% 45%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.05) 70%, transparent 100%),
+    radial-gradient(6px 6px at 55% 65%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.1) 75%, transparent 100%),
+    radial-gradient(3.5px 3.5px at 65% 85%, rgba(255, 255, 255, 0.55) 40%, rgba(255, 255, 255, 0.12) 85%, transparent 100%),
+    radial-gradient(4.5px 4.5px at 85% 25%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.06) 65%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 95% 55%, rgba(255, 255, 255, 0.65) 50%, rgba(255, 255, 255, 0.2) 95%, transparent 100%),
+    radial-gradient(8px 8px at 15% 75%, rgba(255, 255, 255, 0.25) 20%, rgba(255, 255, 255, 0.04) 60%, transparent 100%);
+  
+  background-repeat: no-repeat;
+  animation: snowfall 20s linear infinite;
+  filter: blur(0.8px); /* More blur for background layer */
+  opacity: 0.8;
+}
+
+/* Additional layer for extra blurry small snowflakes */
+.snowflakes-blurry {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9997;
+  background-image: 
+    /* Very blurry small snowflakes */
+    radial-gradient(2px 2px at 12% 28%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0.05) 100%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 32% 18%, rgba(255, 255, 255, 0.5) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 48% 52%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.03) 100%, transparent 100%),
+    radial-gradient(1px 1px at 68% 72%, rgba(255, 255, 255, 0.6) 80%, rgba(255, 255, 255, 0.15) 100%, transparent 100%),
+    radial-gradient(3px 3px at 82% 38%, rgba(255, 255, 255, 0.35) 40%, rgba(255, 255, 255, 0.07) 100%, transparent 100%),
+    radial-gradient(1.8px 1.8px at 22% 88%, rgba(255, 255, 255, 0.45) 65%, rgba(255, 255, 255, 0.09) 100%, transparent 100%),
+    radial-gradient(2.2px 2.2px at 58% 12%, rgba(255, 255, 255, 0.4) 55%, rgba(255, 255, 255, 0.06) 100%, transparent 100%),
+    radial-gradient(0.8px 0.8px at 88% 68%, rgba(255, 255, 255, 0.7) 85%, rgba(255, 255, 255, 0.2) 100%, transparent 100%);
+  
+  background-repeat: no-repeat;
+  animation: snowfall 25s linear infinite;
+  filter: blur(1.2px); /* Maximum blur for distant effect */
+  opacity: 0.6;
+}
+
+/* Enhanced snowfall animation with slight horizontal movement */
+@keyframes snowfall {
+  0% {
+    transform: translateY(-100%) translateX(0);
+  }
+  25% {
+    transform: translateY(-50%) translateX(5px);
+  }
+  50% {
+    transform: translateY(0%) translateX(0);
+  }
+  75% {
+    transform: translateY(50%) translateX(-5px);
+  }
+  100% {
+    transform: translateY(100vh) translateX(0);
+  }
+}
+
+/* Alternative animation for some randomness */
+@keyframes snowfall-alt {
+  0% {
+    transform: translateY(-100%) translateX(10px);
+  }
+  50% {
+    transform: translateY(0%) translateX(-10px);
+  }
+  100% {
+    transform: translateY(100vh) translateX(10px);
+  }
+}
+
+/* Add this class to an element in your HTML for the third layer */
+/* <div class="snowflakes-blurry"></div> */
+
+
+
+
+		
+
     </style>
 
 <!-- Page Loader HTML -->
@@ -1321,6 +1451,21 @@
     
     <!-- JavaScript for Interactions and Animations --><script>
         document.addEventListener('DOMContentLoaded', () => {
+
+
+
+       // Winter Theme
+    const now = new Date();
+    const month = now.getMonth() + 1;
+    
+    if (month === 12 || month === 1 || month === 2) {
+        const snow = document.createElement('div');
+        snow.className = 'snowflakes-blurry';
+        document.body.appendChild(snow);
+    }
+
+
+			
              // --- Dropdown Menu Click Logic ---
             const coursesLink = document.getElementById('courses-link');
             const submenu = document.getElementById('courses-submenu');
