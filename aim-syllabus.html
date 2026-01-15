@@ -727,10 +727,16 @@
     <!-- =========================== -->
     <!-- SECTION 11: NAVIGATION BAR HTML -->
     <!-- =========================== -->
+
+    <!-- Navigation Bar (Fixed Header) -->
     <nav id="nav-bar">
         <a href="/" id="nav-logo">
             <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
         </a>
+
+
+
+        
         
         <!-- MOBILE TOGGLE BUTTON -->
         <button id="mobile-menu-toggle" aria-label="Open Menu">
@@ -746,24 +752,27 @@
                 <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
                 <div class="submenu-courses" id="courses-submenu">
                     <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
-                    <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
-                    <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
-                    <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
-                    <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+                    <a href="/1-ai-foundation" class="submenu-link"><i class="fa-solid fa-cubes"></i> AI Foundation</a>
+                    <a href="/2-prompt-craftsmanship" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+                    <a href="3-building-your-ai-brain" class="submenu-link"><i class="fa-solid fa-brain"></i> Building Your AI Brain</a>
+                    <a href="4-building-autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+                    <a href="5-security-privacy-compliance" class="submenu-link"><i class="fa-solid fa-shield"></i> Security, Privacy & Compliance</a>
+               
+                
                 </div>
             </div>
             
             <a href="/pricing-page" class="nav-link">Pricing</a>
-            <a href="/contact" class="nav-link">Contact</a>
+            <!-- Highlighted Contact Link -->
+            <a href="/contact" class="nav-link" style="color: var(--skin-color);">Contact</a>
             
-            <!-- DESKTOP CTA (VISIBLE ON DESKTOP NAV BAR) -->
-            <a href="/login" class="nav-cta desktop-cta-only">MEMBER LOGIN</a>
+            <!-- DESKTOP CTA -->
+            <a href="/portal" class="nav-cta desktop-cta-only">MEMBER LOGIN</a>
             
-            <!-- MOBILE CTA (VISIBLE ONLY IN MOBILE OVERLAY) -->
-            <a href="/login" class="nav-cta mobile-cta-only">MEMBER LOGIN</a>
+            <!-- MOBILE CTA -->
+            <a href="/portal" class="nav-cta mobile-cta-only">MEMBER LOGIN</a>
         </div>
     </nav>
-
     <!-- =========================== -->
     <!-- SECTION 12: MAIN CONTENT AREA -->
     <!-- =========================== -->
