@@ -1491,6 +1491,26 @@ body::after {
     </script>
 
 
+<!-- Widget Volver arriba javascript -->
+<script>
+    window.onscroll = function() {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        var backToTopButton = document.getElementById("back-to-top");
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
 
     
 </head>
@@ -1501,6 +1521,22 @@ body::after {
         <div class="loader-header">Loading AIM™</div>
         <div class="progress"></div>
     </div>
+
+
+
+
+<!-- Widget Volver arriba -->
+<div id="back-to-top" onclick="scrollToTop()">
+    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/972c5065cffe83955d5322557dcdce28eca170e5.png" alt="Volver arriba" style="width: 40px; height: 40px;">
+</div>
+
+
+
+
+
+
+
+    
     
     <!-- Navigation Bar (Header) -->
     <nav id="nav-bar">
@@ -1998,32 +2034,6 @@ body::after {
 
 
 
-
-<!-- Widget Volver arriba -->
-<div id="back-to-top" onclick="scrollToTop()">
-    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/972c5065cffe83955d5322557dcdce28eca170e5.png" alt="Volver arriba" style="width: 40px; height: 40px;">
-</div>
-
-<!-- Widget Volver arriba javascript -->
-<script>
-    window.onscroll = function() {
-        scrollFunction();
-    };
-
-    function scrollFunction() {
-        var backToTopButton = document.getElementById("back-to-top");
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            backToTopButton.style.display = "block";
-        } else {
-            backToTopButton.style.display = "none";
-        }
-    }
-
-    function scrollToTop() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    }
-</script>
 
     
 
