@@ -1139,31 +1139,47 @@ body::after {
 </head>
 <body>
 
-    <!-- Navigation Bar --><nav id="nav-bar">
+    <!-- =========================== -->
+    <!-- SECTION 11: NAVIGATION BAR HTML -->
+    <!-- =========================== -->
+    <nav id="nav-bar">
         <a href="/" id="nav-logo">
             <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
         </a>
         
+        <!-- MOBILE TOGGLE BUTTON -->
+        <button id="mobile-menu-toggle" aria-label="Open Menu">
+            <i class="fa-solid fa-bars" id="toggle-icon"></i>
+        </button>
+        
         <div id="nav-menu">
-            <a href="#home" class="nav-link">Homepage</a>
+            <a href="/" class="nav-link">Home</a>
+            <a href="/about" class="nav-link" style="color: var(--skin-color);">About</a>
+            
+            <!-- Courses Dropdown -->
             <div class="nav-item has-submenu">
-                 <!-- Changed link to a placeholder '#' for pure JS dropdown functionality -->
                 <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
                 <div class="submenu-courses" id="courses-submenu">
-                     <!-- Added Font Awesome icons as per guidance -->
-                    <a href="#ai-foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> 1. AI Foundation: Core Concepts</a>
-                    <a href="#prompt-craftsmanship" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> 2. Prompt Craftsmanship</a>
-                    <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-robot"></i> 3. Building Your AI Brain</a>
-                    <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-user-secret"></i> 4. Autonomous AI Agents</a>
+                    <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
+                    <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
+                    <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+                    <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
+                    <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+                    <a href="/5-security-privacy-compliance" class="submenu-link"><i class="fa-solid fa-shield"></i> Security, Privacy & Compliance</a>
+                
                 </div>
             </div>
-            <a href="#pricing" class="nav-link">Pricing</a>
-            <a href="#helpcenter" class="nav-link">HelpCenter</a>
-
-            <a href="#login" class="nav-cta">LOGIN</a>
+            
+            <a href="/pricing-page" class="nav-link">Pricing</a>
+            <a href="/contact" class="nav-link">Contact</a>
+            
+            <!-- DESKTOP CTA -->
+            <a href="/login" class="nav-cta desktop-cta-only">MEMBER LOGIN</a>
+            
+            <!-- MOBILE CTA -->
+            <a href="/login" class="nav-cta mobile-cta-only">MEMBER LOGIN</a>
         </div>
     </nav>
-    
  
     
     
