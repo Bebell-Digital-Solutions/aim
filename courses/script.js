@@ -74,33 +74,7 @@
                 });
             }
 
-            // --- Back to Top ---
-            const toTopButton = document.getElementById('back-to-top');
-            if (toTopButton) {
-                window.addEventListener('scroll', function() {
-                    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                        toTopButton.classList.add('show');
-                    } else {
-                        toTopButton.classList.remove('show');
-                    }
-                });
-                toTopButton.addEventListener('click', function() {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            }
-            
-            window.addEventListener('resize', function() {
-                const isMobile = window.innerWidth <= 980; // UPDATED: Changed from 768 to 980
-                if (!isMobile && navMenu && navMenu.classList.contains('mobile-open')) {
-                    navMenu.classList.remove('mobile-open');
-                    if (toggleIcon) {
-                        toggleIcon.classList.remove('fa-xmark');
-                        toggleIcon.classList.add('fa-bars');
-                    }
-                    document.body.style.overflow = 'auto';
-                }
-                if (submenu) submenu.classList.remove('active');
-            });
+
 
             // --- Tab Layout / Filter Logic ---
             const filterButtons = document.querySelectorAll('.filter-button');
