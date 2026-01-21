@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF LaText Code Renderer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F172A; /* MainBlue from your LaTeX */
+            color: #E2E8F0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .editor-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1E293B; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+
+        .brand-orange {
+            color: #F33705;
+        }
+        .bg-brand-orange {
+            background-color: #F33705;
+        }
+        .border-brand-orange {
+            border-color: #F33705;
+        }
+        .hover-brand-orange:hover {
+            background-color: #d12e04;
+        }
+
+        #pdf-preview {
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        /* Spinner */
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #F33705;
+            width: 24px;
+            height: 24px;
+            -webkit-animation: spin 1s linear infinite; /* Safari */
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="flex flex-col h-screen">
+
+    <!-- Header -->
+    <header class="h-16 bg-slate-900 border-b border-slate-700 flex items-center justify-between px-6 shadow-md z-10">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-brand-orange rounded flex items-center justify-center text-white font-bold">
+                <i class="fas fa-file-pdf"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-lg tracking-wide text-white">AIM™ <span class="text-slate-400 font-normal">LaTeX Studio</span></h1>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <div id="status-text" class="hidden text-xs font-mono text-yellow-400 animate-pulse">
+                <!-- Status messages update here -->
+            </div>
+            <div id="status-indicator" class="hidden flex items-center gap-2">
+                <div class="loader"></div>
+            </div>
+            
+            <button onclick="renderPDF()" class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded transition-all text-sm font-medium border border-slate-600">
+                <i class="fas fa-sync-alt"></i> Render PDF
+            </button>
+            
+            <a id="download-btn" href="#" download="aim_syllabus.pdf" class="flex items-center gap-2 bg-brand-orange hover-brand-orange text-white px-5 py-2 rounded transition-all text-sm font-bold shadow-lg opacity-50 pointer-events-none">
+                <i class="fas fa-download"></i> Download
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex overflow-hidden">
+        
+        <!-- Editor Column -->
+        <div class="w-1/2 flex flex-col border-r border-slate-700 bg-slate-900">
+            <div class="bg-slate-800 px-4 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider flex justify-between">
+                <span><i class="fas fa-code mr-2"></i>Source Code (LaTeX)</span>
+                <span class="text-slate-500">XeLaTeX Engine</span>
+            </div>
+            <textarea id="latex-input" class="flex-1 w-full bg-[#0B1120] text-slate-300 p-4 resize-none focus:outline-none editor-font text-sm leading-relaxed" spellcheck="false">\documentclass[11pt, a4paper]{article}
+
+% --- UNIVERSAL PREAMBLE BLOCK ---
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fontspec}
+\usepackage[english, bidi=basic, provide=*]{babel}
+
+\babelprovide[import, onchar=ids fonts]{english}
+
+% Set default/Latin font to Sans Serif (Noto Sans) for a modern look
+\babelfont{rm}{Latin Modern Sans}
+
+% --- PACKAGES ---
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+% Required library for 'borderline' keys in tcolorbox
+\tcbuselibrary{skins}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{amssymb} 
+
+% --- COLOR DEFINITIONS ---
+\definecolor{MainBlue}{HTML}{0F172A} % Slate Blue
+\definecolor{BrandOrange}{HTML}{F33705} % User Brand Color
+% Define uppercase version to prevent errors with \uppercase in titlesec
+\definecolor{BRANDORANGE}{HTML}{F33705} 
+\definecolor{LightGray}{HTML}{F8FAFC}
+\definecolor{BorderGray}{HTML}{E2E8F0}
+
+% --- HYPERREF (Must be last) ---
+\usepackage[hidelinks]{hyperref}
+
+% --- PAGE STYLING ---
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\small \textcolor{gray}{AIM™ AI Mastery Program | Official Syllabus}}
+\fancyfoot[R]{\small \textcolor{gray}{Page \thepage}}
+
+% --- SECTION STYLING ---
+\titleformat{\section}
+  {\color{MainBlue}\normalfont\Large\bfseries}
+  {}{0pt}
+  {\MakeUppercase} 
+  [\color{BrandOrange}\titlerule]
+
+\titleformat{\subsection}
+  {\color{MainBlue}\normalfont\large\bfseries}
+  {}{0pt}{}
+
+% --- CUSTOM BOXES ---
+\newtcolorbox{stagebox}[1]{
+  enhanced, 
+  colback=white,
+  colframe=MainBlue,
+  coltitle=white,
+  fonttitle=\bfseries\large,
+  title={#1}, 
+  sharp corners,
+  boxrule=1pt,
+  left=15pt,
+  right=15pt,
+  top=10pt,
+  bottom=10pt,
+  after skip=15pt,
+  borderline west={3pt}{0pt}{BrandOrange}
+}
+
+\newtcolorbox{outcomesbox}{
+  colback=LightGray,
+  colframe=BrandOrange,
+  boxrule=0.5pt,
+  sharp corners,
+  fontupper=\small,
+  left=10pt,
+  right=10pt
+}
+
+% --- DOCUMENT START ---
+\begin{document}
+
+% --- HEADER / TITLE PAGE ---
+\begin{center}
+    \vspace*{0.5cm}
+    {\color{BrandOrange}\Large\bfseries AIM™ AI MASTERY PROGRAM} \\
+    \vspace{0.3cm}
+    {\color{MainBlue}\Huge\bfseries Official Program Syllabus} \\
+    \vspace{0.5cm}
+    \noindent{\color{BrandOrange}\rule{5cm}{2.5pt}} \\
+    \vspace{0.8cm}
+    \textit{From clarity and control to autonomous execution.}
+\end{center}
+
+\vspace{0.5cm}
+
+% --- VISUAL ROADMAP (5 Stages) ---
+\begin{center}
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[node distance=2.2cm]
+    \tikzstyle{stage} = [circle, minimum size=2.0cm, draw=MainBlue, fill=MainBlue, text=white, font=\bfseries\tiny, align=center]
+    \tikzstyle{arrow} = [thick, BrandOrange, -{Stealth[length=3mm]}]
+
+    \node (s1) [stage] {STAGE 1\\Foundations};
+    \node (s2) [stage, right=of s1] {STAGE 2\\Craft};
+    \node (s3) [stage, right=of s2] {STAGE 3\\Your Brain};
+    \node (s4) [stage, right=of s3] {STAGE 4\\Agents};
+    \node (s5) [stage, right=of s4] {STAGE 5\\Security};
+
+    \draw [arrow] (s1) -- (s2);
+    \draw [arrow] (s2) -- (s3);
+    \draw [arrow] (s3) -- (s4);
+    \draw [arrow] (s4) -- (s5);
+\end{tikzpicture}%
+}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{Program Overview}
+The AIM™ AI Mastery Program is a structured training program designed to teach practical, real-world use of artificial intelligence. The program is built around five progressive stages that move you from understanding AI to building autonomous, secure, and compliant AI systems.
+
+\begin{itemize}[label=\textcolor{BrandOrange}{$\bullet$}, leftmargin=1.5em]
+    \item \textbf{No coding background required.}
+    \item \textbf{Focus:} Clarity, control, security, and execution.
+\end{itemize}
+
+\vspace{0.3cm}
+
+\section*{Program Objectives}
+By completing this program, you will be able to:
+\begin{itemize}[label=\textcolor{BrandOrange}{$\checkmark$}, itemsep=0.2em]
+    \item Understand how modern AI systems operate
+    \item Communicate with AI precisely and consistently
+    \item Build a personalized AI knowledge system
+    \item Design autonomous AI agents for real tasks
+    \item Implement AI with enterprise-grade security and compliance
+\end{itemize}
+
+\vspace{0.3cm}
+
+\section*{Who This Program Is For}
+\begin{center}
+\begin{minipage}{0.45\textwidth}
+\begin{itemize}[label=\textcolor{BrandOrange}{$\rightarrow$}]
+    \item Entrepreneurs and founders
+    \item Business owners and executives
+    \item Professionals and consultants
+\end{itemize}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\begin{itemize}[label=\textcolor{BrandOrange}{$\rightarrow$}]
+    \item Creators and educators
+    \item Teams seeking AI adoption
+\end{itemize}
+\end{minipage}
+\end{center}
+
+\newpage
+
+\section*{The Curriculum}
+
+\begin{stagebox}{STAGE 1: AI FOUNDATION}
+This stage builds a clear mental model of how AI works and where it creates value.
+\subsection*{Topics Covered:}
+\begin{itemize}[nosep]
+    \item What artificial intelligence is and is not
+    \item How modern AI models are trained and used
+    \item Core AI concepts explained in plain language
+    \item Strengths, limitations, and common misconceptions
+    \item Practical use cases across industries
+\end{itemize}
+\begin{outcomesbox}
+    \textbf{Outcome:} You understand AI clearly and can evaluate its use with confidence.
+\end{outcomesbox}
+\end{stagebox}
+
+\begin{stagebox}{STAGE 2: PROMPT CRAFTSMANSHIP}
+This stage teaches you how to communicate with AI precisely to produce reliable results.
+\subsection*{Topics Covered:}
+\begin{itemize}[nosep]
+    \item How AI interprets instructions
+    \item Prompt structure and logic
+    \item Role-based prompting techniques
+    \item Controlling tone, format, and depth
+    \item Reducing errors and inconsistent outputs
+\end{itemize}
+\begin{outcomesbox}
+    \textbf{Outcome:} You gain full control over AI responses and outputs.
+\end{outcomesbox}
+\end{stagebox}
+
+\begin{stagebox}{STAGE 3: YOUR OWN AI BRAIN}
+This stage focuses on building a personal AI knowledge system tailored to your needs.
+\subsection*{Topics Covered:}
+\begin{itemize}[nosep]
+    \item Designing a personal AI knowledge base
+    \item Training AI on your information and context
+    \item Creating reusable prompts and instructions
+    \item Building AI that understands your goals, voice, and workflows
+    \item Maintaining and improving your AI system over time
+\end{itemize}
+\begin{outcomesbox}
+    \textbf{Outcome:} You create a personalized AI system that thinks with you.
+\end{outcomesbox}
+\end{stagebox}
+
+\begin{stagebox}{STAGE 4: AUTONOMOUS AI AGENTS}
+This stage shows you how to move from interaction to delegation.
+\subsection*{Topics Covered:}
+\begin{itemize}[nosep]
+    \item What autonomous AI agents are
+    \item Designing agents for specific roles and tasks
+    \item Task execution and decision logic
+    \item Monitoring and refining agent behavior
+    \item Responsible use of autonomous systems
+\end{itemize}
+\begin{outcomesbox}
+    \textbf{Outcome:} You deploy AI agents that operate with minimal supervision.
+\end{outcomesbox}
+\end{stagebox}
+
+\begin{stagebox}{STAGE 5: SECURITY, PRIVACY \& COMPLIANCE}
+This stage ensures your AI adoption is safe, legal, and sustainable.
+\subsection*{Topics Covered:}
+\begin{itemize}[nosep]
+    \item Data privacy and residency in the age of AI
+    \item Corporate compliance and governance standards
+    \item Risk assessment of third-party AI tools
+    \item Secure prompting and protection of proprietary info
+    \item Ethical frameworks and legal considerations
+\end{itemize}
+\begin{outcomesbox}
+    \textbf{Outcome:} You deploy AI systems that are secure, ethical, and compliant.
+\end{outcomesbox}
+\end{stagebox}
+
+\newpage
+
+\section*{Added Value \& Exclusive Access}
+Participants receive additional benefits beyond the core training:
+\begin{itemize}[label=\textcolor{BrandOrange}{$+$}]
+    \item \textbf{Selected AI Tools:} Access to curated resources and software recommendations.
+    \item \textbf{Curated Newsletter:} Weekly updates on the fast-moving AI landscape.
+    \item \textbf{Private Community:} Dedicated space for discussion, support, and networking.
+    \item \textbf{Partner Deals:} Access to exclusive offers and specialized tool discounts.
+\end{itemize}
+
+\vspace{1cm}
+
+\section*{Certification}
+Participants who successfully complete all stages of the program receive the:
+\begin{center}
+    \begin{tcolorbox}[enhanced, colback=white, colframe=MainBlue, width=0.8\textwidth, arc=0mm, halign=center, top=20pt, bottom=20pt, borderline={0.5pt}{0pt}{BrandOrange}]
+        {\large\bfseries AIM™ AI MASTERY PROGRAM} \\
+        \vspace{0.2cm}
+        {\Large Certificate of Completion}
+    \end{tcolorbox}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{Expected Results}
+After completing the program, you will:
+\begin{itemize}[label=\textcolor{BrandOrange}{$\blacksquare$}]
+    \item \textbf{Command AI with Clarity:} Use AI models with total confidence.
+    \item \textbf{Strategic Alignment:} Build AI systems that match your specific goals.
+    \item \textbf{Efficiency:} Significantly reduce manual work through smart automation.
+    \item \textbf{Risk Mitigation:} Protect your data and maintain professional compliance.
+\end{itemize}
+
+\vfill
+
+\begin{center}
+    % Pricing Button
+    \begin{tcolorbox}[colback=BrandOrange, colframe=BrandOrange, width=6cm, arc=3mm, auto outer arc, halign=center, fontupper=\bfseries\small]
+        \href{https://aimbootcamp.com/pricing-page}{\color{white} VIEW PRICE PLANS}
+    \end{tcolorbox}
+    \vspace{0.3cm}
+    \footnotesize \textit{Copyright © 2026 AIM™ AI Mastery Program. All Rights Reserved.}
+\end{center}
+
+\end{document}</textarea>
+        </div>
+
+        <!-- Preview Column -->
+        <div id="pdf-preview" class="w-1/2 bg-slate-200 flex flex-col items-center justify-center relative border-l border-slate-700">
+            <!-- Initial State / Empty -->
+            <div id="initial-message" class="text-center p-8">
+                <div class="text-slate-400 text-6xl mb-4"><i class="fas fa-file-code"></i></div>
+                <h2 class="text-xl font-bold text-slate-600">Ready to Render</h2>
+                <p class="text-slate-500 mt-2">Click "Render PDF" to compile your LaTeX code.</p>
+                <p class="text-slate-400 text-xs mt-4 max-w-xs mx-auto">
+                    Optimized for <code>latexonline.cc</code>.
+                    <br>Non-standard fonts will be auto-replaced if missing.
+                </p>
+            </div>
+
+            <!-- Iframe for PDF -->
+            <iframe id="pdf-frame" name="pdf-frame" class="w-full h-full hidden shadow-2xl" src=""></iframe>
+        </div>
+
+    </div>
+
+    <script>
+        // Helper to update UI status
+        function updateStatus(message, isLoading = true) {
+            const statusIndicator = document.getElementById('status-indicator');
+            const statusText = document.getElementById('status-text');
+            
+            if (message) {
+                statusText.textContent = message;
+                statusText.classList.remove('hidden');
+            } else {
+                statusText.classList.add('hidden');
+            }
+
+            if (isLoading) {
+                statusIndicator.classList.remove('hidden');
+            } else {
+                statusIndicator.classList.add('hidden');
+            }
+        }
+
+        async function compileLaTeX(code) {
+             // We use a POST request via fetch to avoid URL length limits
+            const formData = new URLSearchParams();
+            formData.append('text', code);
+
+            const response = await fetch('https://latexonline.cc/compile?command=xelatex', {
+                method: 'POST',
+                body: formData
+            });
+            
+            return response;
+        }
+
+        async function renderPDF() {
+            let code = document.getElementById('latex-input').value;
+            const initialMessage = document.getElementById('initial-message');
+            const pdfFrame = document.getElementById('pdf-frame');
+            const downloadBtn = document.getElementById('download-btn');
+
+            // 1. Sanitize Input: Remove invisible non-breaking spaces that crash compilers
+            // Replace NBSP (\u00A0) and Zero-Width Space (\u200B) with regular space
+            code = code.replace(/[\u00A0\u200B]/g, ' ');
+
+            // Show Loading
+            updateStatus("Compiling...", true);
+            initialMessage.classList.add('hidden');
+            pdfFrame.classList.add('hidden'); 
+            
+            try {
+                let response = await compileLaTeX(code);
+
+                // 2. Smart Retry: Handle Font Errors
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    
+                    // Check if error is related to Noto Sans or missing fonts
+                    if (errorText.includes("font") && (code.includes("Noto Sans") || code.includes("NotoSans"))) {
+                        console.warn("Noto Sans not found on server. Retrying with Latin Modern Sans.");
+                        updateStatus("Font missing. Retrying with Standard Font...", true);
+                        
+                        // Replace unsafe font with safe standard font
+                        code = code.replace(/Noto Sans/g, "Latin Modern Sans");
+                        code = code.replace(/NotoSans/g, "Latin Modern Sans");
+                        
+                        // Retry compilation
+                        response = await compileLaTeX(code);
+                    } 
+                    
+                    // If still failing, throw original or new error
+                    if (!response.ok) {
+                         // If we didn't retry, or retry failed, use the error text we have
+                         const finalError = errorText || await response.text();
+                         throw new Error("Server Error or Compilation Failed.\n\n" + finalError.slice(0, 400) + "...");
+                    }
+                }
+
+                // Success!
+                updateStatus("Rendering complete!", false);
+                setTimeout(() => updateStatus("", false), 2000);
+
+                // Convert response to a Blob (file-like object)
+                const blob = await response.blob();
+                const url = URL.createObjectURL(blob);
+
+                // Update Iframe
+                pdfFrame.src = url;
+                pdfFrame.classList.remove('hidden');
+
+                // Update Download Button
+                downloadBtn.href = url;
+                downloadBtn.classList.remove('opacity-50', 'pointer-events-none');
+                
+            } catch (error) {
+                console.error(error);
+                updateStatus("", false);
+                alert("Rendering Failed.\n\n" + error.message);
+                initialMessage.classList.remove('hidden');
+            } 
+        }
+    </script>
+</body>
+</html>
