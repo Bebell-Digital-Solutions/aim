@@ -53,47 +53,123 @@
         ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
         
    
+
    
-   
-   
-   
-   
-
-
-
-
-
-
-        /* --- Navigation Bar --- */
+    /* =========================== */
+        /* SECTION 4: NAVIGATION BAR */
+        /* =========================== */
+        
         #nav-bar {
-            position: fixed; top: 2rem; left: 50%; transform: translateX(-50%);
-            background: rgba(25, 25, 25, 0.85); backdrop-filter: blur(10px);
-            border: 1px solid var(--box-color); border-radius: 0.75rem;
-            padding: 0.75rem 1.5rem; display: flex; align-items: center;
-            max-width: 980px; width: 90%; z-index: 1000;
+            position: fixed; 
+            top: 2rem; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: rgba(25, 25, 25, 0.85); 
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--box-color); 
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem; 
+            display: flex; 
+            align-items: center;
+            max-width: 1100px; 
+            width: 90%; 
+            z-index: 1000;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
         }
         #nav-logo img { height: 35px; }
-        #nav-menu { display: flex; gap: 1.5rem; margin-left: auto; align-items: center; }
-        .nav-link { color: var(--text-color); transition: color 0.3s, transform 0.2s; font-weight: 500; }
-        .nav-link:hover { color: var(--skin-color); transform: translateY(-1px); }
+        
+        /* Desktop: nav-menu contains all links and is flexed */
+        #nav-menu { 
+            display: flex; 
+            gap: 1.5rem; 
+            margin-left: auto; 
+            align-items: center; 
+        }
+
+        /* Nav links and CTA */
+        .nav-link { 
+            color: var(--text-color); 
+            transition: color 0.3s, transform 0.2s; 
+            font-weight: 500; 
+            position: relative;
+        }
+        .nav-link:hover { 
+            color: var(--skin-color); 
+            transform: translateY(-1px); 
+        }
+        
         .nav-cta {
             background: linear-gradient(90deg, var(--skin-color), #d43a00);
-            color: var(--title-color); padding: 0.5rem 1rem; border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); transition: transform 0.3s, box-shadow 0.3s;
+            color: var(--title-color); 
+            padding: 0.5rem 1rem; 
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); 
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+            white-space: nowrap;
         }
-        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); }
+        .nav-cta:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); 
+        }
+        
         .has-submenu { position: relative; }
+        
+        /* Submenu Default State (Hidden - Desktop) */
         .submenu-courses {
-            position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-            background: var(--box-color); border-radius: 0.5rem; padding: 0.75rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5); opacity: 0; pointer-events: none; 
-            transition: opacity 0.3s, top 0.3s; width: 200px;
+            position: absolute; 
+            top: 100%; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: var(--box-color); 
+            border-radius: 0.5rem; 
+            padding: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
+            opacity: 0; 
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, top 0.3s; 
+            width: 310px;
+            z-index: 1001;
+            margin-left: 0;
+            padding-left: 0.75rem;
+            flex-direction: column;
         }
-        .submenu-courses.active { opacity: 1; pointer-events: auto; top: 100%; }
-        .submenu-link { display: flex; align-items: center; gap: 0.75rem; color: var(--text-color); padding: 0.5rem; border-radius: 0.25rem; transition: background-color 0.3s, color 0.3s; }
-        .submenu-link:hover { background-color: rgba(255, 80, 17, 0.1); color: var(--skin-color); }
+        
+        /* Submenu Active State (Shown via JavaScript click - Desktop) */
+        .submenu-courses.active { 
+            opacity: 1; 
+            visibility: visible;
+            top: calc(100% + 15px);
+        }
+        
+        .submenu-link { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.75rem; 
+            color: var(--text-color); 
+            padding: 0.5rem; 
+            border-radius: 0.25rem; 
+            transition: background-color 0.3s, color 0.3s; 
+        }
+        .submenu-link:hover { 
+            background-color: rgba(255, 80, 17, 0.1); 
+            color: var(--skin-color); 
+        }
         .submenu-link i { width: 15px; text-align: center; }
+
+        /* Mobile visibility controls (Default/Desktop state) */
+        #mobile-menu-toggle { 
+            display: none; 
+            border: none;
+            background: transparent;
+            color: var(--skin-color);
+            font-size: 1.8rem;
+            cursor: pointer;
+            margin-left: auto;
+        }
+        .nav-cta.mobile-cta-only { display: none; }
+        .nav-cta.desktop-cta-only { display: block; }
         
         
         
@@ -339,6 +415,15 @@
         .footer-brand { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 0.5rem; }
         .footer-logo { width: 30px; }
         .footer-logo:hover { opacity: 0.8; transition: opacity 0.3s ease; }
+
+
+
+
+
+
+
+
+		
         
         /* --- Responsive Styles --- */
         @media screen and (max-width: 768px) {
@@ -346,9 +431,6 @@
             .leaderboard-table th, .leaderboard-table td { padding: 10px 5px; }
             .leaderboard-filters { justify-content: center; }
             .data-sources, .methodology-grid { grid-template-columns: 1fr; }
-            .footer-container { grid-template-columns: 1fr; row-gap: 3rem; text-align: center; }
-            .footer-brand, .footer-socials, .footer-links { justify-self: center; align-items: center; }
-            .footer-links { flex-direction: column; row-gap: 1.5rem; }
         }
  
  
@@ -485,6 +567,7 @@
     }
     
   </style>
+	
 
 <!-- Page Loader HTML -->
 <script>
@@ -519,37 +602,61 @@
 
     <!-- Page Loader -->
     <div class="page-loader">
-        <div class="loader-header">AIM LEADERBOARD</div>
+        <div class="loader-header">Wait for it...</div>
         <div class="progress"></div>
     </div>
 
-    <!-- Navigation Bar (Header) -->
+
+
+
+
+	
+
+  <!-- =========================== -->
+    <!-- SECTION 11: NAVIGATION BAR HTML -->
+    <!-- =========================== -->
     <nav id="nav-bar">
-      <a href="/" id="nav-logo">
-        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
-      </a>
-      <div id="nav-menu">
-        <a href="/" class="nav-link">Homepage</a>
-        <div class="nav-item has-submenu">
-          <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
-          <div class="submenu-courses" id="courses-submenu">
-            <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
-            <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
-            <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+        <a href="/" id="nav-logo">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
+        </a>
+        
+        <!-- MOBILE TOGGLE BUTTON -->
+        <button id="mobile-menu-toggle" aria-label="Open Menu">
+            <i class="fa-solid fa-bars" id="toggle-icon"></i>
+        </button>
+        
+        <div id="nav-menu">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/about" class="nav-link" style="color: var(--skin-color);">About</a>
             
+            <!-- Courses Dropdown -->
+            <div class="nav-item has-submenu">
+                <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
+                <div class="submenu-courses" id="courses-submenu">
+                    <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
+                    <a href="/courses#foundation" class="submenu-link"><i class="fa-solid fa-brain"></i> AI Foundation</a>
+                    <a href="/courses#prompting" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
+                    <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
+                    <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
+                    <a href="/5-security-privacy-compliance" class="submenu-link"><i class="fa-solid fa-shield"></i> Security, Privacy & Compliance</a>
+                
+                </div>
+            </div>
             
+            <a href="/pricing-page" class="nav-link">Pricing</a>
+            <a href="/contact" class="nav-link">Contact</a>
             
+            <!-- DESKTOP CTA -->
+            <a href="/login" class="nav-cta desktop-cta-only">MEMBER LOGIN</a>
             
-            
-            
-            
-          </div>
+            <!-- MOBILE CTA -->
+            <a href="/login" class="nav-cta mobile-cta-only">MEMBER LOGIN</a>
         </div>
-        <a href="/pricing" class="nav-link">Pricing</a>
-        <a href="/helpcenter" class="nav-link">HelpCenter</a>
-        <a href="/login" class="nav-cta">LOGIN</a>
-      </div>
     </nav>
+
+
+
+	
 
     <main>
         <!-- *** START OF LEADERBOARD CONTENT *** -->
@@ -707,9 +814,9 @@
         <section class="section">
             <h3>About This Leaderboard</h3>
             <p>This AI Model Leaderboard provides transparent, multi-source benchmarking of the latest AI models. We combine data from reputable academic sources, crowd-sourced rankings, and our own evaluations using DeepSeek API.</p>
-            
+            <br>
             <p><strong>Transparency Commitment:</strong> We believe in open methodology and clear data sourcing. All scores are calculated using published methodologies, and we welcome community verification.</p>
-            
+            <br>
             <p><span class="deepseek-badge">DeepSeek Powered</span> This leaderboard utilizes your DeepSeek API credits for custom evaluations and verification runs, ensuring independent assessment of model capabilities.</p>
             
             <div class="update-indicator manual">
@@ -724,36 +831,51 @@
 
 	
     
-    <!-- Standard AIM Footer -->
-	<footer class="footer">
+ <!-- Standard AIM Footer -->
+    <footer class="footer">
         <div class="footer-bg">
-            <div class="footer-container"> 
+            <div class="footer-container container"> 
+                <!-- Logo/Brand Block (Left) -->
                 <div class="footer-brand">
-                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="AIM Logo" class="footer-logo">
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="Project Freedom Logo" class="footer-logo">
                     <div class="footer-brand-text">
                         <h3 class="footer-title">AIM™</h3>
                         <span class="footer-subtitle">AI Mastery Program</span>
                     </div>
                 </div>
-					
+                    
+                <!-- Footer Links (Center) -->
                 <ul class="footer-links">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/courses">Courses</a></li>
-                    <li><a href="/pricing">Pricing</a></li>
-                    <li><a href="/helpcenter">Contact</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
 
+                <!-- Social Icons (Right) -->
                 <div class="footer-socials">
-                    <a href="https://www.youtube.com" target="_blank" class="footer-social" aria-label="Youtube"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="https://www.facebook.com" target="_blank" class="footer-social" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com" target="_blank" class="footer-social" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com" target="_blank" class="footer-social" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com" target="_blank" class="footer-social" aria-label="Youtube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" class="footer-social" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="footer-social" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com" target="_blank" class="footer-social" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
                 </div>
             </div>
-            <p class="footer-copy">Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com" target="_blank">Bebell Digital Solutions</a></p>
+            <p class="footer-copy">Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a></p>
         </div>
     </footer>
+
+
+
+	
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
