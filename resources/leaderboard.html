@@ -43,7 +43,7 @@
             padding-top: 8rem; /* Space for fixed nav */
             overflow-x: hidden;
         }
-        main { max-width: 980px; margin: 0 auto; padding: 0 1rem; }
+        main { max-width: 980px; margin: 0 auto; padding: 0 1rem; margin-top: 1rem; }
         img { max-width: 100%; height: auto; display: block; }
         a { text-decoration: none; cursor: pointer; color: var(--skin-color); }
         ul { list-style: none; }
@@ -211,7 +211,6 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1.5rem;
-			margin-top: 2.5rem;
             flex-wrap: wrap;
             gap: 1rem;
         }
@@ -438,6 +437,256 @@
  
  
  
+         @media screen and (min-width: 768px) {
+            
+            /* Show desktop CTA on desktop */
+            .nav-cta.desktop-cta-only {
+                display: block !important;
+            }
+            /* Hide mobile CTA on desktop */
+            .nav-cta.mobile-cta-only {
+                display: none !important;
+            }
+            #nav-menu {
+                display: flex !important;
+            }
+        }
+
+
+ 
+ 
+ 
+ 
+ 
+         /* --- MOBILE LAYOUT (max-width: 767px) --- */
+        @media screen and (max-width: 767px) {
+
+            /* Footer Responsive Fixes */
+            .footer-container { 
+                grid-template-columns: 1fr; 
+                row-gap: 3rem; 
+                text-align: center;
+                justify-items: center;
+            }
+            .footer-brand { align-items: center; text-align: center; }
+            .footer-links { flex-direction: column; row-gap: 1.5rem; align-items: center; }
+            .footer-socials { justify-self: center; }
+            .footer-bg { padding: 2rem 0 3rem; }
+            
+            
+            .footer-copy { 
+            margin-top: var(--mb3); 
+            
+            }
+        }
+        
+        
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   /* ====================================================== */
+        /* --- MOBILE LAYOUT (UPDATED TO 980px BREAKPOINT) --- */
+        /* ====================================================== */
+        @media screen and (max-width: 980px) {
+            body { 
+                padding-top: 6rem; 
+                padding-left: 0;
+                padding-right: 0;
+            }
+            
+            /* 1. Mobile Navigation Bar (Fixed Top) */
+            #nav-bar {
+                padding: 0.5rem 1rem;
+                justify-content: space-between;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+                width: 100%;
+                max-width: 100%;
+                top: 0;
+                left: 0;
+                transform: none; /* Reset transform */
+                border-radius: 0; /* Reset border radius */
+                border: none;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            
+            #mobile-menu-toggle {
+                display: block;
+                position: relative;
+                z-index: 1002;
+            }
+            
+            /* Mobile Menu Overlay */
+            #nav-menu {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--body-color); 
+                z-index: 1001; 
+                flex-direction: column;
+                justify-content: flex-start; 
+                align-items: center; 
+                gap: 1.5rem;
+                padding: 6rem 1.5rem 2rem; 
+                margin: 0;
+                overflow-y: auto;
+            }
+
+            #nav-menu.mobile-open {
+                display: flex;
+            }
+            
+            #nav-menu .nav-link,
+            #nav-menu .nav-item {
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: var(--title-color);
+                padding: 0.5rem 0;
+                margin: 0;
+                width: 100%; 
+                text-align: center;
+            }
+            
+            #nav-menu .nav-item { margin: 0; padding: 0; }
+
+            #nav-menu .nav-link:hover {
+                color: var(--skin-color);
+                transform: none;
+            }
+            
+            /* Mobile Dropdown (Accordion Style) */
+            .has-submenu {
+                display: flex;
+                flex-direction: column;
+                align-items: center; 
+                width: 100%; 
+            }
+            
+            .submenu-courses {
+                position: static; 
+                width: 100%; 
+                background: transparent; 
+                box-shadow: none;
+                padding: 0; 
+                margin: 0; 
+                opacity: 0; 
+                visibility: hidden;
+                display: none;
+                max-height: 0;
+                overflow: hidden;
+                transition: opacity 0.3s, max-height 0.3s;
+                transform: none; 
+                flex-direction: column; 
+                align-items: flex-start; 
+                border-radius: 0;
+            }
+            
+            .submenu-courses.active { 
+                display: flex;
+                opacity: 1;
+                visibility: visible;
+                max-height: 500px;
+                margin-top: 0.5rem; 
+                background: rgba(255, 255, 255, 0.03);
+                border-radius: 8px;
+            }
+            
+            .submenu-courses .submenu-link {
+                font-size: 1.1rem;
+                padding: 0.8rem 1rem 0.8rem 2rem;
+                justify-content: flex-start; 
+                width: 100%;
+                text-align: left;
+                margin: 0;
+            }
+            
+            /* Mobile CTA button */
+            .nav-cta.mobile-cta-only {
+                padding: 0.8rem 2rem; 
+                width: 100%;
+                max-width: none;
+                white-space: nowrap;
+                font-size: 1.2rem; 
+                font-weight: 700;
+                margin-top: 1rem; 
+                display: block !important; 
+                text-align: center;
+            }
+            
+            /* Hide desktop items */
+            .nav-cta.desktop-cta-only { display: none !important; }
+            
+            /* Footer Mobile Styles */
+            .footer-container {
+                grid-template-columns: 1fr;
+                row-gap: 3rem;
+                text-align: center;
+            }
+            
+            /* FIX: Centering footer elements on mobile */
+            .footer-brand {
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                justify-self: center;
+            }
+            .footer-brand-text { text-align: center; }
+            
+            .footer-title {
+                text-align: center; /* Enforces center alignment on mobile */
+            }
+
+            .footer-socials {
+                justify-content: center;
+                justify-self: center; /* FIX: Centers icons on mobile */
+                display: flex;
+                gap: var(--mb15);
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                row-gap: 1.5rem;
+                justify-self: center;
+            }
+            .footer-bg { padding: 2rem 0 3rem; }
+            .footer-copy { margin-top: var(--mb3); }
+        }
+
+        /* Desktop: Ensure correct visibility when not mobile */
+        @media screen and (min-width: 981px) {
+            #nav-menu { display: flex !important; }
+            .nav-cta.desktop-cta-only { display: block !important; }
+        }
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  /* Page loader container with black background */
@@ -566,6 +815,16 @@
         top: 2px;
         font-size: 1rem;
     }
+
+
+
+
+
+
+
+
+
+		
     
   </style>
 	
@@ -601,19 +860,12 @@
 </head>
 <body>
 
-    <!-- Page Loader -->
-    <div class="page-loader">
-        <div class="loader-header">Wait for it...</div>
-        <div class="progress"></div>
-    </div>
-
-
-
+ 
 
 
 	
 
-  <!-- =========================== -->
+ <!-- =========================== -->
     <!-- SECTION 11: NAVIGATION BAR HTML -->
     <!-- =========================== -->
     <nav id="nav-bar">
@@ -654,6 +906,8 @@
             <a href="/login" class="nav-cta mobile-cta-only">MEMBER LOGIN</a>
         </div>
     </nav>
+    
+
 
 
 
@@ -832,40 +1086,44 @@
 
 	
     
- <!-- Standard AIM Footer -->
+   
+    <!-- =========================== -->
+    <!-- SECTION 14: FOOTER HTML -->
+    <!-- =========================== -->
     <footer class="footer">
         <div class="footer-bg">
             <div class="footer-container container"> 
-                <!-- Logo/Brand Block (Left) -->
+                <!-- Logo/Brand Block -->
                 <div class="footer-brand">
-                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="Project Freedom Logo" class="footer-logo">
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="AIM Logo" class="footer-logo">
                     <div class="footer-brand-text">
                         <h3 class="footer-title">AIM™</h3>
                         <span class="footer-subtitle">AI Mastery Program</span>
                     </div>
                 </div>
                     
-                <!-- Footer Links (Center) -->
+                <!-- Footer Links -->
                 <ul class="footer-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#work">Work</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/courses">Courses</a></li>
+                    <li><a href="/pricing-page">Pricing</a></li>
+                    <li><a href="/resources">Resources</a></li>
+                    <li><a href="/contact">Contact</a></li>
                 </ul>
 
-                <!-- Social Icons (Right) -->
+                <!-- Social Icons -->
                 <div class="footer-socials">
-                    <a href="https://www.youtube.com" target="_blank" class="footer-social" aria-label="Youtube">
+                    <a href="https://www.youtube.com/" target="_blank" class="footer-social" aria-label="Youtube">
                         <i class="fa-brands fa-youtube"></i>
                     </a>
-                    <a href="https://www.facebook.com" target="_blank" class="footer-social" aria-label="Facebook">
+                    <a href="https://www.facebook.com/" target="_blank" class="footer-social" aria-label="Facebook">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
-                    <a href="https://www.instagram.com" target="_blank" class="footer-social" aria-label="Instagram">
+                    <a href="https://www.instagram.com/" target="_blank" class="footer-social" aria-label="Instagram">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <a href="https://www.linkedin.com" target="_blank" class="footer-social" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/" target="_blank" class="footer-social" aria-label="LinkedIn">
                         <i class="fa-brands fa-linkedin-in"></i>
                     </a>
                 </div>
@@ -878,153 +1136,196 @@
 
 	
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- AIM Standard Page Logic ---
-            const pageLoader = document.querySelector('.page-loader');
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- AIM Standard Page Logic ---
+        const pageLoader = document.querySelector('.page-loader');
+        setTimeout(() => {
+            if (pageLoader) pageLoader.classList.add('hidden');
+        }, 2000);
+
+        // --- Navigation Variables ---
+        const coursesLink = document.getElementById('courses-link');
+        const coursesSubmenu = document.getElementById('courses-submenu');
+        const navBar = document.getElementById('nav-bar');
+        const mobileToggle = document.getElementById('mobile-menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const toggleIcon = document.getElementById('toggle-icon');
+
+        // --- Dropdown Menu Click Logic (Courses Submenu) ---
+        coursesLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            coursesSubmenu.classList.toggle('active');
+        });
+
+        // --- Mobile Menu Toggle Logic ---
+        mobileToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpening = !navMenu.classList.contains('mobile-open');
+            
+            // Toggle mobile menu
+            navMenu.classList.toggle('mobile-open', isOpening);
+            
+            // Toggle icon
+            toggleIcon.classList.toggle('fa-bars', !isOpening);
+            toggleIcon.classList.toggle('fa-xmark', isOpening);
+            
+            // Toggle body overflow
+            document.body.style.overflow = isOpening ? 'hidden' : '';
+            
+            // If opening mobile menu, close submenu by default
+            if (isOpening) {
+                coursesSubmenu.classList.remove('active');
+            }
+        });
+
+        // --- Close menus when clicking outside ---
+        document.addEventListener('click', (e) => {
+            // Close courses submenu if click is outside
+            if (coursesSubmenu.classList.contains('active') && 
+                !coursesLink.contains(e.target) && 
+                !coursesSubmenu.contains(e.target)) {
+                coursesSubmenu.classList.remove('active');
+            }
+            
+            // Close mobile menu if click is outside nav bar (only when mobile menu is open)
+            if (navMenu.classList.contains('mobile-open') && 
+                !navBar.contains(e.target)) {
+                navMenu.classList.remove('mobile-open');
+                toggleIcon.classList.remove('fa-xmark');
+                toggleIcon.classList.add('fa-bars');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Prevent clicks inside submenu from closing it
+        coursesSubmenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // --- Leaderboard Specific Logic ---
+        const modelData = [
+            { id: 1, name: "DeepSeek-V3", provider: "DeepSeek", category: ["general", "reasoning"], score: 92.5, trend: "up", lastScore: 91.8, sources: ["Hugging Face", "DeepSeek API", "LMSYS"] },
+            { id: 2, name: "GPT-4.5 Preview", provider: "OpenAI", category: ["general", "coding"], score: 90.2, trend: "up", lastScore: 89.5, sources: ["LMSYS", "Papers with Code"] },
+            { id: 3, name: "Claude 3.5 Sonnet", provider: "Anthropic", category: ["reasoning", "coding"], score: 88.7, trend: "neutral", lastScore: 88.7, sources: ["Hugging Face", "LMSYS"] },
+            { id: 4, name: "Gemini 2.0 Flash", provider: "Google", category: ["multimodal", "general"], score: 87.3, trend: "up", lastScore: 86.5, sources: ["Papers with Code", "Hugging Face"] },
+            { id: 5, name: "Llama 3.3 70B", provider: "Meta", category: ["general"], score: 85.9, trend: "down", lastScore: 86.2, sources: ["Hugging Face", "DeepSeek API"] },
+            { id: 6, name: "CodeLlama 70B", provider: "Meta", category: ["coding"], score: 84.5, trend: "neutral", lastScore: 84.5, sources: ["Hugging Face", "Papers with Code"] },
+            { id: 7, name: "Mistral Large 2", provider: "Mistral AI", category: ["reasoning", "general"], score: 83.8, trend: "up", lastScore: 83.2, sources: ["LMSYS", "Hugging Face"] },
+            { id: 8, name: "Phi-3 Vision", provider: "Microsoft", category: ["multimodal", "reasoning"], score: 82.1, trend: "up", lastScore: 81.5, sources: ["Papers with Code", "DeepSeek API"] }
+        ];
+
+        const leaderboardBody = document.getElementById('leaderboardBody');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const lastUpdated = document.getElementById('lastUpdated');
+        const updateIndicator = document.getElementById('updateIndicator');
+        const nextUpdateTime = document.getElementById('nextUpdateTime');
+
+        const CONFIG = {
+            updateInterval: 24 * 60 * 60 * 1000,
+            autoRefresh: true,
+        };
+
+        function initLeaderboard() {
+            updateLastUpdated();
+            calculateNextUpdate();
+            renderLeaderboard('all');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    renderLeaderboard(button.dataset.category);
+                });
+            });
+            
+            refreshBtn.addEventListener('click', refreshData);
+            if (CONFIG.autoRefresh) {
+                setInterval(refreshData, CONFIG.updateInterval);
+            }
+        }
+
+        function calculateNextUpdate() {
+            const now = new Date();
+            const nextUpdate = new Date(now.getTime() + CONFIG.updateInterval);
+            nextUpdateTime.textContent = nextUpdate.toLocaleString();
+        }
+
+        function renderLeaderboard(category) {
+            leaderboardBody.innerHTML = '';
+            let filteredModels = (category === 'all')
+                ? modelData
+                : modelData.filter(model => model.category.includes(category));
+            
+            filteredModels.sort((a, b) => b.score - a.score);
+            
+            filteredModels.forEach((model, index) => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td class="model-rank">${index + 1}</td>
+                    <td>
+                        <div class="model-name">${model.name} ${model.provider === 'DeepSeek' ? '<span class="deepseek-badge">DeepSeek</span>' : ''}</div>
+                        <div class="model-provider">${model.provider}</div>
+                        <div style="font-size: 11px; color: #888; margin-top: 4px;">Sources: ${model.sources.join(', ')}</div>
+                    </td>
+                    <td>
+                        ${model.category.map(cat => `<span class="category-tag">${cat.charAt(0).toUpperCase() + cat.slice(1)}</span>`).join('')}
+                    </td>
+                    <td>
+                        <div>${model.score.toFixed(1)}</div>
+                        <div class="score-bar"><div class="score-fill" style="width: ${model.score}%"></div></div>
+                    </td>
+                    <td class="trend-${model.trend}">
+                        ${model.trend === 'up' ? '↑' : model.trend === 'down' ? '↓' : '→'}
+                        ${model.trend !== 'neutral' ? Math.abs(model.score - model.lastScore).toFixed(1) : ''}
+                    </td>
+                `;
+                leaderboardBody.appendChild(row);
+            });
+        }
+
+        function updateLastUpdated() {
+            const now = new Date();
+            lastUpdated.textContent = `Last updated: ${now.toLocaleString()}`;
+        }
+
+        function refreshData() {
+            if (refreshBtn.disabled) return;
+            
+            refreshBtn.disabled = true;
+            updateIndicator.innerHTML = `<div class="spinner" style="width: 12px; height: 12px; border: 2px solid #ffc107; border-top-color: transparent; border-radius: 50%;"></div> Updating Data...`;
+            updateIndicator.className = 'update-indicator manual';
+            refreshBtn.querySelector('svg').classList.add('spinner');
+            
             setTimeout(() => {
-                pageLoader.classList.add('hidden');
-            }, 2000);
-
-          
-
-            const coursesLink = document.getElementById('courses-link');
-            const submenu = document.getElementById('courses-submenu');
-            const navBar = document.getElementById('nav-bar');
-            coursesLink.addEventListener('click', (e) => {
-                e.preventDefault(); 
-                submenu.classList.toggle('active');
-                e.stopPropagation(); 
-            });
-            document.addEventListener('click', (e) => {
-                if (!navBar.contains(e.target) && submenu.classList.contains('active')) {
-                    submenu.classList.remove('active');
-                }
-            });
-            submenu.addEventListener('click', (e) => e.stopPropagation());
-
-            // --- Leaderboard Specific Logic ---
-            const modelData = [
-                { id: 1, name: "DeepSeek-V3", provider: "DeepSeek", category: ["general", "reasoning"], score: 92.5, trend: "up", lastScore: 91.8, sources: ["Hugging Face", "DeepSeek API", "LMSYS"] },
-                { id: 2, name: "GPT-4.5 Preview", provider: "OpenAI", category: ["general", "coding"], score: 90.2, trend: "up", lastScore: 89.5, sources: ["LMSYS", "Papers with Code"] },
-                { id: 3, name: "Claude 3.5 Sonnet", provider: "Anthropic", category: ["reasoning", "coding"], score: 88.7, trend: "neutral", lastScore: 88.7, sources: ["Hugging Face", "LMSYS"] },
-                { id: 4, name: "Gemini 2.0 Flash", provider: "Google", category: ["multimodal", "general"], score: 87.3, trend: "up", lastScore: 86.5, sources: ["Papers with Code", "Hugging Face"] },
-                { id: 5, name: "Llama 3.3 70B", provider: "Meta", category: ["general"], score: 85.9, trend: "down", lastScore: 86.2, sources: ["Hugging Face", "DeepSeek API"] },
-                { id: 6, name: "CodeLlama 70B", provider: "Meta", category: ["coding"], score: 84.5, trend: "neutral", lastScore: 84.5, sources: ["Hugging Face", "Papers with Code"] },
-                { id: 7, name: "Mistral Large 2", provider: "Mistral AI", category: ["reasoning", "general"], score: 83.8, trend: "up", lastScore: 83.2, sources: ["LMSYS", "Hugging Face"] },
-                { id: 8, name: "Phi-3 Vision", provider: "Microsoft", category: ["multimodal", "reasoning"], score: 82.1, trend: "up", lastScore: 81.5, sources: ["Papers with Code", "DeepSeek API"] }
-            ];
-
-            const leaderboardBody = document.getElementById('leaderboardBody');
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const refreshBtn = document.getElementById('refreshBtn');
-            const lastUpdated = document.getElementById('lastUpdated');
-            const updateIndicator = document.getElementById('updateIndicator');
-            const nextUpdateTime = document.getElementById('nextUpdateTime');
-
-            const CONFIG = {
-                updateInterval: 24 * 60 * 60 * 1000,
-                autoRefresh: true,
-            };
-
-            function initLeaderboard() {
+                modelData.forEach(model => {
+                    const change = (Math.random() - 0.5) * 0.4;
+                    model.lastScore = model.score;
+                    model.score = Math.max(70, Math.min(95, model.score + change));
+                    if (change > 0.1) model.trend = 'up';
+                    else if (change < -0.1) model.trend = 'down';
+                    else model.trend = 'neutral';
+                    model.sources = [...new Set([...model.sources, "DeepSeek API"])];
+                });
+                
+                const activeFilter = document.querySelector('.filter-btn.active').dataset.category;
+                renderLeaderboard(activeFilter);
                 updateLastUpdated();
                 calculateNextUpdate();
-                renderLeaderboard('all');
                 
-                filterButtons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        filterButtons.forEach(btn => btn.classList.remove('active'));
-                        button.classList.add('active');
-                        renderLeaderboard(button.dataset.category);
-                    });
-                });
-                
-                refreshBtn.addEventListener('click', refreshData);
-                if (CONFIG.autoRefresh) {
-                    setInterval(refreshData, CONFIG.updateInterval);
-                }
-            }
+                refreshBtn.disabled = false;
+                refreshBtn.querySelector('svg').classList.remove('spinner');
+                updateIndicator.innerHTML = `<div style="width: 8px; height: 8px; background-color: #28a745; border-radius: 50%;"></div> Live Updates • Refreshes Every 24 Hours`;
+                updateIndicator.className = 'update-indicator live';
+            }, 1500);
+        }
 
-            function calculateNextUpdate() {
-                const now = new Date();
-                const nextUpdate = new Date(now.getTime() + CONFIG.updateInterval);
-                nextUpdateTime.textContent = nextUpdate.toLocaleString();
-            }
-
-            function renderLeaderboard(category) {
-                leaderboardBody.innerHTML = '';
-                let filteredModels = (category === 'all')
-                    ? modelData
-                    : modelData.filter(model => model.category.includes(category));
-                
-                filteredModels.sort((a, b) => b.score - a.score);
-                
-                filteredModels.forEach((model, index) => {
-                    const row = document.createElement('tr');
-                    
-                    row.innerHTML = `
-                        <td class="model-rank">${index + 1}</td>
-                        <td>
-                            <div class="model-name">${model.name} ${model.provider === 'DeepSeek' ? '<span class="deepseek-badge">DeepSeek</span>' : ''}</div>
-                            <div class="model-provider">${model.provider}</div>
-                            <div style="font-size: 11px; color: #888; margin-top: 4px;">Sources: ${model.sources.join(', ')}</div>
-                        </td>
-                        <td>
-                            ${model.category.map(cat => `<span class="category-tag">${cat.charAt(0).toUpperCase() + cat.slice(1)}</span>`).join('')}
-                        </td>
-                        <td>
-                            <div>${model.score.toFixed(1)}</div>
-                            <div class="score-bar"><div class="score-fill" style="width: ${model.score}%"></div></div>
-                        </td>
-                        <td class="trend-${model.trend}">
-                            ${model.trend === 'up' ? '↑' : model.trend === 'down' ? '↓' : '→'}
-                            ${model.trend !== 'neutral' ? Math.abs(model.score - model.lastScore).toFixed(1) : ''}
-                        </td>
-                    `;
-                    leaderboardBody.appendChild(row);
-                });
-            }
-
-            function updateLastUpdated() {
-                const now = new Date();
-                lastUpdated.textContent = `Last updated: ${now.toLocaleString()}`;
-            }
-
-            function refreshData() {
-                if (refreshBtn.disabled) return;
-                
-                refreshBtn.disabled = true;
-                updateIndicator.innerHTML = `<div class="spinner" style="width: 12px; height: 12px; border: 2px solid #ffc107; border-top-color: transparent; border-radius: 50%;"></div> Updating Data...`;
-                updateIndicator.className = 'update-indicator manual';
-                refreshBtn.querySelector('svg').classList.add('spinner');
-                
-                setTimeout(() => {
-                    modelData.forEach(model => {
-                        const change = (Math.random() - 0.5) * 0.4;
-                        model.lastScore = model.score;
-                        model.score = Math.max(70, Math.min(95, model.score + change));
-                        if (change > 0.1) model.trend = 'up';
-                        else if (change < -0.1) model.trend = 'down';
-                        else model.trend = 'neutral';
-                        model.sources = [...new Set([...model.sources, "DeepSeek API"])];
-                    });
-                    
-                    const activeFilter = document.querySelector('.filter-btn.active').dataset.category;
-                    renderLeaderboard(activeFilter);
-                    updateLastUpdated();
-                    calculateNextUpdate();
-                    
-                    refreshBtn.disabled = false;
-                    refreshBtn.querySelector('svg').classList.remove('spinner');
-                    updateIndicator.innerHTML = `<div style="width: 8px; height: 8px; background-color: #28a745; border-radius: 50%;"></div> Live Updates • Refreshes Every 24 Hours`;
-                    updateIndicator.className = 'update-indicator live';
-                }, 1500);
-            }
-
-            initLeaderboard();
-        });
-    </script>
+        initLeaderboard();
+    });
+</script>
 
 
 
@@ -1078,10 +1379,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 <!-- End Widget BACK-TO-TOP -->
-
-
-
-
 
 
 	
