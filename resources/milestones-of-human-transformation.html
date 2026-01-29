@@ -535,33 +535,38 @@
     
   </style>
 
-<!-- Page Loader HTML -->
+<!-- =========================== -->
+<!-- SECTION 10: PAGE LOADER SCRIPT -->
+<!-- =========================== -->
 <script>
-  // --- Page Loader Logic ---
-  function showLoader() {
-    const loader = document.createElement('div');
-    loader.className = 'page-loader';
-    loader.innerHTML = `
-      <div class="loader-header">Wait for it...</div>
-      <div class="progress"></div>
-    `;
-    document.body.appendChild(loader);
-    return loader;
-  }
+    // --- Page Loader Logic ---
+    function showLoader() {
+        const loader = document.createElement('div');
+        loader.className = 'page-loader';
+        loader.innerHTML = `
+            <div class="loader-header">Wait for it...</div>
+            <div class="progress"></div>
+        `;
+        document.body.appendChild(loader);
+        return loader;
+    }
 
-  function initLoader() {
-    const loader = showLoader();
-    setTimeout(() => {
-      loader.classList.add('hidden');
-      setTimeout(() => loader.remove(), 300); // Remove after fade out
-    }, 1500); // Adjust duration as needed
-  }
+    function initLoader() {
+        const loader = showLoader();
+        setTimeout(() => {
+            loader.classList.add('hidden');
+            setTimeout(() => loader.remove(), 300);
+        }, 1500);
+    }
 
-  document.addEventListener('DOMContentLoaded', initLoader);
+    document.addEventListener('DOMContentLoaded', initLoader);
 </script>
-<!-- Loader Div is injected by the script above -->
 
 
+
+
+
+	
 </head>
 <body>
 
@@ -838,6 +843,11 @@
             </div>
 
         </div>
+
+
+
+
+		
         
         <!-- Milestone Legend (Used to be .legend-footer) -->
         <section id="timeline-legend">
@@ -861,6 +871,10 @@
     </main>
     
 
+
+
+
+	
     
     <!-- Standard AIM Footer -->
 	<footer class="footer">
@@ -905,6 +919,11 @@
         </div>
     </footer>
 
+
+
+
+
+	
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Timeline Scroll Animation ---
