@@ -61,9 +61,7 @@
 
 
 
-
-		
-/* =========================== */
+        /* =========================== */
         /* SECTION 4: NAVIGATION BAR */
         /* =========================== */
         
@@ -178,17 +176,26 @@
         }
         .nav-cta.mobile-cta-only { display: none; }
         .nav-cta.desktop-cta-only { display: block; }
+        
+        
+        
+        
+        
+        
+        
+        /* Utility classes */
+        .w-full { width: 100%; }
+        .items-center { align-items: center; }
+        .relative { position: relative; }
 
 
 
 
 
-
-		
 
         /* --- ADAPTED TIMELINE STYLES --- */
         .page-header { text-align: center; margin-bottom: 4rem; margin-top: 4rem; }
-        .page-header h1 { font-size: 3rem; color: var(--title-color); margin-bottom: 1rem; font-weight: 900; }
+        .page-header h1 { font-size: 3rem; color: var(--title-color); margin-bottom: 1rem; font-weight: 900; line-height: 3.5rem; }
         .page-header h1 span { color: var(--skin-color); }
         .page-header p { font-size: 1.1rem; max-width: 700px; margin: 0 auto; color: var(--text-color); }
 
@@ -197,6 +204,7 @@
             transform: translateY(50px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
             margin-bottom: 4rem; /* Increased spacing */
+            position: relative;
         }
         .timeline-item.is-visible {
             opacity: 1;
@@ -235,6 +243,7 @@
             padding: 1.5rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             width: 100%;
+            margin-bottom: 1rem;
         }
         .timeline-card h3 {
             font-size: 1.5rem;
@@ -254,13 +263,18 @@
             margin-bottom: 1rem;
         }
         .timeline-image-desktop {
+            width: 100%;
+            height: auto;
             border-radius: 12px;
             object-fit: cover;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
+        .timeline-image-mobile {
+            display: none;
+        }
         
         /* Legend Section */
-        #timeline-legend { /* Renamed from .legend-footer for clarity */
+        #timeline-legend {
             padding: 3rem 1rem;
             margin-top: 3rem;
             border-top: 1px solid var(--box-color);
@@ -288,12 +302,8 @@
             height: 20px;
             border-radius: 50%;
         }
-
-
-
-
-
-		
+        
+        
 
         /* --- Footer (Main Page Footer) --- */
         .footer {
@@ -324,7 +334,7 @@
 
         /* UPDATED: Remove bullet points */
         .footer-links {
-            list-style: none; /* Removed bullet points */
+            list-style: none;
             display: flex;
             justify-self: center;
             column-gap: 2rem;
@@ -350,7 +360,7 @@
 
         .footer-social:hover {
             color: var(--skin-color);
-            cursor: pointer; /* Ensure cursor is a pointer on hover */
+            cursor: pointer;
         }
 
         .footer-copy {
@@ -375,15 +385,14 @@
             color: var(--title-color);
         }
 
-        /* UPDATED: Footer Logo Styles - Left Aligned on Desktop, Stacked */
+        /* UPDATED: Footer Logo Styles */
         .footer-brand {
             display: flex;
-            flex-direction: column; /* Stack logo on top of text */
-            align-items: flex-start; /* Left align on desktop */
-            text-align: left; /* Left align text on desktop */
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
             gap: 0.5rem; 
         }
-        /* Ensure the text block honors the left alignment */
         .footer-brand-text { 
             text-align: left;
         }
@@ -397,33 +406,229 @@
             opacity: 0.8;
             transition: opacity 0.3s ease;
         }
-
-
-
-
-		
         
-        /* Responsive Adjustments for Timeline */
+
+       /* ====================================================== */
+        /* --- MOBILE LAYOUT (UPDATED TO 980px BREAKPOINT) --- */
+        /* ====================================================== */
+        @media screen and (max-width: 980px) {
+            body { 
+                padding-top: 6rem; 
+                padding-left: 0;
+                padding-right: 0;
+            }
+            
+            /* 1. Mobile Navigation Bar (Fixed Top) */
+            #nav-bar {
+                padding: 0.5rem 1rem;
+                justify-content: space-between;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+                width: 100%;
+                max-width: 100%;
+                top: 0;
+                left: 0;
+                transform: none; /* Reset transform */
+                border-radius: 0; /* Reset border radius */
+                border: none;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            
+            #mobile-menu-toggle {
+                display: block;
+                position: relative;
+                z-index: 1002;
+            }
+            
+            /* Mobile Menu Overlay */
+            #nav-menu {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--body-color); 
+                z-index: 1001; 
+                flex-direction: column;
+                justify-content: flex-start; 
+                align-items: center; 
+                gap: 1.5rem;
+                padding: 6rem 1.5rem 2rem; 
+                margin: 0;
+                overflow-y: auto;
+            }
+
+            #nav-menu.mobile-open {
+                display: flex;
+            }
+            
+            #nav-menu .nav-link,
+            #nav-menu .nav-item {
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: var(--title-color);
+                padding: 0.5rem 0;
+                margin: 0;
+                width: 100%; 
+                text-align: center;
+            }
+            
+            #nav-menu .nav-item { margin: 0; padding: 0; }
+
+            #nav-menu .nav-link:hover {
+                color: var(--skin-color);
+                transform: none;
+            }
+            
+            /* Mobile Dropdown (Accordion Style) */
+            .has-submenu {
+                display: flex;
+                flex-direction: column;
+                align-items: center; 
+                width: 100%; 
+            }
+            
+            .submenu-courses {
+                position: static; 
+                width: 100%; 
+                background: transparent; 
+                box-shadow: none;
+                padding: 0; 
+                margin: 0; 
+                opacity: 0; 
+                visibility: hidden;
+                display: none;
+                max-height: 0;
+                overflow: hidden;
+                transition: opacity 0.3s, max-height 0.3s;
+                transform: none; 
+                flex-direction: column; 
+                align-items: flex-start; 
+                border-radius: 0;
+            }
+            
+            .submenu-courses.active { 
+                display: flex;
+                opacity: 1;
+                visibility: visible;
+                max-height: 500px;
+                margin-top: 0.5rem; 
+                background: rgba(255, 255, 255, 0.03);
+                border-radius: 8px;
+            }
+            
+            .submenu-courses .submenu-link {
+                font-size: 1.1rem;
+                padding: 0.8rem 1rem 0.8rem 2rem;
+                justify-content: flex-start; 
+                width: 100%;
+                text-align: left;
+                margin: 0;
+            }
+            
+            /* Mobile CTA button */
+            .nav-cta.mobile-cta-only {
+                padding: 0.8rem 2rem; 
+                width: 100%;
+                max-width: none;
+                white-space: nowrap;
+                font-size: 1.2rem; 
+                font-weight: 700;
+                margin-top: 1rem; 
+                display: block !important; 
+                text-align: center;
+            }
+            
+            /* Hide desktop items */
+            .nav-cta.desktop-cta-only { display: none !important; }
+            
+            /* Footer Mobile Styles */
+            .footer-container {
+                grid-template-columns: 1fr;
+                row-gap: 3rem;
+                text-align: center;
+            }
+            
+            /* FIX: Centering footer elements on mobile */
+            .footer-brand {
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                justify-self: center;
+            }
+            .footer-brand-text { text-align: center; }
+            
+            .footer-title {
+                text-align: center; /* Enforces center alignment on mobile */
+            }
+
+            .footer-socials {
+                justify-content: center;
+                justify-self: center; /* FIX: Centers icons on mobile */
+                display: flex;
+                gap: var(--mb15);
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                row-gap: 1.5rem;
+                justify-self: center;
+            }
+            .footer-bg { padding: 2rem 0 3rem; }
+            .footer-copy { margin-top: var(--mb3); }
+        }
+
+        /* Desktop: Ensure correct visibility when not mobile */
+        @media screen and (min-width: 981px) {
+            #nav-menu { display: flex !important; }
+            .nav-cta.desktop-cta-only { display: block !important; }
+        }
+
+
+
+
+
+
+
+
+
+
+        /* Timeline mobile responsiveness */
         @media screen and (max-width: 767px) {
             .timeline-container::after { left: 10px; }
             .timeline-dot { left: 10px; }
-            /* Adjusted timeline-content to use the whole width and added necessary padding */
             .timeline-content { 
                 width: 100% !important; 
                 padding-left: 40px !important; 
                 padding-right: 0 !important; 
             } 
-            /* Reversed timeline content direction to ensure mobile readability */
-            .md-flex { display: flex; flex-direction: column !important; }
-            .md-flex-reverse { flex-direction: column !important; }
-
-            .md-w-1-2 { width: 100% !important; }
-            .md-pr-8, .md-pl-8 { padding: 0 !important; }
+            
+            /* Force flex column for mobile */
+            .md-flex { 
+                display: flex !important; 
+                flex-direction: column !important; 
+            }
+            .md-flex-reverse { 
+                flex-direction: column !important; 
+            }
+            
+            .md-w-1-2 { 
+                width: 100% !important; 
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+            .md-pr-8, .md-pl-8 { 
+                padding: 0 !important; 
+            }
             
             .timeline-image-desktop { display: none; }
-            .timeline-image-mobile { display: block !important; margin-top: 1rem; } /* Show mobile image */
+            .timeline-image-mobile { 
+                display: block !important; 
+                margin-top: 1rem; 
+                width: 100%;
+            }
             
-            /* Footer Responsive Fixes: Center Alignment for Brand Block on Mobile */
+            /* Footer adjustments */
             .footer-container {
                 grid-template-columns: 1fr;
                 row-gap: 3rem;
@@ -431,12 +636,12 @@
             }
             
             .footer-brand {
-                align-items: center; /* Center align on mobile */
+                align-items: center;
                 text-align: center;
-                justify-content: center;
             }
+            
             .footer-brand-text {
-                text-align: center; /* Center align text on mobile */
+                text-align: center;
             }
             
             .footer-socials {
@@ -458,13 +663,13 @@
                 margin-top: var(--mb3);
             }
         }
-        @media screen and (min-width: 768px) {
-            .timeline-image-mobile { display: none; }
-            .md-flex-reverse { flex-direction: row-reverse; } /* Maintain desktop structure */
-        }
-
-
-
+        
+        
+     
+        
+        
+        
+        
 
         /* --- Loader Styles --- */
         @keyframes fadeInUp {
@@ -472,251 +677,208 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-		
-/* Page loader container with black background */
-  .page-loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.3s ease;
-  }
-
-  /* Added text header */
-  .loader-header {
-    color: white;
-    font-size: 24px;
-    font-family: Arial, sans-serif;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-
-  /* Your progress bar - unchanged */
-  .progress {
-    width: 272.8px;
-    height: 41.7px;
-    border-radius: 28.8px;
-    color: #ff5011;
-    background-color: #000;
-    border: 2.9px solid;
-    position: relative;
-  }
-
-  .progress::before {
-    content: "";
-    position: absolute;
-    margin: 2.9px;
-    inset: 0 100% 0 0;
-    border-radius: inherit;
-    background: currentColor;
-    animation: progress-pf82op 1.5s forwards;
-  }
-
-  @keyframes progress-pf82op {
-    100% {
-      inset: 0;
-    }
-  }
-
-  /* Hide transition */
-  .page-loader.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-
-
-
-
-      /* Desktop: Ensure correct visibility when not mobile */
-        @media screen and (min-width: 981px) {
-            #nav-menu { display: flex !important; }
-            .nav-cta.desktop-cta-only { display: block !important; }
+        /* Page loader container with black background */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
         }
 
+        /* Added text header */
+        .loader-header {
+            color: white;
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
+        /* Your progress bar - unchanged */
+        .progress {
+            width: 272.8px;
+            height: 41.7px;
+            border-radius: 28.8px;
+            color: #ff5011;
+            background-color: #000;
+            border: 2.9px solid;
+            position: relative;
+        }
 
+        .progress::before {
+            content: "";
+            position: absolute;
+            margin: 2.9px;
+            inset: 0 100% 0 0;
+            border-radius: inherit;
+            background: currentColor;
+            animation: progress-pf82op 1.5s forwards;
+        }
 
+        @keyframes progress-pf82op {
+            100% {
+                inset: 0;
+            }
+        }
 
+        /* Hide transition */
+        .page-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
 
-/* Create snowflakes using pseudo-elements */
-/* Base snowflake layer with blurry effects */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-  background-image: 
-    /* Large blurry snowflakes */
-    radial-gradient(8px 8px at 10% 20%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.3) 70%, transparent 100%),
-    radial-gradient(12px 12px at 20% 30%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.2) 60%, transparent 100%),
-    radial-gradient(6px 6px at 30% 10%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.25) 80%, transparent 100%),
-    radial-gradient(10px 10px at 40% 40%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.15) 75%, transparent 100%),
-    radial-gradient(14px 14px at 50% 60%, rgba(255, 255, 255, 0.55) 30%, rgba(255, 255, 255, 0.2) 65%, transparent 100%),
-    radial-gradient(7px 7px at 60% 80%, rgba(255, 255, 255, 0.65) 45%, rgba(255, 255, 255, 0.3) 85%, transparent 100%),
-    radial-gradient(9px 9px at 70% 50%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.18) 70%, transparent 100%),
-    radial-gradient(11px 11px at 80% 20%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.22) 75%, transparent 100%),
-    radial-gradient(5px 5px at 90% 70%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.35) 90%, transparent 100%),
-    radial-gradient(15px 15px at 15% 90%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.12) 55%, transparent 100%),
-    
-    /* Extra blurry medium snowflakes */
-    radial-gradient(4px 4px at 25% 45%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
-    radial-gradient(6px 6px at 75% 35%, rgba(255, 255, 255, 0.7) 15%, rgba(255, 255, 255, 0.05) 85%, transparent 100%),
-    radial-gradient(3px 3px at 45% 75%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
-    radial-gradient(8px 8px at 85% 65%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.08) 80%, transparent 100%);
-  
-  background-repeat: no-repeat;
-  animation: snowfall 15s linear infinite;
-  filter: blur(0.5px); /* Slight overall blur for softness */
-}
+        /* Snowflake effects */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: 
+                radial-gradient(8px 8px at 10% 20%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.3) 70%, transparent 100%),
+                radial-gradient(12px 12px at 20% 30%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.2) 60%, transparent 100%),
+                radial-gradient(6px 6px at 30% 10%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.25) 80%, transparent 100%),
+                radial-gradient(10px 10px at 40% 40%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.15) 75%, transparent 100%),
+                radial-gradient(14px 14px at 50% 60%, rgba(255, 255, 255, 0.55) 30%, rgba(255, 255, 255, 0.2) 65%, transparent 100%),
+                radial-gradient(7px 7px at 60% 80%, rgba(255, 255, 255, 0.65) 45%, rgba(255, 255, 255, 0.3) 85%, transparent 100%),
+                radial-gradient(9px 9px at 70% 50%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.18) 70%, transparent 100%),
+                radial-gradient(11px 11px at 80% 20%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.22) 75%, transparent 100%),
+                radial-gradient(5px 5px at 90% 70%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.35) 90%, transparent 100%),
+                radial-gradient(15px 15px at 15% 90%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.12) 55%, transparent 100%),
+                radial-gradient(4px 4px at 25% 45%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
+                radial-gradient(6px 6px at 75% 35%, rgba(255, 255, 255, 0.7) 15%, rgba(255, 255, 255, 0.05) 85%, transparent 100%),
+                radial-gradient(3px 3px at 45% 75%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
+                radial-gradient(8px 8px at 85% 65%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.08) 80%, transparent 100%);
+            
+            background-repeat: no-repeat;
+            animation: snowfall 15s linear infinite;
+            filter: blur(0.5px);
+        }
 
-/* Medium blurry snowflakes layer */
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9998;
-  background-image: 
-    /* Medium blurry snowflakes */
-    radial-gradient(4px 4px at 5% 15%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
-    radial-gradient(7px 7px at 25% 35%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.08) 80%, transparent 100%),
-    radial-gradient(3px 3px at 35% 5%, rgba(255, 255, 255, 0.6) 45%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
-    radial-gradient(5px 5px at 45% 45%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.05) 70%, transparent 100%),
-    radial-gradient(6px 6px at 55% 65%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.1) 75%, transparent 100%),
-    radial-gradient(3.5px 3.5px at 65% 85%, rgba(255, 255, 255, 0.55) 40%, rgba(255, 255, 255, 0.12) 85%, transparent 100%),
-    radial-gradient(4.5px 4.5px at 85% 25%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.06) 65%, transparent 100%),
-    radial-gradient(2.5px 2.5px at 95% 55%, rgba(255, 255, 255, 0.65) 50%, rgba(255, 255, 255, 0.2) 95%, transparent 100%),
-    radial-gradient(8px 8px at 15% 75%, rgba(255, 255, 255, 0.25) 20%, rgba(255, 255, 255, 0.04) 60%, transparent 100%);
-  
-  background-repeat: no-repeat;
-  animation: snowfall 20s linear infinite;
-  filter: blur(0.8px); /* More blur for background layer */
-  opacity: 0.8;
-}
+        /* Medium blurry snowflakes layer */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            background-image: 
+                radial-gradient(4px 4px at 5% 15%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
+                radial-gradient(7px 7px at 25% 35%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.08) 80%, transparent 100%),
+                radial-gradient(3px 3px at 35% 5%, rgba(255, 255, 255, 0.6) 45%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
+                radial-gradient(5px 5px at 45% 45%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.05) 70%, transparent 100%),
+                radial-gradient(6px 6px at 55% 65%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.1) 75%, transparent 100%),
+                radial-gradient(3.5px 3.5px at 65% 85%, rgba(255, 255, 255, 0.55) 40%, rgba(255, 255, 255, 0.12) 85%, transparent 100%),
+                radial-gradient(4.5px 4.5px at 85% 25%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.06) 65%, transparent 100%),
+                radial-gradient(2.5px 2.5px at 95% 55%, rgba(255, 255, 255, 0.65) 50%, rgba(255, 255, 255, 0.2) 95%, transparent 100%),
+                radial-gradient(8px 8px at 15% 75%, rgba(255, 255, 255, 0.25) 20%, rgba(255, 255, 255, 0.04) 60%, transparent 100%);
+            
+            background-repeat: no-repeat;
+            animation: snowfall 20s linear infinite;
+            filter: blur(0.8px);
+            opacity: 0.8;
+        }
 
-/* Additional layer for extra blurry small snowflakes */
-.snowflakes-blurry {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9997;
-  background-image: 
-    /* Very blurry small snowflakes */
-    radial-gradient(2px 2px at 12% 28%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0.05) 100%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 32% 18%, rgba(255, 255, 255, 0.5) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%),
-    radial-gradient(2.5px 2.5px at 48% 52%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.03) 100%, transparent 100%),
-    radial-gradient(1px 1px at 68% 72%, rgba(255, 255, 255, 0.6) 80%, rgba(255, 255, 255, 0.15) 100%, transparent 100%),
-    radial-gradient(3px 3px at 82% 38%, rgba(255, 255, 255, 0.35) 40%, rgba(255, 255, 255, 0.07) 100%, transparent 100%),
-    radial-gradient(1.8px 1.8px at 22% 88%, rgba(255, 255, 255, 0.45) 65%, rgba(255, 255, 255, 0.09) 100%, transparent 100%),
-    radial-gradient(2.2px 2.2px at 58% 12%, rgba(255, 255, 255, 0.4) 55%, rgba(255, 255, 255, 0.06) 100%, transparent 100%),
-    radial-gradient(0.8px 0.8px at 88% 68%, rgba(255, 255, 255, 0.7) 85%, rgba(255, 255, 255, 0.2) 100%, transparent 100%);
-  
-  background-repeat: no-repeat;
-  animation: snowfall 25s linear infinite;
-  filter: blur(1.2px); /* Maximum blur for distant effect */
-  opacity: 0.6;
-}
+        /* Additional layer for extra blurry small snowflakes */
+        .snowflakes-blurry {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9997;
+            background-image: 
+                radial-gradient(2px 2px at 12% 28%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0.05) 100%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 32% 18%, rgba(255, 255, 255, 0.5) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%),
+                radial-gradient(2.5px 2.5px at 48% 52%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.03) 100%, transparent 100%),
+                radial-gradient(1px 1px at 68% 72%, rgba(255, 255, 255, 0.6) 80%, rgba(255, 255, 255, 0.15) 100%, transparent 100%),
+                radial-gradient(3px 3px at 82% 38%, rgba(255, 255, 255, 0.35) 40%, rgba(255, 255, 255, 0.07) 100%, transparent 100%),
+                radial-gradient(1.8px 1.8px at 22% 88%, rgba(255, 255, 255, 0.45) 65%, rgba(255, 255, 255, 0.09) 100%, transparent 100%),
+                radial-gradient(2.2px 2.2px at 58% 12%, rgba(255, 255, 255, 0.4) 55%, rgba(255, 255, 255, 0.06) 100%, transparent 100%),
+                radial-gradient(0.8px 0.8px at 88% 68%, rgba(255, 255, 255, 0.7) 85%, rgba(255, 255, 255, 0.2) 100%, transparent 100%);
+            
+            background-repeat: no-repeat;
+            animation: snowfall 25s linear infinite;
+            filter: blur(1.2px);
+            opacity: 0.6;
+        }
 
-/* Enhanced snowfall animation with slight horizontal movement */
-@keyframes snowfall {
-  0% {
-    transform: translateY(-100%) translateX(0);
-  }
-  25% {
-    transform: translateY(-50%) translateX(5px);
-  }
-  50% {
-    transform: translateY(0%) translateX(0);
-  }
-  75% {
-    transform: translateY(50%) translateX(-5px);
-  }
-  100% {
-    transform: translateY(100vh) translateX(0);
-  }
-}
+        /* Enhanced snowfall animation with slight horizontal movement */
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-100%) translateX(0);
+            }
+            25% {
+                transform: translateY(-50%) translateX(5px);
+            }
+            50% {
+                transform: translateY(0%) translateX(0);
+            }
+            75% {
+                transform: translateY(50%) translateX(-5px);
+            }
+            100% {
+                transform: translateY(100vh) translateX(0);
+            }
+        }
 
-/* Alternative animation for some randomness */
-@keyframes snowfall-alt {
-  0% {
-    transform: translateY(-100%) translateX(10px);
-  }
-  50% {
-    transform: translateY(0%) translateX(-10px);
-  }
-  100% {
-    transform: translateY(100vh) translateX(10px);
-  }
-}
+        /* Alternative animation for some randomness */
+        @keyframes snowfall-alt {
+            0% {
+                transform: translateY(-100%) translateX(10px);
+            }
+            50% {
+                transform: translateY(0%) translateX(-10px);
+            }
+            100% {
+                transform: translateY(100vh) translateX(10px);
+            }
+        }
+    </style>
 
+    <!-- =========================== -->
+    <!-- SECTION 10: PAGE LOADER SCRIPT -->
+    <!-- =========================== -->
+    <script>
+        // --- Page Loader Logic ---
+        function showLoader() {
+            const loader = document.createElement('div');
+            loader.className = 'page-loader';
+            loader.innerHTML = `
+                <div class="loader-header">Wait for it...</div>
+                <div class="progress"></div>
+            `;
+            document.body.appendChild(loader);
+            return loader;
+        }
 
+        function initLoader() {
+            const loader = showLoader();
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                setTimeout(() => loader.remove(), 300);
+            }, 1500);
+        }
 
-
-
-
-
-
-
-
-
-		
-
-    
-  </style>
-
-<!-- =========================== -->
-<!-- SECTION 10: PAGE LOADER SCRIPT -->
-<!-- =========================== -->
-<script>
-    // --- Page Loader Logic ---
-    function showLoader() {
-        const loader = document.createElement('div');
-        loader.className = 'page-loader';
-        loader.innerHTML = `
-            <div class="loader-header">Wait for it...</div>
-            <div class="progress"></div>
-        `;
-        document.body.appendChild(loader);
-        return loader;
-    }
-
-    function initLoader() {
-        const loader = showLoader();
-        setTimeout(() => {
-            loader.classList.add('hidden');
-            setTimeout(() => loader.remove(), 300);
-        }, 1500);
-    }
-
-    document.addEventListener('DOMContentLoaded', initLoader);
-</script>
-
-
-
-
-
-	
+        document.addEventListener('DOMContentLoaded', initLoader);
+    </script>
 </head>
 <body>
-
 
     <!-- =========================== -->
     <!-- SECTION 11: NAVIGATION BAR HTML -->
@@ -745,7 +907,6 @@ body::after {
                     <a href="#building-ai-brain" class="submenu-link"><i class="fa-solid fa-database"></i> Building Your AI Brain</a>
                     <a href="#autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
                     <a href="/5-security-privacy-compliance" class="submenu-link"><i class="fa-solid fa-shield"></i> Security, Privacy & Compliance</a>
-                
                 </div>
             </div>
             
@@ -759,12 +920,7 @@ body::after {
             <a href="/login" class="nav-cta mobile-cta-only">MEMBER LOGIN</a>
         </div>
     </nav>
-    
 
-
-
-
-	
     <main>
         <header class="page-header">
             <h1><span>Milestones</span> of Human Transformation</h1>
@@ -991,12 +1147,7 @@ body::after {
 
         </div>
 
-
-
-
-		
-        
-        <!-- Milestone Legend (Used to be .legend-footer) -->
+        <!-- Milestone Legend -->
         <section id="timeline-legend">
             <h3>Milestone Legend</h3>
             <div class="legend-items">
@@ -1017,16 +1168,10 @@ body::after {
 
     </main>
     
-
-
-
-
-	
-    
     <!-- Standard AIM Footer -->
-	<footer class="footer">
+    <footer class="footer">
         <div class="footer-bg">
-            <div class="footer-container container"> <!-- Added container class -->
+            <div class="footer-container container">
                 <!-- Logo/Brand Block -->
                 <div class="footer-brand">
                     <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="Project Freedom Logo" class="footer-logo">
@@ -1035,13 +1180,13 @@ body::after {
                         <span class="footer-subtitle">AI Mastery Program</span>
                     </div>
                 </div>
-					
-                <!-- Footer Links (List style set to none in CSS) -->
+                    
+                <!-- Footer Links -->
                 <ul class="footer-links">
                     <li><a href="/" class="footer-links">Home</a></li>
                     <li><a href="/about" class="footer-links">About</a></li>
                     <li><a href="/courses" class="footer-links">Courses</a></li>
-					<li><a href="/pricing" class="footer-links">Pricing</a></li>
+                    <li><a href="/pricing" class="footer-links">Pricing</a></li>
                     <li><a href="/resources" class="footer-links">Resources</a></li>
                     <li><a href="/contact" class="footer-links">Contact</a></li>
                 </ul>
@@ -1066,13 +1211,9 @@ body::after {
         </div>
     </footer>
 
-
-
-
-
-	
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            
             // --- Timeline Scroll Animation ---
             const timelineItems = document.querySelectorAll('.timeline-item');
             const observer = new IntersectionObserver(entries => {
@@ -1087,8 +1228,6 @@ body::after {
             timelineItems.forEach(item => {
                 observer.observe(item);
             });
-            
-
 
             // --- Navigation Dropdown Logic (Desktop/Mobile Submenu) ---
             const coursesLink = document.getElementById('courses-link');
@@ -1174,8 +1313,6 @@ body::after {
                 });
             }
 
-
-            
             // Handle window resize
             window.addEventListener('resize', function() {
                 const isMobile = window.innerWidth <= 980;
@@ -1194,68 +1331,55 @@ body::after {
                     submenu.classList.remove('active');
                 }
             });
-            
+        });
     </script>
 
-
-
-
-
-
-<!-- Widget BACK-TO-TOP -->
-<script>
-// Create Back-to-Top Button Dynamically
-document.addEventListener("DOMContentLoaded", function () {
-    // Create the button container
-    const backToTop = document.createElement("div");
-    backToTop.id = "back-to-top";
-    backToTop.style.position = "fixed";
-    backToTop.style.bottom = "20px";
-    backToTop.style.right = "20px";
-    backToTop.style.display = "none";
-    backToTop.style.cursor = "pointer";
-    backToTop.style.zIndex = "9999";
-
-    // Create the image inside the button
-    const backToTopImg = document.createElement("img");
-    backToTopImg.src = "https://bucket.mlcdn.com/a/3336/3336910/images/972c5065cffe83955d5322557dcdce28eca170e5.png";
-    backToTopImg.alt = "Volver arriba";
-    backToTopImg.style.width = "40px";
-    backToTopImg.style.height = "40px";
-
-    // Append image to the button
-    backToTop.appendChild(backToTopImg);
-
-    // Append button to the body
-    document.body.appendChild(backToTop);
-
-    // Scroll Event Listener
-    window.addEventListener("scroll", function () {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            backToTop.style.display = "block";
-        } else {
+    <!-- Widget BACK-TO-TOP -->
+    <script>
+        // Create Back-to-Top Button Dynamically
+        document.addEventListener("DOMContentLoaded", function () {
+            // Create the button container
+            const backToTop = document.createElement("div");
+            backToTop.id = "back-to-top";
+            backToTop.style.position = "fixed";
+            backToTop.style.bottom = "20px";
+            backToTop.style.right = "20px";
             backToTop.style.display = "none";
-        }
-    });
+            backToTop.style.cursor = "pointer";
+            backToTop.style.zIndex = "9999";
 
-    // Click Event for Scrolling to Top
-    backToTop.addEventListener("click", function () {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
+            // Create the image inside the button
+            const backToTopImg = document.createElement("img");
+            backToTopImg.src = "https://bucket.mlcdn.com/a/3336/3336910/images/972c5065cffe83955d5322557dcdce28eca170e5.png";
+            backToTopImg.alt = "Volver arriba";
+            backToTopImg.style.width = "40px";
+            backToTopImg.style.height = "40px";
+
+            // Append image to the button
+            backToTop.appendChild(backToTopImg);
+
+            // Append button to the body
+            document.body.appendChild(backToTop);
+
+            // Scroll Event Listener
+            window.addEventListener("scroll", function () {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    backToTop.style.display = "block";
+                } else {
+                    backToTop.style.display = "none";
+                }
+            });
+
+            // Click Event for Scrolling to Top
+            backToTop.addEventListener("click", function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
         });
-    });
-});
-</script>
-<!-- End Widget BACK-TO-TOP -->
+    </script>
+    <!-- End Widget BACK-TO-TOP -->
 
-
-
-
-
-
-
-
-	
 </body>
 </html>
