@@ -344,7 +344,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: #000;
+            background: #0d0d0d;
             z-index: 1001;
             flex-direction: column;
             justify-content: flex-start;
@@ -411,41 +411,39 @@
             border-radius: 0;
         }
 
-        .submenu-courses.active {
-            display: flex;
-            opacity: 1;
-            visibility: visible;
-            max-height: 400px;
-            padding: 0;
-            margin-top: 0.5rem;
-        }
+            .submenu-courses.active { 
+                display: flex;
+                opacity: 1;
+                visibility: visible;
+                max-height: 500px;
+                margin-top: 0.5rem; 
+                background: rgba(255, 255, 255, 0.03);
+                border-radius: 8px;
+            }
+            
 
-        /* MODIFIED: Submenu Links Mobile Styles */
-        .submenu-courses .submenu-link {
-            font-size: 1.1rem;
-            /* Increased left padding for indentation, right padding for safe zone */
-            padding: 0.8rem 1rem 0.8rem 2.5rem;
-            justify-content: flex-start;
-            width: 100%;
-            text-align: left;
-            margin: 0;
-            box-sizing: border-box;
-        }
+            .submenu-courses .submenu-link {
+                font-size: 1.1rem;
+                padding: 0.8rem 1rem 0.8rem 2rem;
+                justify-content: flex-start; 
+                width: 100%;
+                text-align: left;
+                margin: 0;
+            }
+        
 
-        /* Mobile CTA button */
-        .nav-cta.mobile-cta-only {
-            padding: 0.8rem 2rem;
-            width: 100%; /* Changed to full width */
-            /* MODIFIED: Removed max-width constraint and forced single line */
-            max-width: none;
-            white-space: nowrap;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-top: 1rem;
-            display: block !important;
-            align-self: center;
-            text-align: center;
-        }
+            /* Mobile CTA button */
+            .nav-cta.mobile-cta-only {
+                padding: 0.8rem 2rem; 
+                width: 100%;
+                max-width: none;
+                white-space: nowrap;
+                font-size: 1.2rem; 
+                font-weight: 700;
+                margin-top: 1rem; 
+                display: block !important; 
+                text-align: center;
+            }
 
         /* Hide desktop items on mobile */
         .nav-cta.desktop-cta-only,
