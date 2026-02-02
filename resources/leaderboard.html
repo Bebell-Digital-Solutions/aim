@@ -1257,64 +1257,108 @@
             if (pageLoader) pageLoader.classList.add('hidden');
         }, 2000);
 
-        // --- Navigation Variables ---
-        const coursesLink = document.getElementById('courses-link');
-        const coursesSubmenu = document.getElementById('courses-submenu');
-        const navBar = document.getElementById('nav-bar');
-        const mobileToggle = document.getElementById('mobile-menu-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        const toggleIcon = document.getElementById('toggle-icon');
+        // --- Navigation Dropdown Logic (Desktop/Mobile Submenu) ---
+            const coursesLink = document.getElementById('courses-link');
+            const submenu = document.getElementById('courses-submenu');
+            const navBar = document.getElementById('nav-bar');
 
-        // --- Dropdown Menu Click Logic (Courses Submenu) ---
-        coursesLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            coursesSubmenu.classList.toggle('active');
-        });
+            if (coursesLink && submenu && navBar) {
+                // Toggle visibility on click
+                coursesLink.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    const isMobile = window.innerWidth <= 980;
+                    
+                    if (isMobile) {
+                        submenu.classList.toggle('active');
+                    } else {
+                        submenu.classList.toggle('active');
+                    }
+                    
+                    e.stopPropagation(); 
+                });
 
-        // --- Mobile Menu Toggle Logic ---
-        mobileToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isOpening = !navMenu.classList.contains('mobile-open');
-            
-            // Toggle mobile menu
-            navMenu.classList.toggle('mobile-open', isOpening);
-            
-            // Toggle icon
-            toggleIcon.classList.toggle('fa-bars', !isOpening);
-            toggleIcon.classList.toggle('fa-xmark', isOpening);
-            
-            // Toggle body overflow
-            document.body.style.overflow = isOpening ? 'hidden' : '';
-            
-            // If opening mobile menu, close submenu by default
-            if (isOpening) {
-                coursesSubmenu.classList.remove('active');
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!navBar.contains(e.target)) {
+                        submenu.classList.remove('active');
+                    }
+                });
+
+                // Prevent clicks inside submenu from closing it
+                submenu.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
             }
-        });
 
-        // --- Close menus when clicking outside ---
-        document.addEventListener('click', (e) => {
-            // Close courses submenu if click is outside
-            if (coursesSubmenu.classList.contains('active') && 
-                !coursesLink.contains(e.target) && 
-                !coursesSubmenu.contains(e.target)) {
-                coursesSubmenu.classList.remove('active');
-            }
-            
-            // Close mobile menu if click is outside nav bar (only when mobile menu is open)
-            if (navMenu.classList.contains('mobile-open') && 
-                !navBar.contains(e.target)) {
-                navMenu.classList.remove('mobile-open');
-                toggleIcon.classList.remove('fa-xmark');
-                toggleIcon.classList.add('fa-bars');
-                document.body.style.overflow = '';
-            }
-        });
+            // --- Mobile Menu Toggle Logic (Hamburger Icon) ---
+            const mobileToggle = document.getElementById('mobile-menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const toggleIcon = document.getElementById('toggle-icon');
 
-        // Prevent clicks inside submenu from closing it
-        coursesSubmenu.addEventListener('click', (e) => {
-            e.stopPropagation();
+            if (mobileToggle && navMenu && toggleIcon) {
+                mobileToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    navMenu.classList.toggle('mobile-open');
+                    
+                    if (navMenu.classList.contains('mobile-open')) {
+                        toggleIcon.classList.remove('fa-bars');
+                        toggleIcon.classList.add('fa-xmark');
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        toggleIcon.classList.remove('fa-xmark');
+                        toggleIcon.classList.add('fa-bars');
+                        document.body.style.overflow = 'auto';
+                        if (submenu) submenu.classList.remove('active');
+                    }
+                });
+                
+                // Close mobile menu when clicking links
+                navMenu.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 980) {
+                            if (!link.classList.contains('submenu-link') && link.id !== 'courses-link') {
+                                navMenu.classList.remove('mobile-open');
+                                toggleIcon.classList.remove('fa-xmark');
+                                toggleIcon.classList.add('fa-bars');
+                                document.body.style.overflow = 'auto';
+                            }
+                        }
+                    });
+                });
+                
+                // Close menu when clicking outside on mobile
+                document.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 980 &&
+                        navMenu.classList.contains('mobile-open') &&
+                        !navMenu.contains(e.target) && 
+                        e.target !== mobileToggle) {
+                        navMenu.classList.remove('mobile-open');
+                        toggleIcon.classList.remove('fa-xmark');
+                        toggleIcon.classList.add('fa-bars');
+                        document.body.style.overflow = 'auto';
+                        if (submenu) submenu.classList.remove('active');
+                    }
+                });
+            }
+
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                const isMobile = window.innerWidth <= 980;
+                
+                if (!isMobile && navMenu && navMenu.classList.contains('mobile-open')) {
+                    navMenu.classList.remove('mobile-open');
+                    if (toggleIcon) {
+                        toggleIcon.classList.remove('fa-xmark');
+                        toggleIcon.classList.add('fa-bars');
+                    }
+                    document.body.style.overflow = 'auto';
+                }
+                
+                // Always close submenu on resize
+                if (submenu) {
+                    submenu.classList.remove('active');
+                }
+            });
         });
 
         // --- Leaderboard Specific Logic ---
