@@ -1,402 +1,171 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIM Bootcamp: Pricing Plans - AIM™</title>
-    
-    <!-- Import Inter font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-    
-    <!-- Icons (Font Awesome) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Pricing Plans | Molt Academy</title>
+    <!-- Pricing Meta Description -->
+    <meta name="description" content="Unlock your full potential with our comprehensive AI courses. Choose the plan that best fits your learning journey at Molt Academy.">
 
     <!-- Favicon -->
-    <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/c6f729e3f2ce7e2bc59bf6037f6fe0f491d94819.png">
-  
+    <link rel="icon" href="https://bucket.mlcdn.com/a/3336/3336910/images/4da194dd109512d48537351d7f294b8f0aa5961b.png">
+
+    <!-- Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+                        title: ['Stinger', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            primary: '#e8514b', // Lobster Red
+                            cyan: '#00e5cc',    // Cyan Accent
+                            dark: '#050810',    // Deep Navy Base
+                        }
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                        "fade-in-up": "fadeInUp 0.8s ease-out forwards",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                        fadeInUp: {
+                            "0%": { opacity: "0", transform: "translateY(20px)" },
+                            "100%": { opacity: "1", transform: "translateY(0)" },
+                        }
+                    },
+                }
+            }
+        }
+    </script>
+
     <style>
-        /* =========================== */
-        /* --- UNIFORM BRAND STYLES --- */
-        /* =========================== */
-        :root {
-            --skin-color: #ff5011;
-            --mirage-color: hsl(210, 10%, 23%);
-            --title-color: hsl(242, 8%, 98%);
-            --text-color: hsl(242, 8%, 80%);
-            --body-color: #0d0d0d;
-            --box-color: hsl(242, 14%, 12%);
-            --body-font: 'Inter', sans-serif;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-            --small-font-size: 0.95rem;
-            --h3-font-size: 1.25rem;
-            --smaller-font-size: 0.75rem;
-            --mb15: 0.75rem;
-            --mb3: 1.5rem;
+        /* Stinger Font (Bold only) */
+        @font-face {
+            font-family: 'Stinger';
+            src: url('fonts/StingerFitTrial-Bold.woff2') format('woff2'),
+                 url('fonts/StingerFitTrial-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+            ascent-override: 100%;  
+            descent-override: 20%;   
+            line-gap-override: 10%;  
         }
 
-        /* --- Base & Scrollbar --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        
+        /* Global Styles */
         body {
-            margin: 0;
-            font-family: var(--body-font);
-            background-color: var(--body-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding-top: 8rem; /* Space for fixed nav */
+            background-color: #050810;
+            color: #f0f4ff;
             overflow-x: hidden;
         }
-        
-        main { 
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-gap: 20px;
-        }
-        
-        img { max-width: 100%; height: auto; display: block; }
-        a { text-decoration: none; cursor: pointer; }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #333; }
-        ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
-        
-        /* Utility container */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1rem;
+        /* Selection Color */
+        ::selection {
+            background-color: rgba(232, 81, 75, 0.3);
+            color: #fecaca;
         }
 
-        /* =========================== */
-        /* --- UNIFORM COMPONENT STYLES --- */
-        /* =========================== */
-
-        /* 1. Loader */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .page-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.3s ease;
-        }
-
-        .loader-header {
-            color: white;
-            font-size: 24px;
-            font-family: Arial, sans-serif;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .progress {
-            width: 272.8px;
-            height: 41.7px;
-            border-radius: 28.8px;
-            color: #ff5011;
-            background-color: #000;
-            border: 2.9px solid;
-            position: relative;
-        }
-
-        .progress::before {
-            content: "";
-            position: absolute;
-            margin: 2.9px;
-            inset: 0 100% 0 0;
-            border-radius: inherit;
-            background: currentColor;
-            animation: progress-pf82op 1.5s forwards;
-        }
-
-        @keyframes progress-pf82op {
-            100% { inset: 0; }
-        }
-
-        .page-loader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        /* 2. Navigation Bar (Uniform) */
-        #nav-bar {
-            position: fixed; 
-            top: 2rem; 
-            left: 50%; 
-            transform: translateX(-50%);
-            background: rgba(25, 25, 25, 0.85); 
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--box-color); 
-            border-radius: 0.75rem;
-            padding: 0.75rem 1.5rem; 
-            display: flex; 
-            align-items: center;
-            max-width: 1100px; 
-            width: 90%; 
-            z-index: 1000;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        /* Glass Card Utility */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            background: rgba(10, 15, 26, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
             transition: all 0.3s ease;
         }
-        #nav-logo img { height: 35px; }
         
-        #nav-menu { 
-            display: flex; 
-            gap: 1.5rem; 
-            margin-left: auto; 
-            align-items: center; 
+        .glass-card:hover {
+            border-color: rgba(232, 81, 75, 0.3);
+            box-shadow: 0 0 20px rgba(232, 81, 75, 0.05);
         }
 
-        .nav-link { 
-            color: var(--text-color); 
-            transition: color 0.3s, transform 0.2s; 
-            font-weight: 500; 
-            position: relative;
-        }
-        .nav-link:hover { 
-            color: var(--skin-color); 
-            transform: translateY(-1px); 
+        /* Header Gradient Text */
+        .text-gradient-brand {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8514b 60%, #ff8f8a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .nav-cta {
-            background: linear-gradient(90deg, var(--skin-color), #d43a00);
-            color: var(--title-color); 
-            padding: 0.5rem 1rem; 
-            border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(255, 80, 17, 0.4); 
-            transition: transform 0.3s, box-shadow 0.3s;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-        .nav-cta:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 4px 8px rgba(255, 80, 17, 0.5); 
-        }
-        
-        .has-submenu { position: relative; }
-        
-        .submenu-courses {
-            position: absolute; 
-            top: 100%; 
-            left: 50%; 
-            transform: translateX(-50%);
-            background: var(--box-color); 
-            border-radius: 0.5rem; 
-            padding: 0.75rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
-            opacity: 0; 
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s, top 0.3s; 
-            width: 310px;
-            z-index: 1001;
-            margin-left: 0;
-            padding-left: 0.75rem;
-        }
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050810; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #e8514b; }
 
-        .submenu-courses.active { 
-            opacity: 1; 
-            visibility: visible;
-            top: calc(100% + 15px);
-        }
-        
-        .submenu-link { 
-            display: flex; 
-            align-items: center; 
-            gap: 0.75rem; 
-            color: var(--text-color); 
-            padding: 0.5rem; 
-            border-radius: 0.25rem; 
-            transition: background-color 0.3s, color 0.3s; 
-        }
-        .submenu-link:hover { 
-            background-color: rgba(255, 80, 17, 0.1); 
-            color: var(--skin-color); 
-        }
-        .submenu-link i { width: 15px; text-align: center; }
-
-        #mobile-menu-toggle { 
-            display: none; 
-            border: none;
-            background: transparent;
-            color: var(--skin-color);
-            font-size: 1.8rem;
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background: rgba(232, 81, 75, 0.2);
+            border: 1px solid rgba(232, 81, 75, 0.5);
+            border-radius: 50%;
             cursor: pointer;
-            margin-left: auto;
-        }
-        .nav-cta.mobile-cta-only { display: none; }
-        .nav-cta.desktop-cta-only { display: block; }
-
-
-
-        /* 4. Footer (Uniform) */
-        .footer { padding-top: 2rem; }
-        .footer-bg { background-color: var(--box-color); padding: 3rem 0 3.5rem; }
-        .footer-container { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 1.6rem; }
-        
-        .footer-title { font-size: var(--h3-font-size); margin-bottom: 0.25rem; color: var(--title-color); }
-        .footer-subtitle { font-size: var(--small-font-size); color: var(--title-color); }
-        
-        .footer-links { list-style: none; display: flex; justify-self: center; column-gap: 2rem; padding: 0; margin: 0; }
-        .footer-links a { color: var(--title-color); transition: color 0.3s; }
-        .footer-links a:hover { color: var(--skin-color); }
-        
-        .footer-socials { justify-self: flex-end; display: flex; align-items: center; gap: var(--mb15); }
-        .footer-social { font-size: 1.25rem; color: var(--title-color); transition: color 0.3s; }
-        .footer-social:hover { color: var(--skin-color); cursor: pointer; }
-        
-        .footer-copy { font-size: var(--smaller-font-size); text-align: center; margin-top: 4.5rem; }
-        .footer-copy a { color: var(--title-color); }
-        .footer-copy a:hover { color: var(--skin-color); }
-        
-        .footer-brand { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 0.5rem; }
-        .footer-brand-text { text-align: left; }
-        .footer-logo { width: 30px; height: auto; display: block; }
-        .footer-logo:hover { opacity: 0.8; transition: opacity 0.3s ease; }
-
-        /* =========================== */
-        /* --- PAGE SPECIFIC STYLES --- */
-        /* =========================== */
-        
-        /* Global Button Style */
-        .btn {
-            background: var(--skin-color);
-            color: var(--title-color);
-            padding: 0.8rem 1.5rem;
-            text-decoration: none;
-            border: 0;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(255, 80, 17, 0.4);
-        }
-
-        /* Top Container Layout */
-        .top-container {
-            display: grid;
-            grid-gap: 20px;
-            grid-template-areas:
-                'showcase showcase top-box-a'
-                'showcase showcase top-box-b';
-        }
-
-        /* Showcase */
-        .showcase {
-            grid-area: showcase;
-            min-height: 400px;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://ik.imagekit.io/bebell/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/Untitled%20design%20(1)%20(1).png?updatedAt=1766896311086');
-            background-size: cover;
-            background-position: center;
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            align-items: start;
+            display: none;
+            align-items: center;
             justify-content: center;
-            box-shadow: var(--shadow);
-            border-radius: 12px;
-            border: 1px solid var(--mirage-color);
+            transition: all 0.3s;
+            z-index: 50;
+            color: #e8514b;
         }
-        .showcase-banner { width: 250px; height: auto; margin-bottom: 0px; border-radius: 0px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); }
-        .showcase h1 { font-size: 3.5rem; margin-bottom: 0; color: var(--title-color); }
-        .showcase p { font-size: 1.2rem; margin-top: 0.5rem; margin-bottom: 1.5rem; color: var(--text-color); max-width: 500px; }
+        #back-to-top:hover {
+            background: #e8514b;
+            color: white;
+        }
+        #back-to-top::after {
+            content: '\f077';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+        }
 
-        /* Top Box */
-        .top-box {
-            background: var(--box-color);
-            display: grid;
-            align-items: center;
-            justify-items: center;
+        /* Primary Button Utility */
+        .btn-primary {
+            display: inline-block;
+            background-color: #e8514b;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(232, 81, 75, 0.25);
             text-align: center;
-            box-shadow: var(--shadow);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--mirage-color);
         }
-        .top-box h4 { font-size: 1.3rem; color: var(--title-color); }
-        .top-box .price {
-            font-size: 2.5rem;
-            color: var(--skin-color);
-            font-weight: 700;
-            position: relative; 
-            display: inline-block; 
-            padding-bottom: 5px; 
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(232, 81, 75, 0.4);
         }
-        .top-box .price::after {
-            content: '';
-            position: absolute;
-            left: 5%; 
-            bottom: 0;
-            width: 90%; 
-            height: 3px; 
-            background-color: var(--skin-color);
-            border-radius: 5px; 
-            transform: rotate(-1deg); 
-        }
-        .top-box p { color: var(--text-color); margin: 0.5rem 0; }
-        .top-box-a { grid-area: top-box-a; }
-        .top-box-b { grid-area: top-box-b; }
 
-        /* Boxes Section */
-        .boxes {
-            display: grid;
-            grid-gap: 20px;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        }
-        .box {
-            background: var(--box-color);
-            text-align: center;
-            padding: 1.5rem 2rem;
-            box-shadow: var(--shadow);
-            border-radius: 12px;
-            border: 1px solid var(--mirage-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .box:hover {
-            transform: translateY(-5px); 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 80, 17, 0.5);
-        }
-        .box h3 { color: var(--title-color); margin-top: 1rem; margin-bottom: 0.5rem; }
-        .box i { color: var(--skin-color); }
-
-        /* Info Section */
-        .info {
-            background: var(--box-color);
-            box-shadow: var(--shadow);
-            display: grid;
-            grid-gap: 30px;
-            grid-template-columns: 1fr 1fr;
-            padding: 3rem;
-            border-radius: 12px;
-            border: 1px solid var(--mirage-color);
-            align-items: center;
-        }
-        .info h2 { color: var(--title-color); font-size: 2rem; margin-bottom: 1rem; }
-        .info > div > p { margin-bottom: 2rem; }
-        
+        /* Video Wrapper */
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%; /* 16:9 */
             height: 0;
             overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            border-radius: 0.75rem;
+            border: 1px solid rgba(148, 163, 184, 0.1);
         }
         .video-wrapper iframe {
             position: absolute;
@@ -407,775 +176,248 @@
             border: none;
         }
 
-        /* Portfolio Carousel */
-        .portfolio-carousel {
-            background: var(--box-color);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--mirage-color);
-            box-shadow: var(--shadow);
-        }
-        .portfolio-carousel h2 { color: var(--title-color); text-align: center; margin-bottom: 2rem; font-size: 2rem; }
-        .carousel-container { position: relative; width: 100%; margin: 0 auto; overflow: hidden; border-radius: 8px; }
+        /* Carousel Overrides */
         .carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
         .carousel-slide { min-width: 100%; box-sizing: border-box; }
-        .carousel-slide img { width: 100%; display: block; }
         .carousel-button {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(13, 13, 13, 0.7);
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            padding: 0.5rem 1rem;
+            background: rgba(10, 15, 26, 0.8);
+            border: 1px solid rgba(232, 81, 75, 0.3);
+            color: #e8514b;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            border-radius: 5px;
             z-index: 10;
+            transition: all 0.3s ease;
         }
-        .prev-button { left: 10px; }
-        .next-button { right: 10px; }
+        .carousel-button:hover { background: #e8514b; color: white; }
+        .prev-button { left: 15px; }
+        .next-button { right: 15px; }
 
-        /* ====================================================== */
-        /* --- MOBILE LAYOUT (UPDATED TO 980px BREAKPOINT) --- */
-        /* ====================================================== */
-        @media screen and (max-width: 980px) {
-            body { 
-                padding-top: 6rem; /* Reduced spacing for mobile */
-            }
-            
-            /* 1. Mobile Navigation Bar (Fixed Top) */
-            #nav-bar {
-                padding: 0.5rem 1rem;
-                justify-content: space-between;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
-                width: 100%;
-                max-width: 100%;
-                top: 0;
-                left: 0;
-                transform: none; /* Reset transform */
-                border-radius: 0; /* Reset border radius */
-                border: none;
-                border-bottom: 1px solid rgba(255,255,255,0.05);
-            }
-            
-            #mobile-menu-toggle {
-                display: block;
-                position: relative;
-                z-index: 1002;
-            }
-            
-            /* Mobile Menu Overlay */
-            #nav-menu {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                background: var(--body-color); 
-                z-index: 1001; 
-                flex-direction: column;
-                justify-content: flex-start; 
-                align-items: center; 
-                gap: 1.5rem;
-                padding: 6rem 1.5rem 2rem; 
-                margin: 0;
-                overflow-y: auto;
-            }
-
-            #nav-menu.mobile-open {
-                display: flex;
-            }
-            
-            #nav-menu .nav-link,
-            #nav-menu .nav-item {
-                font-size: 1.5rem;
-                font-weight: 600;
-                color: var(--title-color);
-                padding: 0.5rem 0;
-                margin: 0;
-                width: 100%; 
-                text-align: center;
-            }
-            
-            #nav-menu .nav-item { margin: 0; padding: 0; }
-
-            #nav-menu .nav-link:hover {
-                color: var(--skin-color);
-                transform: none;
-            }
-            
-            /* Mobile Dropdown (Accordion Style) */
-            .has-submenu {
-                display: flex;
-                flex-direction: column;
-                align-items: center; 
-                width: 100%; 
-            }
-            
-            .submenu-courses {
-                position: static; 
-                width: 100%; 
-                background: transparent; 
-                box-shadow: none;
-                padding: 0; 
-                margin: 0; 
-                opacity: 0; 
-                visibility: hidden;
-                display: none;
-                max-height: 0;
-                overflow: hidden;
-                transition: opacity 0.3s, max-height 0.3s;
-                transform: none; 
-                flex-direction: column; 
-                align-items: flex-start; 
-                border-radius: 0;
-            }
-            
-            .submenu-courses.active { 
-                display: flex;
-                opacity: 1;
-                visibility: visible;
-                max-height: 500px;
-                margin-top: 0.5rem; 
-                background: rgba(255, 255, 255, 0.03);
-                border-radius: 8px;
-            }
-            
-            .submenu-courses .submenu-link {
-                font-size: 1.1rem;
-                padding: 0.8rem 1rem 0.8rem 2rem;
-                justify-content: flex-start; 
-                width: 100%;
-                text-align: left;
-                margin: 0;
-            }
-            
-            /* Mobile CTA button */
-            .nav-cta.mobile-cta-only {
-                padding: 0.8rem 2rem; 
-                width: 100%;
-                max-width: none;
-                white-space: nowrap;
-                font-size: 1.2rem; 
-                font-weight: 700;
-                margin-top: 1rem; 
-                display: block !important; 
-                text-align: center;
-            }
-            
-            /* Hide desktop items */
-            .nav-cta.desktop-cta-only { display: none !important; }
-            
-            /* Page Specific Layout Adjustments */
-            .top-container {
-                grid-template-areas:
-                    'showcase'
-                    'top-box-a'
-                    'top-box-b';
-            }
-            .showcase { padding: 2rem 1.5rem; }
-            .showcase h1 { font-size: 2.5rem; }
-            .info { grid-template-columns: 1fr; }
-            .info .btn { display: block; text-align: center; margin: 0 auto; }
-            
-            /* Footer Mobile Styles */
-            .footer-container {
-                grid-template-columns: 1fr;
-                row-gap: 3rem;
-                text-align: center;
-            }
-            
-            /* FIX: Centering footer elements on mobile */
-            .footer-brand {
-                align-items: center;
-                text-align: center;
-                justify-content: center;
-                justify-self: center;
-            }
-            .footer-brand-text { text-align: center; }
-            
-            .footer-socials {
-                justify-content: center;
-                justify-self: center; /* FIX: Centers icons on mobile */
-                display: flex;
-                gap: var(--mb15);
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                row-gap: 1.5rem;
-                justify-self: center;
-            }
-            .footer-bg { padding: 2rem 0 3rem; }
-            .footer-copy { margin-top: var(--mb3); }
+        /* Snow Effects (Winter Only) */
+        @keyframes snowfall {
+            0% { transform: translateY(-100%) translateX(0); }
+            50% { transform: translateY(0%) translateX(10px); }
+            100% { transform: translateY(100vh) translateX(0); }
         }
-        
-        /* Tablet intermediate state */
-        @media screen and (min-width: 768px) and (max-width: 980px) {
-             .top-container {
-                grid-template-areas:
-                    'showcase showcase'
-                    'top-box-a top-box-b';
-            }
+        .snowflakes-blurry {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40;
+            background-image: radial-gradient(4px 4px at 10% 20%, rgba(255, 255, 255, 0.4) 30%, transparent 100%),
+                              radial-gradient(6px 6px at 30% 10%, rgba(255, 255, 255, 0.3) 40%, transparent 100%),
+                              radial-gradient(5px 5px at 60% 80%, rgba(255, 255, 255, 0.5) 45%, transparent 100%),
+                              radial-gradient(7px 7px at 80% 20%, rgba(255, 255, 255, 0.4) 40%, transparent 100%),
+                              radial-gradient(3px 3px at 90% 70%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+            background-repeat: no-repeat; animation: snowfall 15s linear infinite; filter: blur(1px); opacity: 0.7;
         }
-
-        /* Desktop: Ensure correct visibility when not mobile */
-        @media screen and (min-width: 981px) {
-            #nav-menu { display: flex !important; }
-            .nav-cta.desktop-cta-only { display: block !important; }
-        }
-        
-        /* --- Snow Effects --- */
-
- /* Base snowflake layer with blurry effects */
-
-body::before {
-
-  content: "";
-
-  position: fixed;
-
-  top: 0;
-
-  left: 0;
-
-  width: 100%;
-
-  height: 100%;
-
-  pointer-events: none;
-
-  z-index: 9999;
-
-  background-image: 
-
-    /* Large blurry snowflakes */
-
-    radial-gradient(8px 8px at 10% 20%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.3) 70%, transparent 100%),
-
-    radial-gradient(12px 12px at 20% 30%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.2) 60%, transparent 100%),
-
-    radial-gradient(6px 6px at 30% 10%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.25) 80%, transparent 100%),
-
-    radial-gradient(10px 10px at 40% 40%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.15) 75%, transparent 100%),
-
-    radial-gradient(14px 14px at 50% 60%, rgba(255, 255, 255, 0.55) 30%, rgba(255, 255, 255, 0.2) 65%, transparent 100%),
-
-    radial-gradient(7px 7px at 60% 80%, rgba(255, 255, 255, 0.65) 45%, rgba(255, 255, 255, 0.3) 85%, transparent 100%),
-
-    radial-gradient(9px 9px at 70% 50%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.18) 70%, transparent 100%),
-
-    radial-gradient(11px 11px at 80% 20%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.22) 75%, transparent 100%),
-
-    radial-gradient(5px 5px at 90% 70%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.35) 90%, transparent 100%),
-
-    radial-gradient(15px 15px at 15% 90%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.12) 55%, transparent 100%),
-
-    
-
-    /* Extra blurry medium snowflakes */
-
-    radial-gradient(4px 4px at 25% 45%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
-
-    radial-gradient(6px 6px at 75% 35%, rgba(255, 255, 255, 0.7) 15%, rgba(255, 255, 255, 0.05) 85%, transparent 100%),
-
-    radial-gradient(3px 3px at 45% 75%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
-
-    radial-gradient(8px 8px at 85% 65%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.08) 80%, transparent 100%);
-
-  
-
-  background-repeat: no-repeat;
-
-  animation: snowfall 15s linear infinite;
-
-  filter: blur(0.5px); /* Slight overall blur for softness */
-
-}
-
-
-
-/* Medium blurry snowflakes layer */
-
-body::after {
-
-  content: "";
-
-  position: fixed;
-
-  top: 0;
-
-  left: 0;
-
-  width: 100%;
-
-  height: 100%;
-
-  pointer-events: none;
-
-  z-index: 9998;
-
-  background-image: 
-
-    /* Medium blurry snowflakes */
-
-    radial-gradient(4px 4px at 5% 15%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 90%, transparent 100%),
-
-    radial-gradient(7px 7px at 25% 35%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.08) 80%, transparent 100%),
-
-    radial-gradient(3px 3px at 35% 5%, rgba(255, 255, 255, 0.6) 45%, rgba(255, 255, 255, 0.15) 95%, transparent 100%),
-
-    radial-gradient(5px 5px at 45% 45%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.05) 70%, transparent 100%),
-
-    radial-gradient(6px 6px at 55% 65%, rgba(255, 255, 255, 0.45) 35%, rgba(255, 255, 255, 0.1) 75%, transparent 100%),
-
-    radial-gradient(3.5px 3.5px at 65% 85%, rgba(255, 255, 255, 0.55) 40%, rgba(255, 255, 255, 0.12) 85%, transparent 100%),
-
-    radial-gradient(4.5px 4.5px at 85% 25%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0.06) 65%, transparent 100%),
-
-    radial-gradient(2.5px 2.5px at 95% 55%, rgba(255, 255, 255, 0.65) 50%, rgba(255, 255, 255, 0.2) 95%, transparent 100%),
-
-    radial-gradient(8px 8px at 15% 75%, rgba(255, 255, 255, 0.25) 20%, rgba(255, 255, 255, 0.04) 60%, transparent 100%);
-
-  
-
-  background-repeat: no-repeat;
-
-  animation: snowfall 20s linear infinite;
-
-  filter: blur(0.8px); /* More blur for background layer */
-
-  opacity: 0.8;
-
-}
-
-
-
-/* Additional layer for extra blurry small snowflakes */
-
-.snowflakes-blurry {
-
-  position: fixed;
-
-  top: 0;
-
-  left: 0;
-
-  width: 100%;
-
-  height: 100%;
-
-  pointer-events: none;
-
-  z-index: 9997;
-
-  background-image: 
-
-    /* Very blurry small snowflakes */
-
-    radial-gradient(2px 2px at 12% 28%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0.05) 100%, transparent 100%),
-
-    radial-gradient(1.5px 1.5px at 32% 18%, rgba(255, 255, 255, 0.5) 70%, rgba(255, 255, 255, 0.1) 100%, transparent 100%),
-
-    radial-gradient(2.5px 2.5px at 48% 52%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.03) 100%, transparent 100%),
-
-    radial-gradient(1px 1px at 68% 72%, rgba(255, 255, 255, 0.6) 80%, rgba(255, 255, 255, 0.15) 100%, transparent 100%),
-
-    radial-gradient(3px 3px at 82% 38%, rgba(255, 255, 255, 0.35) 40%, rgba(255, 255, 255, 0.07) 100%, transparent 100%),
-
-    radial-gradient(1.8px 1.8px at 22% 88%, rgba(255, 255, 255, 0.45) 65%, rgba(255, 255, 255, 0.09) 100%, transparent 100%),
-
-    radial-gradient(2.2px 2.2px at 58% 12%, rgba(255, 255, 255, 0.4) 55%, rgba(255, 255, 255, 0.06) 100%, transparent 100%),
-
-    radial-gradient(0.8px 0.8px at 88% 68%, rgba(255, 255, 255, 0.7) 85%, rgba(255, 255, 255, 0.2) 100%, transparent 100%);
-
-  
-
-  background-repeat: no-repeat;
-
-  animation: snowfall 25s linear infinite;
-
-  filter: blur(1.2px); /* Maximum blur for distant effect */
-
-  opacity: 0.6;
-
-}
-
-
-
-/* Enhanced snowfall animation with slight horizontal movement */
-
-@keyframes snowfall {
-
-  0% {
-
-    transform: translateY(-100%) translateX(0);
-
-  }
-
-  25% {
-
-    transform: translateY(-50%) translateX(5px);
-
-  }
-
-  50% {
-
-    transform: translateY(0%) translateX(0);
-
-  }
-
-  75% {
-
-    transform: translateY(50%) translateX(-5px);
-
-  }
-
-  100% {
-
-    transform: translateY(100vh) translateX(0);
-
-  }
-
-}
-
-
-
-/* Alternative animation for some randomness */
-
-@keyframes snowfall-alt {
-
-  0% {
-
-    transform: translateY(-100%) translateX(10px);
-
-  }
-
-  50% {
-
-    transform: translateY(0%) translateX(-10px);
-
-  }
-
-  100% {
-
-    transform: translateY(100vh) translateX(10px);
-
-  }
-
-}
-
-       
-
-
-
-
-
-
-
-        
     </style>
 </head>
-<body>
+<body class="antialiased min-h-screen relative">
 
-    <!-- Page Loader -->
-    <div class="page-loader">
-        <div class="loader-header">Wait for it...</div>
-        <div class="progress"></div>
+    <!-- BACKGROUND AMBIENCE (Blob Animation) -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-primary/10 rounded-full blur-3xl animate-blob opacity-50"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-primary/10 rounded-full blur-3xl animate-blob opacity-40" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-80 h-80 bg-brand-primary/5 rounded-full blur-3xl animate-blob" style="animation-delay: 4s;"></div>
     </div>
-    
-    <!-- Navigation Bar (Header) -->
-    <nav id="nav-bar">
-        <a href="/" id="nav-logo">
-            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/b28800186bb16bf422fabd87ca9f369da73e62e9.png" alt="AIM Logo" />
-        </a>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="max-w-7xl mx-auto px-6 py-16 md:py-24">
         
-        <!-- MOBILE TOGGLE BUTTON -->
-        <button id="mobile-menu-toggle" aria-label="Open Menu">
-            <i class="fa-solid fa-bars" id="toggle-icon"></i>
-        </button>
-        
-        <div id="nav-menu">
-            <a href="/" class="nav-link">Home</a>
-            <a href="/about" class="nav-link">About</a>
+        <!-- Top Container: Hero + Pricing Cards -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 mb-16">
             
-            <!-- Courses Dropdown -->
-            <div class="nav-item has-submenu">
-                <a href="#" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
-                <div class="submenu-courses" id="courses-submenu">
-                    <a href="/courses#all" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
-                    <a href="/1-ai-foundation" class="submenu-link"><i class="fa-solid fa-cubes"></i> AI Foundation</a>
-                    <a href="/2-prompt-craftsmanship" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
-                    <a href="/3-building-ai-brain" class="submenu-link"><i class="fa-solid fa-brain"></i> Building Your AI Brain</a>
-                    <a href="/4-building-autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
-                    <a href="/5-security-privacy-compliance" class="submenu-link"><i class="fa-solid fa-shield"></i> Security, Privacy & Compliance</a>                            
+            <!-- Hero Showcase (Spans 2 columns on desktop) -->
+            <div class="lg:col-span-2 glass-card rounded-3xl overflow-hidden relative flex flex-col justify-center min-h-[400px] p-8 md:p-12 animate-fade-in-up">
+                <!-- Background Image Overlay inside the card -->
+                <div class="absolute inset-0 bg-[url('https://ik.imagekit.io/bebell/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/Untitled%20design%20(1)%20(1).png?updatedAt=1766896311086')] bg-cover bg-center opacity-30 mix-blend-luminosity pointer-events-none"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/90 to-brand-dark/40 pointer-events-none"></div>
+                
+                <div class="relative z-10 max-w-xl">
+                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/0d3b6b7bd23371ddc850164056f396686646fb37.png" alt="5 Star Rating Banner" class="w-48 md:w-56 mb-6 shadow-xl rounded-md">
+                    <h1 class="font-title text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight text-white">
+                        Join Molt Academy
+                    </h1>
+                    <p class="text-slate-300 text-lg mb-8 leading-relaxed font-light">
+                        Unlock your full potential with our comprehensive AI courses. Choose the plan that best fits your learning journey.
+                    </p>
+                    <a href="/aim-syllabus" target="_blank" class="btn-primary inline-flex items-center gap-2">
+                        <i class="fa-solid fa-download"></i> Download Syllabus
+                    </a>
                 </div>
             </div>
-            
-            <!-- Highlighted Pricing Link -->
-            <a href="/pricing-page" class="nav-link" style="color: var(--skin-color);">Pricing</a>
-            <a href="/contact" class="nav-link">Contact</a>
-            
-            <!-- DESKTOP CTA -->
-            <a href="/portal" class="nav-cta desktop-cta-only">MEMBER LOGIN</a>
-            
-            <!-- MOBILE CTA -->
-            <a href="/portal" class="nav-cta mobile-cta-only">MEMBER LOGIN</a>
-        </div>
-    </nav>
 
-    <main>
-        <!-- Top Container -->
-        <section class="top-container">
-            <header class="showcase">
-                <div class="showcase-banner">
-                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/0d3b6b7bd23371ddc850164056f396686646fb37.png" alt="5 Star Rating Banner">
+            <!-- Pricing Column (Stacks vertically on desktop) -->
+            <div class="flex flex-col gap-6 md:gap-8 lg:col-span-1 animate-fade-in-up" style="animation-delay: 0.2s;">
+                
+                <!-- Box A: Annual Access -->
+                <div class="glass-card p-8 rounded-3xl text-center flex flex-col justify-center flex-1 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-brand-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10">
+                        <h4 class="text-lg text-slate-300 font-medium mb-3 uppercase tracking-wider">Annual Access</h4>
+                        <div class="relative inline-block mb-4">
+                            <span class="text-5xl font-bold text-white">$150<span class="text-2xl text-slate-500 font-normal">/yr</span></span>
+                            <!-- Underline Accent -->
+                            <div class="absolute -bottom-2 left-0 w-full h-1 bg-brand-primary rounded-full -rotate-2 opacity-80"></div>
+                        </div>
+                        <p class="text-slate-400 mb-8 mt-2 text-sm leading-relaxed">Unlimited access to all foundational and advanced AI courses.</p>
+                        <a href="https://app.aimbootcamp.com/pay/Z1MDQLBQ" target="_blank" class="btn-primary w-full">Get Unlimited Access</a>
+                    </div>
                 </div>
-                <h1>AI Mastery Program</h1>
-                <p>Unlock your full potential with our comprehensive AI courses. Choose the plan that best fits your learning journey.</p>
-                <a href="/aim-syllabus" target="_blank" class="btn">Download Syllabus</a>
-            </header>
 
-            <div class="top-box top-box-a">
-                <h4>Annual Access</h4>
-                <p class="price">$150/yr</p>
-                <p>Unlimited access to all courses.</p>
-                <a href="https://app.aimbootcamp.com/pay/Z1MDQLBQ" target="_blank" class="btn">Get Unlimited Access</a>
-            </div>
-
-            <div class="top-box top-box-b">
-                <h4>Lifetime Pro</h4>
-                <p class="price">$499/ltd</p>
-                <p>One-time fee for lifetime access.</p>
-                <a href="https://app.aimbootcamp.com/pay/HEOUVWTH" target="_blank" class="btn">Get Lifetime Access</a>
+                <!-- Box B: Lifetime Pro -->
+                <div class="glass-card p-8 rounded-3xl text-center flex flex-col justify-center flex-1 relative overflow-hidden group border-brand-primary/20">
+                    <div class="absolute inset-0 bg-gradient-to-br from-brand-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <!-- Popular Badge -->
+                    <div class="absolute top-0 right-0 bg-brand-primary text-white text-xs font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">Best Value</div>
+                    
+                    <div class="relative z-10">
+                        <h4 class="text-lg text-slate-300 font-medium mb-3 uppercase tracking-wider">Lifetime Pro</h4>
+                        <div class="relative inline-block mb-4">
+                            <span class="text-5xl font-bold text-brand-primary">$499<span class="text-2xl text-brand-primary/50 font-normal">/ltd</span></span>
+                        </div>
+                        <p class="text-slate-400 mb-8 mt-2 text-sm leading-relaxed">One-time fee for lifetime access, updates, and community.</p>
+                        <a href="https://app.aimbootcamp.com/pay/HEOUVWTH" target="_blank" class="btn-primary w-full">Get Lifetime Access</a>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Boxes Section -->
-        <section class="boxes">
-            <div class="box">
-                <i class="fas fa-brain fa-3x"></i>
-                <h3>Expert-Led Courses</h3>
-                <p>Learn from industry leaders at the forefront of AI technology and application.</p>
+        <!-- Features Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div class="glass-card p-8 rounded-2xl text-center group">
+                <i class="fas fa-brain text-4xl text-brand-primary mb-5 group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(232,81,75,0.3)]"></i>
+                <h3 class="text-lg font-semibold text-slate-100 mb-3">Expert-Led Courses</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Learn from industry leaders at the forefront of AI technology and application.</p>
             </div>
-            <div class="box">
-                <i class="fas fa-book fa-3x"></i>
-                <h3>Pro Resources</h3>
-                <p>Gain access to exclusive guides, templates, and tools with our Lifetime plan.</p>
+            <div class="glass-card p-8 rounded-2xl text-center group">
+                <i class="fas fa-book text-4xl text-brand-primary mb-5 group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(232,81,75,0.3)]"></i>
+                <h3 class="text-lg font-semibold text-slate-100 mb-3">Pro Resources</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Gain access to exclusive guides, templates, and tools with our Lifetime plan.</p>
             </div>
-            <div class="box">
-                <i class="fas fa-sync-alt fa-3x"></i>
-                <h3>Lifetime Updates </h3>
-                <p>The world of AI is always evolving. Your course materials will be, too.</p>
+            <div class="glass-card p-8 rounded-2xl text-center group">
+                <i class="fas fa-sync-alt text-4xl text-brand-primary mb-5 group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(232,81,75,0.3)]"></i>
+                <h3 class="text-lg font-semibold text-slate-100 mb-3">Lifetime Updates</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">The world of AI is always evolving. Your course materials will be, too.</p>
             </div>
-            <div class="box">
-                <i class="fas fa-users fa-3x"></i>
-                <h3>Community Access</h3>
-                <p>Connect with fellow learners, share insights, and grow together.</p>
+            <div class="glass-card p-8 rounded-2xl text-center group">
+                <i class="fas fa-users text-4xl text-brand-primary mb-5 group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(232,81,75,0.3)]"></i>
+                <h3 class="text-lg font-semibold text-slate-100 mb-3">Community Access</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Connect with fellow learners, share insights, and grow together globally.</p>
             </div>
         </section>
 
-        <!-- Info Section -->
-        <section class="info">
-            <div class="video-wrapper">
-                <iframe 
-                    src="https://www.youtube.com/embed/yBe10HO1wu8?si=fv07vaETaV9G8XPe" 
-                    title="AI Course Introduction Video" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <div>
-                <h2>Master AI, Transform Your Career</h2>
-                <p>Our curriculum is designed to take you from foundational concepts to advanced applications. Learn practical skills that you can apply immediately to solve real-world problems and drive business innovation.</p>
-                <a href="/courses" class="btn">View Courses</a>
+        <!-- Video & Info Section -->
+        <section class="glass-card rounded-3xl p-6 md:p-10 mb-16 overflow-hidden relative">
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent to-brand-primary/5 pointer-events-none"></div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center relative z-10">
+                <div class="video-wrapper bg-black">
+                    <iframe 
+                        src="https://www.youtube.com/embed/yBe10HO1wu8?si=fv07vaETaV9G8XPe" 
+                        title="AI Course Introduction Video" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="text-center lg:text-left">
+                    <h2 class="font-title text-3xl md:text-4xl font-bold mb-6 text-white">Master AI, <br><span class="text-gradient-brand">Transform Your Career</span></h2>
+                    <p class="text-slate-400 text-lg mb-8 leading-relaxed font-light">
+                        Our curriculum is designed to take you from foundational concepts to advanced applications. Learn practical skills that you can apply immediately to solve real-world problems and drive business innovation.
+                    </p>
+                    <a href="/courses" class="btn-primary inline-flex items-center gap-2">
+                        Explore Full Curriculum <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
         </section>
         
         <!-- Portfolio Carousel -->
-        <section class="portfolio-carousel">
-            <h2>Your All-In-One Hub for AI Mastery</h2>
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/9da9c8aa6e6abe589d55b7f43e8a91294c454faa.png" alt="Tech Image 1"></div>
-                    <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/b91095c038cbca9303d094a8b99f2ac6127a129d.png" onerror="this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/7.png'" alt="Tech Image 2"></div>
-                    <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/264e6db73707084fc003ec1cab9c85599b398fe1.png" alt="Tech Image 3"></div>
-                    <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/632a20ea54344e9bf901bca1ca60f0f02d1dd561.png" alt="Tech Image 4"></div>
-                    <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/668b3689baf958b3cd263db066ef07be06cb7962.png" onerror="this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/8.png'" alt="Tech Image 6"></div>
-                    <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/41021ef161a0b2d986a6630e0843e7d64403ae8d.png" alt="Certificate"></div>
-                    <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/fbb31a73e43b097db8f98dec050264118a7fb98e.png" alt="Book"></div>
-                    
-                    <div class="carousel-slide"><img src="https://ik.imagekit.io/bebell/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/ai-foundation-product.png?updatedAt=1767836600038" alt="Book"></div>
-                    <div class="carousel-slide"><img src="https://ik.imagekit.io/bebell/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/book-prompting-craftsmanship.png?updatedAt=1767843260557" alt="Book"></div>
-                    <div class="carousel-slide"><img src="https://ik.imagekit.io/bebell/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/ai-brain-architecture.png?updatedAt=1767842226988" alt="Book"></div>
-                    <div class="carousel-slide"><img src="https://ik.imagekit.io/bebell/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/autonomous-ai-agents-product.png?updatedAt=1767836599935" alt="Book"></div>
-                    <div class="carousel-slide"><img src="https://ik.imagekit.io/bebell/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/security-privacy-compliance.png?updatedAt=1767836600129" alt="Book"></div>
-                    
-                    
-                    <div class="carousel-slide"><img src="https://ik.imagekit.io/bebell/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/AIM%20Toolbox%20(1).png" alt="AIM Program Cover"></div>
-                    <div class="carousel-slide"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/2f061b8ae04322a5e617c0c65f959577a8824836.gif" alt="AIM Program Cover"></div>
-
+        <section class="glass-card p-6 md:p-10 rounded-3xl relative overflow-hidden">
+            <div class="text-center mb-10 relative z-10">
+                <h2 class="font-title text-3xl md:text-4xl font-bold text-white mb-4">Your All-In-One Hub for <span class="text-gradient-brand">AI Mastery</span></h2>
+                <div class="h-1 w-24 bg-brand-primary mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="relative w-full max-w-4xl mx-auto overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl z-10">
+                <div class="carousel-track flex" id="carousel-track">
+                    <div class="carousel-slide min-w-full"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/9da9c8aa6e6abe589d55b7f43e8a91294c454faa.png" alt="Tech Image 1" class="w-full object-cover"></div>
+                    <div class="carousel-slide min-w-full"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/b91095c038cbca9303d094a8b99f2ac6127a129d.png" onerror="this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/7.png'" alt="Tech Image 2" class="w-full object-cover"></div>
+                    <div class="carousel-slide min-w-full"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/264e6db73707084fc003ec1cab9c85599b398fe1.png" alt="Tech Image 3" class="w-full object-cover"></div>
+                    <div class="carousel-slide min-w-full"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/632a20ea54344e9bf901bca1ca60f0f02d1dd561.png" alt="Tech Image 4" class="w-full object-cover"></div>
+                    <div class="carousel-slide min-w-full"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/668b3689baf958b3cd263db066ef07be06cb7962.png" onerror="this.src='https://ik.imagekit.io/bebell/Project%20Freedom/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/8.png'" alt="Tech Image 6" class="w-full object-cover"></div>
+                    <div class="carousel-slide min-w-full"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/41021ef161a0b2d986a6630e0843e7d64403ae8d.png" alt="Certificate" class="w-full object-cover"></div>
+                    <div class="carousel-slide min-w-full"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/fbb31a73e43b097db8f98dec050264118a7fb98e.png" alt="Book" class="w-full object-cover"></div>
+                    <div class="carousel-slide min-w-full"><img src="https://ik.imagekit.io/bebell/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/ai-foundation-product.png?updatedAt=1767836600038" alt="Book" class="w-full object-cover"></div>
+                    <div class="carousel-slide min-w-full"><img src="https://ik.imagekit.io/bebell/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/book-prompting-craftsmanship.png?updatedAt=1767843260557" alt="Book" class="w-full object-cover"></div>
+                    <div class="carousel-slide min-w-full"><img src="https://ik.imagekit.io/bebell/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/ai-brain-architecture.png?updatedAt=1767842226988" alt="Book" class="w-full object-cover"></div>
+                    <div class="carousel-slide min-w-full"><img src="https://ik.imagekit.io/bebell/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/autonomous-ai-agents-product.png?updatedAt=1767836599935" alt="Book" class="w-full object-cover"></div>
+                    <div class="carousel-slide min-w-full"><img src="https://ik.imagekit.io/bebell/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/security-privacy-compliance.png?updatedAt=1767836600129" alt="Book" class="w-full object-cover"></div>
+                    <div class="carousel-slide min-w-full"><img src="https://ik.imagekit.io/bebell/AIM%E2%84%A2%20AI%20Mastery%20Program/Covers/AIM%20Toolbox%20(1).png" alt="Molt Academy Cover" class="w-full object-cover"></div>
+                    <div class="carousel-slide min-w-full"><img src="https://bucket.mlcdn.com/a/3336/3336910/images/2f061b8ae04322a5e617c0c65f959577a8824836.gif" alt="Molt Academy Cover" class="w-full object-cover"></div>
                 </div>
-                <button class="carousel-button prev-button" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
-                <button class="carousel-button next-button" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
+                <!-- Controls -->
+                <button class="carousel-button prev-button" id="prev-btn" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-button next-button" id="next-btn" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
-    </main>
-    
 
-    
-    <!-- Standard AIM Footer -->
-    <footer class="footer">
-        <div class="footer-bg">
-            <div class="footer-container container"> 
-                <!-- Logo/Brand Block -->
-                <div class="footer-brand">
-                    <img src="https://bucket.mlcdn.com/a/3336/3336910/images/423c1fc4e18a130b04800feedaa2eb5fcb41df44.png" alt="AIM Logo" class="footer-logo">
-                    <div class="footer-brand-text">
-                        <h3 class="footer-title">AIM™</h3>
-                        <span class="footer-subtitle">AI Mastery Program</span>
-                    </div>
-                </div>
-                    
-                <!-- Footer Links -->
-                <ul class="footer-links">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li><a href="/about" class="nav-link">About</a></li>
-                    <li><a href="/courses" class="nav-link">Courses</a></li>
-                    <li><a href="/pricing-page" class="nav-link">Pricing</a></li>
-                    <li><a href="/resources" class="nav-link">Resources</a></li>
-                    <li><a href="/contact" class="nav-link">Contact</a></li>
-                </ul>
+        <!-- Image Banner Section (Uniform) -->
+        <section class="w-full max-w-4xl mx-auto px-6 mb-12 mt-16">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/5e9730b190aed26728a80a1054426730d7528021.png" 
+                 alt="Molt Academy Banner" 
+                 class="w-full h-auto object-contain block"
+                 loading="lazy">
+        </section>
 
-                <!-- Social Icons -->
-                <div class="footer-socials">
-                    <a href="https://www.youtube.com/@" target="_blank" class="footer-social" aria-label="Youtube">
-                        <i class="fa-brands fa-youtube"></i>
-                    </a>
-                    <a href="https://www.facebook.com/" target="_blank" class="footer-social" aria-label="Facebook">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </a>
-                    <a href="https://www.instagram.com/" target="_blank" class="footer-social" aria-label="Instagram">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/" target="_blank" class="footer-social" aria-label="LinkedIn">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                    </a>
-                </div>
-            </div>
-            <p class="footer-copy">Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a></p>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Page Loader Logic ---
-            const pageLoader = document.querySelector('.page-loader');
-            window.addEventListener('load', () => {
-                pageLoader.classList.add('hidden');
-                setTimeout(() => pageLoader.remove(), 300);
-            });
-
-           
-            // --- Dropdown Menu Click Logic ---
-            const coursesLink = document.getElementById('courses-link');
-            const submenu = document.getElementById('courses-submenu');
-            const navBar = document.getElementById('nav-bar');
-
-            if (coursesLink && submenu) {
-                coursesLink.addEventListener('click', (e) => {
-                    e.preventDefault(); 
-                    const isMobile = window.innerWidth <= 980; // UPDATED Breakpoint
-                    if (isMobile) {
-                        submenu.classList.toggle('active');
-                    } else {
-                        submenu.classList.toggle('active');
-                    }
-                    e.stopPropagation(); 
-                });
-
-                document.addEventListener('click', (e) => {
-                    if (navBar && !navBar.contains(e.target) && submenu.classList.contains('active')) {
-                        submenu.classList.remove('active');
-                    }
-                });
-
-                submenu.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                });
-            }
-
-            // --- Mobile Menu Toggle Logic (Hamburger Icon) ---
-            const mobileToggle = document.getElementById('mobile-menu-toggle');
-            const navMenu = document.getElementById('nav-menu');
-            const toggleIcon = document.getElementById('toggle-icon');
-
-            if (mobileToggle && navMenu && toggleIcon) {
-                mobileToggle.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    navMenu.classList.toggle('mobile-open');
-                    
-                    if (navMenu.classList.contains('mobile-open')) {
-                        toggleIcon.classList.remove('fa-bars');
-                        toggleIcon.classList.add('fa-xmark');
-                        document.body.style.overflow = 'hidden';
-                    } else {
-                        toggleIcon.classList.remove('fa-xmark');
-                        toggleIcon.classList.add('fa-bars');
-                        document.body.style.overflow = 'auto';
-                        if (submenu) submenu.classList.remove('active');
-                    }
-                });
-                
-                navMenu.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
-                    link.addEventListener('click', () => {
-                        if (window.innerWidth <= 980 && !link.parentElement.classList.contains('has-submenu')) {
-                            navMenu.classList.remove('mobile-open');
-                            toggleIcon.classList.remove('fa-xmark');
-                            toggleIcon.classList.add('fa-bars');
-                            document.body.style.overflow = 'auto';
-                            if (submenu) submenu.classList.remove('active');
-                        }
-                    });
-                });
-
-                document.addEventListener('click', (e) => {
-                    if (window.innerWidth <= 980 && 
-                        navMenu.classList.contains('mobile-open') &&
-                        !navMenu.contains(e.target) && 
-                        e.target !== mobileToggle) {
-                        navMenu.classList.remove('mobile-open');
-                        toggleIcon.classList.remove('fa-xmark');
-                        toggleIcon.classList.add('fa-bars');
-                        document.body.style.overflow = 'auto';
-                        if (submenu) submenu.classList.remove('active');
-                    }
-                });
-            }
+        <!-- Footer (Uniform) -->
+        <footer class="text-center text-slate-500 text-sm max-w-7xl mx-auto border-t border-slate-800 pt-10 relative z-10">
+            <nav class="flex flex-wrap justify-center gap-6 mb-8">
+                <a href="/" class="hover:text-brand-primary transition-colors">Homepage</a>
+                <a href="/pricing" class="hover:text-brand-primary transition-colors text-white font-medium">Pricing</a>
+                <a href="/terms" class="hover:text-brand-primary transition-colors">Terms of Service</a>
+                <a href="/privacy" class="hover:text-brand-primary transition-colors">Privacy Policy</a>
+                <a href="/disclaimer" class="hover:text-brand-primary transition-colors">Disclaimer</a>
+                <a href="/contact" class="hover:text-brand-primary transition-colors">Contact</a>
+            </nav>
             
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                const isMobile = window.innerWidth <= 980; // UPDATED Breakpoint
-                if (!isMobile && navMenu && navMenu.classList.contains('mobile-open')) {
-                    navMenu.classList.remove('mobile-open');
-                    if (toggleIcon) {
-                        toggleIcon.classList.remove('fa-xmark');
-                        toggleIcon.classList.add('fa-bars');
-                    }
-                    document.body.style.overflow = 'auto';
-                }
-                if (submenu) {
-                    submenu.classList.remove('active');
+            <p class="mb-2">
+                Built by <a href="#" class="text-brand-primary hover:underline">MoltAcademy</a> 🦞. Powered with <a href="#" class="text-brand-primary hover:underline">OpenClaw</a>.
+            </p>
+            
+            <p class="opacity-60 text-xs">
+                MoltAcademy is an independent educational platform for the OpenClaw ecosystem.<br>Not affiliated with OpenClaw, Anthropic, or any entity mentioned in the platform.
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- BACK TO TOP BUTTON (Uniform) -->
+    <button id="back-to-top" aria-label="Back to Top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"></button>
+
+    <!-- UI Logic Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Back to Top Logic ---
+            const backToTopButton = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopButton.style.display = 'flex';
+                } else {
+                    backToTopButton.style.display = 'none';
                 }
             });
 
-            // --- Portfolio Carousel Logic ---
-            const track = document.querySelector('.carousel-track');
+            // --- Carousel Logic ---
+            const track = document.getElementById('carousel-track');
             const slides = track ? Array.from(track.children) : [];
-            const nextButton = document.querySelector('.next-button');
-            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.getElementById('next-btn');
+            const prevButton = document.getElementById('prev-btn');
             
             if (track && slides.length > 0) {
                 const getSlideWidth = () => slides[0].getBoundingClientRect().width;
@@ -1190,17 +432,8 @@ body::after {
                     currentIndex = newIndex;
                 };
 
-                if (prevButton) {
-                    prevButton.addEventListener('click', e => {
-                        moveToSlide(currentIndex - 1);
-                    });
-                }
-
-                if (nextButton) {
-                    nextButton.addEventListener('click', e => {
-                        moveToSlide(currentIndex + 1);
-                    });
-                }
+                if (prevButton) prevButton.addEventListener('click', () => moveToSlide(currentIndex - 1));
+                if (nextButton) nextButton.addEventListener('click', () => moveToSlide(currentIndex + 1));
 
                 window.addEventListener('resize', () => {
                     const newSlideWidth = getSlideWidth();
@@ -1210,76 +443,109 @@ body::after {
                         track.style.transition = 'transform 0.5s ease-in-out';
                     }, 50);
                 });
+                
+                // Optional: Auto-play
+                // setInterval(() => moveToSlide(currentIndex + 1), 5000);
             }
         });
     </script>
 
-
-<script>
-    const now = new Date();
-    const month = now.getMonth() + 1;
-    
-    if (month === 12 || month === 1 || month === 2) {
-        const snow = document.createElement('div');
-        snow.className = 'snowflakes-blurry';
-        document.body.appendChild(snow);
-    }
-</script>
-
-
-
-
-<!-- Widget BACK-TO-TOP -->
-<script>
-// Create Back-to-Top Button Dynamically
-document.addEventListener("DOMContentLoaded", function () {
-    // Create the button container
-    const backToTop = document.createElement("div");
-    backToTop.id = "back-to-top";
-    backToTop.style.position = "fixed";
-    backToTop.style.bottom = "20px";
-    backToTop.style.right = "20px";
-    backToTop.style.display = "none";
-    backToTop.style.cursor = "pointer";
-    backToTop.style.zIndex = "9999";
-
-    // Create the image inside the button
-    const backToTopImg = document.createElement("img");
-    backToTopImg.src = "https://bucket.mlcdn.com/a/3336/3336910/images/972c5065cffe83955d5322557dcdce28eca170e5.png";
-    backToTopImg.alt = "Volver arriba";
-    backToTopImg.style.width = "40px";
-    backToTopImg.style.height = "40px";
-
-    // Append image to the button
-    backToTop.appendChild(backToTopImg);
-
-    // Append button to the body
-    document.body.appendChild(backToTop);
-
-    // Scroll Event Listener
-    window.addEventListener("scroll", function () {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            backToTop.style.display = "block";
-        } else {
-            backToTop.style.display = "none";
-        }
-    });
-
-    // Click Event for Scrolling to Top
-    backToTop.addEventListener("click", function () {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
+    <!-- Winter Snow Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const now = new Date();
+            const month = now.getMonth() + 1;
+            
+            if (month === 12 || month === 1 || month === 2) {
+                const snow = document.createElement('div');
+                snow.className = 'snowflakes-blurry';
+                document.body.appendChild(snow);
+            }
         });
-    });
-});
-</script>
-<!-- End Widget BACK-TO-TOP -->
+    </script>
 
-
-
-
-    
-    
+    <!-- OpenClaw Footer Popup Script (Uniform) -->
+    <script>
+    (function() {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+      
+      function init() {
+        if (localStorage.getItem('footerBannerHidden') === 'true') return;
+        
+        try {
+          const container = document.createElement('div');
+          container.id = 'footer-banner-container';
+          container.style.position = 'fixed';
+          container.style.bottom = '0px';
+          container.style.left = '40px';
+          container.style.zIndex = '9999';
+          
+          const link = document.createElement('a');
+          link.href = 'https://openclaw.ai';
+          link.target = '_blank';
+          link.style.display = 'block';
+          link.style.position = 'relative'; 
+          
+          const img = document.createElement('img');
+          img.src = 'https://bucket.mlcdn.com/a/3336/3336910/images/b881d7f20934412469af14f445d502e590599415.gif';
+          img.alt = 'OpenClaw';
+          img.style.maxWidth = '200px';
+          img.style.height = 'auto';
+          img.style.display = 'block';
+          
+          const closeBtn = document.createElement('button');
+          closeBtn.innerHTML = '×';
+          closeBtn.style.position = 'absolute';
+          closeBtn.style.top = '-8px'; 
+          closeBtn.style.right = '-8px'; 
+          closeBtn.style.width = '24px'; 
+          closeBtn.style.height = '24px'; 
+          closeBtn.style.background = '#fff';
+          closeBtn.style.color = '#000';
+          closeBtn.style.border = '1px solid #ccc';
+          closeBtn.style.borderRadius = '50%';
+          closeBtn.style.cursor = 'pointer';
+          closeBtn.style.fontSize = '20px';
+          closeBtn.style.fontWeight = 'bold'; 
+          closeBtn.style.lineHeight = '1';
+          closeBtn.style.padding = '0';
+          
+          closeBtn.style.display = 'flex';
+          closeBtn.style.alignItems = 'center';
+          closeBtn.style.justifyContent = 'center';
+          
+          closeBtn.style.zIndex = '10000';
+          
+          closeBtn.onmouseover = function() {
+            this.style.background = '#f0f0f0';
+            this.style.transform = 'scale(1.1)';
+          };
+          closeBtn.onmouseout = function() {
+            this.style.background = '#fff';
+            this.style.transform = 'scale(1)';
+          };
+          
+          closeBtn.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            container.style.display = 'none';
+            localStorage.setItem('footerBannerHidden', 'true');
+          };
+          
+          link.appendChild(img);
+          link.appendChild(closeBtn); 
+          container.appendChild(link);
+          document.body.appendChild(container);
+          
+        } catch (error) {
+          console.error('Error adding footer banner:', error);
+        }
+      }
+    })();
+    </script>
 </body>
 </html>
