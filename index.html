@@ -82,10 +82,25 @@
             --mb15: 0.75rem;
             --mb3: 1.5rem;
         }
+        
+        
+        
+        
 
         /* --- Base & Scrollbar --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+        * { 
+        box-sizing: border-box; 
+        margin: 0; 
+        padding: 0; 
+        }
+        
+        
+        
+        html { 
+        scroll-behavior: smooth; 
+        }
+        
+        
         
         body {
             margin: 0;
@@ -97,15 +112,50 @@
             overflow-x: hidden;
         }
         
-        main { max-width: 980px; margin: 0 auto; padding: 0 1rem; }
         
-        img { max-width: 100%; height: auto; display: block; }
         
-        a { text-decoration: none; cursor: pointer; }
+        
+        main { 
+        max-width: 980px; 
+        margin: 0 auto; 
+        padding: 0 2rem; 
+        }
+        
+        
+        
+        
+        
+        img { 
+        max-width: 100%; 
+        height: auto; 
+        display: block; 
+        }
+        
+        
+        
+        
+        
+        a { 
+        text-decoration: none; 
+        cursor: pointer; 
+        }
+        
+        
+        
 
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { 
+        width: 8px; 
+        }
+        
+        
         ::-webkit-scrollbar-track { background: #333; }
-        ::-webkit-scrollbar-thumb { background: var(--skin-color); border-radius: 4px; }
+        
+        
+        ::-webkit-scrollbar-thumb { background: var(--skin-color); 
+        border-radius: 4px; 
+        }
+        
+        
         
         /* Utility container class for maximum content width */
         .container {
@@ -113,6 +163,11 @@
             margin: 0 auto;
             padding: 0 1rem;
         }
+        
+        
+        
+        
+        
 
         /* --- Loader and Animations --- */
         @keyframes fadeInUp {
@@ -145,7 +200,7 @@
             text-align: center;
         }
 
-        /* Your progress bar - unchanged */
+/* Your progress bar - unchanged */
         .progress {
             width: 272.8px;
             height: 41.7px;
@@ -175,6 +230,12 @@
             opacity: 0;
             pointer-events: none;
         }
+        
+        
+        
+        
+        
+        
         
         /* =========================== */
         /* SECTION 4: NAVIGATION BAR (DESKTOP DEFAULT) */
@@ -298,10 +359,17 @@
         .nav-cta.mobile-cta-only { display: none; }
         .nav-cta.desktop-cta-only { display: block; }
         
-   
+
+
+
+
+
+
         
         /* --- Footer (Main Page Footer) --- */
-        .footer { padding-top: 2rem; }
+        .footer { 
+        padding-top: 2rem;
+        }
 
         .footer-bg {
             background-color: var(--box-color);
@@ -312,6 +380,7 @@
             display: grid; 
             grid-template-columns: repeat(3, 1fr);
             column-gap: 1.6rem;
+        max-width: 1100px;            
         }
 
         .footer-title {
@@ -335,8 +404,29 @@
             margin: 0;
         }
 
-        .footer-links a { color: var(--title-color); transition: color 0.3s; }
-        .footer-links a:hover { color: var(--skin-color); }
+        .footer-links a { 
+        color: var(--title-color); 
+        transition: color 0.3s; 
+        }
+        
+        
+        
+        .footer-links a:hover { 
+        color: var(--skin-color); 
+        }
+        
+        
+   /* More specific selector */
+.footer-links li a:hover {
+    color: var(--skin-color);
+}
+
+/* Or even more specific */
+.footer .footer-links a:hover {
+    color: var(--skin-color);
+}     
+        
+        
 
         .footer-socials {
             justify-self: flex-end; /* Pushes to right on desktop */
@@ -355,15 +445,42 @@
             color: var(--skin-color); 
             cursor: pointer; 
         }
+        
+        
+        
+        
+        
+.footer-copy {
+    font-size: var(--smaller-font-size);
+    text-align: center;
+    margin-top: 4.5rem;
+}
 
-        .footer-copy {
-            font-size: var(--smaller-font-size);
-            text-align: center;
-            margin-top: 4.5rem;
-        }
+.footer-copy a {
+    color: var(--title-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
 
-        .footer-copy a { color: var(--title-color); }
-        .footer-copy a:hover { color: var(--skin-color); }
+.footer-copy a:hover {
+    color: #ff5011 !important; /* Using hex directly for testing */
+
+}  
+        
+        
+/* Force fix for Bebell Digital Solutions link */
+footer .footer-copy a {
+    color: var(--title-color) !important;
+}
+
+footer .footer-copy a:hover {
+    color: #ff5011 !important;
+
+}        
+        
+        
+        
+        
 
         .footer-brand {
             display: flex;
@@ -515,7 +632,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
+            text-align: center;          
             margin-top: -0rem; /* Compensate for body padding-top */
         }
         
@@ -538,6 +655,8 @@
             color: var(--title-color);
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
         }
+        
+        
         
         .hero-content h1 {
             color: var(--title-color);
@@ -753,6 +872,7 @@
             margin-bottom: 3rem;
             animation: fadeInUp 0.8s ease-out forwards;
             opacity: 0;
+            max-width: 960px;
         }
 
         .path-section h2 {
@@ -1475,7 +1595,7 @@
         
         /* Further adjustments for smaller screens */
         @media (max-width: 480px) {
-            #social-proof-logos-section .social-proof-bar { gap: 1rem; }
+            #social-proof-logos-section .social-proof-bar { gap: 0rem; }
             #social-proof-logos-section .social-proof-bar img { height: 50px; max-width: 150px; }
         }
 
@@ -2545,13 +2665,18 @@ body::after {
                     </a>
                 </div>
             </div>
+            
+            
+            
+            
             <p class="footer-copy">Copyright &#169; 2024 • All rights reserved.<br>Developed with 🧡 by <a href="https://bebelldigitalsolutions.com">Bebell Digital Solutions</a></p>
+            
+            
+            
+            
+            
         </div>
     </footer>
-
-
-
-
 
 
 
@@ -2854,18 +2979,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-    
+   
 </body>
 </html>
