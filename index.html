@@ -93,7 +93,7 @@
             background-color: var(--body-color);
             color: var(--text-color);
             line-height: 1.6;
-            padding-top: 8rem; /* Space for fixed nav */
+            padding-top: 6rem; /* Space for fixed nav */
             overflow-x: hidden;
         }
         
@@ -492,6 +492,11 @@
             margin: 0;
             line-height: 1.6;
         }
+
+
+
+
+        
         
         /* Hero Section */
         .hero {
@@ -504,15 +509,15 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            margin-top: -2rem; /* Compensate for body padding-top */
+            margin-top: -0rem; /* Compensate for body padding-top */
         }
         
         .hero spline-viewer {
             position: absolute;
-            top: 70px;
+            top: 50px;
             left: 0;
             width: 100%;
-            max-width: 2200px;
+            max-width: 2300px;
             height: 100%;
             z-index: 0;
             transform: scale(1.13);
@@ -521,7 +526,7 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            max-width: 760px;
             padding: 1rem;
             color: var(--title-color);
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
@@ -596,6 +601,11 @@
         }
         
         .reassurance-item i { color: var(--skin-color); }
+
+
+
+
+        
         
         /* Social Proof Bar */
         .social-proof-bar {
@@ -617,6 +627,7 @@
             opacity: 0;
             position: relative;
             z-index: 3;
+            max-width: 980px;            
         }
         
         .social-proof-bar img {
@@ -645,6 +656,9 @@
             transform: translateX(5px);
             color: var(--title-color);
         }
+
+
+
         
         /* Boxes Section */
         .boxes {
@@ -677,6 +691,13 @@
         
         .box i { color: var(--skin-color); }
 
+
+
+
+
+
+        
+
         .why-aim-section {
             background-color: var(--box-color);
             border-radius: 12px;
@@ -706,6 +727,15 @@
             border-radius: 10px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
+
+
+
+
+
+
+
+
+        
         
         /* Choose Your Path Section */
         .path-section {
@@ -792,6 +822,9 @@
         
         
         
+
+
+
         
    
         
@@ -826,6 +859,11 @@
             border-radius: 8px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
+
+
+
+
+
         
   /* Fading Carousel Styles */
 .fading-carousel {
@@ -1025,6 +1063,14 @@
             color: var(--text-color);
             font-style: normal;
         }
+
+
+
+
+
+
+
+        
         
         /* Unique CSS for Social Proof Section Logos Only */
         #social-proof-logos-section .social-proof-bar {
@@ -1058,6 +1104,10 @@
             transform: scale(1.05);
         }
 
+
+
+        
+
         /* Pricing Section */
         .pricing-section {
             background: transparent;
@@ -1067,6 +1117,7 @@
             margin-bottom: 3rem;
             animation: fadeInUp 0.8s ease-out forwards;
             opacity: 0;
+            max-width: 960px;         
         }
 
         .pricing-section h2 {
@@ -1132,6 +1183,11 @@
             padding: 0.7rem 1.5rem;
             font-size: 1rem;
         }
+
+
+
+
+        
         
         /* FAQ Section */
         .faq-section {
@@ -1391,6 +1447,11 @@
                 row-gap: 1.5rem;
                 justify-self: center;
             }
+
+
+
+
+
             
             /* Timeline Adjustments */
             .timeline-container { padding-left: 30px; }
@@ -1419,6 +1480,193 @@
         
 
 
+
+        
+/* =========================== */
+/* BADGE DE ESTADO OPERACIONAL - CON PUNTOS ANIMADOS */
+/* =========================== */
+
+.status-badge-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    animation: fadeInDown 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    
+    /* Glassmorphism effect */
+    background: rgba(255, 80, 17, 0.25);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    
+    border: 1.5px solid rgba(255, 80, 17, 0.5);
+    border-radius: 100px;
+    
+    box-shadow: 
+        0 8px 32px rgba(255, 80, 17, 0.2),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    
+    padding: 0.6rem 1.5rem 0.6rem 1.2rem;
+    
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* Importante: permite que el badge se expanda según el contenido */
+    width: auto;
+    max-width: fit-content;
+}
+
+.status-badge:hover {
+    background: rgba(255, 80, 17, 0.35);
+    backdrop-filter: blur(15px) saturate(200%);
+    -webkit-backdrop-filter: blur(15px) saturate(200%);
+    
+    border-color: rgba(255, 80, 17, 0.8);
+    box-shadow: 
+        0 12px 40px rgba(255, 80, 17, 0.35),
+        inset 0 1px 3px rgba(255, 255, 255, 0.4);
+    
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* Luz de estado con animación */
+.status-light {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ff0;
+    box-shadow: 0 0 15px #ff0;
+    flex-shrink: 0;
+    
+    animation: statusLightAnimation 6s ease-in-out forwards;
+}
+
+/* Texto del estado */
+.status-text {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Puntos suspensivos animados - como loading */
+.loading-dots {
+    display: inline-block;
+    width: 24px;
+    text-align: left;
+}
+
+.loading-dots::after {
+    content: '...';
+    animation: dotsAnimation 1.5s steps(4, end) infinite;
+    display: inline-block;
+    width: 24px;
+    letter-spacing: 2px;
+}
+
+@keyframes dotsAnimation {
+    0%, 20% { content: ''; }
+    40% { content: '.'; }
+    60% { content: '..'; }
+    80%, 100% { content: '...'; }
+}
+
+/* Cuando el texto cambia, eliminamos los puntos */
+.status-text.final .loading-dots {
+    display: none;
+}
+
+/* Animación para la luz de estado */
+@keyframes statusLightAnimation {
+    0% {
+        background-color: #ff0;
+        box-shadow: 0 0 15px #ff0;
+    }
+    10% { opacity: 0.3; }
+    20% { opacity: 1; }
+    30% { opacity: 0.3; }
+    40% { opacity: 1; }
+    50% { opacity: 0.3; }
+    60% { opacity: 1; }
+    70% { opacity: 0.3; }
+    80% { opacity: 1; }
+    90% {
+        opacity: 0.3;
+        background-color: #ff0;
+        box-shadow: 0 0 15px #ff0;
+    }
+    100% {
+        background-color: #0f0;
+        box-shadow: 0 0 20px #0f0;
+        opacity: 1;
+    }
+}
+
+/* Efecto de brillo en el borde del badge */
+.status-badge::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        rgba(255, 80, 17, 0.5), 
+        rgba(255, 200, 100, 0.3), 
+        rgba(255, 80, 17, 0.5));
+    border-radius: 100px;
+    z-index: -1;
+    opacity: 0.5;
+    filter: blur(8px);
+    transition: opacity 0.3s ease;
+}
+
+.status-badge:hover::before {
+    opacity: 0.8;
+    filter: blur(12px);
+}
+
+/* Animación de entrada para el badge */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ajuste responsivo */
+@media screen and (max-width: 768px) {
+    .status-badge {
+        padding: 0.5rem 1.2rem 0.5rem 1rem;
+    }
+    
+    .status-text {
+        font-size: 0.8rem;
+    }
+    
+    .status-light {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+
+
+
+        
 
 
 
@@ -1544,9 +1792,6 @@ body::after {
   }
 }
 
-
-  
-    
     
     </style>
    
@@ -1559,9 +1804,6 @@ body::after {
        debug : false }); 
      } 
     </script>
-
-
-
 
     
 </head>
@@ -1597,19 +1839,23 @@ body::after {
                 <a href="/courses" class="nav-link" id="courses-link">Courses <i class="fa-solid fa-angle-down" style="font-size: 0.8em;"></i></a>
                 <div class="submenu-courses" id="courses-submenu">
                     <a href="/courses" class="submenu-link"><i class="fa-solid fa-list-ul"></i> All Courses</a>
-                    <a href="/1-ai-foundation" class="submenu-link"><i class="fa-solid fa-cubes"></i> AI Foundation</a>
-                    <a href="/2-prompting-craftsmanship" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>
-                    
-                    <a href="/3-security-privacy-compliance" class="submenu-link"><i class="fa-solid fa-shield"></i> Security, Privacy & Compliance</a>                            
-                    
+                    <a href="/1-ai-foundation" class="submenu-link"><i class="fa-solid fa-cubes"></i> AI Foundations</a>                    
+                    <a href="/2-security-privacy-compliance" class="submenu-link"><i class="fa-solid fa-shield"></i> Security, Privacy & Compliance</a>                            
+                    <a href="/3-prompting-craftsmanship" class="submenu-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Craftsmanship</a>                    
                     <a href="/4-building-your-ai-brain" class="submenu-link"><i class="fa-solid fa-brain"></i> Building Your AI Brain</a>
-                    <a href="/5-building-autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Autonomous AI Agents</a>
-
+                    <a href="/5-building-autonomous-ai-agents" class="submenu-link"><i class="fa-solid fa-robot"></i> Automated AI Systems</a>
                 </div>
             </div>
             
             <a href="/pricing-page" class="nav-link">Pricing</a>
             <a href="/contact" class="nav-link">Contact</a>
+            
+                    <!-- 👇 NUEVO: ICONO DE TRADUCCIÓN (antes del CTA) -->
+        <a href="https://es.aimbootcamp.com" class="nav-link translate-link" id="translate-icon" title="Cambiar idioma / Switch language">
+            <i class="fa-solid fa-language"></i> 
+            <span class="translate-text"></span>
+        </a>
+            
             
             <!-- DESKTOP CTA -->
             <a href="/portal" class="nav-cta desktop-cta-only">MEMBER LOGIN</a>
@@ -1631,6 +1877,19 @@ body::after {
             <spline-viewer url="https://prod.spline.design/w5vaKcpN4KUx8TDq/scene.splinecode"></spline-viewer>
             
             <div class="hero-content">
+
+
+       <!-- BADGE DE ESTADO OPERACIONAL - VERSIÓN SIMPLE Y FUNCIONAL -->
+        <div class="status-badge-container">
+            <div class="status-badge" id="statusBadge">
+                <span class="status-light"></span>
+                <span class="status-text" id="statusText">Systems Loading ...</span>
+            </div>
+        </div>   
+        
+        
+
+                
                 <h1>Learn AI the Right Way. Structured. Practical. Responsible.</h1>
                 <p>A structured AI mastery program built for professionals, teams, and organizations that need clarity, control, and safe execution.</p>
                 
@@ -1662,22 +1921,16 @@ body::after {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
+            
 
         <!-- Social Proof Bar -->
         <section class="social-proof-bar container">
             <p style="color: var(--skin-color); font-weight: 500; margin-right: 1rem; white-space: nowrap;">Works With:</p>
             <img src="https://bucket.mlcdn.com/a/3336/3336910/images/5a670bcb835fe1f260086188d1059285e3baab8e.png" alt="OpenAI Logo">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/3ba4b1a4a17452494fb4272871453b8bbb4485d7.png" alt="Google Logo"> 
+             <img src="https://bucket.mlcdn.com/a/3336/3336910/images/577a4563bf1222f9c941de16cad77cba37287fe9.png" alt="Logo Claude">              
             <img src="https://bucket.mlcdn.com/a/3336/3336910/images/435e8f207e68acfb6e491f39a0defdbe88cd8709.png" alt="Meta Logo">
-            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/3ba4b1a4a17452494fb4272871453b8bbb4485d7.png" alt="Google Logo">
-            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/55834c6ba4b15fb016a860e42c6539c677cbfe27.png" alt="Microsoft Logo">
+            <img src="https://bucket.mlcdn.com/a/3336/3336910/images/55834c6ba4b15fb016a860e42c6539c677cbfe27.png" alt="Microsoft Logo">   
         </section>
         
         
@@ -1686,11 +1939,7 @@ body::after {
         
         
         
-        
-        
-        
-        
-        
+      
 
         <!-- Why AIM (Value Props) Section -->
         <section class="why-aim-section container" style="animation-delay: 0.4s;">
@@ -2511,6 +2760,25 @@ body::after {
 
 
 
+
+
+    
+    <script>    
+  // Añade esto al final de tu script existente, dentro del DOMContentLoaded
+
+// Cambiar el texto del badge después de 5 segundos
+setTimeout(() => {
+    const statusText = document.getElementById('statusText');
+    if (statusText) {
+        statusText.textContent = 'Systems Operacional';
+    }
+}, 5000); // 5000ms = 5 segundos  
+    </script>    
+    
+    
+    
+
+    
 
 
 <!-- Widget BACK-TO-TOP -->
