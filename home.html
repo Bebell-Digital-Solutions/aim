@@ -338,7 +338,7 @@
         
         main { 
         margin: 0 auto; 
-        padding: 0 2rem; 
+        padding: 0 0rem; 
         }
         
         
@@ -738,7 +738,6 @@ footer .footer-copy a:hover {
             animation: fadeInUp 0.8s ease-out forwards;
             opacity: 0; /* Start hidden for animation */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            
         }
         
         
@@ -893,6 +892,7 @@ footer .footer-copy a:hover {
             left: 0;
             width: 100%;
             max-width: 2300px;
+            margin: 0;
             height: 100%;
             z-index: 0;
             transform: scale(1.13);
@@ -982,6 +982,32 @@ footer .footer-copy a:hover {
 
 
 
+
+
+
+
+/* Fix for hero content spacing - ADD THIS */
+.hero-content {
+    padding-top: 2rem;  /* Creates space at the top for the badge */
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center; /* Keeps content vertically centered */
+}
+
+/* Ensure the badge container has proper top spacing */
+.status-badge-container {
+    margin-top: 1rem;  /* Additional push from very top */
+}
+
+/* Ensure Download Syllabus has proper bottom spacing */
+.secondary-cta-link {
+    margin-bottom: 1rem;  /* Creates space at the very bottom */
+}
+
+
+
+
         
         
         /* Social Proof Bar */
@@ -993,7 +1019,8 @@ footer .footer-copy a:hover {
             margin: 3rem auto;
             margin-top: 0;
             flex-wrap: wrap;
-            padding: 1rem 0;
+            padding: 1rem 1rem;
+
             background-color: var(--box-color);
             color: linear-gradient(90deg, var(--skin-color), #d43a00);
             border-radius: 12px;
@@ -1649,6 +1676,10 @@ footer .footer-copy a:hover {
             color: var(--text-color);
             margin-top: 1rem;
         }
+        
+        
+        
+        
 
         /* ====================================================== */
         /* --- MOBILE LAYOUT (UPDATED TO 980px BREAKPOINT) --- */
@@ -1657,6 +1688,44 @@ footer .footer-copy a:hover {
             body { 
                 padding-top: 6rem; /* Reduced spacing for mobile */
             }
+            
+            
+            main {
+            padding: 0 2rem;
+            }
+            
+
+
+        .hero spline-viewer {
+        width: 100%;
+        padding: 0;
+        }
+
+
+
+
+/* Mobile-specific hero spacing fixes */
+.hero-content {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    min-height: 100vh;
+    justify-content: flex-start; /* On mobile, we want content to start from top */
+}
+
+.status-badge-container {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.secondary-cta-link {
+    margin-bottom: 1.5rem;
+}            
+            
+            
+            
+            
+            
+            
             
             /* --- Mobile Navigation Bar (Fixed Top) --- */
             #nav-bar {
@@ -2256,9 +2325,12 @@ body::after {
     
     <main>
         <!-- Hero Section -->
-        <section class="hero">
+        <section class="hero" style="padding-top: 2rem;">
             <spline-viewer url="https://prod.spline.design/w5vaKcpN4KUx8TDq/scene.splinecode"></spline-viewer>
-            
+  
+  
+  
+  
             <div class="hero-content">
 
 
