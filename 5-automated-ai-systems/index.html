@@ -658,7 +658,58 @@
         .faq-open .faq-content {
             max-height: 500px; 
         }
+    /* FAQ Section */       
+        
+.faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
 
+.faq-item {
+    border-bottom: 1px solid var(--box-color);
+    margin-bottom: 0.5rem;
+}
+
+.faq-header {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--title-color);
+    display: flex;
+    justify-content: space-between;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    cursor: pointer;
+
+}
+
+.faq-header:hover {
+    color: var(--skin-color);
+}
+
+.faq-icon {
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+}  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+        
 
 
 
